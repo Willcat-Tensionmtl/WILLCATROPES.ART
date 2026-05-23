@@ -1,0 +1,2441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Willcat — Shibari Educator · Artist · Author</title>
+<meta name="description" content="Building frameworks for understanding body, rope, movement, and practice. William Desjardins — Montréal."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Shippori+Mincho:wght@400;500;600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet"/>
+<style>
+
+/* ════ Hero ════ */
+/* ════════════════════════════════════════
+   GLOBAL TOKENS — shared across all sections
+   Copy this :root block into globals.css
+   ════════════════════════════════════════ */
+:root {
+  --ink:        #151210;
+  --ink2:       #1e1a16;
+  --paper:      #f0ead8;
+  --paper2:     #e8dfc8;
+  --rope:       #a67c1a;
+  --rope-l:     #c9a84c;
+  --muted:      #7a6e58;
+
+  /* Per-symbol accent colors */
+  --sq-color:   #c9a84c;   /* □ Shikaku — gold    */
+  --tri-color:  #c9804a;   /* △ Sankaku — amber   */
+  --circ-color:#1a1816;   /* ○ Maru    — sage    */
+
+  --fd: 'Cormorant Garamond', serif;
+  --fj: 'Shippori Mincho', serif;
+  --fm: 'DM Mono', monospace;
+
+  --ease:  cubic-bezier(0.16, 1, 0.3, 1);
+  --ease2: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ════════════════════════════════════════
+   RESET
+   ════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { overflow-x: hidden; height: 100%; }
+body {
+  font-family: var(--fm);
+  background: var(--ink);
+  color: var(--paper);
+  line-height: 1.6;
+}
+
+/* Grain texture */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: .4;
+}
+
+/* ════════════════════════════════════════
+   HERO SHELL
+   ════════════════════════════════════════ */
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+}
+
+/* ── Background image layer ── */
+.hero__bg {
+  position: absolute;
+  inset: -15%;
+  z-index: 0;
+  will-change: transform;
+}
+/* EDIT: swap to img/hero_01.jpg once image is placed */
+.hero__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 25%;
+  display: block;
+  filter: brightness(.35) saturate(.6);
+}
+/* Fallback if no image: dark textured gradient */
+.hero__bg-fallback {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 30% 40%, rgba(166,124,26,.12) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 80% at 75% 60%, rgba(21,18,16,.9) 0%, transparent 100%),
+    var(--ink);
+}
+
+/* ── Gradient fade to bottom ── */
+.hero__fade {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(to top,
+      rgba(21,18,16,1)    0%,
+      rgba(21,18,16,.75) 35%,
+      rgba(21,18,16,.3)  65%,
+      transparent        100%
+    ),
+    linear-gradient(to right,
+      rgba(21,18,16,.4) 0%,
+      transparent 50%
+    );
+}
+
+/* ── Content layer ── */
+.hero__content {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: end;
+  gap: 4rem;
+  padding: 5rem 4rem;
+  padding-bottom: 6rem;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* ════════════════════════════════════════
+   HERO LEFT — Title block
+   ════════════════════════════════════════ */
+.hero__left {}
+
+/* Eyebrow label */
+.hero__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--fm);
+  font-size: 9px;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: var(--rope-l);
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: fadeUp .8s var(--ease) .2s forwards;
+}
+.hero__eyebrow::before {
+  content: '';
+  display: block;
+  width: 28px;
+  height: 1px;
+  background: var(--rope-l);
+  flex-shrink: 0;
+}
+
+/* Main heading */
+.hero__title {
+  font-family: var(--fd);
+  font-size: clamp(4rem, 8vw, 8.5rem);
+  font-weight: 300;
+  line-height: .88;
+  letter-spacing: -.025em;
+  margin-bottom: 2.5rem;
+  opacity: 0;
+  animation: fadeUp .9s var(--ease) .35s forwards;
+}
+.hero__title em {
+  font-style: italic;
+  color: var(--rope-l);
+}
+
+/* Name + pronouns subtitle */
+.hero__name-sub {
+  font-family: var(--fm);
+  font-size: 10.5px;
+  letter-spacing: .18em;
+  color: rgba(240,234,216,.35);
+  text-transform: lowercase;
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: fadeUp .8s var(--ease) .45s forwards;
+}
+
+/* Tagline / descriptor */
+.hero__tagline {
+  font-family: var(--fd);
+  font-size: clamp(1.1rem, 1.8vw, 1.5rem);
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(240,234,216,.5);
+  line-height: 1.65;
+  max-width: 420px;
+  margin-bottom: 3rem;
+  opacity: 0;
+  animation: fadeUp .8s var(--ease) .5s forwards;
+}
+
+/* Sub-description */
+.hero__desc {
+  font-family: var(--fm);
+  font-size: 10.5px;
+  color: rgba(240,234,216,.32);
+  letter-spacing: .06em;
+  line-height: 1.9;
+  max-width: 380px;
+  margin-bottom: 3rem;
+  opacity: 0;
+  animation: fadeUp .8s var(--ease) .65s forwards;
+}
+
+/* CTA row */
+.hero__ctas {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp .8s var(--ease) .8s forwards;
+}
+.btn {
+  font-family: var(--fm);
+  font-size: 9.5px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  padding: 11px 24px;
+  border-radius: 1px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: all .22s var(--ease2);
+  border: .5px solid transparent;
+}
+.btn--primary {
+  background: var(--rope);
+  color: var(--paper);
+  border-color: var(--rope);
+}
+.btn--primary:hover { background: var(--rope-l); border-color: var(--rope-l); }
+.btn--outline {
+  background: transparent;
+  color: var(--rope-l);
+  border-color: rgba(169,124,26,.45);
+}
+.btn--outline:hover {
+  background: rgba(169,124,26,.1);
+  border-color: var(--rope-l);
+}
+
+/* Scroll hint */
+.hero__scroll {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 3rem;
+  font-family: var(--fm);
+  font-size: 8px;
+  letter-spacing: .22em;
+  color: rgba(240,234,216,.22);
+  text-transform: uppercase;
+  opacity: 0;
+  animation: fadeUp .8s var(--ease) 1.1s forwards;
+}
+.hero__scroll-line {
+  width: 40px;
+  height: 1px;
+  background: rgba(240,234,216,.18);
+  position: relative;
+  overflow: hidden;
+}
+.hero__scroll-line::after {
+  content: '';
+  position: absolute;
+  left: -100%;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--rope-l);
+  animation: slideLine 2.2s var(--ease) 1.4s infinite;
+}
+
+/* ════════════════════════════════════════
+   HERO RIGHT — Symbol trio display
+   ════════════════════════════════════════ */
+.hero__right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0;
+  opacity: 0;
+  animation: fadeIn .9s var(--ease) .6s forwards;
+}
+
+/* The three symbols stacked */
+.symbol-trio {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+  max-width: 340px;
+}
+
+.symbol-card {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  padding: 1.5rem 0;
+  border-bottom: .5px solid rgba(240,234,216,.07);
+  cursor: default;
+  transition: padding-left .25s var(--ease);
+  position: relative;
+}
+.symbol-card:last-child { border-bottom: none; }
+.symbol-card:hover { padding-left: .5rem; }
+
+/* The large symbol glyph — SVG drawn shapes */
+.symbol-card__glyph {
+  flex-shrink: 0;
+  width: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.symbol-card__glyph svg {
+  width: 52px;
+  height: 52px;
+  overflow: visible;
+  transition: stroke .25s, opacity .25s;
+}
+.symbol-card--sq   .symbol-card__glyph svg { stroke: rgba(201,168,76,.5); }
+.symbol-card--tri  .symbol-card__glyph svg { stroke: rgba(201,128,74,.5); }
+.symbol-card--circ .symbol-card__glyph svg { stroke: rgba(143,184,168,.5); }
+
+.symbol-card:hover.symbol-card--sq   .symbol-card__glyph svg { stroke: var(--sq-color); }
+.symbol-card:hover.symbol-card--tri  .symbol-card__glyph svg { stroke: var(--tri-color); }
+.symbol-card:hover.symbol-card--circ .symbol-card__glyph svg { stroke: var(--circ-color); }
+
+/* Symbol text info */
+.symbol-card__info {}
+.symbol-card__jp {
+  font-family: var(--fj);
+  font-size: .75rem;
+  letter-spacing: .12em;
+  margin-bottom: .25rem;
+  transition: color .25s;
+}
+.symbol-card--sq   .symbol-card__jp { color: rgba(201,168,76,.4); }
+.symbol-card--tri  .symbol-card__jp { color: rgba(201,128,74,.4); }
+.symbol-card--circ .symbol-card__jp { color: rgba(143,184,168,.4); }
+
+.symbol-card:hover.symbol-card--sq   .symbol-card__jp { color: rgba(201,168,76,.7); }
+.symbol-card:hover.symbol-card--tri  .symbol-card__jp { color: rgba(201,128,74,.7); }
+.symbol-card:hover.symbol-card--circ .symbol-card__jp { color: rgba(143,184,168,.7); }
+
+.symbol-card__name {
+  font-family: var(--fd);
+  font-size: 1.6rem;
+  font-weight: 300;
+  color: var(--paper);
+  line-height: 1;
+  margin-bottom: .25rem;
+}
+.symbol-card__meaning {
+  font-family: var(--fm);
+  font-size: 9px;
+  letter-spacing: .14em;
+  color: rgba(240,234,216,.25);
+  text-transform: uppercase;
+  line-height: 1.5;
+}
+
+/* Arrow between cards */
+.symbol-trio__arrow {
+  font-family: var(--fm);
+  font-size: 9px;
+  letter-spacing: .2em;
+  color: rgba(240,234,216,.12);
+  text-align: center;
+  padding: .1rem 0 .1rem 1.5rem;
+}
+
+/* The unified MSQ logotype above the trio */
+.hero__msq-logo {
+  font-family: var(--fj);
+  font-size: 1.1rem;
+  letter-spacing: .35em;
+  color: rgba(240,234,216,.12);
+  text-align: right;
+  margin-bottom: 2rem;
+  align-self: flex-end;
+}
+
+/* ════════════════════════════════════════
+   HERO TOP — Nav strip
+   ════════════════════════════════════════ */
+.hero__nav {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 4rem;
+  opacity: 0;
+  animation: fadeIn .7s ease .1s forwards;
+}
+.nav__logo {
+  font-family: var(--fd);
+  font-size: 1.1rem;
+  font-weight: 300;
+  letter-spacing: .2em;
+  color: var(--paper);
+  text-decoration: none;
+  opacity: .55;
+  transition: opacity .2s;
+}
+.nav__logo:hover { opacity: 1; }
+.nav__logo em { color: var(--rope-l); font-style: normal; }
+.nav__links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+.nav__links a {
+  font-family: var(--fm);
+  font-size: 9px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: rgba(240,234,216,.35);
+  text-decoration: none;
+  transition: color .2s;
+}
+.nav__links a:hover { color: var(--rope-l); }
+
+/* ════════════════════════════════════════
+   HERO BOTTOM — Edge decorations
+   ════════════════════════════════════════ */
+
+/* Floating Japanese text, bottom right */
+.hero__jp-caption {
+  position: absolute;
+  right: 4rem;
+  bottom: 7rem;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: .3rem;
+  opacity: 0;
+  animation: fadeIn .8s ease .9s forwards;
+}
+.hero__jp-caption span {
+  font-family: var(--fj);
+  font-size: .75rem;
+  color: rgba(240,234,216,.18);
+  letter-spacing: .12em;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  line-height: 1.8;
+}
+
+/* Ghost symbol — large decorative background element */
+.hero__ghost {
+  position: absolute;
+  right: -2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  z-index: 1;
+  user-select: none;
+  line-height: 1;
+}
+
+/* ════════════════════════════════════════
+   KEYFRAMES
+   ════════════════════════════════════════ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes slideLine {
+  0%   { left: -100%; }
+  50%  { left: 100%; }
+  100% { left: 100%; }
+}
+
+/* ════════════════════════════════════════
+   RESPONSIVE
+   ════════════════════════════════════════ */
+@media (max-width: 900px) {
+  .hero__content {
+    grid-template-columns: 1fr;
+    padding: 2rem;
+    padding-bottom: 4rem;
+    gap: 3rem;
+  }
+  .hero__right {
+    align-items: flex-start;
+  }
+  .hero__msq-logo { align-self: flex-start; text-align: left; }
+  .symbol-trio { max-width: 100%; }
+  .hero__jp-caption { display: none; }
+  .nav__links { display: none; }
+  .hero__nav { padding: 1.25rem 2rem; }
+}
+
+/* ════ Sections A ════ */
+/* ─────────────────────────────────────────
+   TOKENS  (same as hero — copy into globals.css)
+   ───────────────────────────────────────── */
+
+/* ─────────────────────────────────────────
+   SHARED LAYOUT PRIMITIVES
+   ───────────────────────────────────────── */
+.section        { padding: 7rem 0; position: relative; }
+.section.dark   { background: var(--ink); }
+.section.paper  { background: #1a1612; color: var(--paper); }
+.section.paper2 { background: #1a1612; color: var(--paper); }
+
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 4rem;
+}
+
+.lbl {
+  font-family: var(--fm);
+  font-size: 9px;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--rope-l);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+.lbl::before {
+  content: '';
+  width: 24px; height: 1px;
+  background: var(--rope-l);
+  display: block; flex-shrink: 0;
+}
+.lbl.dk { color: var(--rope-l); }
+.lbl.dk::before { background: var(--rope-l); }
+
+h2 {
+  font-family: var(--fd);
+  font-size: clamp(2.8rem, 4.5vw, 4.8rem);
+  font-weight: 300;
+  line-height: .92;
+  letter-spacing: -.025em;
+  margin-bottom: 2rem;
+}
+h3 {
+  font-family: var(--fd);
+  font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+  font-weight: 300;
+  line-height: 1.1;
+  margin-bottom: .75rem;
+}
+
+.body-serif {
+  font-family: var(--fd);
+  font-size: clamp(1rem, 1.4vw, 1.15rem);
+  font-weight: 300;
+  line-height: 1.82;
+  color: rgba(240,234,216,.62);
+}
+.body-serif.on-paper { color: rgba(240,234,216,.62); }
+
+.body-mono {
+  font-size: 11px;
+  line-height: 1.9;
+  color: rgba(240,234,216,.36);
+  font-family: var(--fm);
+}
+.body-mono.on-paper { color: rgba(240,234,216,.38); }
+
+.blockquote {
+  border-left: 2px solid rgba(169,124,26,.35);
+  padding-left: 1.5rem;
+  margin: 2rem 0;
+}
+.blockquote p {
+  font-family: var(--fd);
+  font-size: clamp(1.1rem, 1.6vw, 1.4rem);
+  font-style: italic;
+  font-weight: 300;
+  color: rgba(240,234,216,.6);
+  line-height: 1.55;
+}
+.blockquote.on-paper p { color: rgba(240,234,216,.6); }
+.blockquote cite {
+  display: block;
+  font-family: var(--fm);
+  font-size: 9px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--rope-l);
+  margin-top: .5rem;
+}
+.blockquote.on-paper cite { color: var(--rope-l); }
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+.two-col.valign { align-items: center; }
+
+.img-panel {
+  position: relative;
+  overflow: hidden;
+}
+.img-panel img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .6s var(--ease);
+}
+.img-panel:hover img { transform: scale(1.03); }
+.img-panel-caption {
+  position: absolute;
+  bottom: 1rem; right: 1rem;
+  font-family: var(--fm);
+  font-size: 8.5px;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: rgba(240,234,216,.3);
+}
+
+.tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 1.75rem;
+}
+.tag {
+  font-family: var(--fm);
+  font-size: 9.5px;
+  letter-spacing: .1em;
+  padding: 5px 13px;
+  border: .5px solid rgba(240,234,216,.12);
+  color: rgba(240,234,216,.3);
+  border-radius: 1px;
+  cursor: default;
+  transition: all .22s;
+}
+.tag:hover { border-color: var(--rope-l); color: var(--rope-l); }
+.tag.on-paper { border-color: rgba(240,234,216,.12); color: rgba(240,234,216,.3); }
+.tag.on-paper:hover { border-color: var(--rope-l); color: var(--rope-l); }
+
+.btn {
+  display: inline-block;
+  font-family: var(--fm);
+  font-size: 9.5px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  padding: 11px 24px;
+  border-radius: 1px;
+  text-decoration: none;
+  transition: all .22s;
+  border: .5px solid transparent;
+  cursor: pointer;
+}
+.btn-p { background: var(--rope); color: var(--paper); border-color: var(--rope); }
+.btn-p:hover { background: var(--rope-l); }
+.btn-o { background: transparent; color: var(--rope-l); border-color: rgba(169,124,26,.45); }
+.btn-o:hover { background: rgba(169,124,26,.1); border-color: var(--rope-l); }
+.btn-dk { background: transparent; color: var(--rope); border-color: rgba(169,124,26,.4); }
+.btn-dk:hover { background: rgba(169,124,26,.08); border-color: var(--rope); }
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .7s var(--ease), transform .7s var(--ease);
+}
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+/* Section ID badge (dev helper, remove in prod) */
+.sec-id {
+  position: absolute;
+  top: 1.5rem; right: 2rem;
+  font-family: var(--fm);
+  font-size: 8px;
+  letter-spacing: .2em;
+  color: rgba(240,234,216,.1);
+  text-transform: uppercase;
+}
+.section.paper .sec-id, .section.paper2 .sec-id { color: rgba(21,18,16,.1); }
+
+@media (max-width: 900px) {
+  .inner { padding: 0 2rem; }
+  .two-col { grid-template-columns: 1fr; gap: 2.5rem; }
+  .section { padding: 5rem 0; }
+}
+
+/* ══════════════════════════════════════
+   MOBILE — max 768px
+   ══════════════════════════════════════ */
+@media (max-width: 768px) {
+
+  /* ── Global ── */
+  .inner { padding: 0 1.25rem; }
+  .section { padding: 3.5rem 0; }
+  h2 { font-size: clamp(2.2rem, 8vw, 3rem); margin-bottom: 1.25rem; }
+  .two-col { grid-template-columns: 1fr; gap: 2rem; }
+  .body-serif { font-size: 1rem; }
+  .body-mono { font-size: 10.5px; }
+
+  /* ── A1 accordion table — full rewrite ── */
+  .msq-grid { display: block; }
+  .msq-grid tr { display: block; }
+  .msq-grid td { display: block; width: 100% !important; }
+
+  /* Row 1: shape columns become stacked cards */
+  .msq-img-cell {
+    display: none; /* hide floating shapes on mobile — shapes appear in cards below */
+  }
+  .msq-hdr {
+    border-right: none !important;
+    border-bottom: 1px solid rgba(240,234,216,.07) !important;
+    padding: 1.5rem !important;
+  }
+
+  /* Accordion trigger — full width */
+  .msq-acc-trigger td {
+    display: block;
+    border-right: none !important;
+    padding: .75rem 1.25rem !important;
+  }
+  .msq-acc-trigger { display: block !important; }
+
+  /* Accordion rows — stack content cells */
+  .msq-body-row { display: block !important; }
+  .msq-lbl-cell {
+    border-right: none !important;
+    border-bottom: none !important;
+    width: 100% !important;
+    min-height: 0 !important;
+  }
+  .msq-lbl-inner { min-height: 60px !important; padding: 1rem 1.25rem !important; }
+  .msq-content-cell {
+    border-right: none !important;
+    width: 100% !important;
+    padding: .75rem 1.25rem !important;
+  }
+
+  /* Expandable wrapper */
+  .msq-expand-wrap.open { max-height: 3000px; }
+
+  /* Structure/Tension/Flow header — hide on mobile, context comes from label */
+  .msq-phdr-row { display: none !important; }
+
+  /* Content cells: add label prefix */
+  .msq-content-cell:nth-child(2)::before { content: 'Structure — '; font-family: var(--fm); font-size: 8px; letter-spacing: .18em; text-transform: uppercase; color: var(--rope-l); }
+  .msq-content-cell:nth-child(3)::before { content: 'Tension — '; font-family: var(--fm); font-size: 8px; letter-spacing: .18em; text-transform: uppercase; color: var(--rope-l); }
+  .msq-content-cell:nth-child(4)::before { content: 'Flow — '; font-family: var(--fm); font-size: 8px; letter-spacing: .18em; text-transform: uppercase; color: var(--rope-l); }
+
+  /* A2 — portrait full width */
+  .img-panel { aspect-ratio: 4/3 !important; max-width: 100% !important; }
+
+  /* A4 — pillars stack */
+  .phi-trio,
+  div[style*="grid-template-columns:repeat(3,1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* A5 — timeline fine on mobile already */
+
+  /* Applied practice section */
+  .msq-expand-wrap .msq-acc-cols {
+    grid-template-columns: 1fr !important;
+  }
+  .msq-acc-col { border-right: none !important; border-bottom: 1px solid rgba(240,234,216,.05) !important; }
+  .msq-acc-col:last-child { border-bottom: none !important; }
+
+  /* Quotes — full width */
+  .msq-shape-quote { font-size: .85rem !important; }
+
+  /* How they relate button */
+  .msq-relate-btn { font-size: 1.1rem !important; }
+}
+
+/* ════ Break □ ════ */
+
+/* ─────────────────────────────────────────
+   BREAK SHELL
+   Full-bleed parallax divider
+   ───────────────────────────────────────── */
+.break {
+  position: relative;
+  width: 100%;
+  height: 75vh;
+  min-height: 480px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+
+/* ── Background image layer ── */
+.break__bg {
+  position: absolute;
+  inset: -20%;
+  z-index: 0;
+  will-change: transform;
+}
+/* EDIT: swap to img/break_sq_01.jpg — forest floor, ground, dojo */
+.break__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+  display: block;
+  /* Green + dark filter for the □ break mood */
+  filter: brightness(.45) saturate(.55) hue-rotate(15deg);
+}
+
+/* ── Fallback gradient (green/gold, no image) ── */
+.break__bg-fallback {
+  position: absolute;
+  inset: 0;
+  /* Deep green ground, gold horizon light */
+  background:
+    linear-gradient(160deg,
+      rgba(45,90,39,.85) 0%,
+      rgba(21,18,16,.95) 55%,
+      rgba(21,18,16,1) 100%
+    ),
+    radial-gradient(ellipse 70% 50% at 25% 60%, rgba(100,130,80,.4) 0%, transparent 70%);
+}
+
+/* ── Colour wash overlay — green tint ── */
+.break__wash {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(to top,
+      rgba(21,18,16,1)   0%,
+      rgba(21,18,16,.8)  25%,
+      rgba(45,90,39,.25) 60%,
+      transparent        100%
+    ),
+    linear-gradient(to right,
+      rgba(21,18,16,.6) 0%,
+      transparent 55%
+    );
+}
+
+/* ── Gold horizontal line ── */
+.break__line {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(201,168,76,.22) 20%, rgba(201,168,76,.22) 80%, transparent);
+  z-index: 2;
+  transform: translateY(-50%);
+}
+
+/* ── Content layer ── */
+.break__content {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 4rem 3.5rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 3rem;
+  align-items: end;
+}
+
+/* ── Large symbol ── */
+.break__symbol {
+  flex-shrink: 0;
+  line-height: 0;
+}
+
+/* ── Text block ── */
+.break__text {}
+
+.break__id {
+  font-family: var(--fm);
+  font-size: 8.5px;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: rgba(201,168,76,.4);
+  margin-bottom: .6rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.break__id::before {
+  content: '';
+  display: block;
+  width: 20px; height: 1px;
+  background: rgba(201,168,76,.4);
+  flex-shrink: 0;
+}
+
+.break__name {
+  font-family: var(--fd);
+  font-size: clamp(1.8rem, 3vw, 3rem);
+  font-weight: 300;
+  color: var(--paper);
+  line-height: .95;
+  margin-bottom: .5rem;
+}
+.break__name em {
+  color: var(--sq-gold);
+  font-style: italic;
+}
+
+.break__kanji {
+  font-family: var(--fj);
+  font-size: .85rem;
+  color: rgba(201,168,76,.38);
+  letter-spacing: .2em;
+  margin-bottom: 1rem;
+}
+
+.break__quote {
+  font-family: var(--fd);
+  font-size: clamp(1.1rem, 1.8vw, 1.45rem);
+  font-style: italic;
+  font-weight: 300;
+  color: rgba(240,234,216,.58);
+  max-width: 520px;
+  line-height: 1.55;
+  border-left: 2px solid rgba(201,168,76,.3);
+  padding-left: 1.25rem;
+}
+
+/* ── Ghost symbol (right edge) ── */
+.break__ghost {
+  position: absolute;
+  right: -1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  z-index: 2;
+  user-select: none;
+  line-height: 0;
+}
+
+/* ── Green ground band at bottom ── */
+.break__ground {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(to right, transparent, rgba(45,90,39,.6) 20%, rgba(201,168,76,.4) 50%, rgba(45,90,39,.6) 80%, transparent);
+  z-index: 4;
+}
+
+@media (max-width: 900px) {
+  .break__content { padding: 0 2rem 3rem; grid-template-columns: 1fr; gap: 1.5rem; }
+  .break__symbol  { font-size: 5rem; }
+}
+
+/* ════ Sections B ════ */
+
+.section        { padding: 7rem 0; position: relative; }
+.section.dark   { background: var(--ink); }
+.section.paper  { background: #1a1612; color: var(--paper); }
+.section.paper2 { background: #1a1612; color: var(--paper); }
+
+.inner { max-width: 1200px; margin: 0 auto; padding: 0 4rem; }
+
+.lbl {
+  font-family: var(--fm); font-size: 9px; letter-spacing: .28em;
+  text-transform: uppercase; color: var(--rope-l);
+  display: flex; align-items: center; gap: 10px; margin-bottom: 1rem;
+}
+.lbl::before { content: ''; width: 24px; height: 1px; background: var(--rope-l); display: block; flex-shrink: 0; }
+.lbl.dk { color: var(--rope-l); }
+.lbl.dk::before { background: var(--rope-l); }
+
+h2 {
+  font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem);
+  font-weight: 300; line-height: .92; letter-spacing: -.025em; margin-bottom: 2rem;
+}
+
+.body-serif {
+  font-family: var(--fd); font-size: clamp(1rem,1.4vw,1.15rem);
+  font-weight: 300; line-height: 1.82; color: rgba(240,234,216,.62);
+}
+.body-serif.on-paper { color: rgba(240,234,216,.62); }
+
+.body-mono { font-size: 11px; line-height: 1.9; color: rgba(240,234,216,.36); font-family: var(--fm); }
+.body-mono.on-paper { color: rgba(240,234,216,.38); }
+
+.blockquote { border-left: 2px solid rgba(169,124,26,.35); padding-left: 1.5rem; margin: 2rem 0; }
+.blockquote p {
+  font-family: var(--fd); font-size: clamp(1.1rem,1.6vw,1.4rem);
+  font-style: italic; font-weight: 300; color: rgba(240,234,216,.6); line-height: 1.55;
+}
+.blockquote.on-paper p { color: rgba(240,234,216,.6); }
+.blockquote cite {
+  display: block; font-family: var(--fm); font-size: 9px;
+  letter-spacing: .18em; text-transform: uppercase; color: var(--rope-l); margin-top: .5rem;
+}
+.blockquote.on-paper cite { color: var(--rope-l); }
+
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+.two-col.valign { align-items: center; }
+
+.img-panel { position: relative; overflow: hidden; }
+.img-panel img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s var(--ease); }
+.img-panel:hover img { transform: scale(1.03); }
+
+.btn {
+  display: inline-block; font-family: var(--fm); font-size: 9.5px;
+  letter-spacing: .18em; text-transform: uppercase; padding: 11px 24px;
+  border-radius: 1px; text-decoration: none; transition: all .22s;
+  border: .5px solid transparent; cursor: pointer;
+}
+.btn-p  { background: var(--rope); color: var(--paper); border-color: var(--rope); }
+.btn-p:hover { background: var(--rope-l); }
+.btn-o  { background: transparent; color: var(--rope-l); border-color: rgba(169,124,26,.45); }
+.btn-o:hover { background: rgba(169,124,26,.1); }
+.btn-dk { background: transparent; color: var(--rope); border-color: rgba(169,124,26,.4); }
+.btn-dk:hover { background: rgba(169,124,26,.08); }
+
+.sec-id {
+  position: absolute; top: 1.5rem; right: 2rem;
+  font-family: var(--fm); font-size: 8px; letter-spacing: .2em;
+  color: rgba(240,234,216,.1); text-transform: uppercase;
+}
+.section.paper .sec-id, .section.paper2 .sec-id { color: rgba(21,18,16,.1); }
+
+.fade-in {
+  opacity: 0; transform: translateY(18px);
+  transition: opacity .7s var(--ease), transform .7s var(--ease);
+}
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 900px) {
+  .inner { padding: 0 2rem; }
+  .two-col { grid-template-columns: 1fr; gap: 2.5rem; }
+  .section { padding: 5rem 0; }
+}
+
+</style>
+</head>
+<body>
+
+
+<!-- ════ Hero ════ -->
+<!-- ════════════════════════════════════════════════════════
+     HERO SECTION
+     ════════════════════════════════════════════════════════ -->
+<section class="hero" id="hero">
+
+  <!-- Ghost background symbol (decorative) -->
+  <div class="hero__ghost" aria-hidden="true">
+    <svg viewBox="0 0 400 400" fill="none" stroke="currentColor" stroke-width="1.5" style="width:40vw;height:40vw;opacity:.025;color:var(--paper)">
+      <circle cx="200" cy="200" r="180"/>
+    </svg>
+  </div>
+
+  <!-- Background image -->
+  <div class="hero__bg" id="hero-bg">
+    <img src="img/hero_01.jpg"
+         alt="Willcat — Shibari artist, Soirée Shibari Montréal"
+         style="width:100%;height:100%;object-fit:cover;object-position:25% 58%;display:block;filter:brightness(1.15) saturate(.75);"/>
+  </div>
+
+  <!-- Gradient overlay -->
+  <div class="hero__fade"></div>
+
+  <!-- ── NAV ── -->
+  <nav class="hero__nav">
+    <!-- EDIT: site/logo name -->
+    <a href="#" class="nav__logo">〇<em>△</em>□</a>
+    <ul class="nav__links">
+      <li><a href="#A1">The Framework</a></li>
+      <li><a href="#A2">About</a></li>
+      <li><a href="#A5">The Path</a></li>
+      <li><a href="#contact">Book a date</a></li>
+    </ul>
+  </nav>
+
+  <!-- ── MAIN CONTENT ── -->
+  <div class="hero__content">
+
+    <!-- LEFT — Title block -->
+    <div class="hero__left">
+
+      <!-- COPY: eyebrow label — change freely -->
+      <div class="hero__eyebrow">
+        Shibari Educator · Artist · Author · Founder of Tension MTL
+      </div>
+
+      <!-- COPY: main heading -->
+      <h1 class="hero__title">
+        Will<em>cat.</em>
+      </h1>
+
+      <!-- COPY: name + pronouns -->
+      <p class="hero__name-sub">
+        William Desjardins &nbsp;·&nbsp; she/her &nbsp;they/them
+      </p>
+
+      <!-- COPY: tagline — the framework as a supporting line, not the headline -->
+      <p class="hero__tagline">
+        Building frameworks for understanding body, rope, movement, and practice.
+      </p>
+
+      <!-- COPY: three principles — spare, one per line -->
+      <p class="hero__desc">
+        Three shapes. Three principles.<br>
+        The square holds.<br>
+        The triangle chooses.<br>
+        The circle returns.
+      </p>
+
+      <!-- EDIT: CTA buttons -->
+      <div class="hero__ctas">
+        <a href="#A1" class="btn btn--primary">The Framework</a>
+        <a href="#contact" class="btn btn--outline">Book a date</a>
+      </div>
+
+      <!-- Scroll indicator -->
+      
+  </div>
+</section>
+<!-- end invitation -->
+
+<!-- ═══════════════════════════════════════════════════════════════
+     ████  A1 — WHY THESE SYMBOLS
+     ═══════════════════════════════════════════════════════════════
+     File: section_A1.html
+     Palette: dark (ink)
+     Purpose: introduce the MSQ framework — its origin and significance
+     ═══════════════════════════════════════════════════════════════ -->
+<section class="section dark" id="A1">
+  <div class="sec-id">A1</div>
+  <div class="inner">
+
+    <div class="lbl fade-in">The Framework</div>
+    <div class="two-col fade-in" style="margin-bottom:5rem">
+      <div>
+        <h2>Why<br><em style="color:var(--rope-l);font-style:italic;font-size:.75em">these shapes?</em></h2>
+      </div>
+      <div>
+        <p class="body-serif" style="margin-bottom:1.25rem">
+          These symbols &#9633;&#9651;&#9675; hang above the Kamiza at Tension MTL.<br>
+          Kamiza (&#19978;&#24231;) &#8212; a place of honour in a dojo. In our studio, our classroom IS a dojo,
+          and it is not decoration. It is a reminder that our actions in rope should be practiced
+          and eventually understood; every tie, every decision, every transition is navigated
+          through these three intersecting forces.
+        </p>
+        <p class="body-mono">
+          Maru Sankaku Shikaku: Circle, Triangle, Square. An ancient teaching from Zen and Japanese
+          martial arts, brought into a contemporary practice. Not as philosophy for its own sake
+          but as a <em>working tool</em> for understanding body, rope, movement, and relationship.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOUR-COLUMN ACCORDION GRID -->
+  <style>
+    .msq-grid { width:100%; border-collapse:collapse; }
+
+    /* ── ROW 1: header cells ── */
+    .msq-hdr {
+      background:var(--ink2);
+      padding:2.5rem 2rem 1.5rem;
+      vertical-align:top;
+      border-right:1px solid rgba(240,234,216,.05);
+    }
+    .msq-hdr:last-child { border-right:none; }
+    .msq-shape-name {
+      font-family:var(--fd);
+      font-size:1.4rem;
+      font-weight:300;
+      color:var(--paper);
+      margin-bottom:.3rem;
+    }
+    .msq-shape-kw {
+      font-family:var(--fm);
+      font-size:8px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:var(--muted);
+      line-height:1.9;
+      margin-bottom:1rem;
+    }
+    .msq-shape-desc {
+      font-family:var(--fm);
+      font-size:11px;
+      line-height:1.85;
+      color:rgba(240,234,216,.36);
+      margin-bottom:1rem;
+    }
+    .msq-shape-quote {
+      border-left:2px solid rgba(169,124,26,.3);
+      padding-left:1rem;
+      font-family:var(--fd);
+      font-size:.95rem;
+      font-style:italic;
+      font-weight:300;
+      color:rgba(240,234,216,.5);
+      line-height:1.55;
+    }
+
+    /* ── Col 1 image cell ── */
+    .msq-img-cell {
+      width:200px;
+      background:var(--ink2);
+      border-right:1px solid rgba(240,234,216,.06);
+      vertical-align:top;
+      padding:2.5rem 1.5rem;
+      position:relative;
+      height:100%;
+    }
+    .msq-shapes-float {
+      position:relative;
+      width:150px;
+      height:150px;
+      margin:0 auto;
+    }
+    .msq-shapes-float svg {
+      position:absolute;
+    }
+
+    /* ── How they relate trigger — bottom of row 1 ── */
+    .msq-relate-btn {
+      display:flex;
+      align-items:center;
+      gap:.6rem;
+      margin-top:1.5rem;
+      font-family:var(--fm);
+      font-size:8px;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      color:var(--rope-l);
+      cursor:pointer;
+      opacity:.55;
+      transition:opacity .2s;
+      user-select:none;
+      border:none;
+      background:none;
+      padding:0;
+    }
+    .msq-relate-btn:hover { opacity:1; }
+    .msq-relate-arrow {
+      display:inline-block;
+      transition:transform .35s cubic-bezier(0.16,1,0.3,1);
+      font-size:7px;
+    }
+    .msq-relate-btn.open .msq-relate-arrow { transform:rotate(90deg); }
+
+    /* ── Expandable section (rows 2–5) ── */
+    .msq-expand-wrap {
+      overflow: hidden;
+      display: none;
+    }
+    .msq-expand-wrap.open {
+      display: block;
+    }
+    .msq-expand-inner {
+      border-top: 1px solid rgba(240,234,216,.07);
+    }
+
+    /* Each body row hidden by default — reveals one at a time */
+    .msq-body-row {
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity .7s var(--ease), transform .7s var(--ease);
+      cursor: pointer;
+    }
+    .msq-body-row.row-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* Content cells — collapsed by default */
+    .msq-content-cell {
+      overflow: hidden;
+    }
+    .msq-content-inner {
+      max-height: 0;
+      overflow: hidden;
+      padding: 0 2rem;
+      transition: max-height .9s cubic-bezier(0.16,1,0.3,1), padding .6s ease;
+    }
+    .msq-body-row.row-visible .msq-content-inner {
+      max-height: 300px;
+      padding: 1.75rem 2rem;
+    }
+
+    /* ── Structure/Tension/Flow header row ── */
+    .msq-phdr-row td {
+      font-family:var(--fm);
+      font-size:8px;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+      color:var(--rope-l);
+      padding:.85rem 2rem;
+      background:rgba(240,234,216,.025);
+      border-bottom:1px solid rgba(240,234,216,.06);
+      border-right:1px solid rgba(240,234,216,.05);
+      vertical-align:middle;
+    }
+    .msq-phdr-row td:last-child { border-right:none; }
+    .msq-phdr-row .phdr-lbl {
+      font-family:var(--fm);
+      font-size:8px;
+      letter-spacing:.18em;
+      color:rgba(240,234,216,.22);
+      text-transform:uppercase;
+    }
+
+    /* ── Body rows (In Practice etc) ── */
+    .msq-body-row {
+      cursor:pointer;
+      transition:background .2s;
+    }
+    .msq-body-row:hover td { background:rgba(169,124,26,.06) !important; }
+    .msq-body-row:hover .msq-lbl-text { color:var(--rope-l) !important; }
+
+    .msq-lbl-cell {
+      width:200px;
+      background:var(--ink2);
+      border-right:1px solid rgba(240,234,216,.06);
+      border-bottom:1px solid rgba(240,234,216,.06);
+      vertical-align:middle;
+      position:relative;
+      overflow:hidden;
+    }
+    .msq-lbl-inner {
+      padding:1.75rem 1.5rem;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:.6rem;
+      position:relative;
+      min-height:90px;
+    }
+    .msq-lbl-ghost {
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      pointer-events:none;
+    }
+    .msq-lbl-ghost svg {
+      transition:transform .35s cubic-bezier(0.16,1,0.3,1), opacity .35s;
+    }
+    .msq-body-row:hover .msq-lbl-ghost svg {
+      transform:scale(1.5);
+    }
+    .msq-lbl-text {
+      font-family:var(--fm);
+      font-size:8px;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      color:rgba(240,234,216,.32);
+      text-align:center;
+      line-height:2.2;
+      position:relative;
+      z-index:2;
+      transition:color .2s;
+    }
+
+    .msq-content-cell {
+      background:var(--ink);
+      border-right:1px solid rgba(240,234,216,.05);
+      border-bottom:1px solid rgba(240,234,216,.06);
+      vertical-align:top;
+      padding:1.5rem 2rem;
+      transition:background .2s;
+      width:calc((100% - 200px) / 3);
+    }
+    .msq-content-cell:last-child { border-right:none; }
+    .msq-content-cell p {
+      font-family:var(--fm);
+      font-size:11px;
+      line-height:1.85;
+      color:rgba(240,234,216,.38);
+      margin:0;
+    }
+  </style>
+
+  <table class="msq-grid" id="shape-cards" cellspacing="0" cellpadding="0">
+    <tr>
+
+      <!-- Col 1: three shapes floating, hairline gold -->
+      <td class="msq-img-cell">
+        <div style="display:flex;flex-direction:column;height:100%;">
+          <!-- shapes at top -->
+          <div class="msq-shapes-float" style="flex-shrink:0;">
+            <svg viewBox="0 0 70 70" fill="none" style="width:80px;height:80px;top:0;left:0;">
+              <rect x="4" y="4" width="62" height="62" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="square"/>
+            </svg>
+            <svg viewBox="0 0 80 75" fill="none" style="width:90px;height:84px;top:20px;left:30px;">
+              <polygon points="40,4 76,71 4,71" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="miter"/>
+            </svg>
+            <svg viewBox="0 0 70 70" fill="none" style="width:80px;height:80px;top:55px;left:55px;">
+              <circle cx="35" cy="35" r="30" stroke="#c9a84c" stroke-width="1.5"/>
+            </svg>
+          </div>
+
+          <!-- spacer pushes button to bottom -->
+          <div style="flex:1;"></div>
+
+          <!-- How they relate — pinned to bottom, aligns with quotes -->
+          <button class="msq-relate-btn" id="relate-btn" onclick="toggleRelate()"
+                  style="flex-direction:column;align-items:center;text-align:center;align-self:center;gap:.4rem;font-family:var(--fd);font-size:1.4rem;font-weight:300;letter-spacing:.06em;text-transform:uppercase;color:var(--rope-l);line-height:1.1;font-style:normal;padding-bottom:.25rem;">
+            <span>How</span>
+            <span>They</span>
+            <span>Relate</span>
+            <span class="msq-relate-arrow" style="font-size:10px;margin-top:.4rem;">&#9654;</span>
+          </button>
+        </div>
+      </td>
+
+      <!-- Col 2: The Square -->
+      <td class="msq-hdr">
+        <svg viewBox="0 0 36 36" fill="none" style="width:28px;height:28px;margin-bottom:.75rem">
+          <rect x="2" y="2" width="32" height="32" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="square"/>
+        </svg>
+        <div class="msq-shape-name">The Square</div>
+        <div class="msq-shape-kw">Structure &middot; Practice<br>Form &middot; Container &middot; Safety</div>
+        <p class="msq-shape-desc">The square holds. It is the container: the form, the frame, the kata repeated until reliable. Without the square, there is nothing to push against and nowhere to return.</p>
+        <div class="msq-shape-quote">"The square is not a cage. It is the container that makes freedom possible."</div>
+      </td>
+
+      <!-- Col 3: The Triangle -->
+      <td class="msq-hdr">
+        <svg viewBox="0 0 36 36" fill="none" style="width:28px;height:28px;margin-bottom:.75rem">
+          <polygon points="18,2 34,34 2,34" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="miter"/>
+        </svg>
+        <div class="msq-shape-name">The Triangle</div>
+        <div class="msq-shape-kw">Tension &middot; Intention<br>Direction &middot; Choice &middot; Consequence</div>
+        <p class="msq-shape-desc">The triangle is the moment of decision, where forces meet and something must give. Every transition is a triangle. You choose a direction, apply tension, and there are consequences.</p>
+        <div class="msq-shape-quote">"Every tie is a choice. The triangle holds or it doesn't. It should not be forced but felt."</div>
+      </td>
+
+      <!-- Col 4: The Circle -->
+      <td class="msq-hdr">
+        <svg viewBox="0 0 36 36" fill="none" style="width:28px;height:28px;margin-bottom:.75rem">
+          <circle cx="18" cy="18" r="15" stroke="#c9a84c" stroke-width="1.5"/>
+        </svg>
+        <div class="msq-shape-name">The Circle</div>
+        <div class="msq-shape-kw">Flow &middot; Continuity<br>Return &middot; Community &middot; The D&#333;</div>
+        <p class="msq-shape-desc">The circle has no beginning and no end. In rope it is the return: to fundamentals, to humility, to practice. Every teacher was once a beginner. The community is circular.</p>
+        <div class="msq-shape-quote">"The path is not something you complete. It is something you continue."</div>
+      </td>
+
+    </tr>
+  </table>
+
+  <!-- EXPANDABLE SECTION — hidden until trigger -->
+  <div class="msq-expand-wrap" id="msq-expand">
+    <div class="msq-expand-inner">
+      <table class="msq-grid" cellspacing="0" cellpadding="0">
+
+        <!-- Structure / Tension / Flow header -->
+        <tr class="msq-phdr-row">
+          <td><span class="phdr-lbl" style="display:block;text-align:center;">Application</span></td>
+          <td>Structure</td>
+          <td>Tension</td>
+          <td>Flow</td>
+        </tr>
+
+        <!-- In Practice — □ ghost -->
+        <tr class="msq-body-row" id="row-practice">
+          <td class="msq-lbl-cell">
+            <div class="msq-lbl-inner">
+              <div class="msq-lbl-ghost">
+                <svg viewBox="0 0 80 80" fill="none" style="width:72px;height:72px;opacity:.1">
+                  <rect x="4" y="4" width="72" height="72" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="square"/>
+                </svg>
+              </div>
+              <div class="msq-lbl-text">In<br>Practice</div>
+            </div>
+          </td>
+          <td class="msq-content-cell"><p>The rope's form, the safety prerequisites, the pattern practiced until it is second nature.</p></td>
+          <td class="msq-content-cell"><p>The load decision, the emotional charge, the moment of choosing to add or release pressure.</p></td>
+          <td class="msq-content-cell"><p>Sensitivity to the body receiving rope, adapting when anatomy, breath, or energy shifts.</p></td>
+        </tr>
+
+        <!-- In Transmission — △ ghost -->
+        <tr class="msq-body-row" id="row-transmission">
+          <td class="msq-lbl-cell">
+            <div class="msq-lbl-inner">
+              <div class="msq-lbl-ghost">
+                <svg viewBox="0 0 80 80" fill="none" style="width:72px;height:72px;opacity:.1">
+                  <polygon points="40,4 76,76 4,76" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="miter"/>
+                </svg>
+              </div>
+              <div class="msq-lbl-text">In<br>Transmission</div>
+            </div>
+          </td>
+          <td class="msq-content-cell"><p>Curriculum sequence, prerequisites, repeatable components that can be assessed and taught consistently.</p></td>
+          <td class="msq-content-cell"><p>The challenge placed on a student at the right moment, not too soon, not too late.</p></td>
+          <td class="msq-content-cell"><p>Reading the room, following what the student is actually learning rather than what is planned.</p></td>
+        </tr>
+
+        <!-- In Community — ○ ghost -->
+        <tr class="msq-body-row" id="row-community">
+          <td class="msq-lbl-cell">
+            <div class="msq-lbl-inner">
+              <div class="msq-lbl-ghost">
+                <svg viewBox="0 0 80 80" fill="none" style="width:72px;height:72px;opacity:.1">
+                  <circle cx="40" cy="40" r="34" stroke="#c9a84c" stroke-width="1.5"/>
+                </svg>
+              </div>
+              <div class="msq-lbl-text">In<br>Community</div>
+            </div>
+          </td>
+          <td class="msq-content-cell"><p>Agreements, policies, accountability frameworks, boundaries that protect the space and the people inside it.</p></td>
+          <td class="msq-content-cell"><p>The difficulty of honest feedback, the weight of consent negotiation, the responsibility of authority.</p></td>
+          <td class="msq-content-cell"><p>How a community absorbs conflict, learns, adapts, and continues rather than fractures.</p></td>
+        </tr>
+
+      </table>
+    </div>
+  </div>
+
+  
+
+  <!-- APPLIED PRACTICE -->
+  <div class="inner" style="padding-top:5rem;padding-bottom:2rem">
+    <div class="lbl fade-in">Applied Practice</div>
+    <div class="two-col fade-in" style="margin-bottom:3rem">
+      <div>
+        <h2>Philosophy.<br><em style="color:var(--rope-l);font-style:italic">Or Practice?</em></h2>
+        <p style="font-family:var(--fd);font-size:1.1rem;font-style:italic;font-weight:300;color:rgba(240,234,216,.45);line-height:1.65;max-width:380px">
+          As you reach the higher levels of the art it is not at all about the rope itself
+          but the story you want to tell with it.
+          If you are spending all your time thinking about the rope
+          you are not taking the time to connect with your partner.
+        </p>
+      </div>
+      <div>
+        <p class="body-serif" style="margin-bottom:1.25rem">
+          These shapes are not ideas to contemplate but integrate. They are tools to use;
+          Structure (□) tells you what the form requires. Tension (△) tells you what the moment
+          demands. Flow (○) tells you how to adapt when reality differs from the plan.
+        </p>
+        <p class="body-mono" style="margin-bottom:1.25rem">
+          These are not sequential stages. They are simultaneous forces.
+          At any moment in practice, all three are active.
+          The question is: which one needs your attention, the most, right now?
+        </p>
+        <p class="body-mono">
+          All of this should be approached in a methodical way, so that eventually
+          you are not thinking about the manipulations of rope, frictions, or bodies,
+          but instead about intention and emotional transmission.
+          In teaching, this framework organizes how concepts are introduced.
+          In practice, it organizes how decisions are made.
+          In community, it organizes how accountability and safety are held.
+        </p>
+      </div>
+    </div>
+
+    <div class="fade-in" style="margin-top:3rem;text-align:center">
+      <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--rope-l);margin-bottom:1.25rem">When these philosophies are integrated</div>
+      <div style="max-width:560px;margin:0 auto;border-top:1px solid rgba(169,124,26,.2);padding-top:1.5rem;text-align:center">
+        <p style="font-family:var(--fd);font-size:clamp(1.1rem,1.6vw,1.4rem);font-style:italic;font-weight:300;color:rgba(240,234,216,.6);line-height:1.55">"The rope will tie you as much as you tie it; Mastery is not the goal. Walking the path is."</p>
+        <cite style="display:block;font-family:var(--fm);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-top:.75rem">Willcat / Tension MTL</cite>
+      </div>
+    </div>
+  </div>
+
+</section>
+<!-- end A1 -->
+
+<!-- ═══════════════════════════════════════════════════════════════
+     ████  A2 — WHO I AM
+     ═══════════════════════════════════════════════════════════════ -->
+<section class="section paper2" id="A2" style="background:#1a1612">
+  <div class="sec-id">A2</div>
+  <div class="inner">
+
+    <!-- Portrait + first two paragraphs side by side -->
+    <div class="two-col valign fade-in" style="margin-bottom:3rem">
+      <div class="img-panel" style="aspect-ratio:3/4;background:#151210;">
+        <img src="img/Willcat_portrait.png"
+             alt="William Desjardins / Willcat"
+             style="width:100%;height:100%;object-fit:cover;object-position:center 10%;display:block;"/>
+        <div class="img-panel-caption" style="color:rgba(240,234,216,.2)">William Desjardins / Willcat</div>
+      </div>
+
+      <div>
+        <div class="lbl dk">About</div>
+        <h2 style="color:var(--paper)">Practitioner.<br>Educator.<br><em style="color:var(--rope);font-style:italic">Still learning.</em></h2>
+
+        <p class="body-serif on-paper" style="margin-bottom:1.25rem">
+          William Desjardins (she/her, they/them). Fell into rope in 2014 through a Mistress,
+          head first into kink. Started tying in 2015 and never stopped. Founder of Tension MTL,
+          a rope studio built slowly and stubbornly in Montréal. <a href="https://fetlife.com/WillCat/posts/13290990" target="_blank" style="color:var(--rope);text-decoration:none;border-bottom:1px solid rgba(169,124,26,.35);transition:border-color .2s">Over 10,000 hours in</a>.
+          Teaching, tying, performing, making mistakes, learning from them.
+        </p>
+        <p class="body-serif on-paper" style="margin-bottom:0">
+          Former technical training director. That background translated directly: breaking complex
+          things into their smallest learnable components is the same skill, different material.
+          The teaching philosophy has always been about planting seeds and watching students grow.
+          The tree at Tension continues to flourish, adding with each new student a branch and a path
+          that broadens every day.
+        </p>
+      </div>
+    </div>
+
+    <!-- Paragraphs 3 and 4 — full width -->
+    <div class="fade-in" style="border-top:1px solid rgba(240,234,216,.07);padding-top:2.5rem;margin-bottom:3rem;">
+      <p class="body-serif on-paper" style="margin-bottom:1.25rem">
+        Teaching approach shaped by component-based martial arts pedagogy.
+        Kenjutsu practiced seriously. Aikido explored more through reading than formal training.
+        Not authorized in any Japanese rope tradition.
+        Everything drawn from many sources, shaped by a decade of deliberate practice
+        and the humility to keep questioning it.
+      </p>
+      <p class="body-serif on-paper" style="margin-bottom:0">
+        Behind the rigging, behind the classes, behind the policies and the leader label,
+        there is just a person doing their best not to fuck it up.
+        Rope is edge play. Not a caveat. The foundation.
+        The Fundamentals are not a phase to get through.
+        They are the whole practice, revisited at every level.
+      </p>
+    </div>
+
+    <!-- Stats — full width -->
+    <div class="fade-in" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(21,18,16,.08);margin-bottom:2rem;">
+      <div style="background:rgba(240,234,216,.06);padding:1.5rem 1.25rem;border-top:2px solid var(--rope-l)">
+        <div style="font-family:var(--fd);font-size:2.8rem;font-weight:300;color:var(--rope);line-height:1">10K+</div>
+        <div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase">Hours of rope</div>
+      </div>
+      <div style="background:rgba(240,234,216,.06);padding:1.5rem 1.25rem;border-top:2px solid var(--rope-l)">
+        <div style="font-family:var(--fd);font-size:2.8rem;font-weight:300;color:var(--rope);line-height:1">10+</div>
+        <div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase">Years teaching</div>
+      </div>
+      <div style="background:rgba(240,234,216,.06);padding:1.5rem 1.25rem;border-top:2px solid var(--rope-l)">
+        <div style="font-family:var(--fd);font-size:2.8rem;font-weight:300;color:var(--rope);line-height:1">1</div>
+        <div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase">Book published</div>
+      </div>
+    </div>
+
+    <div class="fade-in" style="margin-bottom:5rem">
+      <a href="#contact" class="btn btn-dk">Book a date →</a>
+    </div>
+
+    <div class="fade-in" style="margin-top:5rem;display:grid;grid-template-columns:1fr 2fr;gap:4rem;align-items:start;">
+      <div>
+        <div style="font-family:var(--fj);font-size:5rem;color:var(--rope);opacity:.25;line-height:1;margin-bottom:.75rem">剣術</div>
+        <div style="font-family:var(--fd);font-size:1.4rem;font-weight:300;color:var(--paper);margin-bottom:.4rem">Kenjutsu</div>
+        <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.18em;color:var(--muted);text-transform:uppercase">The art of the sword · Movement precision</div>
+      </div>
+      <div>
+        <p class="body-serif on-paper" style="margin-bottom:1.25rem">
+          I was told once during a workshop I was giving: "Your movements are so precise,
+          it looks like you are voguing when you tie." I attribute it to precise movements
+          influenced partly by my experience in Kenjutsu, minimal Aikido, and approach as martial training.
+        </p>
+        <p class="body-mono on-paper" style="margin-bottom:1.25rem">
+          Kenjutsu taught the impossibility of true mastery, and that the realization itself is the lesson.
+          I was already breaking things down to their smallest parts, refining each movement, embracing
+          the process of learning. But the idea that mastery was genuinely out of reach only fully
+          landed when I engaged seriously with that practice. The journey matters far more than counting
+          hours. That started shaping everything: my rope, my study of movement, my approach to teaching.
+        </p>
+        <p class="body-mono on-paper" style="margin-bottom:1.25rem">
+          In 2024 someone asked if I had reached 10,000 hours. A quick, lowball calculation confirmed it
+          without doubt. I tie professionally for a living. It is both my job and my passion.
+          I am aware of the privilege in that. I found my ikigai. Not everyone gets that
+          and I do not take it lightly.
+        </p>
+        <div class="blockquote on-paper" style="margin:0">
+          <p>"Is achieving 10,000 hours mastery?
+          Mastery of what, exactly? Each individual movement? Every possible variation?
+          True mastery is understanding that you can always do more."</p>
+          <cite>William Desjardins / Willcat</cite>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end A2 -->
+
+<!-- ═══════════════════════════════════════════════════════════════
+     ████  A4 — THREE PILLARS + 13 CONCEPTS
+     ═══════════════════════════════════════════════════════════════ -->
+<section class="section paper" id="A4" style="background:#1a1612">
+  <div class="sec-id">A4</div>
+  <div class="inner">
+
+    <div class="lbl dk fade-in">Three Pillars</div>
+    <div class="two-col fade-in" style="margin-bottom:4rem;align-items:end">
+      <div>
+        <h2 style="color:var(--paper);margin-bottom:.75rem">Thirteen companions.</h2>
+        <p style="font-family:var(--fm);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)">When philosophy does matter.</p>
+      </div>
+      <div class="blockquote on-paper">
+        <p>Not rules to follow but lenses to see through.</p>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(21,18,16,.08);margin-bottom:1px;" class="fade-in">
+
+      <!-- □ Structure -->
+      <div style="background:rgba(240,234,216,.04);padding:3rem 2.5rem;position:relative;overflow:hidden">
+        <!-- Ghost shape -->
+        <svg viewBox="0 0 120 120" fill="none" stroke="rgba(169,124,26,.15)" stroke-width="2" stroke-linecap="square" style="position:absolute;right:-.5rem;bottom:-1.5rem;width:9rem;height:9rem;pointer-events:none"><rect x="10" y="10" width="100" height="100"/></svg>
+        <!-- Kanji top right -->
+        <div style="position:absolute;right:1.25rem;top:1.25rem;font-family:var(--fj);font-size:4.5rem;color:rgba(169,124,26,.14);line-height:1;pointer-events:none;user-select:none">美</div>
+        <!-- Shape icon -->
+        <div style="margin-bottom:.4rem">
+          <svg viewBox="0 0 52 52" style="width:44px;height:44px">
+            <rect x="7" y="7" width="38" height="38" fill="none" stroke="#c9a84c" stroke-width="8" stroke-linecap="square"/>
+            <rect x="7" y="7" width="38" height="38" fill="none" stroke="#3a6b3a" stroke-width="3" stroke-linecap="square"/>
+          </svg>
+        </div>
+        <div style="font-family:var(--fm);font-size:8px;letter-spacing:.22em;color:var(--muted);text-transform:uppercase;margin-bottom:.75rem">四角 · Shikaku</div>
+        <!-- Title with English watermark behind -->
+        <div style="position:relative;margin-bottom:.65rem;height:2rem">
+          <div style="position:absolute;left:0;top:0;font-family:var(--fd);font-size:1.5rem;font-style:italic;font-weight:300;color:rgba(169,124,26,.2);pointer-events:none;user-select:none;white-space:nowrap">
+---------------Aesthetics</div>
+          <div style="font-family:var(--fd);font-size:1.5rem;font-weight:300;color:var(--paper);position:relative;z-index:1">Structure</div>
+        </div>
+        <p class="body-mono on-paper">Every angle, tension, and line is intentional. Beauty is not decoration. It is structure made visible. Rope that looks right usually is right.</p>
+      </div>
+
+      <!-- △ Tension -->
+      <div style="background:rgba(240,234,216,.04);padding:3rem 2.5rem;position:relative;overflow:hidden">
+        <!-- Ghost shape -->
+        <svg viewBox="0 0 120 120" fill="none" stroke="rgba(169,124,26,.15)" stroke-width="2" stroke-linejoin="miter" style="position:absolute;right:-.5rem;bottom:-1.5rem;width:9rem;height:9rem;pointer-events:none"><polygon points="60,8 112,112 8,112"/></svg>
+        <!-- Kanji top right -->
+        <div style="position:absolute;right:1.25rem;top:1.25rem;font-family:var(--fj);font-size:4.5rem;color:rgba(169,124,26,.14);line-height:1;pointer-events:none;user-select:none">意</div>
+        <!-- Shape icon -->
+        <div style="margin-bottom:.4rem">
+          <svg viewBox="0 0 52 52" style="width:44px;height:44px">
+            <polygon points="26,6 48,46 4,46" fill="none" stroke="#c9a84c" stroke-width="8" stroke-linejoin="miter"/>
+            <polygon points="26,6 48,46 4,46" fill="none" stroke="#8b2020" stroke-width="3" stroke-linejoin="miter"/>
+          </svg>
+        </div>
+        <div style="font-family:var(--fm);font-size:8px;letter-spacing:.22em;color:var(--muted);text-transform:uppercase;margin-bottom:.75rem">三角 · Sankaku</div>
+        <!-- Title with English watermark behind -->
+        <div style="position:relative;margin-bottom:.65rem;height:2rem">
+          <div style="position:absolute;left:0;top:0;font-family:var(--fd);font-size:1.5rem;font-style:italic;font-weight:300;color:rgba(169,124,26,.2);pointer-events:none;user-select:none;white-space:nowrap">
+------------Purpose</div>
+          <div style="font-family:var(--fd);font-size:1.5rem;font-weight:300;color:var(--paper);position:relative;z-index:1">Tension</div>
+        </div>
+        <p class="body-mono on-paper">Why are you tying? The answer shapes everything. Rope without purpose is just knots. Intention transforms technique into something that matters.</p>
+      </div>
+
+      <!-- ○ Flow -->
+      <div style="background:rgba(240,234,216,.04);padding:3rem 2.5rem;position:relative;overflow:hidden">
+        <!-- Ghost shape -->
+        <svg viewBox="0 0 120 120" fill="none" stroke="rgba(169,124,26,.15)" stroke-width="2" style="position:absolute;right:-.5rem;bottom:-1.5rem;width:9rem;height:9rem;pointer-events:none"><circle cx="60" cy="60" r="50"/></svg>
+        <!-- Kanji top right -->
+        <div style="position:absolute;right:1.25rem;top:1.25rem;font-family:var(--fj);font-size:4.5rem;color:rgba(169,124,26,.14);line-height:1;pointer-events:none;user-select:none">繋</div>
+        <!-- Shape icon -->
+        <div style="margin-bottom:.4rem">
+          <svg viewBox="0 0 52 52" style="width:44px;height:44px">
+            <circle cx="26" cy="26" r="19" fill="none" stroke="#c9a84c" stroke-width="8"/>
+            <circle cx="26" cy="26" r="19" fill="none" stroke="#2a2420" stroke-width="3"/>
+          </svg>
+        </div>
+        <div style="font-family:var(--fm);font-size:8px;letter-spacing:.22em;color:var(--muted);text-transform:uppercase;margin-bottom:.75rem">丸 · Maru</div>
+        <!-- Title with English watermark behind -->
+        <div style="position:relative;margin-bottom:.65rem;height:2rem">
+          <div style="position:absolute;left:0;top:0;font-family:var(--fd);font-size:1.5rem;font-style:italic;font-weight:300;color:rgba(169,124,26,.2);pointer-events:none;user-select:none;white-space:nowrap">
+-------Connection</div>
+          <div style="font-family:var(--fd);font-size:1.5rem;font-weight:300;color:var(--paper);position:relative;z-index:1">Flow</div>
+        </div>
+        <p class="body-mono on-paper">Rope is a dialogue, not a monologue. Learning to listen with your hands, responding to micro-movements, separates craft from art.</p>
+      </div>
+
+    </div>
+
+    <div class="fade-in" style="margin-top:3rem">
+      <div class="lbl dk" style="margin-bottom:1.25rem">The Thirteen Companions</div>
+      <div class="tag-cloud" style="margin-top:0">
+        <span class="tag on-paper" title="The Path"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">道</span>Dō</span>
+        <span class="tag on-paper" title="Continuous Improvement"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">改善</span>Kaizen</span>
+        <span class="tag on-paper" title="Reason for Being"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">生き甲斐</span>Ikigai</span>
+        <span class="tag on-paper" title="Beginner's Mind"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">初心</span>Shoshin</span>
+        <span class="tag on-paper" title="Stages of Learning"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">守破離</span>Shu-Ha-Ri</span>
+        <span class="tag on-paper" title="Beauty of Imperfection"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">侘寂</span>Wabi-Sabi</span>
+        <span class="tag on-paper" title="Bittersweet Impermanence"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">物の哀れ</span>Mono no Aware</span>
+        <span class="tag on-paper" title="Acceptance"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">仕方がない</span>Shikata ga nai</span>
+        <span class="tag on-paper" title="Endurance with Dignity"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">我慢</span>Gaman</span>
+        <span class="tag on-paper" title="One Time, One Meeting"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">一期一会</span>Ichi-go ichi-e</span>
+        <span class="tag on-paper" title="The Space Between"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">間</span>Ma</span>
+        <span class="tag on-paper" title="Seizing the Initiative"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">先の先</span>Sen no Sen</span>
+        <span class="tag on-paper" title="No-Mind"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">無心</span>Mushin</span>
+      </div>
+      <p class="body-mono on-paper" style="margin-top:2rem;max-width:600px;font-size:10px;opacity:.55">
+        These philosophies shaped me but they are not rules, only companions. They remind us that rope
+        is more than just tying bodies; they are philosophies, aesthetics, and values that integrate
+        into a living practice that evolves. Mastery is never the goal. Walking the path is.
+      </p>
+    </div>
+  </div>
+</section>
+<!-- end A4 -->
+
+<!-- ═══════════════════════════════════════════════════════════════
+     ████  A5 — THE TENSION CURRICULUM: THE DŌ
+     ═══════════════════════════════════════════════════════════════ -->
+<section class="section paper2" id="A5" style="background:#252018">
+  <div class="sec-id">A5</div>
+  <div class="inner">
+
+    <div class="lbl dk fade-in">The Tension Curriculum</div>
+
+    <div class="two-col fade-in" style="margin-bottom:4rem;align-items:start">
+      <div>
+        <h2 style="color:var(--paper)">The Dō.<br><em style="color:var(--rope);font-style:italic">A path,<br>not a ladder.</em></h2>
+        <p class="body-serif on-paper" style="margin-bottom:1.5rem">
+          Westerners would typically like to skip as many steps as possible.
+          In rope, this leads to dangerous practices. People get hurt, physically and emotionally.
+          The curriculum at Tension exists because of that gap — not just technical but philosophical.
+          A slower, more methodical approach to foundations, with honest conversations about risk,
+          accountability, and consent built into the basics, not bolted on later if you get that far.
+        </p>
+        <p class="body-serif on-paper" style="margin-bottom:1.5rem">
+          Like martial arts belts, the rope colours at Tension are not trophies.
+          They are reminders of where you stand on your personal Dō,
+          and an invitation to return to roots with each advancement.
+        </p>
+        <p class="body-mono on-paper" style="margin-bottom:2rem">
+          Each stage reflects both skill and mindset: how one carries rope, self, and partner.
+          There is no top. Every colour eventually circles back to Beige.
+          Every advancement should reflect a revision of our roots.
+        </p>
+        <div class="blockquote on-paper">
+          <p>"The path is not something you complete. It is something you continue."</p>
+          <cite>Tension MTL</cite>
+        </div>
+      </div>
+
+      <div style="position:relative;padding-left:2.5rem;">
+        <div style="position:absolute;left:.5px;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--rope),rgba(169,124,26,.06))"></div>
+
+        <div class="path-node-item" style="position:relative;padding:0 0 2rem 2.25rem;opacity:.55;transition:opacity .3s" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='.55'">
+          <div style="position:absolute;left:-5px;top:.35rem;width:11px;height:11px;border-radius:50%;border:1.5px solid var(--rope);background:var(--paper2)"></div>
+          <span style="display:inline-block;background:#f0ead8;color:#7a6e58;font-family:var(--fm);font-size:8px;letter-spacing:.15em;padding:3px 9px;text-transform:uppercase;border-radius:1px;margin-bottom:.35rem">Beige — Lvl 0</span>
+          <div style="font-family:var(--fd);font-size:1.25rem;font-weight:300;color:var(--paper);margin-bottom:.2rem">The Beginning</div>
+          <p class="body-mono on-paper" style="font-size:10px">Openness, curiosity. Received at your very first Floorplay class following Fundamentals. Mastery begins in simplicity and humility.</p>
+        </div>
+
+        <div class="path-node-item" style="position:relative;padding:0 0 2rem 2.25rem;opacity:.55;transition:opacity .3s" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='.55'">
+          <div style="position:absolute;left:-5px;top:.35rem;width:11px;height:11px;border-radius:50%;border:1.5px solid var(--rope);background:var(--paper2)"></div>
+          <span style="display:inline-block;background:#2e7d32;color:#e8f5e9;font-family:var(--fm);font-size:8px;letter-spacing:.15em;padding:3px 9px;text-transform:uppercase;border-radius:1px;margin-bottom:.35rem">Green — Lvl 1</span>
+          <div style="font-family:var(--fd);font-size:1.25rem;font-weight:300;color:var(--paper);margin-bottom:.2rem">Arrival in Floorplay</div>
+          <p class="body-mono on-paper" style="font-size:10px">Your plaque is hung in the Tension tree. Frictions, patterns, connection. Repetition, structure, and stability — the soil from which skill grows.</p>
+        </div>
+
+        <div class="path-node-item" style="position:relative;padding:0 0 2rem 2.25rem;opacity:.55;transition:opacity .3s" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='.55'">
+          <div style="position:absolute;left:-5px;top:.35rem;width:11px;height:11px;border-radius:50%;border:1.5px solid var(--rope);background:var(--paper2)"></div>
+          <span style="display:inline-block;background:#f9a825;color:#451a03;font-family:var(--fm);font-size:8px;letter-spacing:.15em;padding:3px 9px;text-transform:uppercase;border-radius:1px;margin-bottom:.35rem">Yellow — Lvl 2</span>
+          <div style="font-family:var(--fd);font-size:1.25rem;font-weight:300;color:var(--paper);margin-bottom:.2rem">Caution: Uplines</div>
+          <p class="body-mono on-paper" style="font-size:10px">Awareness and responsibility. Introduction to uplines, anchors, and mechanical systems. Every choice affects your partner's safety.</p>
+        </div>
+
+        <div class="path-node-item" style="position:relative;padding:0 0 2rem 2.25rem;opacity:.55;transition:opacity .3s" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='.55'">
+          <div style="position:absolute;left:-5px;top:.35rem;width:11px;height:11px;border-radius:50%;border:1.5px solid var(--rope);background:var(--paper2)"></div>
+          <span style="display:inline-block;background:#b03020;color:#fef2f2;font-family:var(--fm);font-size:8px;letter-spacing:.15em;padding:3px 9px;text-transform:uppercase;border-radius:1px;margin-bottom:.35rem">Red — Lvl 2</span>
+          <div style="font-family:var(--fd);font-size:1.25rem;font-weight:300;color:var(--paper);margin-bottom:.2rem">Partial Loads</div>
+          <p class="body-mono on-paper" style="font-size:10px">Weight begins to leave the ground. The gateway between floor and air. Risk, restraint, intensity. Control under pressure.</p>
+        </div>
+
+        <div class="path-node-item" style="position:relative;padding:0 0 2rem 2.25rem;opacity:.55;transition:opacity .3s" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='.55'">
+          <div style="position:absolute;left:-5px;top:.35rem;width:11px;height:11px;border-radius:50%;border:1.5px solid var(--rope);background:var(--paper2)"></div>
+          <span style="display:inline-block;background:#e8dfc8;color:#3d3828;border:.5px solid rgba(21,18,16,.15);font-family:var(--fm);font-size:8px;letter-spacing:.15em;padding:3px 9px;text-transform:uppercase;border-radius:1px;margin-bottom:.35rem">White — Lvl 3</span>
+          <div style="font-family:var(--fd);font-size:1.25rem;font-weight:300;color:var(--paper);margin-bottom:.2rem">The TK Test</div>
+          <p class="body-mono on-paper" style="font-size:10px">Structural precision and reliability. Passing the Takatekote (TK) — stable upper-body harness. Purity of form; simplicity under tension.</p>
+        </div>
+
+        <div class="path-node-item" style="position:relative;padding:0 0 2rem 2.25rem;opacity:.55;transition:opacity .3s" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='.55'">
+          <div style="position:absolute;left:-5px;top:.35rem;width:11px;height:11px;border-radius:50%;border:1.5px solid var(--rope);background:var(--paper2)"></div>
+          <span style="display:inline-block;background:#151210;color:#c9a84c;font-family:var(--fm);font-size:8px;letter-spacing:.15em;padding:3px 9px;text-transform:uppercase;border-radius:1px;margin-bottom:.35rem">Black — Lvl 3</span>
+          <div style="font-family:var(--fd);font-size:1.25rem;font-weight:300;color:var(--paper);margin-bottom:.2rem">Suspension Circuit</div>
+          <p class="body-mono on-paper" style="font-size:10px">Full suspension structures, risk management, responsive control. Black is not an end — it is the threshold to a deeper practice.</p>
+        </div>
+
+        <div class="path-node-item" style="position:relative;padding:0 0 2rem 2.25rem;opacity:.55;transition:opacity .3s" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='.55'">
+          <div style="position:absolute;left:-5px;top:.35rem;width:11px;height:11px;border-radius:50%;border:1.5px solid var(--rope);background:var(--paper2)"></div>
+          <span style="display:inline-block;background:#ddd3b8;color:#5a4f3a;font-family:var(--fm);font-size:8px;letter-spacing:.15em;padding:3px 9px;text-transform:uppercase;border-radius:1px;margin-bottom:.35rem">Final Beige — Lvl 4</span>
+          <div style="font-family:var(--fd);font-size:1.25rem;font-weight:300;color:var(--paper);margin-bottom:.2rem">The Endless Path</div>
+          <p class="body-mono on-paper" style="font-size:10px">Return to humility. Private lessons, dynamics, and philosophy. Reflection, not achievement. The rope now ties you as much as you tie it. ○</p>
+        </div>
+
+        <div class="path-node-item" style="position:relative;padding:0 0 0 2.25rem;opacity:.55;transition:opacity .3s" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='.55'">
+          <div style="position:absolute;left:-5px;top:.35rem;width:11px;height:11px;border-radius:50%;border:1.5px solid var(--rope);background:var(--paper2)"></div>
+          <span style="display:inline-block;background:#4a148c;color:#e1bee7;font-family:var(--fm);font-size:8px;letter-spacing:.15em;padding:3px 9px;text-transform:uppercase;border-radius:1px;margin-bottom:.35rem">Purple</span>
+          <div style="font-family:var(--fd);font-size:1.25rem;font-weight:300;color:var(--paper);margin-bottom:.2rem">The Teacher's Rope</div>
+          <p class="body-mono on-paper" style="font-size:10px">Responsibility to others. Teaching within the Tension curriculum. Patience, clarity, balance between tradition and innovation. The path turns outward.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end A5 -->
+<!-- ════ Break □ ════ -->
+<!-- ═══════════════════════════════════════════════════════════════
+     BREAK 1 — □ SHIKAKU
+     Palette: Green (ground, growth) & Gold
+     Transition: Hero/A sections → □ Structure sections (B)
+     File: break_sq.html
+     ═══════════════════════════════════════════════════════════════ -->
+
+<div class="break" id="break-sq">
+
+  <!-- BACKGROUND IMAGE -->
+  <div class="break__bg" id="break-sq-bg">
+    <!-- PLACEHOLDER: replace with <img src="img/break_sq_01.jpg" .../> -->
+    
+  </div>
+
+  <!-- Colour wash -->
+  <div class="break__wash"></div>
+
+  <!-- Horizontal gold line -->
+  <div class="break__line"></div>
+
+  <!-- Ghost symbol -->
+  <div class="break__ghost" aria-hidden="true">
+    <svg viewBox="0 0 400 400" fill="none" style="width:clamp(20rem,40vw,38rem);height:clamp(20rem,40vw,38rem)">
+      <rect x="20" y="20" width="360" height="360" stroke="rgba(58,107,58,.12)" stroke-width="20" stroke-linecap="square"/>
+      <rect x="20" y="20" width="360" height="360" stroke="rgba(201,168,76,.18)" stroke-width="3" stroke-linecap="square"/>
+    </svg>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="break__content">
+
+    <!-- Large symbol -->
+    <!-- COPY: symbol shape -->
+    <div class="break__symbol">
+      <svg viewBox="0 0 100 100" fill="none" style="width:clamp(5rem,10vw,9rem);height:clamp(5rem,10vw,9rem);opacity:.85">
+        <rect x="12" y="12" width="76" height="76" stroke="#c9a84c" stroke-width="8" stroke-linecap="square"/>
+        <rect x="12" y="12" width="76" height="76" stroke="#3a6b3a" stroke-width="3" stroke-linecap="square"/>
+      </svg>
+    </div>
+
+    <!-- Text -->
+    <div class="break__text">
+
+      <!-- COPY: section ID label -->
+      <div class="break__id">四角 · Shikaku · Structure</div>
+
+      <!-- COPY: heading -->
+      <div class="break__name">
+        The Square.<br>
+        <em>The container.</em>
+      </div>
+
+      <!-- COPY: kanji line -->
+      <div class="break__kanji">形・枠・規律・安全 · Form · Frame · Discipline · Safety</div>
+
+      <!-- COPY: the main quote for this break -->
+      <div class="break__quote">
+        "The square is not a cage. It is the container that makes freedom possible."
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Green ground band -->
+  <div class="break__ground"></div>
+
+</div>
+<!-- end break-sq -->
+<!-- ════ Sections B ════ -->
+<!-- ═══════════════════════════════════════════════════════════════
+     ████  B1 — STRUCTURE AS FOUNDATION
+     ═══════════════════════════════════════════════════════════════
+     Palette: dark (ink)
+     Purpose: explain the square as container, not cage
+     ═══════════════════════════════════════════════════════════════ -->
+<section class="section dark" id="B1">
+  <div class="sec-id">B1</div>
+  <div class="inner">
+
+    <div class="lbl fade-in">□ Structure</div>
+
+    <div class="two-col fade-in" style="margin-bottom:4rem">
+      <div>
+        <h2>The container.<br><em style="color:var(--rope-l);font-style:italic">Not the cage.</em></h2>
+        <!-- EDIT: sub italic -->
+        <p style="font-family:var(--fd);font-size:1.1rem;font-style:italic;font-weight:300;color:rgba(240,234,216,.45);line-height:1.65;max-width:380px">
+          Structure is not the opposite of freedom. It is the condition of it.
+        </p>
+      </div>
+      <div>
+        <!-- COPY: B1 body -->
+        <p class="body-serif" style="margin-bottom:1.25rem">
+          The square is the container. The kata. The protocol.
+          The harness pattern practiced a thousand times until it is reliable under load.
+          Without the square, the circle has nothing to return to
+          and the triangle has nothing to push against.
+        </p>
+        <p class="body-mono" style="margin-bottom:1.25rem">
+          In rope, structure means the form that holds everything else.
+          The single column practiced until it is second nature.
+          The safety check that happens every time, not most times.
+          The anatomy knowledge that makes a decision possible under pressure.
+          These are not constraints on creativity. They are what make creativity safe to pursue.
+        </p>
+        <p class="body-mono">
+          We approach rope like we would martial arts — methodically, with repetition and patience.
+          Not because tradition demands it, but because the risks demand it.
+          People get hurt when steps are skipped. The foundation exists to prevent that.
+        </p>
+
+        <div class="blockquote" style="margin-top:2rem">
+          <p>"The square is not a cage. It is the container that makes freedom possible."</p>
+          <cite>Willcat / Tension MTL</cite>
+        </div>
+      </div>
+    </div>
+
+    <!-- Three application panels -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(240,234,216,.05);" class="fade-in">
+
+      <div style="background:var(--ink2);padding:2.5rem">
+        <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.2em;color:var(--rope-l);text-transform:uppercase;margin-bottom:.75rem">In the body</div>
+        <!-- COPY: application -->
+        <p class="body-mono">
+          Anatomy before application. Nerve paths, circulation, joint loading.
+          Understanding what the body can and cannot hold before asking it to hold anything.
+          Structure in the body is prerequisite, not optional.
+        </p>
+      </div>
+
+      <div style="background:var(--ink2);padding:2.5rem">
+        <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.2em;color:var(--rope-l);text-transform:uppercase;margin-bottom:.75rem">In the rope</div>
+        <!-- COPY: application -->
+        <p class="body-mono">
+          Clean frictions. Reliable knots. Consistent tension.
+          The forms that can be repeated identically under pressure, under stress, under the weight
+          of someone who has given you their trust and their body.
+          Repetition is not boredom. It is preparation.
+        </p>
+      </div>
+
+      <div style="background:var(--ink2);padding:2.5rem">
+        <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.2em;color:var(--rope-l);text-transform:uppercase;margin-bottom:.75rem">In the space</div>
+        <!-- COPY: application -->
+        <p class="body-mono">
+          Policies, agreements, and accountability frameworks.
+          The structures that hold a community together when things go wrong.
+          And they will go wrong. Having the container ready before that moment
+          is the difference between repair and rupture.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- end B1 -->
+
+<!-- ═══════════════════════════════════════════════════════════════
+     ████  B2 — FUNDAMENTALS
+     ═══════════════════════════════════════════════════════════════
+     Palette: paper2 (warm)
+     Purpose: explain why fundamentals exist, what they cover,
+              the philosophical gap they were built to address
+     ═══════════════════════════════════════════════════════════════ -->
+<section class="section paper2" id="B2" style="background:#252018">
+  <div class="sec-id">B2</div>
+  <div class="inner">
+
+    <div class="lbl dk fade-in">Fundamentals</div>
+
+    <div class="two-col valign fade-in" style="margin-bottom:4rem">
+      <div>
+        <h2 style="color:var(--paper)">Where every<br>practice<br><em style="color:var(--rope);font-style:italic">begins.</em></h2>
+        <div class="blockquote on-paper" style="margin-top:2rem">
+          <!-- COPY: key quote -->
+          <p>"I saw over and over that it wasn't when people learned about safety and consent.
+          Sometimes it was if. And that if was unacceptable."</p>
+          <cite>Willcat — on why Fundamentals exists</cite>
+        </div>
+      </div>
+
+      <div>
+        <!-- COPY: B2 body -->
+        <p class="body-serif on-paper" style="margin-bottom:1.25rem">
+          Fundamentals began as a teacher's aid. A handbook. A reminder of knots, frictions,
+          and concepts to support students after class. But as the writing continued,
+          something became clear: the gap was not just technical. It was philosophical.
+        </p>
+        <p class="body-serif on-paper" style="margin-bottom:1.25rem">
+          We did not just need more tutorials. We needed a way of thinking about rope
+          as Dō, a path and a discipline, with honest conversations about risk, accountability,
+          and consent built into the basics. Not bolted on later, if you got that far.
+        </p>
+        <p class="body-mono on-paper" style="margin-bottom:1.25rem">
+          Fundamentals is the prerequisite to all classes at Tension, and strongly encouraged
+          for anyone tying or being tied anywhere. Not because of gatekeeping.
+          Because rope is an extreme activity and the body, the nervous system,
+          joints, circulation, and the emotional safety of your partner
+          require more than enthusiasm to keep safe.
+        </p>
+        <p class="body-mono on-paper">
+          This is not a beginner class you graduate from. It is the whole practice,
+          seen again at every level with new eyes.
+        </p>
+      </div>
+    </div>
+
+    <!-- Curriculum breakdown -->
+    <div class="fade-in">
+      <div class="lbl dk" style="margin-bottom:1.5rem">What Fundamentals covers</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(21,18,16,.08)">
+
+        <div style="background:rgba(240,234,216,.05);padding:2rem 2rem;border-top:2px solid var(--rope-l)">
+          <div style="font-family:var(--fd);font-size:1.2rem;font-weight:300;color:var(--paper);margin-bottom:.75rem">Technical</div>
+          <!-- COPY: technical list -->
+          <p class="body-mono on-paper" style="font-size:10.5px;line-height:1.9">
+            Single column · Futomomo · Batten-Dome (X-Friction) · Taiko-Dome ·
+            Kannuki · Larkshead · Takedome · Nodome · Gote framework ·
+            Hojo Cuffs · Double columns · Wadome · Clove hitch · L-frictions ·
+            Rope care · Quick releases
+          </p>
+        </div>
+
+        <div style="background:rgba(240,234,216,.05);padding:2rem 2rem;border-top:2px solid var(--rope-l)">
+          <div style="font-family:var(--fd);font-size:1.2rem;font-weight:300;color:var(--paper);margin-bottom:.75rem">Safety</div>
+          <!-- COPY: safety list -->
+          <p class="body-mono on-paper" style="font-size:10.5px;line-height:1.9">
+            Nerve compression · Circulation · Joint safety · Torsions ·
+            Vasovagal syncope · Loss of consciousness · Death ·
+            Neck rope · Eyes · Mouth · Hair · Leaving someone unattended ·
+            Tools and safety equipment
+          </p>
+        </div>
+
+        <div style="background:rgba(240,234,216,.05);padding:2rem 2rem;border-top:2px solid var(--rope-l)">
+          <div style="font-family:var(--fd);font-size:1.2rem;font-weight:300;color:var(--paper);margin-bottom:.75rem">Emotional &amp; Community</div>
+          <!-- COPY: emotional list -->
+          <p class="body-mono on-paper" style="font-size:10.5px;line-height:1.9">
+            Consent &amp; negotiation · Opt-in vs opt-out · The Fuck Yes framework ·
+            Risk profiles · Play sessions · Debriefing · Aftercare · Follow-up ·
+            Selfcare · Vetting · Restorative justice · Safer spaces · Locations ·
+            Planning ahead
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- end B2 -->
+
+<!-- ═══════════════════════════════════════════════════════════════
+     ████  B3 — GET THE BOOK
+     ═══════════════════════════════════════════════════════════════
+     Palette: dark (ink)
+     Purpose: product page for Fundamentals book — honest, grounded
+     ═══════════════════════════════════════════════════════════════ -->
+<section class="section dark" id="B3">
+  <div class="sec-id">B3</div>
+  <div class="inner">
+
+    <div class="two-col valign fade-in">
+
+      <!-- LEFT — book image -->
+      <div class="img-panel" style="aspect-ratio:3/4;max-width:420px">
+        <!-- PLACEHOLDER: replace with <img src="img/section_B3_01.jpg" .../> -->
+        
+      </div>
+
+      <!-- RIGHT — book copy -->
+      <div>
+        <div class="lbl">Book · Published</div>
+        <h2>Fundamentals.<br><em style="color:var(--rope-l);font-style:italic">Shibari for<br>Beginners and Beyond.</em></h2>
+
+        <!-- COPY: book description -->
+        <p class="body-serif" style="margin-bottom:1.25rem">
+          What started as a teacher's aid slowly turned into a whole damn book.
+          A handbook to support students in class became a comprehensive guide
+          to rope as practice: technical, anatomical, emotional, and communal.
+        </p>
+        <p class="body-mono" style="margin-bottom:1.25rem">
+          200 pages / 400 images. Step-by-step technique with diagrams. Anatomy and nerve safety
+          vetted with medical input. Consent, negotiation, aftercare, and community
+          accountability built in from the first chapter. An art section. A full lexicon.
+          A cheat sheet. And an honest attempt to address every question a new practitioner
+          should be asking but often is not.
+        </p>
+        <p class="body-mono" style="margin-bottom:2rem">
+          Not just how to tie. How to think about tying.
+        </p>
+
+        <!-- COPY: book stats -->
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(240,234,216,.05);margin-bottom:2rem">
+          <div style="background:var(--ink2);padding:1.25rem 1rem">
+            <div style="font-family:var(--fd);font-size:2.2rem;font-weight:300;color:var(--rope-l);line-height:1">200</div>
+            <div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase">Pages</div>
+          </div>
+          <div style="background:var(--ink2);padding:1.25rem 1rem">
+            <div style="font-family:var(--fd);font-size:2.2rem;font-weight:300;color:var(--rope-l);line-height:1">400</div>
+            <div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase">images</div>
+          </div>
+          <div style="background:var(--ink2);padding:1.25rem 1rem">
+            <div style="font-family:var(--fd);font-size:2.2rem;font-weight:300;color:var(--rope-l);line-height:1">16+</div>
+            <div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase">Techniques</div>
+          </div>
+          <div style="background:var(--ink2);padding:1.25rem 1rem">
+            <div style="font-family:var(--fd);font-size:2.2rem;font-weight:300;color:var(--rope-l);line-height:1">1</div>
+            <div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase">Required read</div>
+          </div>
+        </div>
+
+        <!-- EDIT: link to book -->
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <a href="https://tensionmtl.ca/collections/books" class="btn btn-p" target="_blank">Get the Book →</a>
+          <a href="#B2" class="btn btn-o">What it covers</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- end B3 -->
+
+<!-- ═══════════════════════════════════════════════════════════════
+     ████  B4 — STRUCTURE IN COMMUNITY
+     ═══════════════════════════════════════════════════════════════
+     Palette: paper (white)
+     Purpose: safe(r) spaces, accountability, the container as community
+     ═══════════════════════════════════════════════════════════════ -->
+<section class="section paper" id="B4" style="background:#1a1612">
+  <div class="sec-id">B4</div>
+  <div class="inner">
+
+    <div class="lbl dk fade-in">Structure in Community</div>
+
+    <div class="two-col fade-in" style="margin-bottom:4rem">
+      <div>
+        <h2 style="color:var(--paper)">Safe(r).<br><em style="color:var(--rope);font-style:italic">Not safe.</em></h2>
+        <!-- COPY: sub -->
+        <p style="font-family:var(--fd);font-size:1.1rem;font-style:italic;font-weight:300;color:var(--muted);line-height:1.65;max-width:360px">
+          The parenthetical is not a technicality. It is the most honest thing
+          we can say about what we are trying to build.
+        </p>
+      </div>
+      <div>
+        <!-- COPY: B4 body -->
+        <p class="body-serif on-paper" style="margin-bottom:1.25rem">
+          Safe(r) spaces require structure. Agreements, policies, and accountability frameworks
+          are not restrictions on community — they are the container that makes community possible.
+          The same principle as rope: without a solid structure, nothing can be held safely.
+        </p>
+        <p class="body-serif on-paper" style="margin-bottom:1.25rem">
+          We have a responsibility to hold people more accountable inside safe(r) spaces, not less.
+          Some people may not always be welcome. Some behaviors will get you benched or removed.
+          Freedom does not mean freedom from consequences.
+          It means knowing exactly what you are free within.
+        </p>
+        <p class="body-mono on-paper" style="margin-bottom:1.25rem">
+          Safe(r) spaces are exhausting to run. Every event has risk.
+          Every person brings their history, their triggers, their needs.
+          Every boundary enforced gets called discrimination by someone
+          who does not want to be accountable.
+          That is part of the work. It is not a failure of the space.
+        </p>
+        <p class="body-mono on-paper">
+          If your first response to disagreement is blame or public tearing-down
+          instead of curiosity and conversation, Tension may not be the place for you.
+          That is said with love and with boundaries. Both are necessary.
+        </p>
+      </div>
+    </div>
+
+    <!-- Three accountability pillars -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(21,18,16,.08);" class="fade-in">
+
+      <div style="background:rgba(240,234,216,.04);padding:2.5rem;border-top:2px solid var(--rope-l)">
+        <div style="font-family:var(--fd);font-size:1.1rem;font-weight:300;color:var(--paper);margin-bottom:.65rem">Accountability</div>
+        <!-- COPY -->
+        <p class="body-mono on-paper" style="font-size:10.5px">
+          When you fuck up, own it. Listen. Repair where you can.
+          Step back if you need to. Adjust your compass.
+          Leadership without accountability is just ego in a shiny outfit.
+        </p>
+      </div>
+
+      <div style="background:rgba(240,234,216,.04);padding:2.5rem;border-top:2px solid var(--rope-l)">
+        <div style="font-family:var(--fd);font-size:1.1rem;font-weight:300;color:var(--paper);margin-bottom:.65rem">Consent</div>
+        <!-- COPY -->
+        <p class="body-mono on-paper" style="font-size:10.5px">
+          Aim for Fuck Yes. Sober, informed, enthusiastic, revokable, ongoing.
+          No half-truths, no pressure, no opt-out-only nonsense.
+          Negotiate honestly. Every time.
+        </p>
+      </div>
+
+      <div style="background:rgba(240,234,216,.04);padding:2.5rem;border-top:2px solid var(--rope-l)">
+        <div style="font-family:var(--fd);font-size:1.1rem;font-weight:300;color:var(--paper);margin-bottom:.65rem">Support</div>
+        <!-- COPY -->
+        <p class="body-mono on-paper" style="font-size:10.5px">
+          Places like Tension do not exist by magic. Show up. Help out.
+          Pay when you can. Respect the rules.
+          Contribute to the culture you want to live in.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- end B4 -->
+
+<!-- ════ FOOTER ════ -->
+<footer style="background:#1e1a16;border-top:1px solid rgba(169,124,26,.12);padding:3rem 4rem;display:flex;justify-content:space-between;align-items:center;gap:2rem;flex-wrap:wrap;">
+  <a href="#" style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:300;letter-spacing:.2em;color:#f0ead8;opacity:.55">Will<em style="color:#c9a84c;font-style:italic">cat</em></a>
+  <ul style="display:flex;gap:1.5rem;list-style:none;flex-wrap:wrap">
+    <li><a href="#A1" style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;color:rgba(240,234,216,.35);text-transform:uppercase">The Framework</a></li>
+    <li><a href="#A2" style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;color:rgba(240,234,216,.35);text-transform:uppercase">About</a></li>
+    <li><a href="#A5" style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;color:rgba(240,234,216,.35);text-transform:uppercase">The Path</a></li>
+    <li><a href="https://tensionmtl.ca" target="_blank" style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;color:rgba(240,234,216,.35);text-transform:uppercase">Tension MTL</a></li>
+  </ul>
+  <div style="font-family:'DM Mono',monospace;font-size:9.5px;color:rgba(240,234,216,.3);text-align:right;line-height:1.6">
+    William Desjardins / Willcat<br>Montréal, QC · Canada<br>
+    <a href="https://tensionmtl.ca" style="color:#c9a84c">tensionmtl.ca</a>
+  </div>
+</footer>
+
+<script>
+
+// Parallax
+window.addEventListener('scroll', function() {
+  var sy = window.scrollY;
+  var heroBg = document.getElementById('hero-bg');
+  if (heroBg) heroBg.style.transform = 'translateY(' + (sy * 0.32) + 'px)';
+  var breakBg = document.getElementById('break-sq-bg');
+  if (breakBg) {
+    var el = breakBg.closest('.break');
+    if (el) {
+      var rect = el.getBoundingClientRect();
+      if (rect.bottom > 0 && rect.top < window.innerHeight) {
+        var center = rect.top + rect.height / 2 - window.innerHeight / 2;
+        breakBg.style.transform = 'translateY(' + (center * 0.28) + 'px)';
+      }
+    }
+  }
+  var nav = document.querySelector('nav');
+  if (nav) nav.classList.toggle('scrolled', sy > 80);
+}, {passive: true});
+
+// Fade in — single observer
+var fadeObserver = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      fadeObserver.unobserve(e.target);
+    }
+  });
+}, {threshold: 0.06});
+document.querySelectorAll('.fade-in').forEach(function(el) {
+  fadeObserver.observe(el);
+});
+
+// Accordion — staggered row reveal
+var accordionOpened = false;
+
+function openAccordion() {
+  var btn = document.getElementById('relate-btn');
+  var exp = document.getElementById('msq-expand');
+  if (btn) btn.classList.add('open');
+  if (exp) exp.classList.add('open');
+  // Reveal rows one at a time
+  var rows = ['row-practice', 'row-transmission', 'row-community'];
+  rows.forEach(function(id, i) {
+    setTimeout(function() {
+      var row = document.getElementById(id);
+      if (row) row.classList.add('row-visible');
+    }, 200 + (i * 700));
+  });
+}
+
+function closeAccordion() {
+  var btn = document.getElementById('relate-btn');
+  var exp = document.getElementById('msq-expand');
+  if (btn) btn.classList.remove('open');
+  // Fade rows out first
+  ['row-practice', 'row-transmission', 'row-community'].forEach(function(id) {
+    var row = document.getElementById(id);
+    if (row) row.classList.remove('row-visible');
+  });
+  // Then hide wrapper after transition
+  setTimeout(function() {
+    if (exp) exp.classList.remove('open');
+  }, 750);
+}
+
+function toggleRelate() {
+  var btn = document.getElementById('relate-btn');
+  if (btn && btn.classList.contains('open')) {
+    closeAccordion();
+  } else {
+    openAccordion();
+  }
+}
+
+// Auto-open when shape cards scroll into view
+var accordionObserver = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting && !accordionOpened) {
+      accordionOpened = true;
+      setTimeout(openAccordion, 500);
+    }
+  });
+}, { threshold: 0.25 });
+
+var shapeCards = document.getElementById('shape-cards');
+if (shapeCards) accordionObserver.observe(shapeCards);
+
+// A5 path nodes hover handled by inline onmouseover
+
+</script>
+
+</body>
+</html>
