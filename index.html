@@ -1535,7 +1535,45 @@ h3 {
       color:rgba(240,234,216,.38);
       margin:0;
     }
-  </style>
+  
+/* ════ E Sections ════ */
+
+
+
+
+.section { padding: 7rem 0; position: relative; }
+.inner { max-width: 1200px; margin: 0 auto; padding: 0 4rem; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+.lbl { font-family: var(--fm); font-size: 9px; letter-spacing: .28em; text-transform: uppercase; color: var(--rope-l); display: flex; align-items: center; gap: 10px; margin-bottom: 1rem; }
+.lbl::before { content: ''; width: 24px; height: 1px; background: var(--rope-l); display: block; flex-shrink: 0; }
+h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight: 300; line-height: .92; letter-spacing: -.025em; margin-bottom: 2rem; }
+.
+.
+.blockquote { border-left: 2px solid rgba(169,124,26,.35); padding-left: 1.5rem; margin: 2rem 0; }
+.blockquote p { font-family: var(--fd); font-size: clamp(1.1rem,1.6vw,1.4rem); font-style: italic; font-weight: 300; color: rgba(240,234,216,.6); line-height: 1.55; }
+.btn { display: inline-block; font-family: var(--fm); font-size: 9.5px; letter-spacing: .18em; text-transform: uppercase; padding: 11px 24px; border-radius: 1px; text-decoration: none; transition: all .22s; border: .5px solid transparent; cursor: pointer; }
+.btn-p { background: var(--rope); color: var(--paper); border-color: var(--rope); }
+.btn-p:hover { background: var(--rope-l); }
+.btn-o { background: transparent; color: var(--rope-l); border-color: rgba(169,124,26,.45); }
+.btn-o:hover { background: rgba(169,124,26,.1); }
+.sec-id { position: absolute; top: 1.5rem; right: 2rem; font-family: var(--fm); font-size: 8px; letter-spacing: .2em; color: rgba(240,234,216,.08); text-transform: uppercase; }
+.fade-in { opacity: 0; transform: translateY(18px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+/* Break */
+.break { position: relative; height: 65vh; min-height: 480px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+.break__bg { position: absolute; inset: -20%; z-index: 0; will-change: transform; }
+.break__bg img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.break__overlay { position: absolute; inset: 0; z-index: 1; }
+.break__ghost { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; z-index: 2; pointer-events: none; }
+.break__content { position: relative; z-index: 3; text-align: center; padding: 0 4rem; max-width: 680px; }
+.break__symbol { display: flex; align-items: center; justify-content: center; margin-bottom: 2rem; }
+.break__label { font-family: var(--fm); font-size: 8.5px; letter-spacing: .28em; text-transform: uppercase; color: rgba(201,168,76,.5); margin-bottom: 1.25rem; display: flex; align-items: center; justify-content: center; gap: 10px; }
+.break__label::before, .break__label::after { content: ''; width: 24px; height: 1px; background: rgba(201,168,76,.3); display: block; }
+.break__quote { font-family: var(--fd); font-size: clamp(1.3rem,2.5vw,2rem); font-weight: 300; font-style: italic; color: rgba(240,234,216,.75); line-height: 1.45; margin-bottom: 1.75rem; }
+.break__kanji { font-family: var(--fj); font-size: .8rem; letter-spacing: .2em; color: rgba(201,168,76,.35); line-height: 2; }
+@media (max-width: 900px) { .inner { padding: 0 2rem; } .two-col { grid-template-columns: 1fr; gap: 2.5rem; } .section { padding: 5rem 0; } }
+
+</style>
 
   <table class="msq-grid" cellspacing="0" cellpadding="0">
     <tr>
@@ -1680,7 +1718,7 @@ h3 {
 
   <!-- APPLIED PRACTICE -->
   <div class="inner" style="padding-top:5rem;padding-bottom:2rem">
-    <div class="lbl fade-in">Applied Practice</div>
+    <div class="lbl fade-in">Applied</div>
     <div class="two-col fade-in" style="margin-bottom:3rem">
       <div>
         <h2>Not philosophy.<br><em style="color:var(--rope-l);font-style:italic">Practice.</em></h2>
@@ -2883,6 +2921,299 @@ h3 {
 </section>
 <!-- end C5 -->
 
+
+<!-- ════ E Sections ════ -->
+<!-- ═══ BREAK ○ ═══ -->
+<div class="break" id="break-circ">
+  <div class="break__bg" id="break-circ-bg">
+    <img src="img/break_circ.jpg" alt="" style="filter:brightness(.4) saturate(.3);"/>
+  </div>
+  <div class="break__overlay" style="background:linear-gradient(to right,rgba(19,19,21,.9) 0%,rgba(19,19,21,.4) 50%,rgba(19,19,21,.9) 100%),linear-gradient(to bottom,rgba(19,19,21,.7) 0%,transparent 40%,transparent 60%,rgba(19,19,21,.85) 100%);"></div>
+  <div class="break__ghost">
+    <svg viewBox="0 0 500 500" fill="none" style="width:min(500px,80vw);height:auto;opacity:.07">
+      <circle cx="250" cy="250" r="230" stroke="#c9a84c" stroke-width="1.5"/>
+      <circle cx="250" cy="250" r="230" stroke="#1a1816" stroke-width="1"/>
+    </svg>
+  </div>
+  <div class="break__content fade-in">
+    <div class="break__symbol">
+      <svg viewBox="0 0 80 80" fill="none" style="width:52px;height:52px">
+        <circle cx="40" cy="40" r="34" stroke="#c9a84c" stroke-width="5"/>
+        <circle cx="40" cy="40" r="34" stroke="#1a1816" stroke-width="2"/>
+      </svg>
+    </div>
+    <div class="break__label">○ · Maru · The Circle</div>
+    <p class="break__quote">
+      "You return to the beginning<br>
+      not because you failed;<br>
+      but because that is what the circle demands."
+    </p>
+    <div class="break__kanji">
+      継続 · 帰還 · 共同体 · 道<br>
+      Continuity · Return · Community · The Path
+    </div>
+  </div>
+</div>
+<!-- end break circ -->
+
+
+<!-- ═══ D1 — FLOW AS INTEGRATION / SEME ═══ -->
+<section class="section" id="D1">
+  <div class="sec-id">D1</div>
+  <div class="inner">
+    <div class="lbl fade-in">○ The Circle · Return</div>
+    <div class="two-col fade-in" style="margin-bottom:5rem">
+      <div>
+        <h2>Flow as<br><em style="color:var(--rope-l);font-style:italic">integration.</em></h2>
+        <div style="font-family:var(--fj);font-size:5rem;color:var(--rope);opacity:.15;line-height:1;margin-top:1rem">攻め</div>
+        <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:.5rem">Seme · The pressure before</div>
+      </div>
+      <div>
+        <p class="body-serif" style="margin-bottom:1.5rem">There is a version of rope that most people see first. Clean lines. Beautiful forms. The aesthetic of it. That version is real and it has its place.</p>
+        <p class="body-serif" style="margin-bottom:1.5rem">There is another version that brought me in.</p>
+        <p class="body-serif" style="margin-bottom:1.5rem">I came to rope for the loss of control. Then quickly found a penchant for suffering. I identify as an exhibitionist and a masochist but pain alone doesn't do much for me. Suffering does. The anticipation of it. Being in the hands of someone who knows how to make me suffer, who <em>wants</em> me to suffer for them, and who is getting off on it while doing it in front of a crowd. That. All of that.</p>
+        <p class="body-serif" style="margin-bottom:1.5rem">That is where I began. As Uke. As the one receiving.</p>
+        <p class="body-serif">It is from that place that I understand what I now apply.</p>
+      </div>
+    </div>
+
+    <div style="width:40px;height:1px;background:rgba(169,124,26,.3);margin:0 0 4rem" class="fade-in"></div>
+
+    <div class="two-col fade-in" style="margin-bottom:5rem">
+      <div>
+        <div style="font-family:var(--fm);font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--rope-l);margin-bottom:1rem">Seme (攻め)</div>
+        <p class="body-mono" style="margin-bottom:1rem">From <em>semeru</em>: to press forward, to apply pressure, to hold initiative before the blow lands.</p>
+        <p class="body-mono" style="margin-bottom:1rem">In martial arts: the psychological force that precedes technique. The pressure that disrupts your opponent's confidence before you've moved.</p>
+        <p class="body-mono">In rope: the same principle, different material.</p>
+      </div>
+      <div>
+        <p class="body-serif" style="margin-bottom:1.5rem">Seme is not pain.</p>
+        <p class="body-serif" style="margin-bottom:1.5rem">It is the space before pain becomes too much. The threshold. Sustained application of just enough: pressure, sensation, weight, restriction, to produce torment in the specific person you are with, without crossing into what they cannot hold.</p>
+        <p class="body-serif" style="margin-bottom:1.5rem">That edge is not a line you cross. It is a place you inhabit, deliberately, with complete attention.</p>
+        <div class="blockquote">
+          <p>In rope this becomes Semenawa, tormenting rope. Not tight for aesthetic reasons. Not suspended for the image of it. Held in sustained torment, physical and psychological, that the person in rope has chosen to enter, and that requires absolute trust in the one applying it.</p>
+        </div>
+        <p class="body-mono">The difference between Seme and abuse is consent, skill, and the capacity to read another person accurately under pressure. Not occasionally. Continuously. In real time.</p>
+      </div>
+    </div>
+
+    <div class="fade-in" style="max-width:780px;margin:0 auto;text-align:center;padding:4rem 0;border-top:1px solid rgba(240,234,216,.06)">
+      <p class="body-serif" style="margin-bottom:2rem;color:rgba(240,234,216,.5)">For those thirsting for the extremes, the raw energies, the hentai scenes, the places where rope becomes something much older and darker than art, you have your work cut out for you.</p>
+      <p class="body-serif" style="margin-bottom:2rem;color:rgba(240,234,216,.5)">It is possible to find those willing and wanting. But the trust between you needs to grow first. And you must be confident enough to effortlessly read someone, to bring them to that edge without letting them fall over it.</p>
+      <p class="body-serif" style="margin-bottom:3rem;color:rgba(240,234,216,.5)">That confidence does not come from enthusiasm. It comes from thousands of hours of attention. It comes from having been Uke yourself and knowing what it costs to be held in that place by someone who is paying attention.</p>
+      <div style="border-top:1px solid rgba(169,124,26,.2);padding-top:2rem">
+        <p style="font-family:var(--fd);font-size:clamp(1.1rem,1.6vw,1.4rem);font-style:italic;font-weight:300;color:rgba(240,234,216,.6);line-height:1.6">The circle is not just about return. It is about what you carry back with you.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end D1 -->
+
+
+<!-- ═══ D2 — FLOW IN PRACTICE ═══ -->
+<section class="section" id="D2" style="border-top:1px solid rgba(240,234,216,.05)">
+  <div class="sec-id">D2</div>
+  <div class="inner">
+    <div class="lbl fade-in">Flow in Practice</div>
+    <div class="two-col fade-in">
+      <div>
+        <h2>Rope is a dialogue,<br><em style="color:var(--rope-l);font-style:italic">not a monologue.</em></h2>
+      </div>
+      <div>
+        <p class="body-serif" style="margin-bottom:1.25rem">Listening with your hands. Responding to micro-movements. Adapting when the body receiving rope shifts, when the plan meets reality, when what was rehearsed gives way to what is actually happening.</p>
+        <p class="body-mono" style="margin-bottom:1.25rem">Flow is not ease. It is responsiveness. The practitioner who has integrated structure and tension fully enough that they are no longer thinking about them is free to pay attention to what is actually in front of them.</p>
+        <p class="body-mono">The rope will tie you as much as you tie it. The practice is continuous. What you receive, you eventually give.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end D2 -->
+
+
+<!-- ═══ D3 — FLOW IN THE PATH ═══ -->
+<section class="section" id="D3" style="border-top:1px solid rgba(240,234,216,.05)">
+  <div class="sec-id">D3</div>
+  <div class="inner">
+    <div class="lbl fade-in">Flow in the Path</div>
+    <div class="two-col fade-in">
+      <div>
+        <h2>Every teacher<br><em style="color:var(--rope-l);font-style:italic">returns to practice.</em></h2>
+      </div>
+      <div>
+        <p class="body-serif" style="margin-bottom:1.25rem">The path moves through, not upward. The tree at Tension continues to grow, each student a branch, each return a deepening of roots.</p>
+        <p class="body-mono" style="margin-bottom:1.25rem">Every colour eventually circles back to Beige. Every advancement should reflect a revision of our roots. Mastery is not the goal. Walking the path is.</p>
+        <p class="body-mono">The rope will tie you as much as you tie it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end D3 -->
+
+
+<!-- ═══ D4 — IN THE WORLD ═══ -->
+<section class="section" id="D4" style="border-top:1px solid rgba(240,234,216,.05)">
+  <div class="sec-id">D4</div>
+  <div class="inner">
+    <div class="lbl fade-in">In the World</div>
+    <div class="two-col fade-in" style="margin-bottom:4rem">
+      <div>
+        <h2>Teaching.<br>Performing.<br><em style="color:var(--rope-l);font-style:italic">Building.</em></h2>
+      </div>
+      <div>
+        <p class="body-serif" style="margin-bottom:1.25rem">Touring internationally. Teaching on stages, in studios, in living rooms and dungeons across continents. Collaborating with artists, educators, and communities who are doing the same work in different contexts.</p>
+        <p class="body-mono" style="margin-bottom:1.25rem">The work ripples outward, into other communities, other studios, other practices. That is the point.</p>
+        <p class="body-mono">The circle has no end. What you build, others will build on. What you teach, others will teach further. The community is circular: what you receive, you eventually give.</p>
+      </div>
+    </div>
+    <div class="fade-in" style="aspect-ratio:16/6;background:var(--ink2);display:flex;align-items:center;justify-content:center;">
+      <div style="font-family:var(--fm);font-size:9px;letter-spacing:.2em;color:rgba(240,234,216,.1);text-transform:uppercase">img / section_D4_01.jpg</div>
+    </div>
+  </div>
+</section>
+<!-- end D4 -->
+
+
+<!-- ═══ E1 — CONTINUE YOUR PATH ═══ -->
+<section class="section" id="E1" style="border-top:1px solid rgba(240,234,216,.05)">
+  <div class="sec-id">E1</div>
+  <div class="inner">
+    <div class="lbl fade-in">Continue</div>
+    <div class="two-col fade-in" style="margin-bottom:4rem">
+      <div>
+        <h2>Continue<br><em style="color:var(--rope-l);font-style:italic">your path.</em></h2>
+        <p class="body-serif" style="margin-bottom:1.25rem">The work continues because people choose to be part of it. Every class taken, every book bought, every workshop hosted keeps the studio running, the curriculum growing, and the teaching sustainable.</p>
+        <p class="body-mono">If you have learned from this work, in a class, from the book, from a conversation, this is how you give it back. Not as charity. As participation in something worth continuing.</p>
+      </div>
+      <div>
+
+        <!-- Book -->
+        <div style="border:.5px solid rgba(169,124,26,.2);border-radius:1px;overflow:hidden;margin-bottom:1px">
+          <div style="padding:1.25rem 1.5rem;display:flex;justify-content:space-between;align-items:center;border-bottom:.5px solid rgba(240,234,216,.06)">
+            <div>
+              <div style="font-family:var(--fd);font-size:1.1rem;font-weight:300;color:var(--paper)">Fundamentals of Shibari</div>
+              <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;margin-top:.2rem">Book · 200 pages · 400 images</div>
+            </div>
+            <a href="https://tensionmtl.ca/collections/books" target="_blank" class="btn btn-o" style="white-space:nowrap">Get it →</a>
+          </div>
+        </div>
+
+        <!-- Intentions game -->
+        <div style="border:.5px solid rgba(169,124,26,.2);border-radius:1px;overflow:hidden;margin-bottom:1px">
+          <div style="padding:1.25rem 1.5rem;display:flex;justify-content:space-between;align-items:center;border-bottom:.5px solid rgba(240,234,216,.06)">
+            <div>
+              <div style="font-family:var(--fd);font-size:1.1rem;font-weight:300;color:var(--paper)">Intentions</div>
+              <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;margin-top:.2rem">120 bilingual cards · Originally for shibari · Open to anyone</div>
+            </div>
+            <a href="https://tensionmtl.ca/collections/books" target="_blank" class="btn btn-o" style="white-space:nowrap">Get it →</a>
+          </div>
+        </div>
+
+        <!-- Workshops -->
+        <div style="border:.5px solid rgba(169,124,26,.2);border-radius:1px;overflow:hidden;margin-bottom:1px">
+          <div style="padding:1.25rem 1.5rem;display:flex;justify-content:space-between;align-items:center;border-bottom:.5px solid rgba(240,234,216,.06)">
+            <div>
+              <div style="font-family:var(--fd);font-size:1.1rem;font-weight:300;color:var(--paper)">Workshops at Tension MTL</div>
+              <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;margin-top:.2rem">Montréal · In person · All levels</div>
+            </div>
+            <a href="https://tensionmtl.ca" target="_blank" class="btn btn-o" style="white-space:nowrap">Book →</a>
+          </div>
+        </div>
+
+        <!-- Ko-fi -->
+        <div style="border:.5px solid rgba(169,124,26,.2);border-radius:1px;overflow:hidden;margin-bottom:1px">
+          <div style="padding:1.25rem 1.5rem;display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <div style="font-family:var(--fd);font-size:1.1rem;font-weight:300;color:var(--paper)">Support the work</div>
+              <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;margin-top:.2rem">Ko-fi · Tips · Community support</div>
+            </div>
+            <a href="https://ko-fi.com/willcat" target="_blank" class="btn btn-o" style="white-space:nowrap">Support →</a>
+          </div>
+        </div>
+
+        <!-- VOD coming -->
+        <div style="border:.5px solid rgba(169,124,26,.1);border-radius:1px;overflow:hidden;opacity:.45;margin-top:.5rem">
+          <div style="padding:1rem 1.5rem;display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <div style="font-family:var(--fd);font-size:1.1rem;font-weight:300;color:var(--paper)">Video on Demand</div>
+              <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;margin-top:.2rem">Coming · Stay tuned</div>
+            </div>
+            <span style="font-family:var(--fm);font-size:8.5px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase">Soon</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end E1 -->
+
+
+<!-- ═══ E2 — WORK WITH ME ═══ -->
+<section class="section" id="E2" style="border-top:1px solid rgba(240,234,216,.05)">
+  <div class="sec-id">E2</div>
+  <div class="inner">
+    <div class="lbl fade-in">Work with me</div>
+    <div class="two-col fade-in" style="margin-bottom:5rem;align-items:center">
+      <div>
+        <h2>Let's make<br><em style="color:var(--rope-l);font-style:italic">something.</em></h2>
+        <p class="body-serif" style="margin-bottom:1.5rem">Teaching, performing, consulting, collaborating. In Montréal or wherever the work takes us.</p>
+        <p class="body-mono" style="margin-bottom:2rem">Start with an email. No forms, no intake questionnaires. Just a message about what you are looking to do and we go from there.</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <a href="https://tensionmtl.ca/pages/about-willcat" target="_blank" class="btn btn-p">Book a date →</a>
+          <a href="https://tensionmtl.ca" target="_blank" class="btn btn-o">Tension MTL →</a>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:1rem">
+        <div style="border-left:2px solid rgba(169,124,26,.25);padding-left:1.5rem">
+          <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:.35rem">Studio</div>
+          <div style="font-family:var(--fd);font-size:1.1rem;font-weight:300;color:var(--paper)">Tension MTL</div>
+          <div style="font-family:var(--fm);font-size:10px;color:rgba(240,234,216,.35)">Montréal, Québec, Canada</div>
+        </div>
+        <div style="border-left:2px solid rgba(169,124,26,.25);padding-left:1.5rem">
+          <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:.35rem">Instagram</div>
+          <a href="https://instagram.com/tensionmtl" target="_blank" style="font-family:var(--fd);font-size:1.1rem;font-weight:300;color:var(--rope-l);text-decoration:none">@tensionmtl</a>
+        </div>
+        <div style="border-left:2px solid rgba(169,124,26,.25);padding-left:1.5rem">
+          <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:.35rem">FetLife</div>
+          <a href="https://fetlife.com/WillCat" target="_blank" style="font-family:var(--fd);font-size:1.1rem;font-weight:300;color:var(--rope-l);text-decoration:none">WillCat</a>
+        </div>
+        <div style="border-left:2px solid rgba(169,124,26,.25);padding-left:1.5rem">
+          <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:.35rem">Available for</div>
+          <div style="font-family:var(--fm);font-size:10px;color:rgba(240,234,216,.35);line-height:1.9">Workshops · Residencies · Performances<br>Production · Touring · Collaboration</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Closing -->
+    <div class="fade-in" style="text-align:center;padding:4rem 0;border-top:1px solid rgba(240,234,216,.06)">
+      <svg viewBox="0 0 120 40" fill="none" style="width:80px;height:26px;margin:0 auto 1.5rem;display:block;opacity:.2">
+        <rect x="2" y="8" width="24" height="24" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="square"/>
+        <polygon points="60,2 74,38 46,38" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="miter"/>
+        <circle cx="106" cy="20" r="12" stroke="#c9a84c" stroke-width="1.5"/>
+      </svg>
+      <p style="font-family:var(--fd);font-size:clamp(1rem,1.4vw,1.2rem);font-style:italic;font-weight:300;color:rgba(240,234,216,.35);line-height:1.7">
+        The shape of things takes time to actually take shape.<br>
+        Don't give up. Do your best.
+      </p>
+    </div>
+  </div>
+</section>
+<!-- end E2 -->
+
+
+<!-- WIP BANNER -->
+<div id="wip-banner" style="background:rgba(169,124,26,.08);border-bottom:1px solid rgba(169,124,26,.15);padding:.75rem 4rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;position:sticky;top:0;z-index:10000;">
+  <div style="display:flex;align-items:center;gap:.75rem">
+    <svg viewBox="0 0 16 16" fill="none" style="width:13px;height:13px;flex-shrink:0">
+      <circle cx="8" cy="8" r="6.5" stroke="#c9a84c" stroke-width="1.2"/>
+      <line x1="8" y1="5" x2="8" y2="8.5" stroke="#c9a84c" stroke-width="1.2" stroke-linecap="round"/>
+      <circle cx="8" cy="11" r=".6" fill="#c9a84c"/>
+    </svg>
+    <span style="font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(201,168,76,.7)">This site is under construction, enjoy but know that I am working on it.</span>
+  </div>
+  <button onclick="document.getElementById('wip-banner').style.display='none'" style="background:none;border:none;cursor:pointer;font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.15em;color:rgba(201,168,76,.4);text-transform:uppercase;padding:0">dismiss</button>
+</div>
+
 <!-- ════ FOOTER ════ -->
 <footer style="background:#1e1a16;border-top:1px solid rgba(169,124,26,.12);padding:3rem 4rem;display:flex;justify-content:space-between;align-items:center;gap:2rem;flex-wrap:wrap;">
   <a href="#" style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:300;letter-spacing:.2em;color:#f0ead8;opacity:.55">Will<em style="color:#c9a84c;font-style:italic">cat</em></a>
@@ -2905,7 +3236,7 @@ window.addEventListener('scroll', function() {
   var sy = window.scrollY;
   var heroBg = document.getElementById('hero-bg');
   if (heroBg) heroBg.style.transform = 'translateY(' + (sy * 0.32) + 'px)';
-  ['break-sq-bg','break-tri-bg'].forEach(function(id) {
+  ['break-sq-bg','break-tri-bg','break-circ-bg'].forEach(function(id) {
     var bg = document.getElementById(id);
     if (!bg) return;
     var el = bg.closest('.break');
