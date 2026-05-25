@@ -3,19 +3,20 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Willcat — Shibari Educator · Artist · Author</title>
-<meta name="description" content="Building frameworks for understanding body, rope, movement, and practice. William Desjardins — Montréal."/>
+<title>Willcat, Shibari Educator · Artist · Author</title>
+<meta name="description" content="Building frameworks for understanding body, rope, movement, and practice. William Desjardins, Montréal."/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Shippori+Mincho:wght@400;500;600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet"/>
 <style>
 
 /* ════ Hero ════ */
 /* ════════════════════════════════════════
-   GLOBAL TOKENS — shared across all sections
+   GLOBAL TOKENS, shared across all sections
    Copy this :root block into globals.css
    ════════════════════════════════════════ */
 :root {
-  --ink:        #151210;
+  --ink:        #131315;
   --ink2:       #1e1a16;
   --paper:      #f0ead8;
   --paper2:     #e8dfc8;
@@ -24,9 +25,9 @@
   --muted:      #7a6e58;
 
   /* Per-symbol accent colors */
-  --sq-color:   #c9a84c;   /* □ Shikaku — gold    */
-  --tri-color:  #c9804a;   /* △ Sankaku — amber   */
-  --circ-color:#1a1816;   /* ○ Maru    — sage    */
+  --sq-color:   #c9a84c;   /* □ Shikaku, gold    */
+  --tri-color:  #c9804a;   /* △ Sankaku, amber   */
+  --circ-color:#1a1816;   /* ○ Maru   , sage    */
 
   --fd: 'Cormorant Garamond', serif;
   --fj: 'Shippori Mincho', serif;
@@ -84,9 +85,9 @@ body::after {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 25%;
+  object-position: 25% 62%;
   display: block;
-  filter: brightness(.35) saturate(.6);
+  filter: brightness(1.1) saturate(.75);
 }
 /* Fallback if no image: dark textured gradient */
 .hero__bg-fallback {
@@ -132,7 +133,7 @@ body::after {
 }
 
 /* ════════════════════════════════════════
-   HERO LEFT — Title block
+   HERO LEFT, Title block
    ════════════════════════════════════════ */
 .hero__left {}
 
@@ -285,7 +286,7 @@ body::after {
 }
 
 /* ════════════════════════════════════════
-   HERO RIGHT — Symbol trio display
+   HERO RIGHT, Symbol trio display
    ════════════════════════════════════════ */
 .hero__right {
   display: flex;
@@ -318,7 +319,7 @@ body::after {
 .symbol-card:last-child { border-bottom: none; }
 .symbol-card:hover { padding-left: .5rem; }
 
-/* The large symbol glyph — SVG drawn shapes */
+/* The large symbol glyph, SVG drawn shapes */
 .symbol-card__glyph {
   flex-shrink: 0;
   width: 5rem;
@@ -396,7 +397,7 @@ body::after {
 }
 
 /* ════════════════════════════════════════
-   HERO TOP — Nav strip
+   HERO TOP, Nav strip
    ════════════════════════════════════════ */
 .hero__nav {
   position: absolute;
@@ -438,7 +439,7 @@ body::after {
 .nav__links a:hover { color: var(--rope-l); }
 
 /* ════════════════════════════════════════
-   HERO BOTTOM — Edge decorations
+   HERO BOTTOM, Edge decorations
    ════════════════════════════════════════ */
 
 /* Floating Japanese text, bottom right */
@@ -464,7 +465,7 @@ body::after {
   line-height: 1.8;
 }
 
-/* Ghost symbol — large decorative background element */
+/* Ghost symbol, large decorative background element */
 .hero__ghost {
   position: absolute;
   right: -2rem;
@@ -515,16 +516,23 @@ body::after {
 
 /* ════ Sections A ════ */
 /* ─────────────────────────────────────────
-   TOKENS  (same as hero — copy into globals.css)
+   TOKENS  (same as hero, copy into globals.css)
    ───────────────────────────────────────── */
+
+
+
+
+
+
+
 
 /* ─────────────────────────────────────────
    SHARED LAYOUT PRIMITIVES
    ───────────────────────────────────────── */
 .section        { padding: 7rem 0; position: relative; }
 .section.dark   { background: var(--ink); }
-.section.paper  { background: #151210; color: var(--paper); }
-.section.paper2 { background: #151210; color: var(--paper); }
+.section.paper  { background: #131315; color: var(--paper); }
+.section.paper2 { background: #131315; color: var(--paper); }
 
 .inner {
   max-width: 1200px;
@@ -660,19 +668,6 @@ h3 {
 .tag.on-paper { border-color: rgba(240,234,216,.12); color: rgba(240,234,216,.3); }
 .tag.on-paper:hover { border-color: var(--rope-l); color: var(--rope-l); }
 
-.btn {
-  display: inline-block;
-  font-family: var(--fm);
-  font-size: 9.5px;
-  letter-spacing: .18em;
-  text-transform: uppercase;
-  padding: 11px 24px;
-  border-radius: 1px;
-  text-decoration: none;
-  transition: all .22s;
-  border: .5px solid transparent;
-  cursor: pointer;
-}
 .btn-p { background: var(--rope); color: var(--paper); border-color: var(--rope); }
 .btn-p:hover { background: var(--rope-l); }
 .btn-o { background: transparent; color: var(--rope-l); border-color: rgba(169,124,26,.45); }
@@ -697,7 +692,7 @@ h3 {
   color: rgba(240,234,216,.1);
   text-transform: uppercase;
 }
-.section.paper .sec-id, .section.paper2 .sec-id { color: rgba(21,18,16,.1); }
+.section.paper .sec-id, .section.paper2 .sec-id { color: rgba(240,234,216,.08); }
 
 @media (max-width: 900px) {
   .inner { padding: 0 2rem; }
@@ -706,7 +701,7 @@ h3 {
 }
 
 /* ══════════════════════════════════════
-   MOBILE — max 768px
+   MOBILE, max 768px
    ══════════════════════════════════════ */
 @media (max-width: 768px) {
 
@@ -718,14 +713,14 @@ h3 {
   .body-serif { font-size: 1rem; }
   .body-mono { font-size: 10.5px; }
 
-  /* ── A1 accordion table — full rewrite ── */
+  /* ── A1 accordion table, full rewrite ── */
   .msq-grid { display: block; }
   .msq-grid tr { display: block; }
   .msq-grid td { display: block; width: 100% !important; }
 
   /* Row 1: shape columns become stacked cards */
   .msq-img-cell {
-    display: none; /* hide floating shapes on mobile — shapes appear in cards below */
+    display: none; /* hide floating shapes on mobile, shapes appear in cards below */
   }
   .msq-hdr {
     border-right: none !important;
@@ -733,7 +728,7 @@ h3 {
     padding: 1.5rem !important;
   }
 
-  /* Accordion trigger — full width */
+  /* Accordion trigger, full width */
   .msq-acc-trigger td {
     display: block;
     border-right: none !important;
@@ -741,7 +736,7 @@ h3 {
   }
   .msq-acc-trigger { display: block !important; }
 
-  /* Accordion rows — stack content cells */
+  /* Accordion rows, stack content cells */
   .msq-body-row { display: block !important; }
   .msq-lbl-cell {
     border-right: none !important;
@@ -757,26 +752,26 @@ h3 {
   }
 
   /* Expandable wrapper */
-  .msq-expand-wrap.open { max-height: 3000px; }
+  .msq-expand-wrap.open { max-height: 3000px !important; }
 
-  /* Structure/Tension/Flow header — hide on mobile, context comes from label */
+  /* Structure/Tension/Flow header, hide on mobile, context comes from label */
   .msq-phdr-row { display: none !important; }
 
   /* Content cells: add label prefix */
-  .msq-content-cell:nth-child(2)::before { content: 'Structure — '; font-family: var(--fm); font-size: 8px; letter-spacing: .18em; text-transform: uppercase; color: var(--rope-l); }
-  .msq-content-cell:nth-child(3)::before { content: 'Tension — '; font-family: var(--fm); font-size: 8px; letter-spacing: .18em; text-transform: uppercase; color: var(--rope-l); }
-  .msq-content-cell:nth-child(4)::before { content: 'Flow — '; font-family: var(--fm); font-size: 8px; letter-spacing: .18em; text-transform: uppercase; color: var(--rope-l); }
+  .msq-content-cell:nth-child(2)::before { content: 'Structure, '; font-family: var(--fm); font-size: 8px; letter-spacing: .18em; text-transform: uppercase; color: var(--rope-l); }
+  .msq-content-cell:nth-child(3)::before { content: 'Tension, '; font-family: var(--fm); font-size: 8px; letter-spacing: .18em; text-transform: uppercase; color: var(--rope-l); }
+  .msq-content-cell:nth-child(4)::before { content: 'Flow, '; font-family: var(--fm); font-size: 8px; letter-spacing: .18em; text-transform: uppercase; color: var(--rope-l); }
 
-  /* A2 — portrait full width */
+  /* A2, portrait full width */
   .img-panel { aspect-ratio: 4/3 !important; max-width: 100% !important; }
 
-  /* A4 — pillars stack */
+  /* A4, pillars stack */
   .phi-trio,
   div[style*="grid-template-columns:repeat(3,1fr)"] {
     grid-template-columns: 1fr !important;
   }
 
-  /* A5 — timeline fine on mobile already */
+  /* A5, timeline fine on mobile already */
 
   /* Applied practice section */
   .msq-expand-wrap .msq-acc-cols {
@@ -785,7 +780,7 @@ h3 {
   .msq-acc-col { border-right: none !important; border-bottom: 1px solid rgba(240,234,216,.05) !important; }
   .msq-acc-col:last-child { border-bottom: none !important; }
 
-  /* Quotes — full width */
+  /* Quotes, full width */
   .msq-shape-quote { font-size: .85rem !important; }
 
   /* How they relate button */
@@ -793,6 +788,11 @@ h3 {
 }
 
 /* ════ Break □ ════ */
+
+
+
+
+
 
 /* ─────────────────────────────────────────
    BREAK SHELL
@@ -815,15 +815,13 @@ h3 {
   z-index: 0;
   will-change: transform;
 }
-/* EDIT: swap to img/break_sq_01.jpg — forest floor, ground, dojo */
+/* EDIT: swap to img/break_sq_01.jpg, forest floor, ground, dojo */
 .break__bg img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center 40%;
   display: block;
-  /* Green + dark filter for the □ break mood */
-  filter: brightness(.45) saturate(.55) hue-rotate(15deg);
 }
 
 /* ── Fallback gradient (green/gold, no image) ── */
@@ -840,7 +838,7 @@ h3 {
     radial-gradient(ellipse 70% 50% at 25% 60%, rgba(100,130,80,.4) 0%, transparent 70%);
 }
 
-/* ── Colour wash overlay — green tint ── */
+/* ── Colour wash overlay, green tint ── */
 .break__wash {
   position: absolute;
   inset: 0;
@@ -975,87 +973,102 @@ h3 {
 
 /* ════ Sections B ════ */
 
-.section        { padding: 7rem 0; position: relative; }
-.section.dark   { background: var(--ink); }
-.section.paper  { background: #151210; color: var(--paper); }
-.section.paper2 { background: #151210; color: var(--paper); }
 
-.inner { max-width: 1200px; margin: 0 auto; padding: 0 4rem; }
 
-.lbl {
-  font-family: var(--fm); font-size: 9px; letter-spacing: .28em;
-  text-transform: uppercase; color: var(--rope-l);
-  display: flex; align-items: center; gap: 10px; margin-bottom: 1rem;
-}
-.lbl::before { content: ''; width: 24px; height: 1px; background: var(--rope-l); display: block; flex-shrink: 0; }
-.lbl.dk { color: var(--rope-l); }
-.lbl.dk::before { background: var(--rope-l); }
 
-h2 {
-  font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem);
-  font-weight: 300; line-height: .92; letter-spacing: -.025em; margin-bottom: 2rem;
+
+
+
+
+.break__overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to right, rgba(19,13,13,.85) 0%, rgba(80,20,20,.25) 50%, rgba(19,13,13,.85) 100%),
+    linear-gradient(to bottom, rgba(19,13,13,.6) 0%, transparent 40%, transparent 60%, rgba(19,13,13,.8) 100%);
+  z-index: 1;
 }
 
-.body-serif {
-  font-family: var(--fd); font-size: clamp(1rem,1.4vw,1.15rem);
-  font-weight: 300; line-height: 1.82; color: rgba(240,234,216,.62);
+/* Ghost △, large background shape */
+.break__label {
+  font-family: var(--fm);
+  font-size: 8.5px;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: rgba(201,168,76,.5);
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
-.body-serif.on-paper { color: rgba(240,234,216,.62); }
-
-.body-mono { font-size: 11px; line-height: 1.9; color: rgba(240,234,216,.36); font-family: var(--fm); }
-.body-mono.on-paper { color: rgba(240,234,216,.38); }
-
-.blockquote { border-left: 2px solid rgba(169,124,26,.35); padding-left: 1.5rem; margin: 2rem 0; }
-.blockquote p {
-  font-family: var(--fd); font-size: clamp(1.1rem,1.6vw,1.4rem);
-  font-style: italic; font-weight: 300; color: rgba(240,234,216,.6); line-height: 1.55;
-}
-.blockquote.on-paper p { color: rgba(240,234,216,.6); }
-.blockquote cite {
-  display: block; font-family: var(--fm); font-size: 9px;
-  letter-spacing: .18em; text-transform: uppercase; color: var(--rope-l); margin-top: .5rem;
-}
-.blockquote.on-paper cite { color: var(--rope-l); }
-
-.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
-.two-col.valign { align-items: center; }
-
-.img-panel { position: relative; overflow: hidden; }
-.img-panel img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s var(--ease); }
-.img-panel:hover img { transform: scale(1.03); }
-
-.btn {
-  display: inline-block; font-family: var(--fm); font-size: 9.5px;
-  letter-spacing: .18em; text-transform: uppercase; padding: 11px 24px;
-  border-radius: 1px; text-decoration: none; transition: all .22s;
-  border: .5px solid transparent; cursor: pointer;
-}
-.btn-p  { background: var(--rope); color: var(--paper); border-color: var(--rope); }
-.btn-p:hover { background: var(--rope-l); }
-.btn-o  { background: transparent; color: var(--rope-l); border-color: rgba(169,124,26,.45); }
-.btn-o:hover { background: rgba(169,124,26,.1); }
-.btn-dk { background: transparent; color: var(--rope); border-color: rgba(169,124,26,.4); }
-.btn-dk:hover { background: rgba(169,124,26,.08); }
-
-.sec-id {
-  position: absolute; top: 1.5rem; right: 2rem;
-  font-family: var(--fm); font-size: 8px; letter-spacing: .2em;
-  color: rgba(240,234,216,.1); text-transform: uppercase;
-}
-.section.paper .sec-id, .section.paper2 .sec-id { color: rgba(21,18,16,.1); }
-
-.fade-in {
-  opacity: 0; transform: translateY(18px);
-  transition: opacity .7s var(--ease), transform .7s var(--ease);
-}
-.fade-in.visible { opacity: 1; transform: translateY(0); }
-
-@media (max-width: 900px) {
-  .inner { padding: 0 2rem; }
-  .two-col { grid-template-columns: 1fr; gap: 2.5rem; }
-  .section { padding: 5rem 0; }
+.break__label::before,
+.break__label::after {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: rgba(201,168,76,.3);
+  display: block;
 }
 
+.rate-card {
+  border: .5px solid rgba(169,124,26,.2);
+  border-radius: 1px;
+  overflow: hidden;
+  margin-bottom: 1px;
+}
+.rate-card-header {
+  background: rgba(169,124,26,.07);
+  padding: .85rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  border-bottom: .5px solid rgba(169,124,26,.15);
+}
+.rate-card-header-label {
+  font-family: var(--fm);
+  font-size: 8.5px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--rope-l);
+}
+.rate-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: .85rem 1.5rem;
+  border-bottom: .5px solid rgba(240,234,216,.04);
+  gap: 1rem;
+}
+.rate-row:last-child { border-bottom: none; }
+.rate-name {
+  font-family: var(--fd);
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--paper);
+}
+.rate-note {
+  font-family: var(--fm);
+  font-size: 9px;
+  color: rgba(240,234,216,.3);
+  margin-top: .15rem;
+}
+.rate-price {
+  font-family: var(--fd);
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: var(--rope-l);
+  white-space: nowrap;
+}
+.rate-unit {
+  font-family: var(--fm);
+  font-size: 8px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: .15rem;
+  text-align: right;
+}
 </style>
 </head>
 <body>
@@ -1077,8 +1090,8 @@ h2 {
   <!-- Background image -->
   <div class="hero__bg" id="hero-bg">
     <img src="img/hero_01.jpg"
-         alt="Willcat — Shibari artist, Soirée Shibari Montréal"
-         style="width:100%;height:100%;object-fit:cover;object-position:25% 58%;display:block;filter:brightness(1.15) saturate(.75);"/>
+         alt="Willcat, Shibari artist, Soirée Shibari Montréal"
+         style="width:100%;height:100%;object-fit:cover;display:block;"/>
   </div>
 
   <!-- Gradient overlay -->
@@ -1091,18 +1104,18 @@ h2 {
     <ul class="nav__links">
       <li><a href="#A1">The Framework</a></li>
       <li><a href="#A2">About</a></li>
-      <li><a href="#A5">The Path</a></li>
-      <li><a href="#contact">Book a date</a></li>
+      <li><a href="#B2">The Path</a></li>
+      <li><a href="https://tensionmtl.ca/pages/about-willcat" target="_blank">Book a date</a></li>
     </ul>
   </nav>
 
   <!-- ── MAIN CONTENT ── -->
   <div class="hero__content">
 
-    <!-- LEFT — Title block -->
+    <!-- LEFT, Title block -->
     <div class="hero__left">
 
-      <!-- COPY: eyebrow label — change freely -->
+      <!-- COPY: eyebrow label, change freely -->
       <div class="hero__eyebrow">
         Shibari Educator · Artist · Author · Founder of Tension MTL
       </div>
@@ -1117,12 +1130,12 @@ h2 {
         William Desjardins &nbsp;·&nbsp; she/her &nbsp;they/them
       </p>
 
-      <!-- COPY: tagline — the framework as a supporting line, not the headline -->
+      <!-- COPY: tagline, the framework as a supporting line, not the headline -->
       <p class="hero__tagline">
         Building frameworks for understanding body, rope, movement, and practice.
       </p>
 
-      <!-- COPY: three principles — spare, one per line -->
+      <!-- COPY: three principles, spare, one per line -->
       <p class="hero__desc">
         Three shapes. Three principles.<br>
         The square holds.<br>
@@ -1133,21 +1146,168 @@ h2 {
       <!-- EDIT: CTA buttons -->
       <div class="hero__ctas">
         <a href="#A1" class="btn btn--primary">The Framework</a>
-        <a href="#contact" class="btn btn--outline">Book a date</a>
+        <a href="https://tensionmtl.ca/pages/about-willcat" target="_blank" class="btn btn--outline">Book a date</a>
       </div>
 
       <!-- Scroll indicator -->
-      
+      <div class="hero__scroll">
+        <div class="hero__scroll-line"></div>
+        <!-- COPY: scroll hint text -->
+        Scroll to explore
+      </div>
+
+    </div>
+
+    <!-- RIGHT, Symbol trio -->
+    <div class="hero__right">
+
+      <!-- COPY: MSQ logotype label above trio -->
+      <div class="hero__msq-logo">○ △ □</div>
+
+      <div class="symbol-trio">
+
+        <!-- EDIT: Symbol 1, □ Shikaku -->
+        <div class="symbol-card symbol-card--sq">
+          <div class="symbol-card__glyph">
+            <svg viewBox="0 0 52 52" fill="none">
+              <rect x="8" y="8" width="36" height="36" stroke="#c9a84c" stroke-width="8" stroke-linecap="square"/>
+              <rect x="8" y="8" width="36" height="36" stroke="#3a6b3a" stroke-width="3" stroke-linecap="square"/>
+            </svg>
+          </div>
+          <div class="symbol-card__info">
+            <!-- COPY: JP text, name, and meaning keywords -->
+            <div class="symbol-card__jp">四角 · Shikaku</div>
+            <div class="symbol-card__name">Structure</div>
+            <div class="symbol-card__meaning">Form · Container · Safety · Discipline</div>
+          </div>
+        </div>
+
+        <div class="symbol-trio__arrow">↓</div>
+
+        <!-- EDIT: Symbol 2, △ Sankaku -->
+        <div class="symbol-card symbol-card--tri">
+          <div class="symbol-card__glyph">
+            <svg viewBox="0 0 52 52" fill="none">
+              <polygon points="26,7 46,45 6,45" stroke="#c9a84c" stroke-width="8" stroke-linejoin="miter"/>
+              <polygon points="26,7 46,45 6,45" stroke="#8b2020" stroke-width="3" stroke-linejoin="miter"/>
+            </svg>
+          </div>
+          <div class="symbol-card__info">
+            <div class="symbol-card__jp">三角 · Sankaku</div>
+            <div class="symbol-card__name">Tension</div>
+            <div class="symbol-card__meaning">Direction · Force · Intention · Relationship</div>
+          </div>
+        </div>
+
+        <div class="symbol-trio__arrow">↓</div>
+
+        <!-- EDIT: Symbol 3, ○ Maru -->
+        <div class="symbol-card symbol-card--circ">
+          <div class="symbol-card__glyph">
+            <svg viewBox="0 0 52 52" fill="none">
+              <circle cx="26" cy="26" r="18" stroke="#c9a84c" stroke-width="8"/>
+              <circle cx="26" cy="26" r="18" stroke="#2a2420" stroke-width="3"/>
+            </svg>
+          </div>
+          <div class="symbol-card__info">
+            <div class="symbol-card__jp">丸 · Maru</div>
+            <div class="symbol-card__name">Flow</div>
+            <div class="symbol-card__meaning">Continuity · Adaptation · Return · Integration</div>
+          </div>
+        </div>
+
+      </div><!-- end symbol-trio -->
+    </div><!-- end hero__right -->
+
+  </div><!-- end hero__content -->
+
+  <!-- Floating Japanese vertical text (right edge) -->
+  <!-- EDIT: JP phrases, currently reads "Structure · Tension · Flow" vertically -->
+  <div class="hero__jp-caption" aria-hidden="true">
+    <span>構造</span>
+    <span>張力</span>
+    <span>流動</span>
+  </div>
+
+</section>
+<!-- end #hero -->
+
+
+<!-- ════════════════════════════════════════════════════════
+     SCRIPTS
+     ════════════════════════════════════════════════════════ -->
+<!-- ════ Sections A ════ -->
+<!-- ═══════════════════════════════════════════════════════════════
+     INVITATION, The shape of things takes time
+     Sits between Hero and A1
+     Dark / ink · full width · generous space · voice only
+     ═══════════════════════════════════════════════════════════════ -->
+<section class="section dark" id="invitation" style="padding:8rem 0;border-top:1px solid rgba(240,234,216,.06);">
+  <div style="max-width:780px;margin:0 auto;padding:0 4rem;">
+
+    <!-- Opening title -->
+    <h2 class="fade-in" style="font-family:var(--fd);font-size:clamp(2.2rem,4vw,3.8rem);font-weight:300;line-height:.95;letter-spacing:-.02em;color:var(--paper);margin-bottom:2.5rem;">
+      The shape of things<br><em style="color:var(--rope-l);font-style:italic">takes time.</em>
+    </h2>
+
+    <!-- Body -->
+    <div class="fade-in" style="display:flex;flex-direction:column;gap:1.5rem;">
+
+      <p style="font-family:var(--fd);font-size:clamp(1.05rem,1.5vw,1.25rem);font-weight:300;font-style:italic;color:rgba(240,234,216,.65);line-height:1.78;">
+        Most people come to rope the way I did; pulled in by something they can't quite name yet.
+        A feeling. An image. A conversation that opened a door they didn't know was there.
+      </p>
+
+      <p style="font-family:var(--fd);font-size:clamp(1.05rem,1.5vw,1.25rem);font-weight:300;font-style:italic;color:rgba(240,234,216,.65);line-height:1.78;">
+        And then the rope is in your hands and it is nothing like you imagined.
+        It is harder. More technical. More intimate.
+        More demanding of your attention than anything warned you it would be.
+      </p>
+
+      <p style="font-family:var(--fd);font-size:clamp(1.05rem,1.5vw,1.25rem);font-weight:300;font-style:italic;color:rgba(240,234,216,.65);line-height:1.78;">
+        That gap, between what drew you here and what it actually asks of you;
+        is not a problem to solve. It is the beginning of the practice.
+      </p>
+
+      <!-- Breath -->
+      <div style="width:40px;height:1px;background:rgba(169,124,26,.3);margin:1rem 0;"></div>
+
+      <p style="font-family:var(--fd);font-size:clamp(1.05rem,1.5vw,1.25rem);font-weight:300;font-style:italic;color:rgba(240,234,216,.65);line-height:1.78;">
+        I learned rope in that gap. Found my way through it with some guidance, some luck,
+        and a stubborn decision to do better by others than the learning curve had done by me.
+        That decision became a curriculum. The curriculum became a studio.
+        The studio became a community. And the community keeps becoming something
+        none of us fully planned.
+      </p>
+
+      <!-- Closing, larger, more present -->
+      <p style="font-family:var(--fd);font-size:clamp(1.15rem,1.7vw,1.4rem);font-weight:300;font-style:italic;color:rgba(240,234,216,.5);line-height:1.78;margin-top:.5rem;">
+        You don't have to know where you are going yet.
+        The shape of things takes time to actually take shape.
+      </p>
+
+      <!-- The promise, plain, direct -->
+      <div style="border-left:2px solid rgba(169,124,26,.35);padding-left:1.5rem;margin-top:.5rem;">
+        <p style="font-family:var(--fd);font-size:clamp(1.1rem,1.6vw,1.35rem);font-weight:300;color:rgba(240,234,216,.75);line-height:1.7;">
+          Don't give up. Do your best.
+        </p>
+        <p style="font-family:var(--fd);font-size:clamp(1.1rem,1.6vw,1.35rem);font-weight:300;font-style:italic;color:var(--rope-l);line-height:1.7;">
+          I will be there to help you get where you want to go.
+        </p>
+      </div>
+
+    </div>
   </div>
 </section>
 <!-- end invitation -->
 
+
 <!-- ═══════════════════════════════════════════════════════════════
-     ████  A1 — WHY THESE SYMBOLS
+     ████  A1, WHY THESE SYMBOLS
      ═══════════════════════════════════════════════════════════════
      File: section_A1.html
      Palette: dark (ink)
-     Purpose: introduce the MSQ framework — its origin and significance
+     Purpose: introduce the MSQ framework, its origin and significance
      ═══════════════════════════════════════════════════════════════ -->
 <section class="section dark" id="A1">
   <div class="sec-id">A1</div>
@@ -1242,7 +1402,7 @@ h2 {
       position:absolute;
     }
 
-    /* ── How they relate trigger — bottom of row 1 ── */
+    /* ── How they relate trigger, bottom of row 1 ── */
     .msq-relate-btn {
       display:flex;
       align-items:center;
@@ -1271,40 +1431,15 @@ h2 {
 
     /* ── Expandable section (rows 2–5) ── */
     .msq-expand-wrap {
-      overflow: hidden;
-      display: none;
+      overflow:hidden;
+      max-height:0;
+      transition:max-height .55s cubic-bezier(0.16,1,0.3,1);
     }
     .msq-expand-wrap.open {
-      display: block;
+      max-height:900px;
     }
     .msq-expand-inner {
-      border-top: 1px solid rgba(240,234,216,.07);
-    }
-
-    /* Each body row hidden by default — reveals one at a time */
-    .msq-body-row {
-      opacity: 0;
-      transform: translateY(12px);
-      transition: opacity .7s var(--ease), transform .7s var(--ease);
-      cursor: pointer;
-    }
-    .msq-body-row.row-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    /* Content cells — collapsed by default */
-    .msq-content-cell {
-      overflow: hidden;
-    }
-    .msq-content-inner {
-      max-height: 0;
-      overflow: hidden;
-      padding: 0 2rem;
-      transition: max-height .9s cubic-bezier(0.16,1,0.3,1), padding .6s ease;
-    }
-    .msq-body-row.row-visible .msq-content-inner {
-      max-height: 300px;
-      padding: 1.75rem 2rem;
+      border-top:1px solid rgba(240,234,216,.07);
     }
 
     /* ── Structure/Tension/Flow header row ── */
@@ -1402,7 +1537,7 @@ h2 {
     }
   </style>
 
-  <table class="msq-grid" id="shape-cards" cellspacing="0" cellpadding="0">
+  <table class="msq-grid" cellspacing="0" cellpadding="0">
     <tr>
 
       <!-- Col 1: three shapes floating, hairline gold -->
@@ -1424,7 +1559,7 @@ h2 {
           <!-- spacer pushes button to bottom -->
           <div style="flex:1;"></div>
 
-          <!-- How they relate — pinned to bottom, aligns with quotes -->
+          <!-- How they relate, pinned to bottom, aligns with quotes -->
           <button class="msq-relate-btn" id="relate-btn" onclick="toggleRelate()"
                   style="flex-direction:column;align-items:center;text-align:center;align-self:center;gap:.4rem;font-family:var(--fd);font-size:1.4rem;font-weight:300;letter-spacing:.06em;text-transform:uppercase;color:var(--rope-l);line-height:1.1;font-style:normal;padding-bottom:.25rem;">
             <span>How</span>
@@ -1471,7 +1606,7 @@ h2 {
     </tr>
   </table>
 
-  <!-- EXPANDABLE SECTION — hidden until trigger -->
+  <!-- EXPANDABLE SECTION, hidden until trigger -->
   <div class="msq-expand-wrap" id="msq-expand">
     <div class="msq-expand-inner">
       <table class="msq-grid" cellspacing="0" cellpadding="0">
@@ -1484,7 +1619,7 @@ h2 {
           <td>Flow</td>
         </tr>
 
-        <!-- In Practice — □ ghost -->
+        <!-- In Practice, □ ghost -->
         <tr class="msq-body-row" id="row-practice">
           <td class="msq-lbl-cell">
             <div class="msq-lbl-inner">
@@ -1501,7 +1636,7 @@ h2 {
           <td class="msq-content-cell"><p>Sensitivity to the body receiving rope, adapting when anatomy, breath, or energy shifts.</p></td>
         </tr>
 
-        <!-- In Transmission — △ ghost -->
+        <!-- In Transmission, △ ghost -->
         <tr class="msq-body-row" id="row-transmission">
           <td class="msq-lbl-cell">
             <div class="msq-lbl-inner">
@@ -1518,7 +1653,7 @@ h2 {
           <td class="msq-content-cell"><p>Reading the room, following what the student is actually learning rather than what is planned.</p></td>
         </tr>
 
-        <!-- In Community — ○ ghost -->
+        <!-- In Community, ○ ghost -->
         <tr class="msq-body-row" id="row-community">
           <td class="msq-lbl-cell">
             <div class="msq-lbl-inner">
@@ -1541,12 +1676,14 @@ h2 {
 
   
 
+
+
   <!-- APPLIED PRACTICE -->
   <div class="inner" style="padding-top:5rem;padding-bottom:2rem">
     <div class="lbl fade-in">Applied Practice</div>
     <div class="two-col fade-in" style="margin-bottom:3rem">
       <div>
-        <h2>Philosophy.<br><em style="color:var(--rope-l);font-style:italic">Or Practice?</em></h2>
+        <h2>Not philosophy.<br><em style="color:var(--rope-l);font-style:italic">Practice.</em></h2>
         <p style="font-family:var(--fd);font-size:1.1rem;font-style:italic;font-weight:300;color:rgba(240,234,216,.45);line-height:1.65;max-width:380px">
           As you reach the higher levels of the art it is not at all about the rope itself
           but the story you want to tell with it.
@@ -1579,7 +1716,7 @@ h2 {
     <div class="fade-in" style="margin-top:3rem;text-align:center">
       <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--rope-l);margin-bottom:1.25rem">When these philosophies are integrated</div>
       <div style="max-width:560px;margin:0 auto;border-top:1px solid rgba(169,124,26,.2);padding-top:1.5rem;text-align:center">
-        <p style="font-family:var(--fd);font-size:clamp(1.1rem,1.6vw,1.4rem);font-style:italic;font-weight:300;color:rgba(240,234,216,.6);line-height:1.55">"The rope will tie you as much as you tie it; Mastery is not the goal. Walking the path is."</p>
+        <p style="font-family:var(--fd);font-size:clamp(1.1rem,1.6vw,1.4rem);font-style:italic;font-weight:300;color:rgba(240,234,216,.6);line-height:1.55">"The rope now ties you as much as you tie it. Mastery is not the goal. Walking the path is."</p>
         <cite style="display:block;font-family:var(--fm);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-top:.75rem">Willcat / Tension MTL</cite>
       </div>
     </div>
@@ -1588,19 +1725,19 @@ h2 {
 </section>
 <!-- end A1 -->
 
+
 <!-- ═══════════════════════════════════════════════════════════════
-     ████  A2 — WHO I AM
+     ████  A2, WHO I AM
      ═══════════════════════════════════════════════════════════════ -->
-<section class="section paper2" id="A2" style="background:#151210">
+<section class="section paper2" id="A2">
   <div class="sec-id">A2</div>
   <div class="inner">
-
-    <!-- Portrait + first two paragraphs side by side -->
-    <div class="two-col valign fade-in" style="margin-bottom:3rem">
-      <div class="img-panel" style="aspect-ratio:3/4;background:#151210;">
-        <img src="img/Willcat_portrait.png"
+    <div class="two-col valign fade-in">
+      <div class="img-panel" style="aspect-ratio:3/4;background:#131315;">
+        <!-- PORTRAIT: Willcat_portrait.png, black stripes read as transparent on dark background -->
+        <img src="img/Willcat_portrait.png" onerror="this.src='img/Willcat_portrait.jpg'"
              alt="William Desjardins / Willcat"
-             style="width:100%;height:100%;object-fit:cover;object-position:center 10%;display:block;"/>
+             style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;"/>
         <div class="img-panel-caption" style="color:rgba(240,234,216,.2)">William Desjardins / Willcat</div>
       </div>
 
@@ -1614,52 +1751,45 @@ h2 {
           a rope studio built slowly and stubbornly in Montréal. <a href="https://fetlife.com/WillCat/posts/13290990" target="_blank" style="color:var(--rope);text-decoration:none;border-bottom:1px solid rgba(169,124,26,.35);transition:border-color .2s">Over 10,000 hours in</a>.
           Teaching, tying, performing, making mistakes, learning from them.
         </p>
-        <p class="body-serif on-paper" style="margin-bottom:0">
+        <p class="body-serif on-paper" style="margin-bottom:1.25rem">
           Former technical training director. That background translated directly: breaking complex
           things into their smallest learnable components is the same skill, different material.
           The teaching philosophy has always been about planting seeds and watching students grow.
           The tree at Tension continues to flourish, adding with each new student a branch and a path
           that broadens every day.
         </p>
-      </div>
-    </div>
+        <p class="body-serif on-paper" style="margin-bottom:1.25rem">
+          Teaching approach shaped by component-based martial arts pedagogy.
+          Kenjutsu practiced seriously. Aikido explored more through reading than formal training.
+          Not authorized in any Japanese rope tradition.
+          Everything drawn from many sources, shaped by a decade of deliberate practice
+          and the humility to keep questioning it.
+        </p>
+        <p class="body-serif on-paper" style="margin-bottom:2rem">
+          Behind the rigging, behind the classes, behind the policies and the leader label,
+          there is just a person doing their best not to fuck it up.
+          Rope is edge play. Not a caveat. The foundation.
+          The Fundamentals are not a phase to get through.
+          They are the whole practice, revisited at every level.
+        </p>
 
-    <!-- Paragraphs 3 and 4 — full width -->
-    <div class="fade-in" style="border-top:1px solid rgba(240,234,216,.07);padding-top:2.5rem;margin-bottom:3rem;">
-      <p class="body-serif on-paper" style="margin-bottom:1.25rem">
-        Teaching approach shaped by component-based martial arts pedagogy.
-        Kenjutsu practiced seriously. Aikido explored more through reading than formal training.
-        Not authorized in any Japanese rope tradition.
-        Everything drawn from many sources, shaped by a decade of deliberate practice
-        and the humility to keep questioning it.
-      </p>
-      <p class="body-serif on-paper" style="margin-bottom:0">
-        Behind the rigging, behind the classes, behind the policies and the leader label,
-        there is just a person doing their best not to fuck it up.
-        Rope is edge play. Not a caveat. The foundation.
-        The Fundamentals are not a phase to get through.
-        They are the whole practice, revisited at every level.
-      </p>
-    </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(21,18,16,.08);margin-bottom:2rem">
+          <div style="background:rgba(240,234,216,.06);padding:1.5rem 1.25rem;border-top:2px solid var(--rope-l)">
+            <div style="font-family:var(--fd);font-size:2.8rem;font-weight:300;color:var(--rope);line-height:1">10K+</div>
+            <div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase">Hours of rope</div>
+          </div>
+          <div style="background:rgba(240,234,216,.06);padding:1.5rem 1.25rem;border-top:2px solid var(--rope-l)">
+            <div style="font-family:var(--fd);font-size:2.8rem;font-weight:300;color:var(--rope);line-height:1">10+</div>
+            <div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase">Years teaching</div>
+          </div>
+          <div style="background:rgba(240,234,216,.06);padding:1.5rem 1.25rem;border-top:2px solid var(--rope-l)">
+            <div style="font-family:var(--fd);font-size:2.8rem;font-weight:300;color:var(--rope);line-height:1">1</div>
+            <div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase">Book published</div>
+          </div>
+        </div>
 
-    <!-- Stats — full width -->
-    <div class="fade-in" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(21,18,16,.08);margin-bottom:2rem;">
-      <div style="background:rgba(240,234,216,.06);padding:1.5rem 1.25rem;border-top:2px solid var(--rope-l)">
-        <div style="font-family:var(--fd);font-size:2.8rem;font-weight:300;color:var(--rope);line-height:1">10K+</div>
-        <div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase">Hours of rope</div>
+        <a href="https://tensionmtl.ca/pages/about-willcat" target="_blank" class="btn btn-dk">Book a date →</a>
       </div>
-      <div style="background:rgba(240,234,216,.06);padding:1.5rem 1.25rem;border-top:2px solid var(--rope-l)">
-        <div style="font-family:var(--fd);font-size:2.8rem;font-weight:300;color:var(--rope);line-height:1">10+</div>
-        <div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase">Years teaching</div>
-      </div>
-      <div style="background:rgba(240,234,216,.06);padding:1.5rem 1.25rem;border-top:2px solid var(--rope-l)">
-        <div style="font-family:var(--fd);font-size:2.8rem;font-weight:300;color:var(--rope);line-height:1">1</div>
-        <div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase">Book published</div>
-      </div>
-    </div>
-
-    <div class="fade-in" style="margin-bottom:5rem">
-      <a href="https://tensionmtl.ca/pages/about-willcat" target="_blank" class="btn btn-dk">Book a date →</a>
     </div>
 
     <div class="fade-in" style="margin-top:5rem;display:grid;grid-template-columns:1fr 2fr;gap:4rem;align-items:start;">
@@ -1699,10 +1829,11 @@ h2 {
 </section>
 <!-- end A2 -->
 
+
 <!-- ═══════════════════════════════════════════════════════════════
-     ████  A4 — THREE PILLARS + 13 CONCEPTS
+     ████  A4, THREE PILLARS + 13 CONCEPTS
      ═══════════════════════════════════════════════════════════════ -->
-<section class="section paper" id="A4" style="background:#151210">
+<section class="section paper" id="A4">
   <div class="sec-id">A4</div>
   <div class="inner">
 
@@ -1724,9 +1855,8 @@ h2 {
         <!-- Ghost shape -->
         <svg viewBox="0 0 120 120" fill="none" stroke="rgba(169,124,26,.15)" stroke-width="2" stroke-linecap="square" style="position:absolute;right:-.5rem;bottom:-1.5rem;width:9rem;height:9rem;pointer-events:none"><rect x="10" y="10" width="100" height="100"/></svg>
         <!-- Kanji top right -->
-        
-        <!-- Shape icon -->
         <div style="position:absolute;right:1.25rem;top:1.25rem;font-family:var(--fj);font-size:4.5rem;color:rgba(169,124,26,.14);line-height:1;pointer-events:none;user-select:none">美</div>
+        <!-- Shape icon -->
         <div style="margin-bottom:.4rem">
           <svg viewBox="0 0 52 52" style="width:44px;height:44px">
             <rect x="7" y="7" width="38" height="38" fill="none" stroke="#c9a84c" stroke-width="8" stroke-linecap="square"/>
@@ -1735,8 +1865,8 @@ h2 {
         </div>
         <div style="font-family:var(--fm);font-size:8px;letter-spacing:.22em;color:var(--muted);text-transform:uppercase;margin-bottom:.75rem">四角 · Shikaku</div>
         <!-- Title with English watermark behind -->
-        <div style="position:relative;margin-bottom:.65rem;">
-          <div style="position:absolute;left:0;top:0;font-family:var(--fd);font-size:1.5rem;font-style:italic;font-weight:300;color:rgba(169,124,26,.35);pointer-events:none;user-select:none;white-space:nowrap;z-index:0">Aesthetics</div>
+        <div style="position:relative;margin-bottom:.65rem;height:2rem">
+          <div style="position:absolute;left:0;top:0;font-family:var(--fd);font-size:1.5rem;font-style:italic;font-weight:300;color:rgba(169,124,26,.2);pointer-events:none;user-select:none;white-space:nowrap">Aesthetics</div>
           <div style="font-family:var(--fd);font-size:1.5rem;font-weight:300;color:var(--paper);position:relative;z-index:1">Structure</div>
         </div>
         <p class="body-mono on-paper">Every angle, tension, and line is intentional. Beauty is not decoration. It is structure made visible. Rope that looks right usually is right.</p>
@@ -1747,9 +1877,8 @@ h2 {
         <!-- Ghost shape -->
         <svg viewBox="0 0 120 120" fill="none" stroke="rgba(169,124,26,.15)" stroke-width="2" stroke-linejoin="miter" style="position:absolute;right:-.5rem;bottom:-1.5rem;width:9rem;height:9rem;pointer-events:none"><polygon points="60,8 112,112 8,112"/></svg>
         <!-- Kanji top right -->
-        
-        <!-- Shape icon -->
         <div style="position:absolute;right:1.25rem;top:1.25rem;font-family:var(--fj);font-size:4.5rem;color:rgba(169,124,26,.14);line-height:1;pointer-events:none;user-select:none">意</div>
+        <!-- Shape icon -->
         <div style="margin-bottom:.4rem">
           <svg viewBox="0 0 52 52" style="width:44px;height:44px">
             <polygon points="26,6 48,46 4,46" fill="none" stroke="#c9a84c" stroke-width="8" stroke-linejoin="miter"/>
@@ -1758,8 +1887,8 @@ h2 {
         </div>
         <div style="font-family:var(--fm);font-size:8px;letter-spacing:.22em;color:var(--muted);text-transform:uppercase;margin-bottom:.75rem">三角 · Sankaku</div>
         <!-- Title with English watermark behind -->
-        <div style="position:relative;margin-bottom:.65rem;">
-          <div style="position:absolute;left:0;top:0;font-family:var(--fd);font-size:1.5rem;font-style:italic;font-weight:300;color:rgba(169,124,26,.35);pointer-events:none;user-select:none;white-space:nowrap;z-index:0">Purpose</div>
+        <div style="position:relative;margin-bottom:.65rem;height:2rem">
+          <div style="position:absolute;left:0;top:0;font-family:var(--fd);font-size:1.5rem;font-style:italic;font-weight:300;color:rgba(169,124,26,.2);pointer-events:none;user-select:none;white-space:nowrap">Purpose</div>
           <div style="font-family:var(--fd);font-size:1.5rem;font-weight:300;color:var(--paper);position:relative;z-index:1">Tension</div>
         </div>
         <p class="body-mono on-paper">Why are you tying? The answer shapes everything. Rope without purpose is just knots. Intention transforms technique into something that matters.</p>
@@ -1770,9 +1899,8 @@ h2 {
         <!-- Ghost shape -->
         <svg viewBox="0 0 120 120" fill="none" stroke="rgba(169,124,26,.15)" stroke-width="2" style="position:absolute;right:-.5rem;bottom:-1.5rem;width:9rem;height:9rem;pointer-events:none"><circle cx="60" cy="60" r="50"/></svg>
         <!-- Kanji top right -->
-        
-        <!-- Shape icon -->
         <div style="position:absolute;right:1.25rem;top:1.25rem;font-family:var(--fj);font-size:4.5rem;color:rgba(169,124,26,.14);line-height:1;pointer-events:none;user-select:none">繋</div>
+        <!-- Shape icon -->
         <div style="margin-bottom:.4rem">
           <svg viewBox="0 0 52 52" style="width:44px;height:44px">
             <circle cx="26" cy="26" r="19" fill="none" stroke="#c9a84c" stroke-width="8"/>
@@ -1781,8 +1909,8 @@ h2 {
         </div>
         <div style="font-family:var(--fm);font-size:8px;letter-spacing:.22em;color:var(--muted);text-transform:uppercase;margin-bottom:.75rem">丸 · Maru</div>
         <!-- Title with English watermark behind -->
-        <div style="position:relative;margin-bottom:.65rem;">
-          <div style="position:absolute;left:0;top:0;font-family:var(--fd);font-size:1.5rem;font-style:italic;font-weight:300;color:rgba(169,124,26,.35);pointer-events:none;user-select:none;white-space:nowrap;z-index:0">Connection</div>
+        <div style="position:relative;margin-bottom:.65rem;height:2rem">
+          <div style="position:absolute;left:0;top:0;font-family:var(--fd);font-size:1.5rem;font-style:italic;font-weight:300;color:rgba(169,124,26,.2);pointer-events:none;user-select:none;white-space:nowrap">Connection</div>
           <div style="font-family:var(--fd);font-size:1.5rem;font-weight:300;color:var(--paper);position:relative;z-index:1">Flow</div>
         </div>
         <p class="body-mono on-paper">Rope is a dialogue, not a monologue. Learning to listen with your hands, responding to micro-movements, separates craft from art.</p>
@@ -1817,107 +1945,16 @@ h2 {
 </section>
 <!-- end A4 -->
 
+
+
+
 <!-- ═══════════════════════════════════════════════════════════════
-     ████  A5 — THE TENSION CURRICULUM: THE DŌ
+     ████  A5, THE TENSION CURRICULUM: THE DŌ
      ═══════════════════════════════════════════════════════════════ -->
-<section class="section paper2" id="A5" style="background:#252018">
-  <div class="sec-id">A5</div>
-  <div class="inner">
 
-    <div class="lbl dk fade-in">The Tension Curriculum</div>
-
-    <div class="two-col fade-in" style="margin-bottom:4rem;align-items:start">
-      <div>
-        <h2 style="color:var(--paper)">The Dō.<br><em style="color:var(--rope);font-style:italic">A path,<br>not a ladder.</em></h2>
-        <p class="body-serif on-paper" style="margin-bottom:1.5rem">
-          Westerners would typically like to skip as many steps as possible.
-          In rope, this leads to dangerous practices. People get hurt, physically and emotionally.
-          The curriculum at Tension exists because of that gap — not just technical but philosophical.
-          A slower, more methodical approach to foundations, with honest conversations about risk,
-          accountability, and consent built into the basics, not bolted on later if you get that far.
-        </p>
-        <p class="body-serif on-paper" style="margin-bottom:1.5rem">
-          Like martial arts belts, the rope colours at Tension are not trophies.
-          They are reminders of where you stand on your personal Dō,
-          and an invitation to return to roots with each advancement.
-        </p>
-        <p class="body-mono on-paper" style="margin-bottom:2rem">
-          Each stage reflects both skill and mindset: how one carries rope, self, and partner.
-          There is no top. Every colour eventually circles back to Beige.
-          Every advancement should reflect a revision of our roots.
-        </p>
-        <div class="blockquote on-paper">
-          <p>"The path is not something you complete. It is something you continue."</p>
-          <cite>Tension MTL</cite>
-        </div>
-      </div>
-
-      <div style="position:relative;padding-left:2.5rem;">
-        <div style="position:absolute;left:.5px;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--rope),rgba(169,124,26,.06))"></div>
-
-        <div class="path-node-item" style="position:relative;padding:0 0 2rem 2.25rem;opacity:.55;transition:opacity .3s" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='.55'">
-          <div style="position:absolute;left:-5px;top:.35rem;width:11px;height:11px;border-radius:50%;border:1.5px solid var(--rope);background:var(--paper2)"></div>
-          <span style="display:inline-block;background:#f0ead8;color:#7a6e58;font-family:var(--fm);font-size:8px;letter-spacing:.15em;padding:3px 9px;text-transform:uppercase;border-radius:1px;margin-bottom:.35rem">Beige — Lvl 0</span>
-          <div style="font-family:var(--fd);font-size:1.25rem;font-weight:300;color:var(--paper);margin-bottom:.2rem">The Beginning</div>
-          <p class="body-mono on-paper" style="font-size:10px">Openness, curiosity. Received at your very first Floorplay class following Fundamentals. Mastery begins in simplicity and humility.</p>
-        </div>
-
-        <div class="path-node-item" style="position:relative;padding:0 0 2rem 2.25rem;opacity:.55;transition:opacity .3s" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='.55'">
-          <div style="position:absolute;left:-5px;top:.35rem;width:11px;height:11px;border-radius:50%;border:1.5px solid var(--rope);background:var(--paper2)"></div>
-          <span style="display:inline-block;background:#2e7d32;color:#e8f5e9;font-family:var(--fm);font-size:8px;letter-spacing:.15em;padding:3px 9px;text-transform:uppercase;border-radius:1px;margin-bottom:.35rem">Green — Lvl 1</span>
-          <div style="font-family:var(--fd);font-size:1.25rem;font-weight:300;color:var(--paper);margin-bottom:.2rem">Arrival in Floorplay</div>
-          <p class="body-mono on-paper" style="font-size:10px">Your plaque is hung in the Tension tree. Frictions, patterns, connection. Repetition, structure, and stability — the soil from which skill grows.</p>
-        </div>
-
-        <div class="path-node-item" style="position:relative;padding:0 0 2rem 2.25rem;opacity:.55;transition:opacity .3s" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='.55'">
-          <div style="position:absolute;left:-5px;top:.35rem;width:11px;height:11px;border-radius:50%;border:1.5px solid var(--rope);background:var(--paper2)"></div>
-          <span style="display:inline-block;background:#f9a825;color:#451a03;font-family:var(--fm);font-size:8px;letter-spacing:.15em;padding:3px 9px;text-transform:uppercase;border-radius:1px;margin-bottom:.35rem">Yellow — Lvl 2</span>
-          <div style="font-family:var(--fd);font-size:1.25rem;font-weight:300;color:var(--paper);margin-bottom:.2rem">Caution: Uplines</div>
-          <p class="body-mono on-paper" style="font-size:10px">Awareness and responsibility. Introduction to uplines, anchors, and mechanical systems. Every choice affects your partner's safety.</p>
-        </div>
-
-        <div class="path-node-item" style="position:relative;padding:0 0 2rem 2.25rem;opacity:.55;transition:opacity .3s" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='.55'">
-          <div style="position:absolute;left:-5px;top:.35rem;width:11px;height:11px;border-radius:50%;border:1.5px solid var(--rope);background:var(--paper2)"></div>
-          <span style="display:inline-block;background:#b03020;color:#fef2f2;font-family:var(--fm);font-size:8px;letter-spacing:.15em;padding:3px 9px;text-transform:uppercase;border-radius:1px;margin-bottom:.35rem">Red — Lvl 2</span>
-          <div style="font-family:var(--fd);font-size:1.25rem;font-weight:300;color:var(--paper);margin-bottom:.2rem">Partial Loads</div>
-          <p class="body-mono on-paper" style="font-size:10px">Weight begins to leave the ground. The gateway between floor and air. Risk, restraint, intensity. Control under pressure.</p>
-        </div>
-
-        <div class="path-node-item" style="position:relative;padding:0 0 2rem 2.25rem;opacity:.55;transition:opacity .3s" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='.55'">
-          <div style="position:absolute;left:-5px;top:.35rem;width:11px;height:11px;border-radius:50%;border:1.5px solid var(--rope);background:var(--paper2)"></div>
-          <span style="display:inline-block;background:#e8dfc8;color:#3d3828;border:.5px solid rgba(21,18,16,.15);font-family:var(--fm);font-size:8px;letter-spacing:.15em;padding:3px 9px;text-transform:uppercase;border-radius:1px;margin-bottom:.35rem">White — Lvl 3</span>
-          <div style="font-family:var(--fd);font-size:1.25rem;font-weight:300;color:var(--paper);margin-bottom:.2rem">The TK Test</div>
-          <p class="body-mono on-paper" style="font-size:10px">Structural precision and reliability. Passing the Takatekote (TK) — stable upper-body harness. Purity of form; simplicity under tension.</p>
-        </div>
-
-        <div class="path-node-item" style="position:relative;padding:0 0 2rem 2.25rem;opacity:.55;transition:opacity .3s" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='.55'">
-          <div style="position:absolute;left:-5px;top:.35rem;width:11px;height:11px;border-radius:50%;border:1.5px solid var(--rope);background:var(--paper2)"></div>
-          <span style="display:inline-block;background:#151210;color:#c9a84c;font-family:var(--fm);font-size:8px;letter-spacing:.15em;padding:3px 9px;text-transform:uppercase;border-radius:1px;margin-bottom:.35rem">Black — Lvl 3</span>
-          <div style="font-family:var(--fd);font-size:1.25rem;font-weight:300;color:var(--paper);margin-bottom:.2rem">Suspension Circuit</div>
-          <p class="body-mono on-paper" style="font-size:10px">Full suspension structures, risk management, responsive control. Black is not an end — it is the threshold to a deeper practice.</p>
-        </div>
-
-        <div class="path-node-item" style="position:relative;padding:0 0 2rem 2.25rem;opacity:.55;transition:opacity .3s" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='.55'">
-          <div style="position:absolute;left:-5px;top:.35rem;width:11px;height:11px;border-radius:50%;border:1.5px solid var(--rope);background:var(--paper2)"></div>
-          <span style="display:inline-block;background:#ddd3b8;color:#5a4f3a;font-family:var(--fm);font-size:8px;letter-spacing:.15em;padding:3px 9px;text-transform:uppercase;border-radius:1px;margin-bottom:.35rem">Final Beige — Lvl 4</span>
-          <div style="font-family:var(--fd);font-size:1.25rem;font-weight:300;color:var(--paper);margin-bottom:.2rem">The Endless Path</div>
-          <p class="body-mono on-paper" style="font-size:10px">Return to humility. Private lessons, dynamics, and philosophy. Reflection, not achievement. The rope now ties you as much as you tie it. ○</p>
-        </div>
-
-        <div class="path-node-item" style="position:relative;padding:0 0 0 2.25rem;opacity:.55;transition:opacity .3s" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='.55'">
-          <div style="position:absolute;left:-5px;top:.35rem;width:11px;height:11px;border-radius:50%;border:1.5px solid var(--rope);background:var(--paper2)"></div>
-          <span style="display:inline-block;background:#4a148c;color:#e1bee7;font-family:var(--fm);font-size:8px;letter-spacing:.15em;padding:3px 9px;text-transform:uppercase;border-radius:1px;margin-bottom:.35rem">Purple</span>
-          <div style="font-family:var(--fd);font-size:1.25rem;font-weight:300;color:var(--paper);margin-bottom:.2rem">The Teacher's Rope</div>
-          <p class="body-mono on-paper" style="font-size:10px">Responsibility to others. Teaching within the Tension curriculum. Patience, clarity, balance between tradition and innovation. The path turns outward.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- end A5 -->
 <!-- ════ Break □ ════ -->
 <!-- ═══════════════════════════════════════════════════════════════
-     BREAK 1 — □ SHIKAKU
+     BREAK 1, □ SHIKAKU
      Palette: Green (ground, growth) & Gold
      Transition: Hero/A sections → □ Structure sections (B)
      File: break_sq.html
@@ -1927,8 +1964,7 @@ h2 {
 
   <!-- BACKGROUND IMAGE -->
   <div class="break__bg" id="break-sq-bg">
-    <!-- PLACEHOLDER: replace with <img src="img/break_sq_01.jpg" .../> -->
-    
+    <img src="img/break_sq.jpg" onerror="this.src='img/break_sq.png'" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block;filter:brightness(.55) saturate(.6) hue-rotate(15deg);"/>
   </div>
 
   <!-- Colour wash -->
@@ -1987,7 +2023,7 @@ h2 {
 <!-- end break-sq -->
 <!-- ════ Sections B ════ -->
 <!-- ═══════════════════════════════════════════════════════════════
-     ████  B1 — STRUCTURE AS FOUNDATION
+     ████  B1, STRUCTURE AS FOUNDATION
      ═══════════════════════════════════════════════════════════════
      Palette: dark (ink)
      Purpose: explain the square as container, not cage
@@ -2022,7 +2058,7 @@ h2 {
           These are not constraints on creativity. They are what make creativity safe to pursue.
         </p>
         <p class="body-mono">
-          We approach rope like we would martial arts — methodically, with repetition and patience.
+          We approach rope like we would martial arts, methodically, with repetition and patience.
           Not because tradition demands it, but because the risks demand it.
           People get hurt when steps are skipped. The foundation exists to prevent that.
         </p>
@@ -2074,27 +2110,126 @@ h2 {
 </section>
 <!-- end B1 -->
 
+<section class="section paper2" id="B2" style="background:#252018">
+  <div class="sec-id">B2</div>
+  <div class="inner">
+
+    <div class="lbl dk fade-in">The Tension Curriculum</div>
+
+    <div class="two-col fade-in" style="margin-bottom:4rem;align-items:start">
+      <div>
+        <h2 style="color:var(--ink)">The Dō.<br><em style="color:var(--rope);font-style:italic">A path,<br>not a ladder.</em></h2>
+        <p class="body-serif on-paper" style="margin-bottom:1.5rem">
+          Westerners would typically like to skip as many steps as possible.
+          In rope, this leads to dangerous practices. People get hurt, physically and emotionally.
+          The curriculum at Tension exists because of that gap, not just technical but philosophical.
+          A slower, more methodical approach to foundations, with honest conversations about risk,
+          accountability, and consent built into the basics, not bolted on later if you get that far.
+        </p>
+        <p class="body-serif on-paper" style="margin-bottom:1.5rem">
+          Like martial arts belts, the rope colours at Tension are not trophies.
+          They are reminders of where you stand on your personal Dō,
+          and an invitation to return to roots with each advancement.
+        </p>
+        <p class="body-mono on-paper" style="margin-bottom:2rem">
+          Each stage reflects both skill and mindset: how one carries rope, self, and partner.
+          There is no top. Every colour eventually circles back to Beige.
+          Every advancement should reflect a revision of our roots.
+        </p>
+        <div class="blockquote on-paper">
+          <p>"The path is not something you complete. It is something you continue."</p>
+          <cite>Tension MTL</cite>
+        </div>
+      </div>
+
+      <div style="position:relative;padding-left:2.5rem;">
+        <div style="position:absolute;left:.5px;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--rope),rgba(169,124,26,.06))"></div>
+
+        <div class="path-node-item" style="position:relative;padding:0 0 2rem 2.25rem;opacity:.55;transition:opacity .3s" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='.55'">
+          <div style="position:absolute;left:-5px;top:.35rem;width:11px;height:11px;border-radius:50%;border:1.5px solid var(--rope);background:var(--paper2)"></div>
+          <span style="display:inline-block;background:#f0ead8;color:#7a6e58;font-family:var(--fm);font-size:8px;letter-spacing:.15em;padding:3px 9px;text-transform:uppercase;border-radius:1px;margin-bottom:.35rem">Beige, Lvl 0</span>
+          <div style="font-family:var(--fd);font-size:1.25rem;font-weight:300;color:var(--paper);margin-bottom:.2rem">The Beginning</div>
+          <p class="body-mono on-paper" style="font-size:10px">Openness, curiosity. Received at your very first Floorplay class following Fundamentals. Mastery begins in simplicity and humility.</p>
+        </div>
+
+        <div class="path-node-item" style="position:relative;padding:0 0 2rem 2.25rem;opacity:.55;transition:opacity .3s" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='.55'">
+          <div style="position:absolute;left:-5px;top:.35rem;width:11px;height:11px;border-radius:50%;border:1.5px solid var(--rope);background:var(--paper2)"></div>
+          <span style="display:inline-block;background:#2e7d32;color:#e8f5e9;font-family:var(--fm);font-size:8px;letter-spacing:.15em;padding:3px 9px;text-transform:uppercase;border-radius:1px;margin-bottom:.35rem">Green, Lvl 1</span>
+          <div style="font-family:var(--fd);font-size:1.25rem;font-weight:300;color:var(--paper);margin-bottom:.2rem">Arrival in Floorplay</div>
+          <p class="body-mono on-paper" style="font-size:10px">Your plaque is hung in the Tension tree. Frictions, patterns, connection. Repetition, structure, and stability; the soil from which skill grows.</p>
+        </div>
+
+        <div class="path-node-item" style="position:relative;padding:0 0 2rem 2.25rem;opacity:.55;transition:opacity .3s" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='.55'">
+          <div style="position:absolute;left:-5px;top:.35rem;width:11px;height:11px;border-radius:50%;border:1.5px solid var(--rope);background:var(--paper2)"></div>
+          <span style="display:inline-block;background:#f9a825;color:#451a03;font-family:var(--fm);font-size:8px;letter-spacing:.15em;padding:3px 9px;text-transform:uppercase;border-radius:1px;margin-bottom:.35rem">Yellow, Lvl 2</span>
+          <div style="font-family:var(--fd);font-size:1.25rem;font-weight:300;color:var(--paper);margin-bottom:.2rem">Caution: Uplines</div>
+          <p class="body-mono on-paper" style="font-size:10px">Awareness and responsibility. Introduction to uplines, anchors, and mechanical systems. Every choice affects your partner's safety.</p>
+        </div>
+
+        <div class="path-node-item" style="position:relative;padding:0 0 2rem 2.25rem;opacity:.55;transition:opacity .3s" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='.55'">
+          <div style="position:absolute;left:-5px;top:.35rem;width:11px;height:11px;border-radius:50%;border:1.5px solid var(--rope);background:var(--paper2)"></div>
+          <span style="display:inline-block;background:#b03020;color:#fef2f2;font-family:var(--fm);font-size:8px;letter-spacing:.15em;padding:3px 9px;text-transform:uppercase;border-radius:1px;margin-bottom:.35rem">Red, Lvl 2</span>
+          <div style="font-family:var(--fd);font-size:1.25rem;font-weight:300;color:var(--paper);margin-bottom:.2rem">Partial Loads</div>
+          <p class="body-mono on-paper" style="font-size:10px">Weight begins to leave the ground. The gateway between floor and air. Risk, restraint, intensity. Control under pressure.</p>
+        </div>
+
+        <div class="path-node-item" style="position:relative;padding:0 0 2rem 2.25rem;opacity:.55;transition:opacity .3s" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='.55'">
+          <div style="position:absolute;left:-5px;top:.35rem;width:11px;height:11px;border-radius:50%;border:1.5px solid var(--rope);background:var(--paper2)"></div>
+          <span style="display:inline-block;background:#e8dfc8;color:#3d3828;border:.5px solid rgba(21,18,16,.15);font-family:var(--fm);font-size:8px;letter-spacing:.15em;padding:3px 9px;text-transform:uppercase;border-radius:1px;margin-bottom:.35rem">White, Lvl 3</span>
+          <div style="font-family:var(--fd);font-size:1.25rem;font-weight:300;color:var(--paper);margin-bottom:.2rem">The TK Test</div>
+          <p class="body-mono on-paper" style="font-size:10px">Structural precision and reliability. Passing the Takatekote (TK), stable upper-body harness. Purity of form; simplicity under tension.</p>
+        </div>
+
+        <div class="path-node-item" style="position:relative;padding:0 0 2rem 2.25rem;opacity:.55;transition:opacity .3s" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='.55'">
+          <div style="position:absolute;left:-5px;top:.35rem;width:11px;height:11px;border-radius:50%;border:1.5px solid var(--rope);background:var(--paper2)"></div>
+          <span style="display:inline-block;background:#131315;color:#c9a84c;font-family:var(--fm);font-size:8px;letter-spacing:.15em;padding:3px 9px;text-transform:uppercase;border-radius:1px;margin-bottom:.35rem">Black, Lvl 3</span>
+          <div style="font-family:var(--fd);font-size:1.25rem;font-weight:300;color:var(--paper);margin-bottom:.2rem">Suspension Circuit</div>
+          <p class="body-mono on-paper" style="font-size:10px">Full suspension structures, risk management, responsive control. Black is not an end; it is the threshold to a deeper practice.</p>
+        </div>
+
+        <div class="path-node-item" style="position:relative;padding:0 0 2rem 2.25rem;opacity:.55;transition:opacity .3s" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='.55'">
+          <div style="position:absolute;left:-5px;top:.35rem;width:11px;height:11px;border-radius:50%;border:1.5px solid var(--rope);background:var(--paper2)"></div>
+          <span style="display:inline-block;background:#ddd3b8;color:#5a4f3a;font-family:var(--fm);font-size:8px;letter-spacing:.15em;padding:3px 9px;text-transform:uppercase;border-radius:1px;margin-bottom:.35rem">Final Beige, Lvl 4</span>
+          <div style="font-family:var(--fd);font-size:1.25rem;font-weight:300;color:var(--paper);margin-bottom:.2rem">The Endless Path</div>
+          <p class="body-mono on-paper" style="font-size:10px">Return to humility. Private lessons, dynamics, and philosophy. Reflection, not achievement. The rope now ties you as much as you tie it. ○</p>
+        </div>
+
+        <div class="path-node-item" style="position:relative;padding:0 0 0 2.25rem;opacity:.55;transition:opacity .3s" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='.55'">
+          <div style="position:absolute;left:-5px;top:.35rem;width:11px;height:11px;border-radius:50%;border:1.5px solid var(--rope);background:var(--paper2)"></div>
+          <span style="display:inline-block;background:#4a148c;color:#e1bee7;font-family:var(--fm);font-size:8px;letter-spacing:.15em;padding:3px 9px;text-transform:uppercase;border-radius:1px;margin-bottom:.35rem">Purple</span>
+          <div style="font-family:var(--fd);font-size:1.25rem;font-weight:300;color:var(--paper);margin-bottom:.2rem">The Teacher's Rope</div>
+          <p class="body-mono on-paper" style="font-size:10px">Responsibility to others. Teaching within the Tension curriculum. Patience, clarity, balance between tradition and innovation. The path turns outward.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end B2 -->
+
+
+
+
 <!-- ═══════════════════════════════════════════════════════════════
-     ████  B2 — FUNDAMENTALS
+     ████  B2, FUNDAMENTALS
      ═══════════════════════════════════════════════════════════════
      Palette: paper2 (warm)
      Purpose: explain why fundamentals exist, what they cover,
               the philosophical gap they were built to address
      ═══════════════════════════════════════════════════════════════ -->
-<section class="section paper2" id="B2" style="background:#252018">
-  <div class="sec-id">B2</div>
+<section class="section paper2" id="B3" style="background:#252018">
+  <div class="sec-id">B4</div>
   <div class="inner">
 
     <div class="lbl dk fade-in">Fundamentals</div>
 
     <div class="two-col valign fade-in" style="margin-bottom:4rem">
       <div>
-        <h2 style="color:var(--paper)">Where every<br>practice<br><em style="color:var(--rope);font-style:italic">begins.</em></h2>
+        <h2 style="color:var(--ink)">Where every<br>practice<br><em style="color:var(--rope);font-style:italic">begins.</em></h2>
         <div class="blockquote on-paper" style="margin-top:2rem">
           <!-- COPY: key quote -->
           <p>"I saw over and over that it wasn't when people learned about safety and consent.
           Sometimes it was if. And that if was unacceptable."</p>
-          <cite>Willcat — on why Fundamentals exists</cite>
+          <cite>Willcat, on why Fundamentals exists</cite>
         </div>
       </div>
 
@@ -2169,25 +2304,26 @@ h2 {
 </section>
 <!-- end B2 -->
 
+
 <!-- ═══════════════════════════════════════════════════════════════
-     ████  B3 — GET THE BOOK
+     ████  B3, GET THE BOOK
      ═══════════════════════════════════════════════════════════════
      Palette: dark (ink)
-     Purpose: product page for Fundamentals book — honest, grounded
+     Purpose: product page for Fundamentals book, honest, grounded
      ═══════════════════════════════════════════════════════════════ -->
-<section class="section dark" id="B3">
-  <div class="sec-id">B3</div>
+<section class="section dark" id="B4">
+  <div class="sec-id">B4</div>
   <div class="inner">
 
     <div class="two-col valign fade-in">
 
-      <!-- LEFT — book image -->
+      <!-- LEFT, book image -->
       <div class="img-panel" style="aspect-ratio:3/4;max-width:420px">
-        <!-- PLACEHOLDER: replace with <img src="img/section_B3_01.jpg" .../> -->
+        
         
       </div>
 
-      <!-- RIGHT — book copy -->
+      <!-- RIGHT, book copy -->
       <div>
         <div class="lbl">Book · Published</div>
         <h2>Fundamentals.<br><em style="color:var(--rope-l);font-style:italic">Shibari for<br>Beginners and Beyond.</em></h2>
@@ -2199,7 +2335,7 @@ h2 {
           to rope as practice: technical, anatomical, emotional, and communal.
         </p>
         <p class="body-mono" style="margin-bottom:1.25rem">
-          200 pages / 400 images. Step-by-step technique with diagrams. Anatomy and nerve safety
+          100 pages. Step-by-step technique with diagrams. Anatomy and nerve safety
           vetted with medical input. Consent, negotiation, aftercare, and community
           accountability built in from the first chapter. An art section. A full lexicon.
           A cheat sheet. And an honest attempt to address every question a new practitioner
@@ -2210,14 +2346,10 @@ h2 {
         </p>
 
         <!-- COPY: book stats -->
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(240,234,216,.05);margin-bottom:2rem">
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(240,234,216,.05);margin-bottom:2rem">
           <div style="background:var(--ink2);padding:1.25rem 1rem">
-            <div style="font-family:var(--fd);font-size:2.2rem;font-weight:300;color:var(--rope-l);line-height:1">200</div>
+            <div style="font-family:var(--fd);font-size:2.2rem;font-weight:300;color:var(--rope-l);line-height:1">100</div>
             <div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase">Pages</div>
-          </div>
-          <div style="background:var(--ink2);padding:1.25rem 1rem">
-            <div style="font-family:var(--fd);font-size:2.2rem;font-weight:300;color:var(--rope-l);line-height:1">400</div>
-            <div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase">Images</div>
           </div>
           <div style="background:var(--ink2);padding:1.25rem 1rem">
             <div style="font-family:var(--fd);font-size:2.2rem;font-weight:300;color:var(--rope-l);line-height:1">16+</div>
@@ -2241,21 +2373,22 @@ h2 {
 </section>
 <!-- end B3 -->
 
+
 <!-- ═══════════════════════════════════════════════════════════════
-     ████  B4 — STRUCTURE IN COMMUNITY
+     ████  B4, STRUCTURE IN COMMUNITY
      ═══════════════════════════════════════════════════════════════
      Palette: paper (white)
      Purpose: safe(r) spaces, accountability, the container as community
      ═══════════════════════════════════════════════════════════════ -->
-<section class="section paper" id="B4" style="background:#151210">
-  <div class="sec-id">B4</div>
+<section class="section paper" id="B5">
+  <div class="sec-id">B5</div>
   <div class="inner">
 
     <div class="lbl dk fade-in">Structure in Community</div>
 
     <div class="two-col fade-in" style="margin-bottom:4rem">
       <div>
-        <h2 style="color:var(--paper)">Safe(r).<br><em style="color:var(--rope);font-style:italic">Not safe.</em></h2>
+        <h2 style="color:var(--ink)">Safe(r).<br><em style="color:var(--rope);font-style:italic">Not safe.</em></h2>
         <!-- COPY: sub -->
         <p style="font-family:var(--fd);font-size:1.1rem;font-style:italic;font-weight:300;color:var(--muted);line-height:1.65;max-width:360px">
           The parenthetical is not a technicality. It is the most honest thing
@@ -2266,7 +2399,7 @@ h2 {
         <!-- COPY: B4 body -->
         <p class="body-serif on-paper" style="margin-bottom:1.25rem">
           Safe(r) spaces require structure. Agreements, policies, and accountability frameworks
-          are not restrictions on community — they are the container that makes community possible.
+          are not restrictions on community, they are the container that makes community possible.
           The same principle as rope: without a solid structure, nothing can be held safely.
         </p>
         <p class="body-serif on-paper" style="margin-bottom:1.25rem">
@@ -2326,7 +2459,429 @@ h2 {
     </div>
   </div>
 </section>
-<!-- end B4 -->
+<!-- end B5 -->
+<!-- ════ Break △ ════ -->
+<!-- ═══════════════════════════════════════════════════════════════
+     BREAK △, RED & GOLD
+     Transitions: B sections → C sections
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="break" id="break-tri">
+
+  <!-- Background image -->
+  <div class="break__bg" id="break-tri-bg">
+    <img src="img/break_tri.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block;filter:brightness(.55) saturate(.5) sepia(.2);"/>
+  </div>
+
+  <!-- Red tint overlay -->
+  <div class="break__overlay"></div>
+
+  <!-- Ghost △ large -->
+  <div class="break__ghost">
+    <svg viewBox="0 0 600 520" fill="none" style="width:min(600px,90vw);height:auto;opacity:.07">
+      <polygon points="300,20 580,500 20,500" stroke="#c9a84c" stroke-width="2" stroke-linejoin="miter"/>
+      <polygon points="300,20 580,500 20,500" stroke="#8b2020" stroke-width="1" stroke-linejoin="miter"/>
+    </svg>
+  </div>
+
+  <!-- Content -->
+  <div class="break__content fade-in">
+
+    <!-- △ symbol -->
+    <div class="break__symbol">
+      <svg viewBox="0 0 80 72" fill="none" style="width:56px;height:50px">
+        <polygon points="40,4 76,68 4,68" stroke="#c9a84c" stroke-width="5" stroke-linejoin="miter"/>
+        <polygon points="40,4 76,68 4,68" stroke="#8b2020" stroke-width="2" stroke-linejoin="miter"/>
+      </svg>
+    </div>
+
+    <div class="break__label">△ · Sankaku · The Triangle</div>
+
+    <p class="break__quote">
+      "Every tie is a choice.<br>
+      The triangle holds or it doesn't.<br>
+      It should not be forced but felt."
+    </p>
+
+    <div class="break__kanji">
+      張力 · 意図 · 方向 · 選択 · 結果<br>
+      Tension · Intention · Direction · Choice · Consequence
+    </div>
+
+  </div>
+</div>
+<!-- ════ Sections C ════ -->
+<!-- ═══════════════════════════════════════════════════════════════
+     ████  C1, TENSION AS DIRECTION
+     ═══════════════════════════════════════════════════════════════ -->
+<section class="section dark" id="C1">
+  <div class="sec-id">C1</div>
+  <div class="inner">
+
+    <div class="lbl fade-in">△ Tension</div>
+    <div class="two-col fade-in" style="margin-bottom:4rem">
+      <div>
+        <h2>Tension as<br><em style="color:var(--rope-l);font-style:italic">direction.</em></h2>
+        <div style="font-family:var(--fj);font-size:4rem;color:var(--rope);opacity:.15;line-height:1;margin-top:1rem">張力</div>
+        <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:.5rem">Chōryoku · Tension</div>
+      </div>
+      <div>
+        <p class="body-serif" style="margin-bottom:1.25rem">
+          The triangle is the moment of decision. Every tie is a choice.
+          Why are you tying? The answer to that question shapes everything that follows , 
+          the technique you choose, the pace you set, the attention you bring.
+        </p>
+        <p class="body-serif" style="margin-bottom:1.25rem">
+          Rope without intention is just knots. Tension without direction is just force.
+          The triangle holds the question: what are you actually doing here,
+          and does the person in front of you know?
+        </p>
+        <p class="body-mono" style="margin-bottom:1.25rem">
+          This section is about the applied practice of tension.
+          Teaching it. Performing it. Bringing it into collaborative and professional contexts.
+          Each offering below is a different way of working with rope
+          and the people who want to learn, experience, or document it.
+        </p>
+        <div class="blockquote">
+          <p>"Every tie is a choice. The triangle holds or it doesn't.
+          It should not be forced but felt."</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- end C1 -->
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     ████  C2, WORKSHOPS & CLASSES
+     ═══════════════════════════════════════════════════════════════ -->
+<section class="section dark" id="C2" style="border-top:1px solid rgba(240,234,216,.05)">
+  <div class="sec-id">C2</div>
+  <div class="inner">
+
+    <div class="lbl fade-in">Teaching</div>
+    <div class="two-col fade-in" style="margin-bottom:4rem">
+      <div>
+        <h2>Workshops<br><em style="color:var(--rope-l);font-style:italic">&amp; classes.</em></h2>
+        <p class="body-serif" style="margin-bottom:1.5rem">
+          All classes at Tension MTL are taught from both ends of the rope.
+          Technique, body mechanics, consent, and intention woven together , 
+          not separated into different conversations.
+        </p>
+        <p class="body-mono">
+          Private lessons available in person at Tension MTL or remotely.
+          Group workshops at Tension or hosted at your space.
+          Touring workshops available worldwide.
+        </p>
+      </div>
+      <div>
+
+        <!-- Private lessons -->
+        <div class="rate-card fade-in" style="margin-bottom:1rem">
+          <div class="rate-card-header">
+            <svg viewBox="0 0 24 24" fill="none" style="width:14px;height:14px;flex-shrink:0">
+              <polygon points="12,2 22,22 2,22" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="miter"/>
+            </svg>
+            <span class="rate-card-header-label">Private Lessons</span>
+          </div>
+          <div class="rate-row">
+            <div>
+              <div class="rate-name">One on one</div>
+              <div class="rate-note">In person at Tension MTL or remote</div>
+            </div>
+            <div style="text-align:right">
+              <div class="rate-price">$100</div>
+              <div class="rate-unit">per hour · CAD</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Touring workshops -->
+        <div class="rate-card fade-in">
+          <div class="rate-card-header">
+            <svg viewBox="0 0 24 24" fill="none" style="width:14px;height:14px;flex-shrink:0">
+              <polygon points="12,2 22,22 2,22" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="miter"/>
+            </svg>
+            <span class="rate-card-header-label">Touring Workshops</span>
+          </div>
+          <div class="rate-row">
+            <div>
+              <div class="rate-name">Hourly rate</div>
+              <div class="rate-note">4 hour minimum</div>
+            </div>
+            <div style="text-align:right">
+              <div class="rate-price">$100</div>
+              <div class="rate-unit">per hour · CAD</div>
+            </div>
+          </div>
+          <div class="rate-row">
+            <div>
+              <div class="rate-name">Full day</div>
+              <div class="rate-note">Up to 8 hours</div>
+            </div>
+            <div style="text-align:right">
+              <div class="rate-price">$700</div>
+              <div class="rate-unit">per day · CAD</div>
+            </div>
+          </div>
+          <div class="rate-row">
+            <div>
+              <div class="rate-name">Travel &amp; lodging</div>
+              <div class="rate-note">Covered by organizer</div>
+            </div>
+            <div style="text-align:right">
+              <div class="rate-price" style="font-size:1rem;color:var(--muted)">Required</div>
+              <div class="rate-unit">not negotiable</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:1.5rem">
+          <a href="https://tensionmtl.ca/pages/about-willcat" target="_blank" class="btn btn-o">Book a workshop →</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- end C2 -->
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     ████  C3, PRIVATE PARTIES
+     ═══════════════════════════════════════════════════════════════ -->
+<section class="section dark" id="C3" style="border-top:1px solid rgba(240,234,216,.05)">
+  <div class="sec-id">C3</div>
+  <div class="inner">
+
+    <div class="lbl fade-in">Private Parties</div>
+    <div class="two-col fade-in" style="margin-bottom:4rem">
+      <div>
+        <h2>Rope at<br><em style="color:var(--rope-l);font-style:italic">your event.</em></h2>
+        <p class="body-serif" style="margin-bottom:1.25rem">
+          Private parties are intimate and social.
+          Tying in a room of people who want to watch, learn, or simply be in the presence of it.
+          The energy is different from a stage, closer, warmer, more conversational.
+        </p>
+        <p class="body-mono">
+          Room rental at Tension MTL available depending on party size.
+          A model can be arranged if needed.
+          Minimum booking of two hours.
+        </p>
+      </div>
+      <div>
+        <div class="rate-card fade-in">
+          <div class="rate-card-header">
+            <svg viewBox="0 0 24 24" fill="none" style="width:14px;height:14px;flex-shrink:0">
+              <polygon points="12,2 22,22 2,22" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="miter"/>
+            </svg>
+            <span class="rate-card-header-label">Private Party Rates</span>
+          </div>
+          <div class="rate-row">
+            <div>
+              <div class="rate-name">Willcat, tying professionally</div>
+              <div class="rate-note">2 hour minimum</div>
+            </div>
+            <div style="text-align:right">
+              <div class="rate-price">$100</div>
+              <div class="rate-unit">per hour · CAD</div>
+            </div>
+          </div>
+          <div class="rate-row">
+            <div>
+              <div class="rate-name">Room rental</div>
+              <div class="rate-note">Tension MTL · depends on party size</div>
+            </div>
+            <div style="text-align:right">
+              <div class="rate-price">$25–100</div>
+              <div class="rate-unit">per session · CAD</div>
+            </div>
+          </div>
+          <div class="rate-row">
+            <div>
+              <div class="rate-name">Model</div>
+              <div class="rate-note">If required · arranged separately</div>
+            </div>
+            <div style="text-align:right">
+              <div class="rate-price">$30</div>
+              <div class="rate-unit">per hour · CAD</div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:1.5rem">
+          <a href="https://tensionmtl.ca/pages/about-willcat" target="_blank" class="btn btn-o">Enquire →</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- end C3 -->
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     ████  C4, RESIDENCIES
+     ═══════════════════════════════════════════════════════════════ -->
+<section class="section dark" id="C4" style="border-top:1px solid rgba(240,234,216,.05)">
+  <div class="sec-id">C4</div>
+  <div class="inner">
+
+    <div class="lbl fade-in">Residencies</div>
+    <div class="two-col fade-in" style="margin-bottom:4rem">
+      <div>
+        <h2>Stay.<br><em style="color:var(--rope-l);font-style:italic">Learn deeper.</em></h2>
+        <p class="body-serif" style="margin-bottom:1.25rem">
+          Residencies are for those who want more than a workshop allows.
+          Extended time to go deeper, into technique, into practice,
+          into the parts of rope that only emerge when you stop rushing.
+        </p>
+        <p class="body-mono">
+          Stay at Tension MTL. Access to the space with rig included.
+          Instruction scheduled around your availability and goals.
+          Montréal is a good city to be in for a few days.
+        </p>
+      </div>
+      <div>
+        <div class="rate-card fade-in">
+          <div class="rate-card-header">
+            <svg viewBox="0 0 24 24" fill="none" style="width:14px;height:14px;flex-shrink:0">
+              <polygon points="12,2 22,22 2,22" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="miter"/>
+            </svg>
+            <span class="rate-card-header-label">Residency Rates</span>
+          </div>
+          <div class="rate-row">
+            <div>
+              <div class="rate-name">Instruction</div>
+              <div class="rate-note">Scheduled sessions, your pace</div>
+            </div>
+            <div style="text-align:right">
+              <div class="rate-price">$100</div>
+              <div class="rate-unit">per hour · CAD</div>
+            </div>
+          </div>
+          <div class="rate-row">
+            <div>
+              <div class="rate-name">Room with rig</div>
+              <div class="rate-note">Access to Tension MTL space</div>
+            </div>
+            <div style="text-align:right">
+              <div class="rate-price">$150</div>
+              <div class="rate-unit">per night · CAD</div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:1.5rem">
+          <a href="https://tensionmtl.ca/pages/about-willcat" target="_blank" class="btn btn-o">Plan a residency →</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- end C4 -->
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     ████  C5, PRODUCTION & PERFORMANCE
+     ═══════════════════════════════════════════════════════════════ -->
+<section class="section dark" id="C5" style="border-top:1px solid rgba(240,234,216,.05)">
+  <div class="sec-id">C5</div>
+  <div class="inner">
+
+    <div class="lbl fade-in">Production · Performance</div>
+    <div class="two-col fade-in" style="margin-bottom:4rem">
+      <div>
+        <h2>On stage.<br>On set.<br><em style="color:var(--rope-l);font-style:italic">Worldwide.</em></h2>
+        <p class="body-serif" style="margin-bottom:1.25rem">
+          Available for live performance, stage work, and professional production.
+          Film, photo, video, advisory, rigging, and on-set tying.
+          The rate changes depending on whether a human is in the rope.
+          That distinction is not arbitrary.
+        </p>
+        <p class="body-mono" style="margin-bottom:1.25rem">
+          Many productions opt for mannequins or objects due to liability.
+          Both are available. The technical quality of the work does not change.
+          What changes is the level of attention, consent framework, and responsibility
+          that comes with a human subject on a professional set.
+        </p>
+        <p class="body-mono">
+          Travel and prep time billed at the advisory rate.
+          Organizers cover all travel and lodging for touring performances.
+        </p>
+      </div>
+      <div>
+
+        <!-- Performance -->
+        <div class="rate-card fade-in" style="margin-bottom:1rem">
+          <div class="rate-card-header">
+            <svg viewBox="0 0 24 24" fill="none" style="width:14px;height:14px;flex-shrink:0">
+              <polygon points="12,2 22,22 2,22" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="miter"/>
+            </svg>
+            <span class="rate-card-header-label">Live Performance</span>
+          </div>
+          <div class="rate-row">
+            <div>
+              <div class="rate-name">Stage performance</div>
+              <div class="rate-note">Base rate + hourly</div>
+            </div>
+            <div style="text-align:right">
+              <div class="rate-price">$250 <span style="font-size:.9rem;color:var(--muted)">+</span> $200/hr</div>
+              <div class="rate-unit">CAD · travel covered by organizer</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Production -->
+        <div class="rate-card fade-in">
+          <div class="rate-card-header">
+            <svg viewBox="0 0 24 24" fill="none" style="width:14px;height:14px;flex-shrink:0">
+              <polygon points="12,2 22,22 2,22" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="miter"/>
+            </svg>
+            <span class="rate-card-header-label">Film · Photo · Video Production</span>
+          </div>
+          <div class="rate-row">
+            <div>
+              <div class="rate-name">Advisory · objects · rope styling</div>
+              <div class="rate-note">No human subject · set advice · rigging objects</div>
+            </div>
+            <div style="text-align:right">
+              <div class="rate-price">$100</div>
+              <div class="rate-unit">per hour · CAD</div>
+            </div>
+          </div>
+          <div class="rate-row">
+            <div>
+              <div class="rate-name">With human subject</div>
+              <div class="rate-note">Full consent framework · liability · on-set tying</div>
+            </div>
+            <div style="text-align:right">
+              <div class="rate-price">$300</div>
+              <div class="rate-unit">per hour · CAD</div>
+            </div>
+          </div>
+          <div class="rate-row">
+            <div>
+              <div class="rate-name">Travel &amp; prep time</div>
+              <div class="rate-note">Billed at advisory rate</div>
+            </div>
+            <div style="text-align:right">
+              <div class="rate-price">$100</div>
+              <div class="rate-unit">per hour · CAD</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:1.5rem">
+          <a href="https://tensionmtl.ca/pages/about-willcat" target="_blank" class="btn btn-o">Get in touch →</a>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- end C5 -->
 
 <!-- ════ FOOTER ════ -->
 <footer style="background:#1e1a16;border-top:1px solid rgba(169,124,26,.12);padding:3rem 4rem;display:flex;justify-content:space-between;align-items:center;gap:2rem;flex-wrap:wrap;">
@@ -2334,7 +2889,8 @@ h2 {
   <ul style="display:flex;gap:1.5rem;list-style:none;flex-wrap:wrap">
     <li><a href="#A1" style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;color:rgba(240,234,216,.35);text-transform:uppercase">The Framework</a></li>
     <li><a href="#A2" style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;color:rgba(240,234,216,.35);text-transform:uppercase">About</a></li>
-    <li><a href="#A5" style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;color:rgba(240,234,216,.35);text-transform:uppercase">The Path</a></li>
+    <li><a href="#B2" style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;color:rgba(240,234,216,.35);text-transform:uppercase">The Path</a></li>
+    <li><a href="#C2" style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;color:rgba(240,234,216,.35);text-transform:uppercase">Work with me</a></li>
     <li><a href="https://tensionmtl.ca" target="_blank" style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;color:rgba(240,234,216,.35);text-transform:uppercase">Tension MTL</a></li>
   </ul>
   <div style="font-family:'DM Mono',monospace;font-size:9.5px;color:rgba(240,234,216,.3);text-align:right;line-height:1.6">
@@ -2345,27 +2901,25 @@ h2 {
 
 <script>
 
-// Parallax
 window.addEventListener('scroll', function() {
   var sy = window.scrollY;
   var heroBg = document.getElementById('hero-bg');
   if (heroBg) heroBg.style.transform = 'translateY(' + (sy * 0.32) + 'px)';
-  var breakBg = document.getElementById('break-sq-bg');
-  if (breakBg) {
-    var el = breakBg.closest('.break');
-    if (el) {
-      var rect = el.getBoundingClientRect();
-      if (rect.bottom > 0 && rect.top < window.innerHeight) {
-        var center = rect.top + rect.height / 2 - window.innerHeight / 2;
-        breakBg.style.transform = 'translateY(' + (center * 0.28) + 'px)';
-      }
+  ['break-sq-bg','break-tri-bg'].forEach(function(id) {
+    var bg = document.getElementById(id);
+    if (!bg) return;
+    var el = bg.closest('.break');
+    if (!el) return;
+    var rect = el.getBoundingClientRect();
+    if (rect.bottom > 0 && rect.top < window.innerHeight) {
+      var center = rect.top + rect.height / 2 - window.innerHeight / 2;
+      bg.style.transform = 'translateY(' + (center * 0.28) + 'px)';
     }
-  }
+  });
   var nav = document.querySelector('nav');
   if (nav) nav.classList.toggle('scrolled', sy > 80);
 }, {passive: true});
 
-// Fade in — single observer
 var fadeObserver = new IntersectionObserver(function(entries) {
   entries.forEach(function(e) {
     if (e.isIntersecting) {
@@ -2378,17 +2932,12 @@ document.querySelectorAll('.fade-in').forEach(function(el) {
   fadeObserver.observe(el);
 });
 
-// Accordion — staggered row reveal
-var accordionOpened = false;
-
 function openAccordion() {
   var btn = document.getElementById('relate-btn');
   var exp = document.getElementById('msq-expand');
   if (btn) btn.classList.add('open');
   if (exp) exp.classList.add('open');
-  // Reveal rows one at a time
-  var rows = ['row-practice', 'row-transmission', 'row-community'];
-  rows.forEach(function(id, i) {
+  ['row-practice','row-transmission','row-community'].forEach(function(id, i) {
     setTimeout(function() {
       var row = document.getElementById(id);
       if (row) row.classList.add('row-visible');
@@ -2400,12 +2949,10 @@ function closeAccordion() {
   var btn = document.getElementById('relate-btn');
   var exp = document.getElementById('msq-expand');
   if (btn) btn.classList.remove('open');
-  // Fade rows out first
-  ['row-practice', 'row-transmission', 'row-community'].forEach(function(id) {
+  ['row-practice','row-transmission','row-community'].forEach(function(id) {
     var row = document.getElementById(id);
     if (row) row.classList.remove('row-visible');
   });
-  // Then hide wrapper after transition
   setTimeout(function() {
     if (exp) exp.classList.remove('open');
   }, 750);
@@ -2420,7 +2967,7 @@ function toggleRelate() {
   }
 }
 
-// Auto-open when shape cards scroll into view
+var accordionOpened = false;
 var accordionObserver = new IntersectionObserver(function(entries) {
   entries.forEach(function(e) {
     if (e.isIntersecting && !accordionOpened) {
@@ -2432,8 +2979,6 @@ var accordionObserver = new IntersectionObserver(function(entries) {
 
 var shapeCards = document.getElementById('shape-cards');
 if (shapeCards) accordionObserver.observe(shapeCards);
-
-// A5 path nodes hover handled by inline onmouseover
 
 </script>
 
