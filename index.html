@@ -126,27 +126,33 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
   .hero-links { display: none; }
 }
 
+@media (max-width: 768px) {
+  .hero-bg img {
+    object-position: 60% 20%;
+    filter: brightness(.9) saturate(.75);
+  }
+  #menu-btn { display: block !important; }
+  .hero-links { display: none !important; }
+  #shape-cards-grid, #htr-grid { display: none !important; }
+  .a1-carousel { display: block !important; }
+}
+
 @media (max-width: 600px) {
   #wip { padding: .75rem 1.5rem; flex-direction: column; align-items: center; gap: .5rem; text-align: center; }
   .hero-nav { padding: 1.25rem 1.5rem; }
   .hero-content { padding: 2rem 1.5rem; }
   .hero-name { font-size: clamp(3.2rem,14vw,5rem); }
-  #menu-btn { display: block !important; }
-  .hero-links { display: none !important; }
-
-  /* A1 grids — hide all cells, show carousel */
-  #shape-cards-grid, #htr-grid { display: none; }
-  .a1-carousel { display: block !important; }
 }
 </style>
 </head>
 <body>
 
 <!-- ══ WIP BANNER ══ -->
-<div id="wip" style="background:rgba(169,124,26,.08);border-bottom:1px solid rgba(169,124,26,.15);padding:.75rem 4rem;display:flex;align-items:center;justify-content:center;gap:2rem;">
+<div id="wip" style="background:rgba(169,124,26,.08);border-bottom:1px solid rgba(169,124,26,.15);padding:.6rem 1.5rem;display:flex;align-items:center;justify-content:center;gap:1.5rem;flex-wrap:wrap;text-align:center;position:fixed;top:0;left:0;right:0;z-index:20000;backdrop-filter:blur(8px);">
   <span style="font-family:var(--fm);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(201,168,76,.7)">This site is under construction. Enjoy, but know that I am working on it.</span>
-  <button onclick="document.getElementById('wip').style.display='none'" style="background:none;border:none;cursor:pointer;font-family:var(--fm);font-size:8px;letter-spacing:.15em;color:rgba(201,168,76,.4);text-transform:uppercase;padding:0;flex-shrink:0">dismiss</button>
+  <button onclick="document.getElementById('wip').style.display='none';document.getElementById('wip-spacer').style.display='none';" style="background:none;border:none;cursor:pointer;font-family:var(--fm);font-size:8px;letter-spacing:.15em;color:rgba(201,168,76,.4);text-transform:uppercase;padding:0;white-space:nowrap">dismiss</button>
 </div>
+<div id="wip-spacer" style="height:38px;"></div>
 
 <!-- ══ HERO ══ -->
 <section class="hero" id="hero">
@@ -163,13 +169,10 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
       <li><a href="#C2">Work with me</a></li>
     </ul>
     <button id="menu-btn" onclick="toggleMenu()" aria-label="Menu" style="display:none;background:none;border:none;cursor:pointer;padding:4px;line-height:0;">
-      <svg viewBox="0 0 44 44" fill="none" style="width:36px;height:36px;">
-        <!-- ○ Circle — outermost -->
-        <circle cx="22" cy="22" r="19" stroke="#c9a84c" stroke-width="1"/>
-        <!-- □ Square inscribed in circle — corners touching at 45° = radius*cos45 ≈ 13.4 -->
-        <rect x="8.5" y="8.5" width="27" height="27" stroke="#c9a84c" stroke-width="1"/>
-        <!-- △ Diagonal from top-left corner to bottom-right corner of square -->
-        <line x1="8.5" y1="8.5" x2="35.5" y2="35.5" stroke="#c9a84c" stroke-width="1"/>
+      <svg viewBox="0 0 160 140" fill="none" style="width:36px;height:32px;">
+        <rect x="4" y="4" width="80" height="80" stroke="#c9a84c" stroke-width="4"/>
+        <polygon points="72,8 148,132 8,132" stroke="#c9a84c" stroke-width="4" stroke-linejoin="miter"/>
+        <circle cx="80" cy="72" r="56" stroke="#c9a84c" stroke-width="4"/>
       </svg>
     </button>
   </nav>
@@ -487,133 +490,152 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
 
     </div>
 
-    <!-- Mobile carousel — 4 rows × 3 cards, hidden on desktop -->
+    <!-- Mobile carousel — 3 columns, each full width with all 4 rows -->
     <div class="a1-carousel" style="display:none;">
-      <div id="carousel-track" style="position:relative;overflow:hidden;">
+
+      <!-- Top nav -->
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:.75rem 1rem;background:rgba(240,234,216,.03);border-bottom:1px solid rgba(240,234,216,.05);">
+        <button onclick="carouselPrev()" style="background:none;border:none;cursor:pointer;color:rgba(201,168,76,.5);font-size:1.2rem;padding:4px 8px;line-height:1;">←</button>
+        <div id="carousel-dots" style="display:flex;gap:8px;align-items:center;">
+          <span class="c-dot" onclick="carouselGo(0)" style="width:20px;height:1px;background:#c9a84c;transition:all .3s;cursor:pointer;display:block;"></span>
+          <span class="c-dot" onclick="carouselGo(1)" style="width:8px;height:1px;background:rgba(201,168,76,.25);transition:all .3s;cursor:pointer;display:block;"></span>
+          <span class="c-dot" onclick="carouselGo(2)" style="width:8px;height:1px;background:rgba(201,168,76,.25);transition:all .3s;cursor:pointer;display:block;"></span>
+        </div>
+        <button onclick="carouselNext()" style="background:none;border:none;cursor:pointer;color:rgba(201,168,76,.5);font-size:1.2rem;padding:4px 8px;line-height:1;">→</button>
+      </div>
+
+      <div id="carousel-track" style="overflow:hidden;">
         <div id="carousel-inner" style="display:flex;transition:transform .4s cubic-bezier(0.16,1,0.3,1);">
 
-          <!-- Row 1: Shape cards -->
-          <div class="carousel-row" style="min-width:100%;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(240,234,216,.05);">
-            <div style="background:var(--ink2);padding:2rem 1.5rem;text-align:center;">
-              <svg viewBox="0 0 36 36" fill="none" style="width:24px;height:24px;margin:0 auto .6rem"><rect x="2" y="2" width="32" height="32" stroke="#c9a84c" stroke-width="3" stroke-linecap="square"/></svg>
-              <div style="font-family:var(--fj);font-size:.7rem;color:rgba(201,168,76,.45);margin-bottom:.3rem">四角</div>
-              <div style="font-family:var(--fd);font-size:1.2rem;font-weight:300;color:var(--paper);margin-bottom:.3rem">The Square</div>
-              <div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase">Structure · Form · Kata<br>Safety · Aesthetics · Practice</div>
+          <!-- Column: The Square -->
+          <div class="carousel-row" style="min-width:100%;display:flex;flex-direction:column;gap:1px;background:rgba(240,234,216,.05);">
+            <div style="background:var(--ink2);padding:2.5rem 2rem;text-align:center;position:relative;overflow:hidden;min-height:180px;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+              <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.15"><rect x="5" y="5" width="90" height="90" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="square"/></svg>
+              <svg viewBox="0 0 36 36" fill="none" style="width:32px;height:32px;margin:0 auto .75rem;position:relative"><rect x="2" y="2" width="32" height="32" stroke="#c9a84c" stroke-width="3" stroke-linecap="square"/></svg>
+              <div style="font-family:var(--fj);font-size:.85rem;color:rgba(201,168,76,.5);margin-bottom:.4rem;position:relative">四角 · Shikaku</div>
+              <div style="font-family:var(--fd);font-size:1.8rem;font-weight:300;color:var(--paper);margin-bottom:.5rem;position:relative">The Square</div>
+              <div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;position:relative">Structure · Form · Kata<br>Safety · Aesthetics · Practice</div>
             </div>
-            <div style="background:var(--ink2);padding:2rem 1.5rem;text-align:center;">
-              <svg viewBox="0 0 36 36" fill="none" style="width:24px;height:24px;margin:0 auto .6rem"><polygon points="18,2 34,34 2,34" stroke="#c9a84c" stroke-width="3" stroke-linejoin="miter"/></svg>
-              <div style="font-family:var(--fj);font-size:.7rem;color:rgba(201,168,76,.45);margin-bottom:.3rem">三角</div>
-              <div style="font-family:var(--fd);font-size:1.2rem;font-weight:300;color:var(--paper);margin-bottom:.3rem">The Triangle</div>
-              <div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase">Tension · Intention · Direction<br>Choice · Purpose · Transmission</div>
+            <div style="background:#131315;padding:1.75rem 2rem;position:relative;">
+              <p style="font-family:var(--fm);font-size:11px;line-height:1.85;color:rgba(240,234,216,.38);margin-bottom:1.25rem">The square holds. It is the container: the form, the frame, the kata repeated until reliable. Without the square, there is nothing to push against and nowhere to return.</p>
+              <div style="border-left:2px solid rgba(169,124,26,.3);padding-left:1rem"><p style="font-family:var(--fd);font-size:1rem;font-style:italic;font-weight:300;color:rgba(240,234,216,.5);line-height:1.55">"The square is not a cage. It is the container that makes freedom possible."</p></div>
             </div>
-            <div style="background:var(--ink2);padding:2rem 1.5rem;text-align:center;">
-              <svg viewBox="0 0 36 36" fill="none" style="width:24px;height:24px;margin:0 auto .6rem"><circle cx="18" cy="18" r="15" stroke="#c9a84c" stroke-width="3"/></svg>
-              <div style="font-family:var(--fj);font-size:.7rem;color:rgba(201,168,76,.45);margin-bottom:.3rem">丸</div>
-              <div style="font-family:var(--fd);font-size:1.2rem;font-weight:300;color:var(--paper);margin-bottom:.3rem">The Circle</div>
-              <div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase">Flow · Continuity · Return<br>Communication · Connection · Community</div>
+            <div style="background:#131315;padding:1.75rem 2rem;position:relative;overflow:hidden;border-top:1px solid rgba(240,234,216,.04);">
+              <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.06"><rect x="5" y="5" width="90" height="90" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="square"/></svg>
+              <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.04"><rect x="15" y="15" width="70" height="90" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="square"/></svg>
+              <div style="font-family:var(--fm);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.25rem;position:relative">Structure</div>
+              <div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,234,216,.3);margin-bottom:.75rem;position:relative">In Practice</div>
+              <p style="font-family:var(--fm);font-size:11px;line-height:1.8;color:rgba(240,234,216,.38);position:relative">The rope's form, safety prerequisites, the pattern practiced until second nature.</p>
+            </div>            <div style="background:#131315;padding:1.75rem 2rem;position:relative;overflow:hidden;border-top:1px solid rgba(240,234,216,.04);">
+              <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.06"><rect x="5" y="5" width="90" height="90" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="square"/></svg>
+              <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.05"><polygon points="50,5 95,95 5,95" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="miter"/></svg>
+              <div style="font-family:var(--fm);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.25rem;position:relative">Structure</div>
+              <div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,234,216,.3);margin-bottom:.75rem;position:relative">In Transmission</div>
+              <p style="font-family:var(--fm);font-size:11px;line-height:1.8;color:rgba(240,234,216,.38);position:relative">Curriculum sequence, prerequisites, repeatable components taught consistently.</p>
+            </div>            <div style="background:#131315;padding:1.75rem 2rem;position:relative;overflow:hidden;border-top:1px solid rgba(240,234,216,.04);">
+              <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.05"><rect x="5" y="5" width="90" height="90" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="square"/></svg>
+              <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.04"><circle cx="50" cy="50" r="45" stroke="#c9a84c" stroke-width="1.5"/></svg>
+              <div style="font-family:var(--fm);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.25rem;position:relative">Structure</div>
+              <div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,234,216,.3);margin-bottom:.75rem;position:relative">In Community</div>
+              <p style="font-family:var(--fm);font-size:11px;line-height:1.8;color:rgba(240,234,216,.38);position:relative">Agreements, policies, accountability frameworks, boundaries that protect the space.</p>
             </div>
           </div>
-
-          <!-- Row 2: In Practice -->
-          <div class="carousel-row" style="min-width:100%;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(240,234,216,.05);">
-            <div style="background:#131315;padding:2rem 1.5rem;text-align:center;position:relative;overflow:hidden;">
-              <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.06"><rect x="5" y="5" width="90" height="90" stroke="#c9a84c" stroke-width="1.5"/></svg>
-              <div style="font-family:var(--fm);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.3rem;position:relative">Structure</div>
-              <div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,234,216,.3);margin-bottom:.75rem;position:relative">In Practice</div>
-              <p style="font-family:var(--fm);font-size:10px;line-height:1.8;color:rgba(240,234,216,.32);position:relative">The rope's form, safety prerequisites, the pattern practiced until second nature.</p>
+          <!-- Column: The Triangle -->
+          <div class="carousel-row" style="min-width:100%;display:flex;flex-direction:column;gap:1px;background:rgba(240,234,216,.05);">
+            <div style="background:var(--ink2);padding:2.5rem 2rem;text-align:center;position:relative;overflow:hidden;min-height:180px;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+              <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.15"><polygon points="50,5 95,95 5,95" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="miter"/></svg>
+              <svg viewBox="0 0 36 36" fill="none" style="width:32px;height:32px;margin:0 auto .75rem;position:relative"><polygon points="18,2 34,34 2,34" stroke="#c9a84c" stroke-width="3" stroke-linejoin="miter"/></svg>
+              <div style="font-family:var(--fj);font-size:.85rem;color:rgba(201,168,76,.5);margin-bottom:.4rem;position:relative">三角 · Sankaku</div>
+              <div style="font-family:var(--fd);font-size:1.8rem;font-weight:300;color:var(--paper);margin-bottom:.5rem;position:relative">The Triangle</div>
+              <div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;position:relative">Tension · Intention · Direction<br>Choice · Purpose · Transmission</div>
             </div>
-            <div style="background:#131315;padding:2rem 1.5rem;text-align:center;position:relative;overflow:hidden;">
-              <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.06"><polygon points="50,5 95,95 5,95" stroke="#c9a84c" stroke-width="1.5"/></svg>
-              <div style="font-family:var(--fm);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.3rem;position:relative">Tension</div>
-              <div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,234,216,.3);margin-bottom:.75rem;position:relative">In Practice</div>
-              <p style="font-family:var(--fm);font-size:10px;line-height:1.8;color:rgba(240,234,216,.32);position:relative">The load decision, emotional charge, choosing to add or release pressure.</p>
+            <div style="background:#131315;padding:1.75rem 2rem;position:relative;">
+              <p style="font-family:var(--fm);font-size:11px;line-height:1.85;color:rgba(240,234,216,.38);margin-bottom:1.25rem">The triangle is the moment of decision, where forces meet and something must give. Every transition is a triangle. You choose a direction, apply tension, and there are consequences.</p>
+              <div style="border-left:2px solid rgba(169,124,26,.3);padding-left:1rem"><p style="font-family:var(--fd);font-size:1rem;font-style:italic;font-weight:300;color:rgba(240,234,216,.5);line-height:1.55">"Every tie is a choice. The triangle holds or it hurts. It should not be forced but felt."</p></div>
             </div>
-            <div style="background:#131315;padding:2rem 1.5rem;text-align:center;position:relative;overflow:hidden;">
-              <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.06"><circle cx="50" cy="50" r="45" stroke="#c9a84c" stroke-width="1.5"/></svg>
-              <div style="font-family:var(--fm);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.3rem;position:relative">Flow</div>
+            <div style="background:#131315;padding:1.75rem 2rem;position:relative;overflow:hidden;border-top:1px solid rgba(240,234,216,.04);">
+              <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.05"><polygon points="50,5 95,95 5,95" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="miter"/></svg>
+              <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.04"><rect x="5" y="5" width="90" height="90" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="square"/></svg>
+              <div style="font-family:var(--fm);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.25rem;position:relative">Tension</div>
               <div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,234,216,.3);margin-bottom:.75rem;position:relative">In Practice</div>
-              <p style="font-family:var(--fm);font-size:10px;line-height:1.8;color:rgba(240,234,216,.32);position:relative">Sensitivity to the body receiving rope, adapting when anatomy, breath, or energy shifts.</p>
+              <p style="font-family:var(--fm);font-size:11px;line-height:1.8;color:rgba(240,234,216,.38);position:relative">The load decision, emotional charge, choosing to add or release pressure.</p>
+            </div>            <div style="background:#131315;padding:1.75rem 2rem;position:relative;overflow:hidden;border-top:1px solid rgba(240,234,216,.04);">
+              <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.05"><polygon points="50,5 95,95 5,95" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="miter"/></svg>
+              <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.04"><polygon points="50,15 85,85 15,85" stroke="#c9a84c" stroke-width="1.5"/></svg>
+              <div style="font-family:var(--fm);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.25rem;position:relative">Tension</div>
+              <div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,234,216,.3);margin-bottom:.75rem;position:relative">In Transmission</div>
+              <p style="font-family:var(--fm);font-size:11px;line-height:1.8;color:rgba(240,234,216,.38);position:relative">The challenge placed on a student at the right moment, not too soon, not too late.</p>
+            </div>            <div style="background:#131315;padding:1.75rem 2rem;position:relative;overflow:hidden;border-top:1px solid rgba(240,234,216,.04);">
+              <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.05"><polygon points="50,5 95,95 5,95" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="miter"/></svg>
+              <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.04"><circle cx="50" cy="50" r="45" stroke="#c9a84c" stroke-width="1.5"/></svg>
+              <div style="font-family:var(--fm);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.25rem;position:relative">Tension</div>
+              <div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,234,216,.3);margin-bottom:.75rem;position:relative">In Community</div>
+              <p style="font-family:var(--fm);font-size:11px;line-height:1.8;color:rgba(240,234,216,.38);position:relative">Honest feedback, consent negotiation, the responsibility of authority.</p>
             </div>
           </div>
-
-          <!-- Row 3: In Transmission -->
-          <div class="carousel-row" style="min-width:100%;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(240,234,216,.05);">
-            <div style="background:#131315;padding:2rem 1.5rem;text-align:center;position:relative;overflow:hidden;">
-              <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.06"><polygon points="50,5 95,95 5,95" stroke="#c9a84c" stroke-width="1.5"/></svg>
-              <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.06"><rect x="5" y="5" width="90" height="90" stroke="#c9a84c" stroke-width="1.5"/></svg>
-              <div style="font-family:var(--fm);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.3rem;position:relative">Structure</div>
+          <!-- Column: The Circle -->
+          <div class="carousel-row" style="min-width:100%;display:flex;flex-direction:column;gap:1px;background:rgba(240,234,216,.05);">
+            <div style="background:var(--ink2);padding:2.5rem 2rem;text-align:center;position:relative;overflow:hidden;min-height:180px;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+              <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.15"><circle cx="50" cy="50" r="45" stroke="#c9a84c" stroke-width="1.5"/></svg>
+              <svg viewBox="0 0 36 36" fill="none" style="width:32px;height:32px;margin:0 auto .75rem;position:relative"><circle cx="18" cy="18" r="15" stroke="#c9a84c" stroke-width="3"/></svg>
+              <div style="font-family:var(--fj);font-size:.85rem;color:rgba(201,168,76,.5);margin-bottom:.4rem;position:relative">丸 · Maru</div>
+              <div style="font-family:var(--fd);font-size:1.8rem;font-weight:300;color:var(--paper);margin-bottom:.5rem;position:relative">The Circle</div>
+              <div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;position:relative">Flow · Continuity · Return<br>Communication · Connection · Community</div>
+            </div>
+            <div style="background:#131315;padding:1.75rem 2rem;position:relative;">
+              <p style="font-family:var(--fm);font-size:11px;line-height:1.85;color:rgba(240,234,216,.38);margin-bottom:1.25rem">The circle has no beginning and no end. In rope it is the return: to fundamentals, to humility, to practice. Every teacher was once a beginner. The community is circular.</p>
+              <div style="border-left:2px solid rgba(169,124,26,.3);padding-left:1rem"><p style="font-family:var(--fd);font-size:1rem;font-style:italic;font-weight:300;color:rgba(240,234,216,.5);line-height:1.55">"The path is not something you complete. It is something you continue."</p></div>
+            </div>
+            <div style="background:#131315;padding:1.75rem 2rem;position:relative;overflow:hidden;border-top:1px solid rgba(240,234,216,.04);">
+              <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.05"><circle cx="50" cy="50" r="45" stroke="#c9a84c" stroke-width="1.5"/></svg>
+              <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.04"><rect x="5" y="5" width="90" height="90" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="square"/></svg>
+              <div style="font-family:var(--fm);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.25rem;position:relative">Flow</div>
+              <div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,234,216,.3);margin-bottom:.75rem;position:relative">In Practice</div>
+              <p style="font-family:var(--fm);font-size:11px;line-height:1.8;color:rgba(240,234,216,.38);position:relative">Sensitivity to the body receiving rope, adapting when anatomy, breath, or energy shifts.</p>
+            </div>            <div style="background:#131315;padding:1.75rem 2rem;position:relative;overflow:hidden;border-top:1px solid rgba(240,234,216,.04);">
+              <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.05"><circle cx="50" cy="50" r="45" stroke="#c9a84c" stroke-width="1.5"/></svg>
+              <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.04"><polygon points="50,5 95,95 5,95" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="miter"/></svg>
+              <div style="font-family:var(--fm);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.25rem;position:relative">Flow</div>
               <div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,234,216,.3);margin-bottom:.75rem;position:relative">In Transmission</div>
-              <p style="font-family:var(--fm);font-size:10px;line-height:1.8;color:rgba(240,234,216,.32);position:relative">Curriculum sequence, prerequisites, repeatable components taught consistently.</p>
-            </div>
-            <div style="background:#131315;padding:2rem 1.5rem;text-align:center;position:relative;overflow:hidden;">
-              <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.06"><polygon points="50,5 95,95 5,95" stroke="#c9a84c" stroke-width="1.5"/></svg>
-              <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.06"><polygon points="50,15 85,85 15,85" stroke="#c9a84c" stroke-width="1.5"/></svg>
-              <div style="font-family:var(--fm);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.3rem;position:relative">Tension</div>
-              <div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,234,216,.3);margin-bottom:.75rem;position:relative">In Transmission</div>
-              <p style="font-family:var(--fm);font-size:10px;line-height:1.8;color:rgba(240,234,216,.32);position:relative">The challenge placed on a student at the right moment, not too soon, not too late.</p>
-            </div>
-            <div style="background:#131315;padding:2rem 1.5rem;text-align:center;position:relative;overflow:hidden;">
-              <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.06"><polygon points="50,5 95,95 5,95" stroke="#c9a84c" stroke-width="1.5"/></svg>
+              <p style="font-family:var(--fm);font-size:11px;line-height:1.8;color:rgba(240,234,216,.38);position:relative">Reading the room, following what the student is actually learning.</p>
+            </div>            <div style="background:#131315;padding:1.75rem 2rem;position:relative;overflow:hidden;border-top:1px solid rgba(240,234,216,.04);">
               <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.06"><circle cx="50" cy="50" r="45" stroke="#c9a84c" stroke-width="1.5"/></svg>
-              <div style="font-family:var(--fm);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.3rem;position:relative">Flow</div>
-              <div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,234,216,.3);margin-bottom:.75rem;position:relative">In Transmission</div>
-              <p style="font-family:var(--fm);font-size:10px;line-height:1.8;color:rgba(240,234,216,.32);position:relative">Reading the room, following what the student is actually learning.</p>
-            </div>
-          </div>
-
-          <!-- Row 4: In Community -->
-          <div class="carousel-row" style="min-width:100%;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(240,234,216,.05);">
-            <div style="background:#131315;padding:2rem 1.5rem;text-align:center;position:relative;overflow:hidden;">
-              <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.06"><circle cx="50" cy="50" r="45" stroke="#c9a84c" stroke-width="1.5"/></svg>
-              <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.06"><rect x="5" y="5" width="90" height="90" stroke="#c9a84c" stroke-width="1.5"/></svg>
-              <div style="font-family:var(--fm);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.3rem;position:relative">Structure</div>
+              <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.04"><circle cx="50" cy="50" r="32" stroke="#c9a84c" stroke-width="1.5"/></svg>
+              <div style="font-family:var(--fm);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.25rem;position:relative">Flow</div>
               <div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,234,216,.3);margin-bottom:.75rem;position:relative">In Community</div>
-              <p style="font-family:var(--fm);font-size:10px;line-height:1.8;color:rgba(240,234,216,.32);position:relative">Agreements, policies, accountability frameworks, boundaries that protect the space.</p>
-            </div>
-            <div style="background:#131315;padding:2rem 1.5rem;text-align:center;position:relative;overflow:hidden;">
-              <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.06"><circle cx="50" cy="50" r="45" stroke="#c9a84c" stroke-width="1.5"/></svg>
-              <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.06"><polygon points="50,5 95,95 5,95" stroke="#c9a84c" stroke-width="1.5"/></svg>
-              <div style="font-family:var(--fm);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.3rem;position:relative">Tension</div>
-              <div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,234,216,.3);margin-bottom:.75rem;position:relative">In Community</div>
-              <p style="font-family:var(--fm);font-size:10px;line-height:1.8;color:rgba(240,234,216,.32);position:relative">Honest feedback, consent negotiation, the responsibility of authority.</p>
-            </div>
-            <div style="background:#131315;padding:2rem 1.5rem;text-align:center;position:relative;overflow:hidden;">
-              <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.06"><circle cx="50" cy="50" r="45" stroke="#c9a84c" stroke-width="1.5"/></svg>
-              <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.06"><circle cx="50" cy="50" r="30" stroke="#c9a84c" stroke-width="1.5"/></svg>
-              <div style="font-family:var(--fm);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.3rem;position:relative">Flow</div>
-              <div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,234,216,.3);margin-bottom:.75rem;position:relative">In Community</div>
-              <p style="font-family:var(--fm);font-size:10px;line-height:1.8;color:rgba(240,234,216,.32);position:relative">How a community absorbs conflict, learns, adapts, and continues rather than fractures.</p>
+              <p style="font-family:var(--fm);font-size:11px;line-height:1.8;color:rgba(240,234,216,.38);position:relative">How a community absorbs conflict, learns, adapts, and continues rather than fractures.</p>
             </div>
           </div>
 
         </div>
       </div>
 
-      <!-- Dots + arrows -->
-      <div style="display:flex;align-items:center;justify-content:center;gap:1.5rem;padding:1.25rem 0;background:rgba(240,234,216,.03);">
+      <!-- Bottom nav -->
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:.75rem 1rem;background:rgba(240,234,216,.03);border-top:1px solid rgba(240,234,216,.05);">
         <button onclick="carouselPrev()" style="background:none;border:none;cursor:pointer;color:rgba(201,168,76,.5);font-size:1.2rem;padding:4px 8px;line-height:1;">←</button>
-        <div id="carousel-dots" style="display:flex;gap:8px;">
-          <span class="c-dot active" style="width:20px;height:1px;background:#c9a84c;transition:all .3s;cursor:pointer" onclick="carouselGo(0)"></span>
-          <span class="c-dot" style="width:8px;height:1px;background:rgba(201,168,76,.25);transition:all .3s;cursor:pointer" onclick="carouselGo(1)"></span>
-          <span class="c-dot" style="width:8px;height:1px;background:rgba(201,168,76,.25);transition:all .3s;cursor:pointer" onclick="carouselGo(2)"></span>
-          <span class="c-dot" style="width:8px;height:1px;background:rgba(201,168,76,.25);transition:all .3s;cursor:pointer" onclick="carouselGo(3)"></span>
-        </div>
+        <div style="font-family:var(--fm);font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:rgba(201,168,76,.3)" id="carousel-label">Structure</div>
         <button onclick="carouselNext()" style="background:none;border:none;cursor:pointer;color:rgba(201,168,76,.5);font-size:1.2rem;padding:4px 8px;line-height:1;">→</button>
       </div>
     </div>
 
     <!-- Applied -->
     <div style="margin-top:5rem;" class="fade-in">
-      <div class="lbl" style="margin-bottom:1rem">Applied</div>
-      <div class="two-col">
+      <div class="lbl" style="margin-bottom:1rem">In application</div>
+      <div class="two-col" style="margin-bottom:4rem">
         <div>
-          <h2 style="font-size:clamp(2rem,3vw,3.2rem);">Not philosophy.<br><em style="color:var(--rope-l);font-style:italic">Practice.</em></h2>
+          <h2>A practice <em style="color:var(--rope-l);font-style:italic">of philosophy.</em></h2>
+          <!-- Overlapping □△○ -->
+          <svg viewBox="0 0 160 140" fill="none" style="width:120px;height:105px;margin-top:1.5rem;opacity:.35">
+            <rect x="4" y="4" width="80" height="80" stroke="#c9a84c" stroke-width="1"/>
+            <polygon points="72,8 148,132 8,132" stroke="#c9a84c" stroke-width="1" stroke-linejoin="miter"/>
+            <circle cx="80" cy="72" r="56" stroke="#c9a84c" stroke-width="1"/>
+          </svg>
         </div>
         <div>
-          <p class="body-serif" style="margin-bottom:1.25rem">These shapes are not ideas to contemplate but integrate. Structure tells you what the form requires. Tension tells you what the moment demands. Flow tells you how to adapt when reality differs from the plan.</p>
-          <p class="body-mono" style="margin-bottom:1.25rem">These are not sequential stages. They are simultaneous forces. At any moment in practice, all three are active. The question is: which one needs your attention, right now?</p>
+          <p class="body-serif" style="margin-bottom:1.25rem">These shapes are not ideas to just contemplate but integrate; and that takes practice. Structure tells you what the form requires. Tension tells you what the moment demands. Flow tells you how to adapt when reality differs from the plan.</p>
+          <p class="body-serif" style="margin-bottom:1.25rem">These are not sequential stages. They are simultaneous forces. At any moment in practice, all three are active, at all times. The question is: do any of these need your immediate active attention? Eventually they are all passively applied; we do not think when we walk; we just do, but honestly many people can go back to learning how to walk.</p>
           <div class="bq">
-            <p>"The rope will tie you as much as you tie it; Mastery is not the goal. Walking the path is."</p>
+            <p>"In time, the rope will tie you as much as you tie it; Mastery is not the goal. Walking the path is."</p>
           </div>
         </div>
       </div>
@@ -1270,9 +1292,10 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
 </footer>
 
 <script>
+var carouselLabels = ['Structure', 'Tension', 'Flow'];
 // Carousel
 var carouselIndex = 0;
-var carouselTotal = 4;
+var carouselTotal = 3;
 function carouselGo(n) {
   carouselIndex = Math.max(0, Math.min(n, carouselTotal - 1));
   document.getElementById('carousel-inner').style.transform = 'translateX(-' + (carouselIndex * 100) + '%)';
@@ -1280,6 +1303,8 @@ function carouselGo(n) {
     d.style.width = i === carouselIndex ? '20px' : '8px';
     d.style.background = i === carouselIndex ? '#c9a84c' : 'rgba(201,168,76,.25)';
   });
+  var lbl = document.getElementById('carousel-label');
+  if (lbl) lbl.textContent = carouselLabels[carouselIndex];
 }
 function carouselNext() { carouselGo(carouselIndex + 1); }
 function carouselPrev() { carouselGo(carouselIndex - 1); }
