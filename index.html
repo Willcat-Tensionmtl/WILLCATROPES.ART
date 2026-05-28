@@ -186,19 +186,21 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
   <div class="hero-overlay"></div>
   <nav class="hero-nav">
     <div class="hero-logo">Will<em>cat</em>.</div>
-    <ul class="hero-links">
-      <li><a href="#A1">The Framework</a></li>
-      <li><a href="#A2">About</a></li>
-      <li><a href="#B2">The Path</a></li>
-      <li><a href="#C2">Work with me</a></li>
-    </ul>
-    <button id="menu-btn" onclick="toggleMenu()" aria-label="Menu" style="display:none;background:none;border:none;cursor:pointer;padding:4px;line-height:0;">
-      <svg viewBox="0 0 160 140" fill="none" style="width:36px;height:32px;">
-        <rect x="4" y="4" width="80" height="80" stroke="#c9a84c" stroke-width="4"/>
-        <polygon points="72,8 148,132 8,132" stroke="#c9a84c" stroke-width="4" stroke-linejoin="miter"/>
-        <circle cx="80" cy="72" r="56" stroke="#c9a84c" stroke-width="4"/>
-      </svg>
-    </button>
+    <div style="display:flex;align-items:center;gap:1.5rem;">
+      <ul class="hero-links" style="display:flex;gap:1.5rem;list-style:none;align-items:center;margin:0;">
+        <li><a href="#A2" style="font-family:var(--fm);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:rgba(240,234,216,.4);text-decoration:none;transition:color .2s">About</a></li>
+        <li><a href="#break-sq" style="font-family:var(--fm);font-size:13px;color:rgba(240,234,216,.35);text-decoration:none;transition:color .2s;line-height:1" title="Structure">□</a></li>
+        <li><a href="#break-tri" style="font-family:var(--fm);font-size:13px;color:rgba(240,234,216,.35);text-decoration:none;transition:color .2s;line-height:1" title="Tension">△</a></li>
+        <li><a href="#break-circ" style="font-family:var(--fm);font-size:13px;color:rgba(240,234,216,.35);text-decoration:none;transition:color .2s;line-height:1" title="Flow">○</a></li>
+      </ul>
+      <button id="menu-btn" onclick="toggleMenu()" aria-label="Menu" style="background:none;border:none;cursor:pointer;padding:4px;line-height:0;">
+        <svg viewBox="0 0 160 140" fill="none" style="width:36px;height:32px;">
+          <rect x="4" y="4" width="80" height="80" stroke="#c9a84c" stroke-width="4"/>
+          <polygon points="72,8 148,132 8,132" stroke="#c9a84c" stroke-width="4" stroke-linejoin="miter"/>
+          <circle cx="80" cy="72" r="56" stroke="#c9a84c" stroke-width="4"/>
+        </svg>
+      </button>
+    </div>
   </nav>
 
   <!-- Slide-in menu panel -->
@@ -750,6 +752,11 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
 
     <!-- 13 Companions -->
     <div class="fade-in" style="margin-top:3rem">
+      <!-- Bokken — full width, edge up, tsuka right -->
+      <div style="width:100%;margin-bottom:2.5rem;opacity:.6;">
+        <img src="img/Bokken.png" alt="" style="width:100%;display:block;mix-blend-mode:screen;"/>
+      </div>
+
       <div class="lbl" style="margin-bottom:1.25rem">The Thirteen Companions</div>
       <div style="display:grid;grid-template-columns:1fr 2fr;gap:3rem;align-items:start;">
 
@@ -865,7 +872,6 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
     <div class="two-col fade-in" style="margin-bottom:4rem">
       <div>
         <h2>The container.<br><em style="color:var(--rope-l);font-style:italic">Not the cage.</em></h2>
-        <div class="bq"><p>"The square is not a cage. It is the container that makes freedom possible."</p></div>
       </div>
       <div>
         <p class="body-serif">Structure is not the opposite of freedom. It is the condition of it. The square is the container. The kata. The protocol. Without the square, the circle has nothing to return to and the triangle has nothing to push against.</p>
