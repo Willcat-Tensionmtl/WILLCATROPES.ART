@@ -143,6 +143,8 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
   /* Companions — single column stack on mobile */
   #companions-wrapper { grid-template-columns: 1fr !important; gap: 2rem !important; }
   #companions-footer { font-size: 14px !important; line-height: 1.75 !important; max-width: 100% !important; }
+  #pillars-grid { display: none !important; }
+  .pillars-carousel { display: block !important; }
   /* Force all two-col to stack */
   .two-col { grid-template-columns: 1fr !important; gap: 2rem !important; }
   .body-mono { font-size: 14px !important; line-height: 1.7 !important; }
@@ -703,7 +705,7 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
       <div class="bq"><p>Not rules to follow but lenses to see through.</p></div>
     </div>
 
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(240,234,216,.05);margin-bottom:1px;" class="fade-in">
+    <div id="pillars-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(240,234,216,.05);margin-bottom:1px;" class="fade-in">
       <div style="background:rgba(240,234,216,.04);padding:3rem 2.5rem;position:relative;overflow:hidden">
         <svg viewBox="0 0 120 120" fill="none" stroke="rgba(169,124,26,.12)" stroke-width="2" stroke-linecap="square" style="position:absolute;right:-.5rem;bottom:-1.5rem;width:9rem;height:9rem;pointer-events:none"><rect x="10" y="10" width="100" height="100"/></svg>
         <div style="position:absolute;right:1.25rem;top:1.25rem;font-family:var(--fj);font-size:4.5rem;color:rgba(169,124,26,.14);line-height:1;pointer-events:none;user-select:none">美</div>
@@ -736,6 +738,48 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
           <div style="font-family:var(--fd);font-size:1.5rem;font-weight:300;color:var(--paper);position:relative;z-index:1">Flow</div>
         </div>
         <p style="font-family:var(--fm);font-size:14px;line-height:1.85;color:rgba(240,234,216,.38)">Rope is a dialogue, not a monologue. Learning to listen with your hands, responding to micro-movements, separates craft from art.</p>
+      </div>
+    </div>
+
+    <!-- Mobile pillars carousel -->
+    <div class="pillars-carousel" style="display:none;">
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:.75rem 1rem;background:rgba(240,234,216,.03);border-bottom:1px solid rgba(240,234,216,.05);">
+        <button onclick="pillarsGo(pillarsIndex-1)" style="background:none;border:none;cursor:pointer;color:rgba(201,168,76,.5);font-size:1.2rem;padding:4px 8px;">←</button>
+        <div id="pillars-label" style="font-family:var(--fm);font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:rgba(201,168,76,.4)">Structure</div>
+        <button onclick="pillarsGo(pillarsIndex+1)" style="background:none;border:none;cursor:pointer;color:rgba(201,168,76,.5);font-size:1.2rem;padding:4px 8px;">→</button>
+      </div>
+      <div style="overflow:hidden;">
+        <div id="pillars-inner" style="display:flex;transition:transform .4s cubic-bezier(0.16,1,0.3,1);">
+          <div style="min-width:100%;background:rgba(240,234,216,.04);padding:2.5rem 2rem;position:relative;overflow:hidden;">
+            <svg viewBox="0 0 120 120" fill="none" stroke="rgba(169,124,26,.12)" stroke-width="2" stroke-linecap="square" style="position:absolute;right:-.5rem;bottom:-1.5rem;width:9rem;height:9rem;pointer-events:none"><rect x="10" y="10" width="100" height="100"/></svg>
+            <div style="position:absolute;right:1.25rem;top:1.25rem;font-family:var(--fj);font-size:4.5rem;color:rgba(169,124,26,.14);line-height:1;pointer-events:none">美</div>
+            <svg viewBox="0 0 52 52" style="width:44px;height:44px;margin-bottom:.75rem"><rect x="7" y="7" width="38" height="38" fill="none" stroke="#c9a84c" stroke-width="8" stroke-linecap="square"/><rect x="7" y="7" width="38" height="38" fill="none" stroke="#3a6b3a" stroke-width="3" stroke-linecap="square"/></svg>
+            <div style="font-family:var(--fm);font-size:11px;letter-spacing:.22em;color:var(--muted);text-transform:uppercase;margin-bottom:.75rem">四角 · Shikaku</div>
+            <div style="font-family:var(--fd);font-size:2rem;font-weight:300;color:var(--paper);margin-bottom:1rem">Structure</div>
+            <p style="font-family:var(--fm);font-size:14px;line-height:1.85;color:rgba(240,234,216,.5)">Every angle, tension, and line is intentional. Beauty is not decoration. It is structure made visible. Rope that looks right usually is right.</p>
+          </div>
+          <div style="min-width:100%;background:rgba(240,234,216,.04);padding:2.5rem 2rem;position:relative;overflow:hidden;">
+            <svg viewBox="0 0 120 120" fill="none" stroke="rgba(169,124,26,.12)" stroke-width="2" stroke-linejoin="miter" style="position:absolute;right:-.5rem;bottom:-1.5rem;width:9rem;height:9rem;pointer-events:none"><polygon points="60,8 112,112 8,112"/></svg>
+            <div style="position:absolute;right:1.25rem;top:1.25rem;font-family:var(--fj);font-size:4.5rem;color:rgba(169,124,26,.14);line-height:1;pointer-events:none">意</div>
+            <svg viewBox="0 0 52 52" style="width:44px;height:44px;margin-bottom:.75rem"><polygon points="26,6 48,46 4,46" fill="none" stroke="#c9a84c" stroke-width="8" stroke-linejoin="miter"/><polygon points="26,6 48,46 4,46" fill="none" stroke="#8b2020" stroke-width="3" stroke-linejoin="miter"/></svg>
+            <div style="font-family:var(--fm);font-size:11px;letter-spacing:.22em;color:var(--muted);text-transform:uppercase;margin-bottom:.75rem">三角 · Sankaku</div>
+            <div style="font-family:var(--fd);font-size:2rem;font-weight:300;color:var(--paper);margin-bottom:1rem">Tension</div>
+            <p style="font-family:var(--fm);font-size:14px;line-height:1.85;color:rgba(240,234,216,.5)">Why are you tying? The answer shapes everything. Rope without purpose is just knots. Intention transforms technique into something that matters.</p>
+          </div>
+          <div style="min-width:100%;background:rgba(240,234,216,.04);padding:2.5rem 2rem;position:relative;overflow:hidden;">
+            <svg viewBox="0 0 120 120" fill="none" stroke="rgba(169,124,26,.12)" stroke-width="2" style="position:absolute;right:-.5rem;bottom:-1.5rem;width:9rem;height:9rem;pointer-events:none"><circle cx="60" cy="60" r="50"/></svg>
+            <div style="position:absolute;right:1.25rem;top:1.25rem;font-family:var(--fj);font-size:4.5rem;color:rgba(169,124,26,.14);line-height:1;pointer-events:none">繋</div>
+            <svg viewBox="0 0 52 52" style="width:44px;height:44px;margin-bottom:.75rem"><circle cx="26" cy="26" r="19" fill="none" stroke="#c9a84c" stroke-width="8"/><circle cx="26" cy="26" r="19" fill="none" stroke="#2a2420" stroke-width="3"/></svg>
+            <div style="font-family:var(--fm);font-size:11px;letter-spacing:.22em;color:var(--muted);text-transform:uppercase;margin-bottom:.75rem">丸 · Maru</div>
+            <div style="font-family:var(--fd);font-size:2rem;font-weight:300;color:var(--paper);margin-bottom:1rem">Flow</div>
+            <p style="font-family:var(--fm);font-size:14px;line-height:1.85;color:rgba(240,234,216,.5)">Rope is a dialogue, not a monologue. Learning to listen with your hands, responding to micro-movements, separates craft from art.</p>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:.75rem 1rem;background:rgba(240,234,216,.03);border-top:1px solid rgba(240,234,216,.05);">
+        <button onclick="pillarsGo(pillarsIndex-1)" style="background:none;border:none;cursor:pointer;color:rgba(201,168,76,.5);font-size:1.2rem;padding:4px 8px;">←</button>
+        <div style="font-family:var(--fm);font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:rgba(201,168,76,.25)">1 · 2 · 3</div>
+        <button onclick="pillarsGo(pillarsIndex+1)" style="background:none;border:none;cursor:pointer;color:rgba(201,168,76,.5);font-size:1.2rem;padding:4px 8px;">→</button>
       </div>
     </div>
 
@@ -1338,6 +1382,25 @@ function carouselPrev() { carouselGo(carouselIndex - 1); }
   el.addEventListener('touchend', function(e) {
     var dx = e.changedTouches[0].clientX - startX;
     if (Math.abs(dx) > 40) dx < 0 ? carouselNext() : carouselPrev();
+  }, {passive:true});
+})();
+
+var pillarsIndex = 0;
+var pillarsLabels = ['Structure', 'Tension', 'Flow'];
+function pillarsGo(n) {
+  pillarsIndex = Math.max(0, Math.min(n, 2));
+  document.getElementById('pillars-inner').style.transform = 'translateX(-' + (pillarsIndex * 100) + '%)';
+  document.getElementById('pillars-label').textContent = pillarsLabels[pillarsIndex];
+}
+// Touch swipe for pillars
+(function() {
+  var el = document.getElementById('pillars-inner');
+  if (!el) return;
+  var startX = 0;
+  el.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; }, {passive:true});
+  el.addEventListener('touchend', function(e) {
+    var dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 40) pillarsGo(pillarsIndex + (dx < 0 ? 1 : -1));
   }, {passive:true});
 })();
 
