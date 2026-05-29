@@ -139,10 +139,6 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
   #shape-cards-grid, #htr-grid { display: none !important; }
   .a1-carousel { display: block !important; }
   #break-sq-bg img { object-position: 20% center; }
-
-  /* Companions — single column stack on mobile */
-  #companions-wrapper { grid-template-columns: 1fr !important; gap: 2rem !important; }
-  #companions-footer { font-size: 14px !important; line-height: 1.75 !important; max-width: 100% !important; }
   #pillars-grid { display: none !important; }
   .pillars-carousel { display: block !important; }
   /* Force all two-col to stack */
@@ -175,6 +171,7 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
   .hero-nav { top: 52px; }
   .hero-content { padding: 2rem 1.5rem; }
   .hero-name { font-size: clamp(3.2rem,14vw,5rem); }
+  #companions-wrapper { grid-template-columns: 1fr !important; gap: 2rem !important; }
 }
 </style>
 </head>
@@ -187,7 +184,7 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
 </div>
 <div id="wip-spacer" style="height:38px;"></div>
 
-<!-- ══ HERO ══ -->
+<!-- ══ A1 — HERO ══ -->
 <section class="hero" id="hero">
   <div class="hero-bg" id="hero-bg">
     <img src="img/hero_01.jpg" alt="Willcat, Shibari Educator"/>
@@ -197,7 +194,7 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
     <div class="hero-logo">Will<em>cat</em>.</div>
     <div style="display:flex;align-items:center;gap:1.5rem;">
       <ul class="hero-links" style="display:flex;gap:1.5rem;list-style:none;align-items:center;margin:0;">
-        <li><a href="#A2" style="font-family:var(--fm);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:rgba(240,234,216,.4);text-decoration:none;transition:color .2s">About</a></li>
+        <li><a href="#B1" style="font-family:var(--fm);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:rgba(240,234,216,.4);text-decoration:none;transition:color .2s">About</a></li>
         <li><a href="#break-sq" style="font-family:var(--fm);font-size:13px;color:rgba(240,234,216,.35);text-decoration:none;transition:color .2s;line-height:1" title="Structure">□</a></li>
         <li><a href="#break-tri" style="font-family:var(--fm);font-size:13px;color:rgba(240,234,216,.35);text-decoration:none;transition:color .2s;line-height:1" title="Tension">△</a></li>
         <li><a href="#break-circ" style="font-family:var(--fm);font-size:13px;color:rgba(240,234,216,.35);text-decoration:none;transition:color .2s;line-height:1" title="Flow">○</a></li>
@@ -221,10 +218,10 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
       </svg>
     </button>
     <ul style="list-style:none;display:flex;flex-direction:column;gap:2rem;flex:1;">
-      <li><a href="#A1" onclick="toggleMenu()" style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:rgba(240,234,216,.7);text-decoration:none;display:block;transition:color .2s">The Framework</a></li>
-      <li><a href="#A2" onclick="toggleMenu()" style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:rgba(240,234,216,.7);text-decoration:none;display:block;transition:color .2s">About</a></li>
-      <li><a href="#B2" onclick="toggleMenu()" style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:rgba(240,234,216,.7);text-decoration:none;display:block;transition:color .2s">The Path</a></li>
-      <li><a href="#C2" onclick="toggleMenu()" style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:rgba(240,234,216,.7);text-decoration:none;display:block;transition:color .2s">Work with me</a></li>
+      <li><a href="#C4" onclick="toggleMenu()" style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:rgba(240,234,216,.7);text-decoration:none;display:block;transition:color .2s">The Framework</a></li>
+      <li><a href="#B1" onclick="toggleMenu()" style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:rgba(240,234,216,.7);text-decoration:none;display:block;transition:color .2s">About</a></li>
+      <li><a href="#C3" onclick="toggleMenu()" style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:rgba(240,234,216,.7);text-decoration:none;display:block;transition:color .2s">The Path</a></li>
+      <li><a href="#D3" onclick="toggleMenu()" style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:rgba(240,234,216,.7);text-decoration:none;display:block;transition:color .2s">Work with me</a></li>
     </ul>
     <div style="border-top:1px solid rgba(169,124,26,.15);padding-top:2rem;">
       <a href="https://tensionmtl.ca" target="_blank" style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(201,168,76,.4);text-decoration:none;">tensionmtl.ca</a>
@@ -238,10 +235,10 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
       <button class="menu-close" onclick="toggleMenu()">✕</button>
       <div style="font-family:var(--fd);font-size:1.1rem;font-weight:300;letter-spacing:.2em;color:var(--paper);opacity:.55;margin-bottom:3rem">Will<em style="color:var(--rope-l);font-style:italic">cat</em>.</div>
       <nav>
-        <a href="#A1" onclick="toggleMenu()">The Framework</a>
-        <a href="#A2" onclick="toggleMenu()">About</a>
-        <a href="#B2" onclick="toggleMenu()">The Path</a>
-        <a href="#C2" onclick="toggleMenu()">Work with me</a>
+        <a href="#C4" onclick="toggleMenu()">The Framework</a>
+        <a href="#B1" onclick="toggleMenu()">About</a>
+        <a href="#C3" onclick="toggleMenu()">The Path</a>
+        <a href="#D3" onclick="toggleMenu()">Work with me</a>
         <a href="https://tensionmtl.ca" target="_blank">Tension MTL ↗</a>
       </nav>
       <div style="margin-top:auto;padding-top:3rem;border-top:1px solid rgba(240,234,216,.08)">
@@ -341,13 +338,13 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
       The circle returns.
     </div>
     <div class="hero-btns">
-      <a href="#A1" class="btn btn-p">The Framework</a>
+      <a href="#C4" class="btn btn-p">The Framework</a>
       <a href="https://tensionmtl.ca/pages/about-willcat" target="_blank" class="btn btn-o">Book a date</a>
     </div>
   </div>
 </section>
 
-<!-- ══ INVITATION ══ -->
+<!-- ══ A2 — INVITATION ══ -->
 <section class="section" id="invitation" style="padding:8rem 0;border-top:1px solid rgba(240,234,216,.06);">
   <div style="max-width:780px;margin:0 auto;padding:0 4rem;">
     <h2 class="fade-in" style="font-family:var(--fd);font-size:clamp(2.2rem,4vw,3.8rem);font-weight:300;line-height:.95;color:var(--paper);margin-bottom:2.5rem;">
@@ -369,9 +366,239 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
   </div>
 </section>
 
-<!-- ══ A1 — THE FRAMEWORK ══ -->
-<section class="section" id="A1" style="border-top:1px solid rgba(240,234,216,.06);">
-  <div class="sec-id">A1</div>
+<!-- ══ B1 — WHO I AM ══ -->
+<section class="section" id="E4" style="background:#131315;border-top:1px solid rgba(240,234,216,.06);">
+  <div class="sec-id">E4</div>
+  <div class="inner">
+    <div class="two-col valign fade-in" style="margin-bottom:3rem">
+      <div style="aspect-ratio:3/4;background:#131315;overflow:hidden;position:relative;">
+        <img src="img/Willcat_portrait.png" alt="William Desjardins / Willcat" style="width:100%;height:100%;object-fit:cover;object-position:center 10%;display:block;"/>
+        <div style="position:absolute;bottom:1rem;right:1rem;font-family:var(--fm);font-size:8.5px;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,234,216,.2);">William Desjardins / Willcat</div>
+      </div>
+      <div>
+        <div class="lbl">About</div>
+        <h2>Practitioner.<br>Educator.<br><em style="color:var(--rope-l);font-style:italic">Still learning.</em></h2>
+        <p class="body-serif" style="margin-bottom:1.25rem">William Desjardins (she/her, they/them). Fell into rope in 2014 through a Mistress, head first into kink. Started tying in 2015 and never stopped. Founder of Tension MTL, a rope studio built slowly and stubbornly in Montréal. <a href="https://fetlife.com/WillCat/posts/13290990" target="_blank" style="color:var(--rope-l);border-bottom:1px solid rgba(169,124,26,.35);">Over 10,000 hours in</a>. Teaching, tying, performing, making mistakes, learning from them.</p>
+        <p class="body-serif">Former technical training director. That background translated directly: breaking complex things into their smallest learnable components is the same skill, different material. The teaching philosophy has always been about planting seeds and watching students grow.</p>
+      </div>
+    </div>
+    <div class="fade-in" style="border-top:1px solid rgba(240,234,216,.07);padding-top:2.5rem;margin-bottom:3rem;">
+      <p class="body-serif" style="margin-bottom:1.25rem">Teaching approach shaped by component-based martial arts pedagogy. Kenjutsu practiced seriously. Aikido explored more through reading than formal training. Not authorized in any Japanese rope tradition. Everything drawn from many sources, shaped by a decade of deliberate practice and the humility to keep questioning it.</p>
+      <p class="body-serif">Behind the rigging, behind the classes, behind the policies and the leader label, there is just a person doing their best not to fuck it up. Rope is edge play. Not a caveat. The foundation. The Fundamentals are not a phase to get through. They are the whole practice, revisited at every level.</p>
+    </div>
+    <div class="fade-in" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(240,234,216,.08);margin-bottom:2rem;">
+      <div style="background:rgba(240,234,216,.06);padding:1.5rem 1.25rem;border-top:2px solid var(--rope-l)"><div style="font-family:var(--fd);font-size:2.8rem;font-weight:300;color:var(--rope);line-height:1">10K+</div><div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase">Hours of rope</div></div>
+      <div style="background:rgba(240,234,216,.06);padding:1.5rem 1.25rem;border-top:2px solid var(--rope-l)"><div style="font-family:var(--fd);font-size:2.8rem;font-weight:300;color:var(--rope);line-height:1">10+</div><div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase">Years teaching</div></div>
+      <div style="background:rgba(240,234,216,.06);padding:1.5rem 1.25rem;border-top:2px solid var(--rope-l)"><div style="font-family:var(--fd);font-size:2.8rem;font-weight:300;color:var(--rope);line-height:1">1</div><div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase">Book published</div></div>
+    </div>
+    <div class="fade-in">
+      <a href="https://tensionmtl.ca/pages/about-willcat" target="_blank" class="btn btn-o">Book a date</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ B2 — THREE PILLARS ══ -->
+<section class="section" id="E5" style="border-top:1px solid rgba(240,234,216,.06);">
+  <div class="sec-id">E5</div>
+  <div class="inner">
+    <div class="lbl fade-in">Three Pillars</div>
+    <div class="two-col fade-in" style="margin-bottom:4rem;align-items:end">
+      <div>
+        <h2>Thirteen<br><em style="color:var(--rope-l);font-style:italic">companions.</em></h2>
+        <p style="font-family:var(--fm);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)">When philosophy matters.</p>
+      </div>
+      <div class="bq"><p>Not rules to follow but lenses to see through.</p></div>
+    </div>
+
+    <p class="body-serif fade-in" style="margin-bottom:1.5rem;opacity:.65;max-width:720px">These philosophies shaped me but they are not rules, only companions. They remind us that rope is more than just tying bodies and that mastery should never be the goal. The path is what counts, be in the moment; the person, not the destination.</p>
+    <div class="lbl fade-in" style="margin-bottom:1rem">Book 1 · Fundamentals · P.18</div>
+    <p class="body-serif fade-in" style="margin-bottom:.75rem;opacity:.65;max-width:720px">Rope should be done with feeling; it's not all about the rope. Shibari or Kinbaku, depending on who you ask, is characterized by these three ingredients:</p>
+    <ul class="fade-in" style="margin-bottom:2.5rem;padding-left:1.5rem;max-width:720px;opacity:.65;">
+      <li class="body-serif" style="margin-bottom:.5rem">Emotional component: intention, feeling, presence, tension... i.e: connection.</li>
+      <li class="body-serif" style="margin-bottom:.5rem">Aesthetics: there are many kinds but very important in traditional Shibari | Kinbaku... i.e: Structure</li>
+      <li class="body-serif">Everything has purpose; if you make a friction or line that doesn't do anything, why do it?</li>
+    </ul>
+    <p class="body-serif fade-in" style="margin-bottom:2.5rem;opacity:.65;max-width:720px;font-style:italic;margin-top:-.5rem">Above all, do not forget to have fun.</p>
+
+    <div id="pillars-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(240,234,216,.05);margin-bottom:1px;" class="fade-in">
+      <div style="background:rgba(240,234,216,.04);padding:3rem 2.5rem;position:relative;overflow:visible">
+        <svg viewBox="0 0 120 120" fill="none" stroke="rgba(169,124,26,.12)" stroke-width="2" stroke-linecap="square" style="position:absolute;right:-.5rem;bottom:-1.5rem;width:9rem;height:9rem;pointer-events:none"><rect x="10" y="10" width="100" height="100"/></svg>
+        <div style="position:absolute;right:1.25rem;top:1.25rem;font-family:var(--fj);font-size:4.5rem;color:rgba(169,124,26,.14);line-height:1;pointer-events:none;user-select:none">美</div>
+        <svg viewBox="0 0 52 52" style="width:44px;height:44px;margin-bottom:.75rem"><rect x="7" y="7" width="38" height="38" fill="none" stroke="#c9a84c" stroke-width="8" stroke-linecap="square"/><rect x="7" y="7" width="38" height="38" fill="none" stroke="#3a6b3a" stroke-width="3" stroke-linecap="square"/></svg>
+        <div style="font-family:var(--fm);font-size:8px;letter-spacing:.22em;color:var(--muted);text-transform:uppercase;margin-bottom:.75rem">四角 · Shikaku</div>
+        <div style="position:relative;margin-bottom:.65rem;height:2.2rem;overflow:visible">
+          <div style="position:absolute;right:-2.25rem;top:0;font-family:var(--fd);font-size:1.5rem;font-style:italic;font-weight:300;color:rgba(169,124,26,.45);pointer-events:none;white-space:nowrap;text-align:right">Aesthetics</div>
+          <div style="font-family:var(--fd);font-size:1.5rem;font-weight:300;color:var(--paper);position:relative;z-index:1">Structure</div>
+        </div>
+        <p style="font-family:var(--fm);font-size:14px;line-height:1.85;color:rgba(240,234,216,.38)">Every angle, tension, and line is intentional. Beauty is not decoration. It is structure made visible. Rope that looks right usually is right.</p>
+      </div>
+      <div style="background:rgba(240,234,216,.04);padding:3rem 2.5rem;position:relative;overflow:visible">
+        <svg viewBox="0 0 120 120" fill="none" stroke="rgba(169,124,26,.12)" stroke-width="2" stroke-linejoin="miter" style="position:absolute;right:-.5rem;bottom:-1.5rem;width:9rem;height:9rem;pointer-events:none"><polygon points="60,8 112,112 8,112"/></svg>
+        <div style="position:absolute;right:1.25rem;top:1.25rem;font-family:var(--fj);font-size:4.5rem;color:rgba(169,124,26,.14);line-height:1;pointer-events:none;user-select:none">意</div>
+        <svg viewBox="0 0 52 52" style="width:44px;height:44px;margin-bottom:.75rem"><polygon points="26,6 48,46 4,46" fill="none" stroke="#c9a84c" stroke-width="8" stroke-linejoin="miter"/><polygon points="26,6 48,46 4,46" fill="none" stroke="#8b2020" stroke-width="3" stroke-linejoin="miter"/></svg>
+        <div style="font-family:var(--fm);font-size:8px;letter-spacing:.22em;color:var(--muted);text-transform:uppercase;margin-bottom:.75rem">三角 · Sankaku</div>
+        <div style="position:relative;margin-bottom:.65rem;height:2.2rem;overflow:visible">
+          <div style="position:absolute;right:-2.25rem;top:0;font-family:var(--fd);font-size:1.5rem;font-style:italic;font-weight:300;color:rgba(169,124,26,.45);pointer-events:none;white-space:nowrap;text-align:right">Purpose</div>
+          <div style="font-family:var(--fd);font-size:1.5rem;font-weight:300;color:var(--paper);position:relative;z-index:1">Tension</div>
+        </div>
+        <p style="font-family:var(--fm);font-size:14px;line-height:1.85;color:rgba(240,234,216,.38)">Why are you tying? The answer shapes everything. Rope without purpose is just knots. Intention transforms technique into something that matters.</p>
+      </div>
+      <div style="background:rgba(240,234,216,.04);padding:3rem 2.5rem;position:relative;overflow:visible">
+        <svg viewBox="0 0 120 120" fill="none" stroke="rgba(169,124,26,.12)" stroke-width="2" style="position:absolute;right:-.5rem;bottom:-1.5rem;width:9rem;height:9rem;pointer-events:none"><circle cx="60" cy="60" r="50"/></svg>
+        <div style="position:absolute;right:1.25rem;top:1.25rem;font-family:var(--fj);font-size:4.5rem;color:rgba(169,124,26,.14);line-height:1;pointer-events:none;user-select:none">繋</div>
+        <svg viewBox="0 0 52 52" style="width:44px;height:44px;margin-bottom:.75rem"><circle cx="26" cy="26" r="19" fill="none" stroke="#c9a84c" stroke-width="8"/><circle cx="26" cy="26" r="19" fill="none" stroke="#2a2420" stroke-width="3"/></svg>
+        <div style="font-family:var(--fm);font-size:8px;letter-spacing:.22em;color:var(--muted);text-transform:uppercase;margin-bottom:.75rem">丸 · Maru</div>
+        <div style="position:relative;margin-bottom:.65rem;height:2.2rem;overflow:visible">
+          <div style="position:absolute;right:-2.25rem;top:0;font-family:var(--fd);font-size:1.5rem;font-style:italic;font-weight:300;color:rgba(169,124,26,.45);pointer-events:none;white-space:nowrap;text-align:right">Connection</div>
+          <div style="font-family:var(--fd);font-size:1.5rem;font-weight:300;color:var(--paper);position:relative;z-index:1">Flow</div>
+        </div>
+        <p style="font-family:var(--fm);font-size:14px;line-height:1.85;color:rgba(240,234,216,.38)">Rope is a dialogue, not a monologue. Learning to listen with your hands, responding to micro-movements, separates craft from art.</p>
+      </div>
+    </div>
+
+    <!-- Mobile pillars carousel -->
+    <div class="pillars-carousel" style="display:none;">
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:.75rem 1rem;background:rgba(240,234,216,.03);border-bottom:1px solid rgba(240,234,216,.05);">
+        <button onclick="pillarsGo(pillarsIndex-1)" style="background:none;border:none;cursor:pointer;color:rgba(201,168,76,.5);font-size:1.2rem;padding:4px 8px;">←</button>
+        <div id="pillars-label" style="font-family:var(--fm);font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:rgba(201,168,76,.4)">Structure</div>
+        <button onclick="pillarsGo(pillarsIndex+1)" style="background:none;border:none;cursor:pointer;color:rgba(201,168,76,.5);font-size:1.2rem;padding:4px 8px;">→</button>
+      </div>
+      <div style="overflow:hidden;">
+        <div id="pillars-inner" style="display:flex;transition:transform .4s cubic-bezier(0.16,1,0.3,1);">
+          <div style="min-width:100%;background:rgba(240,234,216,.04);padding:2.5rem 2rem;position:relative;overflow:visible;">
+            <svg viewBox="0 0 120 120" fill="none" stroke="rgba(169,124,26,.12)" stroke-width="2" stroke-linecap="square" style="position:absolute;right:-.5rem;bottom:-1.5rem;width:9rem;height:9rem;pointer-events:none"><rect x="10" y="10" width="100" height="100"/></svg>
+            <div style="position:absolute;right:1.25rem;top:1.25rem;font-family:var(--fj);font-size:4.5rem;color:rgba(169,124,26,.14);line-height:1;pointer-events:none">美</div>
+            <svg viewBox="0 0 52 52" style="width:44px;height:44px;margin-bottom:.75rem"><rect x="7" y="7" width="38" height="38" fill="none" stroke="#c9a84c" stroke-width="8" stroke-linecap="square"/><rect x="7" y="7" width="38" height="38" fill="none" stroke="#3a6b3a" stroke-width="3" stroke-linecap="square"/></svg>
+            <div style="font-family:var(--fm);font-size:11px;letter-spacing:.22em;color:var(--muted);text-transform:uppercase;margin-bottom:.75rem">四角 · Shikaku</div>
+            <div style="position:relative;margin-bottom:1rem;overflow:visible"><div style="font-family:var(--fd);font-size:2rem;font-weight:300;color:var(--paper);position:relative;z-index:1">Structure</div><div style="position:absolute;right:-.25rem;top:0;font-family:var(--fd);font-size:1.5rem;font-style:italic;font-weight:300;color:rgba(169,124,26,.45);pointer-events:none;white-space:nowrap">Aesthetics</div></div>
+            <p style="font-family:var(--fm);font-size:14px;line-height:1.85;color:rgba(240,234,216,.5)">Every angle, tension, and line is intentional. Beauty is not decoration. It is structure made visible. Rope that looks right usually is right.</p>
+          </div>
+          <div style="min-width:100%;background:rgba(240,234,216,.04);padding:2.5rem 2rem;position:relative;overflow:visible;">
+            <svg viewBox="0 0 120 120" fill="none" stroke="rgba(169,124,26,.12)" stroke-width="2" stroke-linejoin="miter" style="position:absolute;right:-.5rem;bottom:-1.5rem;width:9rem;height:9rem;pointer-events:none"><polygon points="60,8 112,112 8,112"/></svg>
+            <div style="position:absolute;right:1.25rem;top:1.25rem;font-family:var(--fj);font-size:4.5rem;color:rgba(169,124,26,.14);line-height:1;pointer-events:none">意</div>
+            <svg viewBox="0 0 52 52" style="width:44px;height:44px;margin-bottom:.75rem"><polygon points="26,6 48,46 4,46" fill="none" stroke="#c9a84c" stroke-width="8" stroke-linejoin="miter"/><polygon points="26,6 48,46 4,46" fill="none" stroke="#8b2020" stroke-width="3" stroke-linejoin="miter"/></svg>
+            <div style="font-family:var(--fm);font-size:11px;letter-spacing:.22em;color:var(--muted);text-transform:uppercase;margin-bottom:.75rem">三角 · Sankaku</div>
+            <div style="position:relative;margin-bottom:1rem;overflow:visible"><div style="font-family:var(--fd);font-size:2rem;font-weight:300;color:var(--paper);position:relative;z-index:1">Tension</div><div style="position:absolute;right:-.25rem;top:0;font-family:var(--fd);font-size:1.5rem;font-style:italic;font-weight:300;color:rgba(169,124,26,.45);pointer-events:none;white-space:nowrap">Purpose</div></div>
+            <p style="font-family:var(--fm);font-size:14px;line-height:1.85;color:rgba(240,234,216,.5)">Why are you tying? The answer shapes everything. Rope without purpose is just knots. Intention transforms technique into something that matters.</p>
+          </div>
+          <div style="min-width:100%;background:rgba(240,234,216,.04);padding:2.5rem 2rem;position:relative;overflow:visible;">
+            <svg viewBox="0 0 120 120" fill="none" stroke="rgba(169,124,26,.12)" stroke-width="2" style="position:absolute;right:-.5rem;bottom:-1.5rem;width:9rem;height:9rem;pointer-events:none"><circle cx="60" cy="60" r="50"/></svg>
+            <div style="position:absolute;right:1.25rem;top:1.25rem;font-family:var(--fj);font-size:4.5rem;color:rgba(169,124,26,.14);line-height:1;pointer-events:none">繋</div>
+            <svg viewBox="0 0 52 52" style="width:44px;height:44px;margin-bottom:.75rem"><circle cx="26" cy="26" r="19" fill="none" stroke="#c9a84c" stroke-width="8"/><circle cx="26" cy="26" r="19" fill="none" stroke="#2a2420" stroke-width="3"/></svg>
+            <div style="font-family:var(--fm);font-size:11px;letter-spacing:.22em;color:var(--muted);text-transform:uppercase;margin-bottom:.75rem">丸 · Maru</div>
+            <div style="position:relative;margin-bottom:1rem;overflow:visible"><div style="font-family:var(--fd);font-size:2rem;font-weight:300;color:var(--paper);position:relative;z-index:1">Flow</div><div style="position:absolute;right:-.25rem;top:0;font-family:var(--fd);font-size:1.5rem;font-style:italic;font-weight:300;color:rgba(169,124,26,.45);pointer-events:none;white-space:nowrap">Connection</div></div>
+            <p style="font-family:var(--fm);font-size:14px;line-height:1.85;color:rgba(240,234,216,.5)">Rope is a dialogue, not a monologue. Learning to listen with your hands, responding to micro-movements, separates craft from art.</p>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:.75rem 1rem;background:rgba(240,234,216,.03);border-top:1px solid rgba(240,234,216,.05);">
+        <button onclick="pillarsGo(pillarsIndex-1)" style="background:none;border:none;cursor:pointer;color:rgba(201,168,76,.5);font-size:1.2rem;padding:4px 8px;">←</button>
+        <div style="font-family:var(--fm);font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:rgba(201,168,76,.25)">1 · 2 · 3</div>
+        <button onclick="pillarsGo(pillarsIndex+1)" style="background:none;border:none;cursor:pointer;color:rgba(201,168,76,.5);font-size:1.2rem;padding:4px 8px;">→</button>
+      </div>
+    </div>
+
+    <!-- 13 Companions -->
+    <div class="fade-in" style="margin-top:3rem">
+      <!-- Bokken — full width, edge up, tsuka right -->
+      <div style="width:100%;margin-bottom:2.5rem;opacity:.6;">
+        <img src="img/Bokken.png" alt="" style="width:100%;display:block;mix-blend-mode:screen;"/>
+      </div>
+
+      <div class="lbl" style="margin-bottom:1.25rem">The Thirteen Companions</div>
+      <div id="companions-wrapper" style="display:grid;grid-template-columns:1fr 2fr;gap:3rem;align-items:start;">
+
+        <!-- Left: tag cloud — 1/3 width -->
+        <div id="companions-tags-col">
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1.5rem;" id="companions-tags">
+            <span class="companion-tag" onclick="showCompanion('do')" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;padding:5px 13px;border:.5px solid rgba(240,234,216,.1);color:rgba(240,234,216,.3);border-radius:1px;cursor:pointer;transition:all .2s"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">道</span>Dō</span>
+            <span class="companion-tag" onclick="showCompanion('kaizen')" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;padding:5px 13px;border:.5px solid rgba(240,234,216,.1);color:rgba(240,234,216,.3);border-radius:1px;cursor:pointer;transition:all .2s"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">改善</span>Kaizen</span>
+            <span class="companion-tag" onclick="showCompanion('ikigai')" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;padding:5px 13px;border:.5px solid rgba(240,234,216,.1);color:rgba(240,234,216,.3);border-radius:1px;cursor:pointer;transition:all .2s"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">生き甲斐</span>Ikigai</span>
+            <span class="companion-tag" onclick="showCompanion('shoshin')" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;padding:5px 13px;border:.5px solid rgba(240,234,216,.1);color:rgba(240,234,216,.3);border-radius:1px;cursor:pointer;transition:all .2s"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">初心</span>Shoshin</span>
+            <span class="companion-tag" onclick="showCompanion('shuhari')" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;padding:5px 13px;border:.5px solid rgba(240,234,216,.1);color:rgba(240,234,216,.3);border-radius:1px;cursor:pointer;transition:all .2s"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">守破離</span>Shu-Ha-Ri</span>
+            <span class="companion-tag" onclick="showCompanion('wabisabi')" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;padding:5px 13px;border:.5px solid rgba(240,234,216,.1);color:rgba(240,234,216,.3);border-radius:1px;cursor:pointer;transition:all .2s"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">侘寂</span>Wabi-Sabi</span>
+            <span class="companion-tag" onclick="showCompanion('mononoaware')" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;padding:5px 13px;border:.5px solid rgba(240,234,216,.1);color:rgba(240,234,216,.3);border-radius:1px;cursor:pointer;transition:all .2s"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">物の哀れ</span>Mono no Aware</span>
+            <span class="companion-tag" onclick="showCompanion('shikataganai')" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;padding:5px 13px;border:.5px solid rgba(240,234,216,.1);color:rgba(240,234,216,.3);border-radius:1px;cursor:pointer;transition:all .2s"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">仕方がない</span>Shikata ga nai</span>
+            <span class="companion-tag" onclick="showCompanion('gaman')" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;padding:5px 13px;border:.5px solid rgba(240,234,216,.1);color:rgba(240,234,216,.3);border-radius:1px;cursor:pointer;transition:all .2s"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">我慢</span>Gaman</span>
+            <span class="companion-tag" onclick="showCompanion('ichigoichie')" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;padding:5px 13px;border:.5px solid rgba(240,234,216,.1);color:rgba(240,234,216,.3);border-radius:1px;cursor:pointer;transition:all .2s"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">一期一会</span>Ichi-go ichi-e</span>
+            <span class="companion-tag" onclick="showCompanion('ma')" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;padding:5px 13px;border:.5px solid rgba(240,234,216,.1);color:rgba(240,234,216,.3);border-radius:1px;cursor:pointer;transition:all .2s"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">間</span>Ma</span>
+            <span class="companion-tag" onclick="showCompanion('sennosen')" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;padding:5px 13px;border:.5px solid rgba(240,234,216,.1);color:rgba(240,234,216,.3);border-radius:1px;cursor:pointer;transition:all .2s"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">先の先</span>Sen no Sen</span>
+            <span class="companion-tag" onclick="showCompanion('mushin')" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;padding:5px 13px;border:.5px solid rgba(240,234,216,.1);color:rgba(240,234,216,.3);border-radius:1px;cursor:pointer;transition:all .2s"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">無心</span>Mushin</span>
+          </div>
+        </div>
+
+        <!-- Right: description card — 2/3 width -->
+        <div id="companion-card" style="border:.5px solid rgba(169,124,26,.2);background:rgba(169,124,26,.04);padding:2.5rem;min-height:200px;display:flex;flex-direction:column;justify-content:center;transition:opacity .3s;">
+          <div id="companion-empty" style="text-align:center;opacity:.25">
+            <div style="font-family:var(--fj);font-size:2rem;color:var(--rope);margin-bottom:.75rem">道</div>
+            <div style="font-family:var(--fm);font-size:8px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)">Select a companion</div>
+          </div>
+          <div id="companion-content" style="display:none;">
+            <div style="display:flex;align-items:baseline;gap:1rem;margin-bottom:1.25rem;">
+              <span id="companion-kanji" style="font-family:var(--fj);font-size:2.5rem;color:var(--rope);line-height:1"></span>
+              <div>
+                <div id="companion-name" style="font-family:var(--fd);font-size:1.5rem;font-weight:300;color:var(--paper);line-height:1"></div>
+                <div id="companion-reading" style="font-family:var(--fm);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:.25rem"></div>
+              </div>
+            </div>
+            <p id="companion-desc" style="font-family:var(--fd);font-size:1.05rem;font-weight:300;font-style:italic;line-height:1.75;color:rgba(240,234,216,.62)"></p>
+            <p id="companion-rope" style="font-family:var(--fm);font-size:14px;line-height:1.85;color:rgba(240,234,216,.35);margin-top:1rem"></p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <script>
+    var companions = {
+      'do':          { kanji:'道', name:'Dō', reading:'The Way · The Path', desc:'A path to be walked, not a destination to be reached. Dō implies that the practice itself is the point, not what it produces. You are always on the path. You never arrive.', rope:'In rope: every session is the practice. There is no graduation from beginner. There is only the path, and how honestly you walk it.' },
+      'kaizen':      { kanji:'改善', name:'Kaizen', reading:'Continuous improvement', desc:'Small, consistent improvement over time. Not revolution but evolution. The discipline of looking at what is, asking what it could be, and making one step toward it.', rope:'In rope: technique does not plateau, it deepens. Kaizen means returning to fundamentals not because you failed but because you understand them more now than before.' },
+      'ikigai':      { kanji:'生き甲斐', name:'Ikigai', reading:'Reason for being', desc:'The intersection of what you love, what you are good at, what the world needs, and what sustains you. Not a career framework. A question to sit with honestly.', rope:'In rope: why are you here? What does this give you that nothing else does? Ikigai is not an excuse to avoid hard questions. It is the reason you answer them.' },
+      'shoshin':     { kanji:'初心', name:'Shoshin', reading:'Beginner\'s mind', desc:'Approaching the familiar with the openness of someone encountering it for the first time. The expert\'s greatest danger is certainty. Shoshin is the antidote.', rope:'In rope: the technique you have tied a thousand times still has something to teach you. Shoshin keeps the door open.' },
+      'shuhari':     { kanji:'守破離', name:'Shu-Ha-Ri', reading:'Follow · Break · Transcend', desc:'Three stages of mastery. First follow the rules exactly. Then understand them deeply enough to bend them. Finally move beyond them into your own expression. Each stage requires the last.', rope:'In rope: you cannot transcend what you never learned. The improvisation that looks effortless was built on thousands of hours of strict repetition.' },
+      'wabisabi':    { kanji:'侘寂', name:'Wabi-Sabi', reading:'Impermanence · Incompleteness', desc:'Beauty in imperfection, impermanence, and incompleteness. The crack in the bowl. The asymmetry in the knot. Wabi-sabi refuses the tyranny of the perfect.', rope:'In rope: the asymmetrical tie, the improvised adjustment, the mark left behind. None of it is a mistake. It is the evidence of something that actually happened.' },
+      'mononoaware':  { kanji:'物の哀れ', name:'Mono no Aware', reading:'The pathos of things', desc:'The gentle sadness of impermanence. The beauty that is inseparable from the knowledge that it will end. Mono no aware is not despair. It is presence.', rope:'In rope: the suspension that ends, the scene that closes, the partner you will not tie again. Mono no aware is why it matters that you were there for all of it.' },
+      'shikataganai': { kanji:'仕方がない', name:'Shikata ga nai', reading:'It cannot be helped', desc:'Acceptance of what cannot be changed without surrender of responsibility for what can. Not fatalism. The wisdom to stop fighting what is already done and redirect energy to what is still possible.', rope:'In rope: a nerve incident. A canceled event. A relationship that ends. Shikata ga nai is not indifference. It is how you stay functional when the unexpected arrives.' },
+      'gaman':       { kanji:'我慢', name:'Gaman', reading:'Endurance · Patience', desc:'The quiet endurance of difficulty without complaint. Not martyrdom. The internal discipline that does not demand recognition for every effort made.', rope:'In rope: the long learning curve, the slow building of trust, the patience required to be Uke and to be Tori. Gaman is what keeps you on the path when nothing is glamorous yet.' },
+      'ichigoichie': { kanji:'一期一会', name:'Ichi-go ichi-e', reading:'One time · One meeting', desc:'This moment will not come again. The person across from you today is not the same person you will tie tomorrow. Every encounter is singular and unrepeatable.', rope:'In rope: full presence is not optional. The scene happening now has never happened before and will never happen again. Ichi-go ichi-e is why you put the phone down.' },
+      'ma':          { kanji:'間', name:'Ma', reading:'Negative space · Pause · Interval', desc:'The space between. The pause in music that gives the notes meaning. The emptiness in the bowl that makes it useful. Ma is not absence, it is structure.', rope:'In rope: the stillness between transitions, the breath before the next tie, the silence that holds the scene together. Ma is not wasted time. It is the shape of attention.' },
+      'sennosen':    { kanji:'先の先', name:'Sen no Sen', reading:'Initiative within initiative', desc:'From kenjutsu: responding to an attack before it is fully launched by reading the intention behind it. Anticipation so refined it appears to be simultaneous.', rope:'In rope: reading a shift in the body before the person speaks. Feeling the approach of distress before it becomes distress. Sen no Sen is why experienced riggers seem to know before being told.' },
+      'mushin':      { kanji:'無心', name:'Mushin', reading:'No mind · Empty mind', desc:'The state in which the mind does not attach to any single thought, allowing complete responsiveness to what is. Not emptiness but fluidity. The expert acts without deliberating.', rope:'In rope: when the technique no longer requires conscious direction, what is left is pure attention to the person in front of you. Mushin is not the absence of skill. It is skill so fully integrated that it disappears.' }
+    };
+
+    function showCompanion(id) {
+      var c = companions[id];
+      if (!c) return;
+
+      // Highlight active tag
+      document.querySelectorAll('.companion-tag').forEach(function(t) {
+        t.style.borderColor = 'rgba(240,234,216,.1)';
+        t.style.color = 'rgba(240,234,216,.3)';
+      });
+      event.currentTarget.style.borderColor = 'rgba(169,124,26,.5)';
+      event.currentTarget.style.color = '#c9a84c';
+
+      // Populate card
+      document.getElementById('companion-kanji').textContent = c.kanji;
+      document.getElementById('companion-name').textContent = c.name;
+      document.getElementById('companion-reading').textContent = c.reading;
+      document.getElementById('companion-desc').textContent = c.desc;
+      document.getElementById('companion-rope').textContent = c.rope;
+
+      // Show content
+      document.getElementById('companion-empty').style.display = 'none';
+      var content = document.getElementById('companion-content');
+      content.style.display = 'block';
+      content.style.opacity = '0';
+      setTimeout(function() { content.style.transition = 'opacity .3s'; content.style.opacity = '1'; }, 10);
+    }
+    </script>
+  </div>
+</section>
+
+<!-- ══ B3 — THE FRAMEWORK ══ -->
+<section class="section" id="D5" style="border-top:1px solid rgba(240,234,216,.06);">
+  <div class="sec-id">D5</div>
   <div class="inner">
     <div class="lbl fade-in">The Framework</div>
     <div class="two-col fade-in" style="margin-bottom:4rem;align-items:start">
@@ -661,228 +888,7 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
   </div>
 </section>
 
-<!-- ══ A2 — WHO I AM ══ -->
-<section class="section" id="A2" style="background:#131315;border-top:1px solid rgba(240,234,216,.06);">
-  <div class="sec-id">A2</div>
-  <div class="inner">
-    <div class="two-col valign fade-in" style="margin-bottom:3rem">
-      <div style="aspect-ratio:3/4;background:#131315;overflow:hidden;position:relative;">
-        <img src="img/Willcat_portrait.png" alt="William Desjardins / Willcat" style="width:100%;height:100%;object-fit:cover;object-position:center 10%;display:block;"/>
-        <div style="position:absolute;bottom:1rem;right:1rem;font-family:var(--fm);font-size:8.5px;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,234,216,.2);">William Desjardins / Willcat</div>
-      </div>
-      <div>
-        <div class="lbl">About</div>
-        <h2>Practitioner.<br>Educator.<br><em style="color:var(--rope-l);font-style:italic">Still learning.</em></h2>
-        <p class="body-serif" style="margin-bottom:1.25rem">William Desjardins (she/her, they/them). Fell into rope in 2014 through a Mistress, head first into kink. Started tying in 2015 and never stopped. Founder of Tension MTL, a rope studio built slowly and stubbornly in Montréal. <a href="https://fetlife.com/WillCat/posts/13290990" target="_blank" style="color:var(--rope-l);border-bottom:1px solid rgba(169,124,26,.35);">Over 10,000 hours in</a>. Teaching, tying, performing, making mistakes, learning from them.</p>
-        <p class="body-serif">Former technical training director. That background translated directly: breaking complex things into their smallest learnable components is the same skill, different material. The teaching philosophy has always been about planting seeds and watching students grow.</p>
-      </div>
-    </div>
-    <div class="fade-in" style="border-top:1px solid rgba(240,234,216,.07);padding-top:2.5rem;margin-bottom:3rem;">
-      <p class="body-serif" style="margin-bottom:1.25rem">Teaching approach shaped by component-based martial arts pedagogy. Kenjutsu practiced seriously. Aikido explored more through reading than formal training. Not authorized in any Japanese rope tradition. Everything drawn from many sources, shaped by a decade of deliberate practice and the humility to keep questioning it.</p>
-      <p class="body-serif">Behind the rigging, behind the classes, behind the policies and the leader label, there is just a person doing their best not to fuck it up. Rope is edge play. Not a caveat. The foundation. The Fundamentals are not a phase to get through. They are the whole practice, revisited at every level.</p>
-    </div>
-    <div class="fade-in" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(240,234,216,.08);margin-bottom:2rem;">
-      <div style="background:rgba(240,234,216,.06);padding:1.5rem 1.25rem;border-top:2px solid var(--rope-l)"><div style="font-family:var(--fd);font-size:2.8rem;font-weight:300;color:var(--rope);line-height:1">10K+</div><div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase">Hours of rope</div></div>
-      <div style="background:rgba(240,234,216,.06);padding:1.5rem 1.25rem;border-top:2px solid var(--rope-l)"><div style="font-family:var(--fd);font-size:2.8rem;font-weight:300;color:var(--rope);line-height:1">10+</div><div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase">Years teaching</div></div>
-      <div style="background:rgba(240,234,216,.06);padding:1.5rem 1.25rem;border-top:2px solid var(--rope-l)"><div style="font-family:var(--fd);font-size:2.8rem;font-weight:300;color:var(--rope);line-height:1">1</div><div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase">Book published</div></div>
-    </div>
-    <div class="fade-in">
-      <a href="https://tensionmtl.ca/pages/about-willcat" target="_blank" class="btn btn-o">Book a date</a>
-    </div>
-  </div>
-</section>
-
-<!-- ══ A4 — THREE PILLARS ══ -->
-<section class="section" id="A4" style="border-top:1px solid rgba(240,234,216,.06);">
-  <div class="sec-id">A4</div>
-  <div class="inner">
-    <div class="lbl fade-in">Three Pillars</div>
-    <div class="two-col fade-in" style="margin-bottom:4rem;align-items:end">
-      <div>
-        <h2>Thirteen<br><em style="color:var(--rope-l);font-style:italic">companions.</em></h2>
-        <p style="font-family:var(--fm);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)">When philosophy does matter.</p>
-      </div>
-      <div class="bq"><p>Not rules to follow but lenses to see through.</p></div>
-    </div>
-
-    <div id="pillars-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(240,234,216,.05);margin-bottom:1px;" class="fade-in">
-      <div style="background:rgba(240,234,216,.04);padding:3rem 2.5rem;position:relative;overflow:hidden">
-        <svg viewBox="0 0 120 120" fill="none" stroke="rgba(169,124,26,.12)" stroke-width="2" stroke-linecap="square" style="position:absolute;right:-.5rem;bottom:-1.5rem;width:9rem;height:9rem;pointer-events:none"><rect x="10" y="10" width="100" height="100"/></svg>
-        <div style="position:absolute;right:1.25rem;top:1.25rem;font-family:var(--fj);font-size:4.5rem;color:rgba(169,124,26,.14);line-height:1;pointer-events:none;user-select:none">美</div>
-        <svg viewBox="0 0 52 52" style="width:44px;height:44px;margin-bottom:.75rem"><rect x="7" y="7" width="38" height="38" fill="none" stroke="#c9a84c" stroke-width="8" stroke-linecap="square"/><rect x="7" y="7" width="38" height="38" fill="none" stroke="#3a6b3a" stroke-width="3" stroke-linecap="square"/></svg>
-        <div style="font-family:var(--fm);font-size:8px;letter-spacing:.22em;color:var(--muted);text-transform:uppercase;margin-bottom:.75rem">四角 · Shikaku</div>
-        <div style="position:relative;margin-bottom:.65rem;height:2.2rem">
-          <div style="position:absolute;left:0;top:0;font-family:var(--fd);font-size:1.5rem;font-style:italic;font-weight:300;color:rgba(169,124,26,.22);pointer-events:none;white-space:nowrap">Aesthetics</div>
-          <div style="font-family:var(--fd);font-size:1.5rem;font-weight:300;color:var(--paper);position:relative;z-index:1">Structure</div>
-        </div>
-        <p style="font-family:var(--fm);font-size:14px;line-height:1.85;color:rgba(240,234,216,.38)">Every angle, tension, and line is intentional. Beauty is not decoration. It is structure made visible. Rope that looks right usually is right.</p>
-      </div>
-      <div style="background:rgba(240,234,216,.04);padding:3rem 2.5rem;position:relative;overflow:hidden">
-        <svg viewBox="0 0 120 120" fill="none" stroke="rgba(169,124,26,.12)" stroke-width="2" stroke-linejoin="miter" style="position:absolute;right:-.5rem;bottom:-1.5rem;width:9rem;height:9rem;pointer-events:none"><polygon points="60,8 112,112 8,112"/></svg>
-        <div style="position:absolute;right:1.25rem;top:1.25rem;font-family:var(--fj);font-size:4.5rem;color:rgba(169,124,26,.14);line-height:1;pointer-events:none;user-select:none">意</div>
-        <svg viewBox="0 0 52 52" style="width:44px;height:44px;margin-bottom:.75rem"><polygon points="26,6 48,46 4,46" fill="none" stroke="#c9a84c" stroke-width="8" stroke-linejoin="miter"/><polygon points="26,6 48,46 4,46" fill="none" stroke="#8b2020" stroke-width="3" stroke-linejoin="miter"/></svg>
-        <div style="font-family:var(--fm);font-size:8px;letter-spacing:.22em;color:var(--muted);text-transform:uppercase;margin-bottom:.75rem">三角 · Sankaku</div>
-        <div style="position:relative;margin-bottom:.65rem;height:2.2rem">
-          <div style="position:absolute;left:0;top:0;font-family:var(--fd);font-size:1.5rem;font-style:italic;font-weight:300;color:rgba(169,124,26,.22);pointer-events:none;white-space:nowrap">Purpose</div>
-          <div style="font-family:var(--fd);font-size:1.5rem;font-weight:300;color:var(--paper);position:relative;z-index:1">Tension</div>
-        </div>
-        <p style="font-family:var(--fm);font-size:14px;line-height:1.85;color:rgba(240,234,216,.38)">Why are you tying? The answer shapes everything. Rope without purpose is just knots. Intention transforms technique into something that matters.</p>
-      </div>
-      <div style="background:rgba(240,234,216,.04);padding:3rem 2.5rem;position:relative;overflow:hidden">
-        <svg viewBox="0 0 120 120" fill="none" stroke="rgba(169,124,26,.12)" stroke-width="2" style="position:absolute;right:-.5rem;bottom:-1.5rem;width:9rem;height:9rem;pointer-events:none"><circle cx="60" cy="60" r="50"/></svg>
-        <div style="position:absolute;right:1.25rem;top:1.25rem;font-family:var(--fj);font-size:4.5rem;color:rgba(169,124,26,.14);line-height:1;pointer-events:none;user-select:none">繋</div>
-        <svg viewBox="0 0 52 52" style="width:44px;height:44px;margin-bottom:.75rem"><circle cx="26" cy="26" r="19" fill="none" stroke="#c9a84c" stroke-width="8"/><circle cx="26" cy="26" r="19" fill="none" stroke="#2a2420" stroke-width="3"/></svg>
-        <div style="font-family:var(--fm);font-size:8px;letter-spacing:.22em;color:var(--muted);text-transform:uppercase;margin-bottom:.75rem">丸 · Maru</div>
-        <div style="position:relative;margin-bottom:.65rem;height:2.2rem">
-          <div style="position:absolute;left:0;top:0;font-family:var(--fd);font-size:1.5rem;font-style:italic;font-weight:300;color:rgba(169,124,26,.22);pointer-events:none;white-space:nowrap">Connection</div>
-          <div style="font-family:var(--fd);font-size:1.5rem;font-weight:300;color:var(--paper);position:relative;z-index:1">Flow</div>
-        </div>
-        <p style="font-family:var(--fm);font-size:14px;line-height:1.85;color:rgba(240,234,216,.38)">Rope is a dialogue, not a monologue. Learning to listen with your hands, responding to micro-movements, separates craft from art.</p>
-      </div>
-    </div>
-
-    <!-- Mobile pillars carousel -->
-    <div class="pillars-carousel" style="display:none;">
-      <div style="display:flex;align-items:center;justify-content:space-between;padding:.75rem 1rem;background:rgba(240,234,216,.03);border-bottom:1px solid rgba(240,234,216,.05);">
-        <button onclick="pillarsGo(pillarsIndex-1)" style="background:none;border:none;cursor:pointer;color:rgba(201,168,76,.5);font-size:1.2rem;padding:4px 8px;">←</button>
-        <div id="pillars-label" style="font-family:var(--fm);font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:rgba(201,168,76,.4)">Structure</div>
-        <button onclick="pillarsGo(pillarsIndex+1)" style="background:none;border:none;cursor:pointer;color:rgba(201,168,76,.5);font-size:1.2rem;padding:4px 8px;">→</button>
-      </div>
-      <div style="overflow:hidden;">
-        <div id="pillars-inner" style="display:flex;transition:transform .4s cubic-bezier(0.16,1,0.3,1);">
-          <div style="min-width:100%;background:rgba(240,234,216,.04);padding:2.5rem 2rem;position:relative;overflow:hidden;">
-            <svg viewBox="0 0 120 120" fill="none" stroke="rgba(169,124,26,.12)" stroke-width="2" stroke-linecap="square" style="position:absolute;right:-.5rem;bottom:-1.5rem;width:9rem;height:9rem;pointer-events:none"><rect x="10" y="10" width="100" height="100"/></svg>
-            <div style="position:absolute;right:1.25rem;top:1.25rem;font-family:var(--fj);font-size:4.5rem;color:rgba(169,124,26,.14);line-height:1;pointer-events:none">美</div>
-            <svg viewBox="0 0 52 52" style="width:44px;height:44px;margin-bottom:.75rem"><rect x="7" y="7" width="38" height="38" fill="none" stroke="#c9a84c" stroke-width="8" stroke-linecap="square"/><rect x="7" y="7" width="38" height="38" fill="none" stroke="#3a6b3a" stroke-width="3" stroke-linecap="square"/></svg>
-            <div style="font-family:var(--fm);font-size:11px;letter-spacing:.22em;color:var(--muted);text-transform:uppercase;margin-bottom:.75rem">四角 · Shikaku</div>
-            <div style="font-family:var(--fd);font-size:2rem;font-weight:300;color:var(--paper);margin-bottom:1rem">Structure</div>
-            <p style="font-family:var(--fm);font-size:14px;line-height:1.85;color:rgba(240,234,216,.5)">Every angle, tension, and line is intentional. Beauty is not decoration. It is structure made visible. Rope that looks right usually is right.</p>
-          </div>
-          <div style="min-width:100%;background:rgba(240,234,216,.04);padding:2.5rem 2rem;position:relative;overflow:hidden;">
-            <svg viewBox="0 0 120 120" fill="none" stroke="rgba(169,124,26,.12)" stroke-width="2" stroke-linejoin="miter" style="position:absolute;right:-.5rem;bottom:-1.5rem;width:9rem;height:9rem;pointer-events:none"><polygon points="60,8 112,112 8,112"/></svg>
-            <div style="position:absolute;right:1.25rem;top:1.25rem;font-family:var(--fj);font-size:4.5rem;color:rgba(169,124,26,.14);line-height:1;pointer-events:none">意</div>
-            <svg viewBox="0 0 52 52" style="width:44px;height:44px;margin-bottom:.75rem"><polygon points="26,6 48,46 4,46" fill="none" stroke="#c9a84c" stroke-width="8" stroke-linejoin="miter"/><polygon points="26,6 48,46 4,46" fill="none" stroke="#8b2020" stroke-width="3" stroke-linejoin="miter"/></svg>
-            <div style="font-family:var(--fm);font-size:11px;letter-spacing:.22em;color:var(--muted);text-transform:uppercase;margin-bottom:.75rem">三角 · Sankaku</div>
-            <div style="font-family:var(--fd);font-size:2rem;font-weight:300;color:var(--paper);margin-bottom:1rem">Tension</div>
-            <p style="font-family:var(--fm);font-size:14px;line-height:1.85;color:rgba(240,234,216,.5)">Why are you tying? The answer shapes everything. Rope without purpose is just knots. Intention transforms technique into something that matters.</p>
-          </div>
-          <div style="min-width:100%;background:rgba(240,234,216,.04);padding:2.5rem 2rem;position:relative;overflow:hidden;">
-            <svg viewBox="0 0 120 120" fill="none" stroke="rgba(169,124,26,.12)" stroke-width="2" style="position:absolute;right:-.5rem;bottom:-1.5rem;width:9rem;height:9rem;pointer-events:none"><circle cx="60" cy="60" r="50"/></svg>
-            <div style="position:absolute;right:1.25rem;top:1.25rem;font-family:var(--fj);font-size:4.5rem;color:rgba(169,124,26,.14);line-height:1;pointer-events:none">繋</div>
-            <svg viewBox="0 0 52 52" style="width:44px;height:44px;margin-bottom:.75rem"><circle cx="26" cy="26" r="19" fill="none" stroke="#c9a84c" stroke-width="8"/><circle cx="26" cy="26" r="19" fill="none" stroke="#2a2420" stroke-width="3"/></svg>
-            <div style="font-family:var(--fm);font-size:11px;letter-spacing:.22em;color:var(--muted);text-transform:uppercase;margin-bottom:.75rem">丸 · Maru</div>
-            <div style="font-family:var(--fd);font-size:2rem;font-weight:300;color:var(--paper);margin-bottom:1rem">Flow</div>
-            <p style="font-family:var(--fm);font-size:14px;line-height:1.85;color:rgba(240,234,216,.5)">Rope is a dialogue, not a monologue. Learning to listen with your hands, responding to micro-movements, separates craft from art.</p>
-          </div>
-        </div>
-      </div>
-      <div style="display:flex;align-items:center;justify-content:space-between;padding:.75rem 1rem;background:rgba(240,234,216,.03);border-top:1px solid rgba(240,234,216,.05);">
-        <button onclick="pillarsGo(pillarsIndex-1)" style="background:none;border:none;cursor:pointer;color:rgba(201,168,76,.5);font-size:1.2rem;padding:4px 8px;">←</button>
-        <div style="font-family:var(--fm);font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:rgba(201,168,76,.25)">1 · 2 · 3</div>
-        <button onclick="pillarsGo(pillarsIndex+1)" style="background:none;border:none;cursor:pointer;color:rgba(201,168,76,.5);font-size:1.2rem;padding:4px 8px;">→</button>
-      </div>
-    </div>
-
-    <!-- 13 Companions -->
-    <div class="fade-in" style="margin-top:3rem">
-      <!-- Bokken — full width, edge up, tsuka right -->
-      <div style="width:100%;margin-bottom:2.5rem;opacity:.6;">
-        <img src="img/Bokken.png" alt="" style="width:100%;display:block;mix-blend-mode:screen;"/>
-      </div>
-
-      <div class="lbl" style="margin-bottom:1.25rem">The Thirteen Companions</div>
-      <div id="companions-wrapper" style="display:grid;grid-template-columns:1fr 2fr;gap:3rem;align-items:start;">
-
-        <!-- Left: tag cloud — 1/3 width -->
-        <div id="companions-tags-col">
-          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1.5rem;" id="companions-tags">
-            <span class="companion-tag" onclick="showCompanion('do')" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;padding:5px 13px;border:.5px solid rgba(240,234,216,.1);color:rgba(240,234,216,.3);border-radius:1px;cursor:pointer;transition:all .2s"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">道</span>Dō</span>
-            <span class="companion-tag" onclick="showCompanion('kaizen')" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;padding:5px 13px;border:.5px solid rgba(240,234,216,.1);color:rgba(240,234,216,.3);border-radius:1px;cursor:pointer;transition:all .2s"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">改善</span>Kaizen</span>
-            <span class="companion-tag" onclick="showCompanion('ikigai')" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;padding:5px 13px;border:.5px solid rgba(240,234,216,.1);color:rgba(240,234,216,.3);border-radius:1px;cursor:pointer;transition:all .2s"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">生き甲斐</span>Ikigai</span>
-            <span class="companion-tag" onclick="showCompanion('shoshin')" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;padding:5px 13px;border:.5px solid rgba(240,234,216,.1);color:rgba(240,234,216,.3);border-radius:1px;cursor:pointer;transition:all .2s"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">初心</span>Shoshin</span>
-            <span class="companion-tag" onclick="showCompanion('shuhari')" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;padding:5px 13px;border:.5px solid rgba(240,234,216,.1);color:rgba(240,234,216,.3);border-radius:1px;cursor:pointer;transition:all .2s"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">守破離</span>Shu-Ha-Ri</span>
-            <span class="companion-tag" onclick="showCompanion('wabisabi')" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;padding:5px 13px;border:.5px solid rgba(240,234,216,.1);color:rgba(240,234,216,.3);border-radius:1px;cursor:pointer;transition:all .2s"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">侘寂</span>Wabi-Sabi</span>
-            <span class="companion-tag" onclick="showCompanion('mononoaware')" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;padding:5px 13px;border:.5px solid rgba(240,234,216,.1);color:rgba(240,234,216,.3);border-radius:1px;cursor:pointer;transition:all .2s"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">物の哀れ</span>Mono no Aware</span>
-            <span class="companion-tag" onclick="showCompanion('shikataganai')" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;padding:5px 13px;border:.5px solid rgba(240,234,216,.1);color:rgba(240,234,216,.3);border-radius:1px;cursor:pointer;transition:all .2s"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">仕方がない</span>Shikata ga nai</span>
-            <span class="companion-tag" onclick="showCompanion('gaman')" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;padding:5px 13px;border:.5px solid rgba(240,234,216,.1);color:rgba(240,234,216,.3);border-radius:1px;cursor:pointer;transition:all .2s"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">我慢</span>Gaman</span>
-            <span class="companion-tag" onclick="showCompanion('ichigoichie')" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;padding:5px 13px;border:.5px solid rgba(240,234,216,.1);color:rgba(240,234,216,.3);border-radius:1px;cursor:pointer;transition:all .2s"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">一期一会</span>Ichi-go ichi-e</span>
-            <span class="companion-tag" onclick="showCompanion('ma')" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;padding:5px 13px;border:.5px solid rgba(240,234,216,.1);color:rgba(240,234,216,.3);border-radius:1px;cursor:pointer;transition:all .2s"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">間</span>Ma</span>
-            <span class="companion-tag" onclick="showCompanion('sennosen')" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;padding:5px 13px;border:.5px solid rgba(240,234,216,.1);color:rgba(240,234,216,.3);border-radius:1px;cursor:pointer;transition:all .2s"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">先の先</span>Sen no Sen</span>
-            <span class="companion-tag" onclick="showCompanion('mushin')" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;padding:5px 13px;border:.5px solid rgba(240,234,216,.1);color:rgba(240,234,216,.3);border-radius:1px;cursor:pointer;transition:all .2s"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">無心</span>Mushin</span>
-          </div>
-          <p class="body-mono" id="companions-footer" style="max-width:480px;opacity:.55">These philosophies shaped me but they are not rules, only companions. They remind us that rope is more than just tying bodies and that mastery should never be the goal. The path is what counts, be in the moment; the person, not the destination.</p>
-        </div>
-
-        <!-- Right: description card — 2/3 width -->
-        <div id="companion-card" style="border:.5px solid rgba(169,124,26,.2);background:rgba(169,124,26,.04);padding:2.5rem;min-height:200px;display:flex;flex-direction:column;justify-content:center;transition:opacity .3s;">
-          <div id="companion-empty" style="text-align:center;opacity:.25">
-            <div style="font-family:var(--fj);font-size:2rem;color:var(--rope);margin-bottom:.75rem">道</div>
-            <div style="font-family:var(--fm);font-size:8px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)">Select a companion</div>
-          </div>
-          <div id="companion-content" style="display:none;">
-            <div style="display:flex;align-items:baseline;gap:1rem;margin-bottom:1.25rem;">
-              <span id="companion-kanji" style="font-family:var(--fj);font-size:2.5rem;color:var(--rope);line-height:1"></span>
-              <div>
-                <div id="companion-name" style="font-family:var(--fd);font-size:1.5rem;font-weight:300;color:var(--paper);line-height:1"></div>
-                <div id="companion-reading" style="font-family:var(--fm);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:.25rem"></div>
-              </div>
-            </div>
-            <p id="companion-desc" style="font-family:var(--fd);font-size:1.05rem;font-weight:300;font-style:italic;line-height:1.75;color:rgba(240,234,216,.62)"></p>
-            <p id="companion-rope" style="font-family:var(--fm);font-size:14px;line-height:1.85;color:rgba(240,234,216,.35);margin-top:1rem"></p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <script>
-    var companions = {
-      'do':          { kanji:'道', name:'Dō', reading:'The Way · The Path', desc:'A path to be walked, not a destination to be reached. Dō implies that the practice itself is the point, not what it produces. You are always on the path. You never arrive.', rope:'In rope: every session is the practice. There is no graduation from beginner. There is only the path, and how honestly you walk it.' },
-      'kaizen':      { kanji:'改善', name:'Kaizen', reading:'Continuous improvement', desc:'Small, consistent improvement over time. Not revolution but evolution. The discipline of looking at what is, asking what it could be, and making one step toward it.', rope:'In rope: technique does not plateau, it deepens. Kaizen means returning to fundamentals not because you failed but because you understand them more now than before.' },
-      'ikigai':      { kanji:'生き甲斐', name:'Ikigai', reading:'Reason for being', desc:'The intersection of what you love, what you are good at, what the world needs, and what sustains you. Not a career framework. A question to sit with honestly.', rope:'In rope: why are you here? What does this give you that nothing else does? Ikigai is not an excuse to avoid hard questions. It is the reason you answer them.' },
-      'shoshin':     { kanji:'初心', name:'Shoshin', reading:'Beginner\'s mind', desc:'Approaching the familiar with the openness of someone encountering it for the first time. The expert\'s greatest danger is certainty. Shoshin is the antidote.', rope:'In rope: the technique you have tied a thousand times still has something to teach you. Shoshin keeps the door open.' },
-      'shuhari':     { kanji:'守破離', name:'Shu-Ha-Ri', reading:'Follow · Break · Transcend', desc:'Three stages of mastery. First follow the rules exactly. Then understand them deeply enough to bend them. Finally move beyond them into your own expression. Each stage requires the last.', rope:'In rope: you cannot transcend what you never learned. The improvisation that looks effortless was built on thousands of hours of strict repetition.' },
-      'wabisabi':    { kanji:'侘寂', name:'Wabi-Sabi', reading:'Impermanence · Incompleteness', desc:'Beauty in imperfection, impermanence, and incompleteness. The crack in the bowl. The asymmetry in the knot. Wabi-sabi refuses the tyranny of the perfect.', rope:'In rope: the asymmetrical tie, the improvised adjustment, the mark left behind. None of it is a mistake. It is the evidence of something that actually happened.' },
-      'mononoaware':  { kanji:'物の哀れ', name:'Mono no Aware', reading:'The pathos of things', desc:'The gentle sadness of impermanence. The beauty that is inseparable from the knowledge that it will end. Mono no aware is not despair. It is presence.', rope:'In rope: the suspension that ends, the scene that closes, the partner you will not tie again. Mono no aware is why it matters that you were there for all of it.' },
-      'shikataganai': { kanji:'仕方がない', name:'Shikata ga nai', reading:'It cannot be helped', desc:'Acceptance of what cannot be changed without surrender of responsibility for what can. Not fatalism. The wisdom to stop fighting what is already done and redirect energy to what is still possible.', rope:'In rope: a nerve incident. A canceled event. A relationship that ends. Shikata ga nai is not indifference. It is how you stay functional when the unexpected arrives.' },
-      'gaman':       { kanji:'我慢', name:'Gaman', reading:'Endurance · Patience', desc:'The quiet endurance of difficulty without complaint. Not martyrdom. The internal discipline that does not demand recognition for every effort made.', rope:'In rope: the long learning curve, the slow building of trust, the patience required to be Uke and to be Tori. Gaman is what keeps you on the path when nothing is glamorous yet.' },
-      'ichigoichie': { kanji:'一期一会', name:'Ichi-go ichi-e', reading:'One time · One meeting', desc:'This moment will not come again. The person across from you today is not the same person you will tie tomorrow. Every encounter is singular and unrepeatable.', rope:'In rope: full presence is not optional. The scene happening now has never happened before and will never happen again. Ichi-go ichi-e is why you put the phone down.' },
-      'ma':          { kanji:'間', name:'Ma', reading:'Negative space · Pause · Interval', desc:'The space between. The pause in music that gives the notes meaning. The emptiness in the bowl that makes it useful. Ma is not absence, it is structure.', rope:'In rope: the stillness between transitions, the breath before the next tie, the silence that holds the scene together. Ma is not wasted time. It is the shape of attention.' },
-      'sennosen':    { kanji:'先の先', name:'Sen no Sen', reading:'Initiative within initiative', desc:'From kenjutsu: responding to an attack before it is fully launched by reading the intention behind it. Anticipation so refined it appears to be simultaneous.', rope:'In rope: reading a shift in the body before the person speaks. Feeling the approach of distress before it becomes distress. Sen no Sen is why experienced riggers seem to know before being told.' },
-      'mushin':      { kanji:'無心', name:'Mushin', reading:'No mind · Empty mind', desc:'The state in which the mind does not attach to any single thought, allowing complete responsiveness to what is. Not emptiness but fluidity. The expert acts without deliberating.', rope:'In rope: when the technique no longer requires conscious direction, what is left is pure attention to the person in front of you. Mushin is not the absence of skill. It is skill so fully integrated that it disappears.' }
-    };
-
-    function showCompanion(id) {
-      var c = companions[id];
-      if (!c) return;
-
-      // Highlight active tag
-      document.querySelectorAll('.companion-tag').forEach(function(t) {
-        t.style.borderColor = 'rgba(240,234,216,.1)';
-        t.style.color = 'rgba(240,234,216,.3)';
-      });
-      event.currentTarget.style.borderColor = 'rgba(169,124,26,.5)';
-      event.currentTarget.style.color = '#c9a84c';
-
-      // Populate card
-      document.getElementById('companion-kanji').textContent = c.kanji;
-      document.getElementById('companion-name').textContent = c.name;
-      document.getElementById('companion-reading').textContent = c.reading;
-      document.getElementById('companion-desc').textContent = c.desc;
-      document.getElementById('companion-rope').textContent = c.rope;
-
-      // Show content
-      document.getElementById('companion-empty').style.display = 'none';
-      var content = document.getElementById('companion-content');
-      content.style.display = 'block';
-      content.style.opacity = '0';
-      setTimeout(function() { content.style.transition = 'opacity .3s'; content.style.opacity = '1'; }, 10);
-    }
-    </script>
-  </div>
-</section>
-
-<!-- ══ BREAK □ ══ -->
+<!-- ══ C1 — BREAK □ ══ -->
 <div class="brk" id="break-sq">
   <div class="brk-bg" id="break-sq-bg">
     <img src="img/break_sq.jpg" alt="" style="filter:brightness(.55) saturate(.6) hue-rotate(15deg);"/>
@@ -897,9 +903,9 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
   </div>
 </div>
 
-<!-- ══ B1 — STRUCTURE AS FOUNDATION ══ -->
-<section class="section" id="B1" style="border-top:1px solid rgba(240,234,216,.06);">
-  <div class="sec-id">B1</div>
+<!-- ══ C2 — STRUCTURE · FOUNDATION ══ -->
+<section class="section" id="E4" style="border-top:1px solid rgba(240,234,216,.06);">
+  <div class="sec-id">E4</div>
   <div class="inner">
     <div class="lbl fade-in">□ Structure</div>
     <div class="two-col fade-in" style="margin-bottom:4rem">
@@ -913,9 +919,9 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
   </div>
 </section>
 
-<!-- ══ B2 — THE DO ══ -->
-<section class="section" id="B2" style="background:#131315;border-top:1px solid rgba(240,234,216,.06);">
-  <div class="sec-id">B2</div>
+<!-- ══ C3 — THE TENSION CURRICULUM · THE DŌ ══ -->
+<section class="section" id="E5" style="background:#131315;border-top:1px solid rgba(240,234,216,.06);">
+  <div class="sec-id">E5</div>
   <div class="inner">
     <div class="lbl fade-in">The Tension Curriculum</div>
     <div class="two-col fade-in" style="margin-bottom:4rem">
@@ -941,9 +947,9 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
   </div>
 </section>
 
-<!-- ══ B3 — FUNDAMENTALS ══ -->
-<section class="section" id="B3" style="background:#252018;border-top:1px solid rgba(240,234,216,.06);">
-  <div class="sec-id">B3</div>
+<!-- ══ C4 — FUNDAMENTALS ══ -->
+<section class="section" id="D5" style="background:#252018;border-top:1px solid rgba(240,234,216,.06);">
+  <div class="sec-id">D5</div>
   <div class="inner">
     <div class="lbl fade-in">Fundamentals</div>
     <div class="two-col fade-in" style="margin-bottom:4rem">
@@ -970,9 +976,9 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
   </div>
 </section>
 
-<!-- ══ B4 — GET THE BOOK ══ -->
-<section class="section" id="B4" style="background:#252018;border-top:1px solid rgba(240,234,216,.06);">
-  <div class="sec-id">B4</div>
+<!-- ══ C5 — GET THE BOOK ══ -->
+<section class="section" id="D6" style="background:#252018;border-top:1px solid rgba(240,234,216,.06);">
+  <div class="sec-id">D6</div>
   <div class="inner">
     <div class="lbl fade-in">Book · Published</div>
     <div class="two-col fade-in" style="margin-bottom:4rem">
@@ -987,7 +993,7 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
         </div>
         <div style="display:flex;gap:12px;flex-wrap:wrap">
           <a href="https://tensionmtl.ca/collections/books" class="btn btn-p" target="_blank">Get the Book</a>
-          <a href="#B3" class="btn btn-o">What it covers</a>
+          <a href="#C4" class="btn btn-o">What it covers</a>
         </div>
       </div>
       <div style="background:var(--ink2);aspect-ratio:3/4;overflow:hidden;">
@@ -997,9 +1003,9 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
   </div>
 </section>
 
-<!-- ══ B5 — COMMUNITY ══ -->
-<section class="section" id="B5" style="border-top:1px solid rgba(240,234,216,.06);">
-  <div class="sec-id">B5</div>
+<!-- ══ C6 — STRUCTURE IN COMMUNITY ══ -->
+<section class="section" id="C6" style="border-top:1px solid rgba(240,234,216,.06);">
+  <div class="sec-id">C6</div>
   <div class="inner">
     <div class="lbl fade-in">Structure in Community</div>
     <div class="two-col fade-in" style="margin-bottom:4rem">
@@ -1019,7 +1025,7 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
   </div>
 </section>
 
-<!-- ══ BREAK △ ══ -->
+<!-- ══ D1 — BREAK △ ══ -->
 <div class="brk" id="break-tri">
   <div class="brk-bg" id="break-tri-bg">
     <img src="img/break_tri.jpg" alt="" style="filter:brightness(.55) saturate(.5) sepia(.2);"/>
@@ -1034,9 +1040,9 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
   </div>
 </div>
 
-<!-- ══ C1 — TENSION AS DIRECTION ══ -->
-<section class="section" id="C1" style="border-top:1px solid rgba(240,234,216,.06);">
-  <div class="sec-id">C1</div>
+<!-- ══ D2 — TENSION · DIRECTION ══ -->
+<section class="section" id="E3" style="border-top:1px solid rgba(240,234,216,.06);">
+  <div class="sec-id">E3</div>
   <div class="inner">
     <div class="lbl fade-in">△ Tension</div>
     <div class="two-col fade-in" style="margin-bottom:4rem">
@@ -1053,9 +1059,9 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
   </div>
 </section>
 
-<!-- ══ C2 — WORKSHOPS ══ -->
-<section class="section" id="C2" style="border-top:1px solid rgba(240,234,216,.06);">
-  <div class="sec-id">C2</div>
+<!-- ══ D3 — TEACHING ══ -->
+<section class="section" id="E4" style="border-top:1px solid rgba(240,234,216,.06);">
+  <div class="sec-id">E4</div>
   <div class="inner">
     <div class="lbl fade-in">Teaching</div>
     <div class="two-col fade-in" style="margin-bottom:4rem">
@@ -1081,9 +1087,9 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
   </div>
 </section>
 
-<!-- ══ C3 — PRIVATE PARTIES ══ -->
-<section class="section" id="C3" style="border-top:1px solid rgba(240,234,216,.06);">
-  <div class="sec-id">C3</div>
+<!-- ══ D4 — PRIVATE PARTIES ══ -->
+<section class="section" id="E5" style="border-top:1px solid rgba(240,234,216,.06);">
+  <div class="sec-id">E5</div>
   <div class="inner">
     <div class="lbl fade-in">Private Parties</div>
     <div class="two-col fade-in">
@@ -1104,9 +1110,9 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
   </div>
 </section>
 
-<!-- ══ C4 — RESIDENCIES ══ -->
-<section class="section" id="C4" style="border-top:1px solid rgba(240,234,216,.06);">
-  <div class="sec-id">C4</div>
+<!-- ══ D5 — RESIDENCIES ══ -->
+<section class="section" id="D5" style="border-top:1px solid rgba(240,234,216,.06);">
+  <div class="sec-id">D5</div>
   <div class="inner">
     <div class="lbl fade-in">Residencies</div>
     <div class="two-col fade-in">
@@ -1126,9 +1132,9 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
   </div>
 </section>
 
-<!-- ══ C5 — PRODUCTION & PERFORMANCE ══ -->
-<section class="section" id="C5" style="border-top:1px solid rgba(240,234,216,.06);">
-  <div class="sec-id">C5</div>
+<!-- ══ D6 — PRODUCTION · PERFORMANCE ══ -->
+<section class="section" id="D6" style="border-top:1px solid rgba(240,234,216,.06);">
+  <div class="sec-id">D6</div>
   <div class="inner">
     <div class="lbl fade-in">Production · Performance</div>
     <div class="two-col fade-in">
@@ -1154,7 +1160,7 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
   </div>
 </section>
 
-<!-- ══ BREAK ○ ══ -->
+<!-- ══ E1 — BREAK ○ ══ -->
 <div class="brk" id="break-circ">
   <div class="brk-bg" id="break-circ-bg">
     <img src="img/break_circ.jpg" alt="" style="filter:brightness(.4) saturate(.3);object-position:85% 80%;"/>
@@ -1169,9 +1175,9 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
   </div>
 </div>
 
-<!-- ══ D1 — FLOW AS INTEGRATION / SEME ══ -->
-<section class="section" id="D1" style="border-top:1px solid rgba(240,234,216,.06);">
-  <div class="sec-id">D1</div>
+<!-- ══ E2 — SEME · FLOW ══ -->
+<section class="section" id="F2" style="border-top:1px solid rgba(240,234,216,.06);">
+  <div class="sec-id">F2</div>
   <div class="inner">
     <div class="lbl fade-in">○ The Circle · Return</div>
     <div class="two-col fade-in" style="margin-bottom:5rem">
@@ -1218,9 +1224,9 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
   </div>
 </section>
 
-<!-- ══ D2 — FLOW IN PRACTICE ══ -->
-<section class="section" id="D2" style="border-top:1px solid rgba(240,234,216,.05);">
-  <div class="sec-id">D2</div>
+<!-- ══ E3 — FLOW IN PRACTICE ══ -->
+<section class="section" id="E3" style="border-top:1px solid rgba(240,234,216,.05);">
+  <div class="sec-id">E3</div>
   <div class="inner">
     <div class="lbl fade-in">Flow in Practice</div>
     <div class="two-col fade-in">
@@ -1230,12 +1236,21 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
         <p class="body-mono">Flow is not ease. It is responsiveness. The practitioner who has integrated structure and tension fully enough that they are no longer thinking about them is free to pay attention to what is actually in front of them.</p>
       </div>
     </div>
+    <!-- Photos -->
+    <div class="fade-in" style="display:grid;grid-template-columns:1fr 1fr;gap:1px;margin-top:3rem;background:rgba(240,234,216,.05);">
+      <div style="overflow:hidden;aspect-ratio:4/5;">
+        <img src="img/doggo_-_blanche_shoot.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;filter:brightness(.85) saturate(.8);transition:transform .6s var(--ease);" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'"/>
+      </div>
+      <div style="overflow:hidden;aspect-ratio:4/5;">
+        <img src="img/Masha_-_doggo_-_blanche_shoot.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;filter:brightness(.85) saturate(.8);transition:transform .6s var(--ease);" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'"/>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- ══ D3 — FLOW IN THE PATH ══ -->
-<section class="section" id="D3" style="border-top:1px solid rgba(240,234,216,.05);">
-  <div class="sec-id">D3</div>
+<!-- ══ E4 — FLOW IN THE PATH ══ -->
+<section class="section" id="E4" style="border-top:1px solid rgba(240,234,216,.05);">
+  <div class="sec-id">E4</div>
   <div class="inner">
     <div class="lbl fade-in">Flow in the Path</div>
     <div class="two-col fade-in">
@@ -1248,9 +1263,9 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
   </div>
 </section>
 
-<!-- ══ D4 — IN THE WORLD ══ -->
-<section class="section" id="D4" style="border-top:1px solid rgba(240,234,216,.05);">
-  <div class="sec-id">D4</div>
+<!-- ══ E5 — IN THE WORLD ══ -->
+<section class="section" id="E5" style="border-top:1px solid rgba(240,234,216,.05);">
+  <div class="sec-id">E5</div>
   <div class="inner">
     <div class="lbl fade-in">In the World</div>
     <div class="two-col fade-in" style="margin-bottom:4rem">
@@ -1263,9 +1278,9 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
   </div>
 </section>
 
-<!-- ══ E1 — CONTINUE YOUR PATH ══ -->
-<section class="section" id="E1" style="border-top:1px solid rgba(240,234,216,.06);">
-  <div class="sec-id">E1</div>
+<!-- ══ F1 — CONTINUE YOUR PATH ══ -->
+<section class="section" id="F1" style="border-top:1px solid rgba(240,234,216,.06);">
+  <div class="sec-id">F1</div>
   <div class="inner">
     <div class="lbl fade-in">Continue</div>
     <div class="two-col fade-in" style="margin-bottom:4rem">
@@ -1310,7 +1325,7 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
   </div>
 </section>
 
-<!-- ══ E2 — WORK WITH ME ══ -->
+<!-- ══ F2 — WORK WITH ME ══ -->
 <section class="section" id="E2" style="border-top:1px solid rgba(240,234,216,.06);">
   <div class="sec-id">E2</div>
   <div class="inner">
@@ -1343,10 +1358,10 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
 <footer style="background:#1e1a16;border-top:1px solid rgba(169,124,26,.12);padding:3rem 4rem;display:flex;justify-content:space-between;align-items:center;gap:2rem;flex-wrap:wrap;">
   <a href="#" style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:300;letter-spacing:.2em;color:#f0ead8;opacity:.55">Will<em style="color:#c9a84c;font-style:italic">cat</em></a>
   <ul style="display:flex;gap:1.5rem;list-style:none;flex-wrap:wrap">
-    <li><a href="#A1" style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;color:rgba(240,234,216,.35);text-transform:uppercase">The Framework</a></li>
-    <li><a href="#A2" style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;color:rgba(240,234,216,.35);text-transform:uppercase">About</a></li>
-    <li><a href="#B2" style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;color:rgba(240,234,216,.35);text-transform:uppercase">The Path</a></li>
-    <li><a href="#C2" style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;color:rgba(240,234,216,.35);text-transform:uppercase">Work with me</a></li>
+    <li><a href="#C4" style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;color:rgba(240,234,216,.35);text-transform:uppercase">The Framework</a></li>
+    <li><a href="#B1" style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;color:rgba(240,234,216,.35);text-transform:uppercase">About</a></li>
+    <li><a href="#C3" style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;color:rgba(240,234,216,.35);text-transform:uppercase">The Path</a></li>
+    <li><a href="#D3" style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;color:rgba(240,234,216,.35);text-transform:uppercase">Work with me</a></li>
     <li><a href="https://tensionmtl.ca" target="_blank" style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;color:rgba(240,234,216,.35);text-transform:uppercase">Tension MTL</a></li>
   </ul>
   <div style="font-family:'DM Mono',monospace;font-size:9.5px;color:rgba(240,234,216,.3);text-align:right;line-height:1.6">
