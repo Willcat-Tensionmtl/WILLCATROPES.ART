@@ -529,30 +529,33 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
         <img src="img/Bokken.png" alt="" style="width:100%;display:block;mix-blend-mode:screen;"/>
       </div>
 
-      <div id="companions-wrapper" style="display:grid;grid-template-columns:1fr 2fr;gap:3rem;align-items:start;">
+      <div id="companions-divider" style="position:relative;margin-left:calc(-50vw + 50%);margin-right:calc(-50vw + 50%);width:100vw;height:1px;background:rgba(240,234,216,.08);margin-bottom:2rem;overflow:hidden;">
+        <div id="companions-line-shimmer" style="position:absolute;top:0;left:-30%;width:30%;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,.8),transparent);opacity:0;pointer-events:none;"></div>
+      </div>
+      <div id="companions-wrapper" style="display:grid;grid-template-columns:1fr 3fr;gap:3rem;align-items:start;">
 
-        <!-- Left: label + tag cloud — 1/3 width -->
+        <!-- Left: rolodex list -->
         <div id="companions-tags-col">
-          <div class="lbl" style="margin-bottom:1.25rem">My Thirteen Companions</div>
-          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1.5rem;" id="companions-tags">
-            <span class="companion-tag" onclick="showCompanion('do')" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;padding:5px 13px;border:.5px solid rgba(240,234,216,.1);color:rgba(240,234,216,.3);border-radius:1px;cursor:pointer;transition:all .2s"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">道</span>Dō</span>
-            <span class="companion-tag" onclick="showCompanion('ikigai')" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;padding:5px 13px;border:.5px solid rgba(240,234,216,.1);color:rgba(240,234,216,.3);border-radius:1px;cursor:pointer;transition:all .2s"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">生き甲斐</span>Ikigai</span>
-            <span class="companion-tag" onclick="showCompanion('shuhari')" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;padding:5px 13px;border:.5px solid rgba(240,234,216,.1);color:rgba(240,234,216,.3);border-radius:1px;cursor:pointer;transition:all .2s"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">守破離</span>Shu-Ha-Ri</span>
-            <span class="companion-tag" onclick="showCompanion('ma')" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;padding:5px 13px;border:.5px solid rgba(240,234,216,.1);color:rgba(240,234,216,.3);border-radius:1px;cursor:pointer;transition:all .2s"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">間</span>Ma</span>
-            <span class="companion-tag" onclick="showCompanion('wabisabi')" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;padding:5px 13px;border:.5px solid rgba(240,234,216,.1);color:rgba(240,234,216,.3);border-radius:1px;cursor:pointer;transition:all .2s"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">侘寂</span>Wabi-Sabi</span>
-            <span class="companion-tag" onclick="showCompanion('kaizen')" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;padding:5px 13px;border:.5px solid rgba(240,234,216,.1);color:rgba(240,234,216,.3);border-radius:1px;cursor:pointer;transition:all .2s"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">改善</span>Kaizen</span>
-            <span class="companion-tag" onclick="showCompanion('shoshin')" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;padding:5px 13px;border:.5px solid rgba(240,234,216,.1);color:rgba(240,234,216,.3);border-radius:1px;cursor:pointer;transition:all .2s"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">初心</span>Shoshin</span>
-            <span class="companion-tag" onclick="showCompanion('gaman')" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;padding:5px 13px;border:.5px solid rgba(240,234,216,.1);color:rgba(240,234,216,.3);border-radius:1px;cursor:pointer;transition:all .2s"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">我慢</span>Gaman</span>
-            <span class="companion-tag" onclick="showCompanion('ichigoichie')" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;padding:5px 13px;border:.5px solid rgba(240,234,216,.1);color:rgba(240,234,216,.3);border-radius:1px;cursor:pointer;transition:all .2s"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">一期一会</span>Ichi-go ichi-e</span>
-            <span class="companion-tag" onclick="showCompanion('shikataganai')" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;padding:5px 13px;border:.5px solid rgba(240,234,216,.1);color:rgba(240,234,216,.3);border-radius:1px;cursor:pointer;transition:all .2s"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">仕方がない</span>Shikata ga nai</span>
-            <span class="companion-tag" onclick="showCompanion('mononoaware')" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;padding:5px 13px;border:.5px solid rgba(240,234,216,.1);color:rgba(240,234,216,.3);border-radius:1px;cursor:pointer;transition:all .2s"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">物の哀れ</span>Mono no Aware</span>
-            <span class="companion-tag" onclick="showCompanion('sennosen')" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;padding:5px 13px;border:.5px solid rgba(240,234,216,.1);color:rgba(240,234,216,.3);border-radius:1px;cursor:pointer;transition:all .2s"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">先の先</span>Sen no Sen</span>
-            <span class="companion-tag" onclick="showCompanion('mushin')" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;padding:5px 13px;border:.5px solid rgba(240,234,216,.1);color:rgba(240,234,216,.3);border-radius:1px;cursor:pointer;transition:all .2s"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">無心</span>Mushin</span>
+          <div class="lbl" style="margin-bottom:1rem;padding-bottom:.75rem;border-bottom:.5px solid rgba(240,234,216,.08);" id="companions-lbl">My Thirteen Companions</div>
+          <div id="companions-tags" style="display:flex;flex-direction:column;gap:0;">
+            <div class="rolodex-item" data-id="do" onclick="showCompanion('do')"><span class="rolodex-kanji">道</span><span class="rolodex-name">Dō</span></div>
+            <div class="rolodex-item" data-id="ikigai" onclick="showCompanion('ikigai')"><span class="rolodex-kanji">生き甲斐</span><span class="rolodex-name">Ikigai</span></div>
+            <div class="rolodex-item" data-id="shuhari" onclick="showCompanion('shuhari')"><span class="rolodex-kanji">守破離</span><span class="rolodex-name">Shu-Ha-Ri</span></div>
+            <div class="rolodex-item" data-id="ma" onclick="showCompanion('ma')"><span class="rolodex-kanji">間</span><span class="rolodex-name">Ma</span></div>
+            <div class="rolodex-item" data-id="kaizen" onclick="showCompanion('kaizen')"><span class="rolodex-kanji">改善</span><span class="rolodex-name">Kaizen</span></div>
+            <div class="rolodex-item" data-id="shoshin" onclick="showCompanion('shoshin')"><span class="rolodex-kanji">初心</span><span class="rolodex-name">Shoshin</span></div>
+            <div class="rolodex-item" data-id="gaman" onclick="showCompanion('gaman')"><span class="rolodex-kanji">我慢</span><span class="rolodex-name">Gaman</span></div>
+            <div class="rolodex-item" data-id="wabisabi" onclick="showCompanion('wabisabi')"><span class="rolodex-kanji">侘寂</span><span class="rolodex-name">Wabi-Sabi</span></div>
+            <div class="rolodex-item" data-id="ichigoichie" onclick="showCompanion('ichigoichie')"><span class="rolodex-kanji">一期一会</span><span class="rolodex-name">Ichi-go ichi-e</span></div>
+            <div class="rolodex-item" data-id="shikataganai" onclick="showCompanion('shikataganai')"><span class="rolodex-kanji">仕方がない</span><span class="rolodex-name">Shikata ga nai</span></div>
+            <div class="rolodex-item" data-id="mononoaware" onclick="showCompanion('mononoaware')"><span class="rolodex-kanji">物の哀れ</span><span class="rolodex-name">Mono no Aware</span></div>
+            <div class="rolodex-item" data-id="sennosen" onclick="showCompanion('sennosen')"><span class="rolodex-kanji">先の先</span><span class="rolodex-name">Sen no Sen</span></div>
+            <div class="rolodex-item" data-id="mushin" onclick="showCompanion('mushin')"><span class="rolodex-kanji">無心</span><span class="rolodex-name">Mushin</span></div>
           </div>
         </div>
 
         <!-- Right: description card — 2/3 width -->
-        <div id="companion-card" style="margin-top:6px;border:.5px solid rgba(169,124,26,.2);background:rgba(169,124,26,.04);padding:2.5rem;min-height:200px;display:flex;flex-direction:column;justify-content:center;transition:opacity .3s;">
+        <div id="companion-card" style="margin-top:0;border:.5px solid rgba(169,124,26,.2);background:rgba(169,124,26,.04);padding:2.5rem;min-height:200px;display:flex;flex-direction:column;justify-content:center;transition:opacity .3s;align-self:stretch;">
           <div id="companion-empty" style="text-align:center;opacity:.25">
             <div style="font-family:var(--fj);font-size:2rem;color:var(--rope);margin-bottom:.75rem">道</div>
             <div style="font-family:var(--fm);font-size:8px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)">Select a companion</div>
@@ -594,13 +597,25 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
       var c = companions[id];
       if (!c) return;
 
-      // Highlight active tag
-      document.querySelectorAll('.companion-tag').forEach(function(t) {
-        t.style.borderColor = 'rgba(240,234,216,.1)';
-        t.style.color = 'rgba(240,234,216,.3)';
+      // Pulse the divider line
+      var ls = document.getElementById('companions-line-shimmer');
+      if (ls) {
+        ls.style.transition = 'none';
+        ls.style.left = '-30%';
+        ls.style.opacity = '0';
+        void ls.offsetWidth;
+        ls.style.transition = 'left .7s ease-out, opacity .15s ease-out';
+        ls.style.opacity = '1';
+        ls.style.left = '110%';
+        setTimeout(function() { ls.style.opacity = '0'; }, 600);
+      }
+
+      // Update rolodex active state
+      document.querySelectorAll('.rolodex-item').forEach(function(t) {
+        t.classList.remove('active');
       });
-      event.currentTarget.style.borderColor = 'rgba(169,124,26,.5)';
-      event.currentTarget.style.color = '#c9a84c';
+      var activeItem = document.querySelector('.rolodex-item[data-id="' + id + '"]');
+      if (activeItem) activeItem.classList.add('active');
 
       // Populate card
       document.getElementById('companion-kanji').textContent = c.kanji;
@@ -1431,26 +1446,70 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
   100% { top: 200%; opacity: 0; }
 }
 
-/* Companion tag — shimmer on hover */
-.companion-tag {
+/* Rolodex companions list */
+.rolodex-item {
+  display: flex;
+  align-items: baseline;
+  gap: .5rem;
+  padding: .35rem .5rem;
+  cursor: pointer;
+  border-left: 2px solid transparent;
+  transition: border-color .2s;
   position: relative;
   overflow: hidden;
 }
-.companion-tag::after {
+.rolodex-item::after {
   content: '';
   position: absolute;
   top: 0; left: -100%;
   width: 60%; height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(201,168,76,.15), transparent);
+  background: linear-gradient(90deg, transparent, rgba(201,168,76,.1), transparent);
   pointer-events: none;
 }
-.companion-tag:hover::after {
+.rolodex-item:hover::after {
   animation: tagShimmer .5s ease-out forwards;
 }
-@keyframes tagShimmer {
-  0% { left: -60%; }
-  100% { left: 120%; }
+.rolodex-kanji {
+  font-family: var(--fj);
+  font-size: 10px;
+  color: rgba(201,168,76,.3);
+  transition: color .25s, font-size .25s;
+  line-height: 1.6;
+  flex-shrink: 0;
 }
+.rolodex-name {
+  font-family: var(--fm);
+  font-size: 9px;
+  letter-spacing: .12em;
+  color: rgba(240,234,216,.22);
+  text-transform: uppercase;
+  transition: color .25s, font-size .25s, letter-spacing .25s;
+  line-height: 1.6;
+}
+.rolodex-item.active {
+  border-left-color: rgba(201,168,76,.5);
+  flex-direction: column;
+  align-items: flex-start;
+  gap: .15rem;
+}
+.rolodex-item:hover .rolodex-name {
+  color: rgba(240,234,216,.45);
+}
+.rolodex-item:hover .rolodex-kanji {
+  color: rgba(201,168,76,.55);
+  text-shadow: 0 0 8px rgba(201,168,76,.3);
+}
+.rolodex-item.active .rolodex-kanji {
+  font-size: 15px;
+  color: var(--rope-l);
+  text-shadow: 0 0 12px rgba(201,168,76,.5);
+}
+.rolodex-item.active .rolodex-name {
+  font-size: 12px;
+  letter-spacing: .18em;
+  color: rgba(201,168,76,.85);
+}
+#companions-lbl::before { display: none; }
 
 /* Pillar card ghost shapes — trace on hover */
 .pillar-card { position: relative; overflow: visible; cursor: pointer; }
