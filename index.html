@@ -168,7 +168,7 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
 
 @media (max-width: 600px) {
   #wip { padding: .75rem 1.5rem; flex-direction: column; align-items: center; gap: .5rem; text-align: center; }
-  .hero-nav { top: 52px; }
+  .hero-nav { top: 68px; }
   .hero-content { padding: 2rem 1.5rem; }
   .hero-name { font-size: clamp(3.2rem,14vw,5rem); }
   #companions-wrapper { grid-template-columns: 1fr !important; gap: 2rem !important; }
@@ -342,6 +342,28 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
       <a href="https://tensionmtl.ca/pages/about-willcat" target="_blank" class="btn btn-o">Book a date</a>
     </div>
   </div>
+
+  <!-- Scroll shimmer — fixed right side, disappears when leaving hero -->
+  <div id="scroll-shimmer" style="position:fixed;right:4rem;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;align-items:center;gap:.75rem;z-index:10;transition:opacity .4s;">
+    <div style="position:relative;width:1px;height:120px;overflow:hidden;">
+      <div style="position:absolute;inset:0;background:rgba(201,168,76,.15);"></div>
+      <div style="position:absolute;left:0;width:1px;top:-60px;height:60px;background:linear-gradient(180deg,transparent,rgba(201,168,76,.9),transparent);animation:heroShimmer 2.8s ease-in-out infinite;"></div>
+    </div>
+    <div style="font-family:var(--fm);font-size:7px;letter-spacing:.2em;text-transform:uppercase;color:rgba(201,168,76,.3);writing-mode:vertical-rl;animation:heroFade 2.8s ease-in-out infinite;">scroll</div>
+  </div>
+
+  <style>
+    @keyframes heroShimmer {
+      0% { top: -60px; opacity: 0; }
+      20% { opacity: 1; }
+      80% { opacity: 1; }
+      100% { top: 120px; opacity: 0; }
+    }
+    @keyframes heroFade {
+      0%, 100% { opacity: .3; }
+      50% { opacity: .7; }
+    }
+  </style>
 </section>
 
 <!-- ══ A2 — INVITATION ══ -->
@@ -355,8 +377,8 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
       <p style="font-family:var(--fd);font-size:clamp(1.05rem,1.5vw,1.25rem);font-weight:300;font-style:italic;color:rgba(240,234,216,.65);line-height:1.78;">And then the rope is in your hands, or on you, and it is nothing like you imagined. It is harder. More technical. More intimate. More demanding of your attention than anything warned you it would be.</p>
       <p style="font-family:var(--fd);font-size:clamp(1.05rem,1.5vw,1.25rem);font-weight:300;font-style:italic;color:rgba(240,234,216,.65);line-height:1.78;">That gap, between what drew you here and what it actually asks of you; is not a problem to solve. It is the beginning of a practice.</p>
       <div style="width:40px;height:1px;background:rgba(169,124,26,.3);margin:1rem 0;"></div>
-      <p style="font-family:var(--fd);font-size:clamp(1.05rem,1.5vw,1.25rem);font-weight:300;font-style:italic;color:rgba(240,234,216,.65);line-height:1.78;">I learned rope in that gap. Found my way through it with some guidance, some luck, and a stubborn decision to do better by others than the learning curve had done by me. That decision became a curriculum. The curriculum became a studio. The studio became a community. And the community keeps becoming, through some stuborness, something none of us fully planned.</p>
-      <p style="font-family:var(--fd);font-size:clamp(1.15rem,1.7vw,1.4rem);font-weight:300;font-style:italic;color:rgba(240,234,216,.5);line-height:1.78;">You don't have to know where you are going yet. The shape of things really does take time to actually take shape.</p>
+      <p style="font-family:var(--fd);font-size:clamp(1.05rem,1.5vw,1.25rem);font-weight:300;font-style:italic;color:rgba(240,234,216,.65);line-height:1.78;">I learned rope in that gap. Found my way through it with some guidance, some luck, and a stubborn decision to do better by others than the learning curve had done by me. That decision became a curriculum. The curriculum became a studio. The studio became a community. And the community keeps becoming, through some stubbornness, something none of us fully planned.</p>
+      <p style="font-family:var(--fd);font-size:clamp(1.05rem,1.5vw,1.25rem);font-weight:300;font-style:italic;color:rgba(240,234,216,.45);line-height:1.78;">You don't have to always know where you are going. The shape of things takes time, and sometimes changes entirely before it arrives. This page is an attempt at shifting perspectives; to have you question what you thought you knew, and sit with the questions that replace it. I hope it gives you answers. I hope it gives you more questions. Both are the point.</p>
       <div style="border-left:2px solid rgba(169,124,26,.35);padding-left:1.5rem;margin-top:.5rem;">
         <p style="font-family:var(--fd);font-size:clamp(1.1rem,1.6vw,1.35rem);font-weight:300;color:rgba(240,234,216,.75);line-height:1.7;">Don't give up. Do your best.</p>
         <p style="font-family:var(--fd);font-size:clamp(1.1rem,1.6vw,1.35rem);font-weight:300;font-style:italic;color:var(--rope-l);line-height:1.7;">I can be there along your path, at least for a time...</p>
@@ -367,8 +389,8 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
 </section>
 
 <!-- ══ B1 — WHO I AM ══ -->
-<section class="section" id="E4" style="background:#131315;border-top:1px solid rgba(240,234,216,.06);">
-  <div class="sec-id">E4</div>
+<section class="section" id="B1" style="background:#131315;border-top:1px solid rgba(240,234,216,.06);">
+  <div class="sec-id">B1</div>
   <div class="inner">
     <div class="two-col valign fade-in" style="margin-bottom:3rem">
       <div style="aspect-ratio:3/4;background:#131315;overflow:hidden;position:relative;">
@@ -398,8 +420,8 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
 </section>
 
 <!-- ══ B2 — THREE PILLARS ══ -->
-<section class="section" id="E5" style="border-top:1px solid rgba(240,234,216,.06);">
-  <div class="sec-id">E5</div>
+<section class="section" id="B2" style="border-top:1px solid rgba(240,234,216,.06);">
+  <div class="sec-id">B2</div>
   <div class="inner">
     <div class="lbl fade-in">Three Pillars</div>
     <div class="two-col fade-in" style="margin-bottom:4rem;align-items:end">
@@ -410,7 +432,7 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
       <div class="bq"><p>Not rules to follow but lenses to see through.</p></div>
     </div>
 
-    <p class="body-serif fade-in" style="margin-bottom:1.5rem;opacity:.65;max-width:720px">These philosophies shaped me but they are not rules, only companions. They remind us that rope is more than just tying bodies and that mastery should never be the goal. The path is what counts, be in the moment; the person, not the destination.</p>
+    <p class="body-serif fade-in" style="margin-bottom:1.5rem;opacity:.65;max-width:720px">These philosophies shaped me but they are not rules, only companions; concepts that have walked with me. They remind us that rope is more than just tying bodies and that mastery should never be the goal. The path is what counts, be in the moment; the person, not the destination.</p>
     <div class="lbl fade-in" style="margin-bottom:1rem">Book 1 · Fundamentals · P.18</div>
     <p class="body-serif fade-in" style="margin-bottom:.75rem;opacity:.65;max-width:720px">Rope should be done with feeling; it's not all about the rope. Shibari or Kinbaku, depending on who you ask, is characterized by these three ingredients:</p>
     <ul class="fade-in" style="margin-bottom:2.5rem;padding-left:1.5rem;max-width:720px;opacity:.65;">
@@ -597,8 +619,8 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
 </section>
 
 <!-- ══ B3 — THE FRAMEWORK ══ -->
-<section class="section" id="D5" style="border-top:1px solid rgba(240,234,216,.06);">
-  <div class="sec-id">D5</div>
+<section class="section" id="B3" style="border-top:1px solid rgba(240,234,216,.06);">
+  <div class="sec-id">B3</div>
   <div class="inner">
     <div class="lbl fade-in">The Framework</div>
     <div class="two-col fade-in" style="margin-bottom:4rem;align-items:start">
@@ -606,13 +628,13 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
         <h2>Philosophy.<br><em style="color:var(--rope-l);font-style:italic">Or Practice?</em></h2>
         <!-- Maru Sankaku Shikaku -->
         <img src="img/Maru_Sankaku_Shikaku.png" alt="Maru Sankaku Shikaku" style="width:250px;height:125px;display:block;margin-top:1.5rem;opacity:.7;"/>
-        <p style="font-family:var(--fd);font-size:1rem;font-style:italic;font-weight:300;color:rgba(240,234,216,.4);line-height:1.6;margin-top:.75rem">"Eventually everything will be understood."</p>
+        <div class="bq" style="margin-top:.75rem"><p>"Eventually everything will be understood."</p></div>
       </div>
       <div>
         <p class="body-serif" style="margin-bottom:1.25rem">These symbols hang above the Kamiza at Tension. A reminder that our actions in rope should be slower, methodical and practiced.</p>
         <p class="body-serif" style="margin-bottom:1.25rem">Originally the three pillars — Aesthetics, Purpose, Connection — were enough to orient a beginner. But the deeper the practice went, the more a larger framework was needed. One that could hold technique, transmission, and community at the same time.</p>
         <p class="body-serif" style="margin-bottom:1.25rem">Maru Sankaku Shikaku: Circle, Triangle, Square. An ancient teaching from Zen and Japanese martial arts, brought into a contemporary practice. Not as philosophy for its own sake but as a working tool for understanding body, rope, movement, and relationship.</p>
-        <p class="body-serif" style="margin-bottom:1.25rem">The Universe. Three shapes that contain everything. At Tension, the symbol 〇△□ hangs above the Kamiza — a reminder that every action in rope is a choice navigated through rigidity, technique, and how we hold safety together.</p>
+        <p class="body-serif" style="margin-bottom:1.25rem">The Universe. Three shapes that contain everything. At Tension, the symbols 〇△□ hang above the Kamiza; a reminder that every action in rope is a choice navigated through rigidity, technique, and how we hold safety together.</p>
         <p class="body-serif" style="margin-bottom:0;font-style:italic;color:rgba(240,234,216,.6)">The square holds. The triangle chooses. The circle returns.</p>
       </div>
     </div>
@@ -905,8 +927,8 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
 </div>
 
 <!-- ══ C2 — STRUCTURE · FOUNDATION ══ -->
-<section class="section" id="E2" style="border-top:1px solid rgba(240,234,216,.06);">
-  <div class="sec-id">E2</div>
+<section class="section" id="C2" style="border-top:1px solid rgba(240,234,216,.06);">
+  <div class="sec-id">C2</div>
   <div class="inner">
     <div class="lbl fade-in">□ Structure</div>
     <div class="two-col fade-in" style="margin-bottom:4rem">
@@ -915,60 +937,90 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
       </div>
       <div>
         <p class="body-serif">Structure is not the opposite of freedom. It is the condition of it. The square is the container. The kata. The protocol. Without the square, the circle has nothing to return to and the triangle has nothing to push against.</p>
-          <p class="body-serif" style="margin-bottom:1.25rem">Westerners often want to skip as many steps as possible "How long will it take me to get to X". In rope, this leads to dangerous practices. People get hurt, physically and emotionally.</p>
       </div>
     </div>
   </div>
 </section>
 
-
-<!-- ══ C3 — FUNDAMENTALS ══ -->
-<section class="section" id="D3" style="background:#252018;border-top:1px solid rgba(240,234,216,.06);">
-  <div class="sec-id">D3</div>
+<!-- ══ C3 — THE TENSION CURRICULUM · THE DŌ ══ -->
+<section class="section" id="C3" style="background:#131315;border-top:1px solid rgba(240,234,216,.06);">
+  <div class="sec-id">C3</div>
   <div class="inner">
-    <div class="lbl fade-in">Fundamentals</div>
+    <div class="lbl fade-in">The Tension Curriculum</div>
+    <div class="two-col fade-in" style="margin-bottom:4rem">
+      <div>
+        <h2>The Dō.<br><em style="color:var(--rope-l);font-style:italic">A path,<br>not a ladder.</em></h2>
+        <p class="body-serif" style="margin-bottom:1.25rem">Westerners often want to skip as many steps as possible. "How long will it take me to get to X?" In rope, this leads to dangerous practices. People get hurt, physically and emotionally.</p>
+        <div class="bq"><p>"The path is not something you complete. It is something you continue."</p></div>
+      </div>
+      <div>
+        <p class="body-mono" style="margin-bottom:1.5rem">Like martial arts belts, the rope colours at Tension are not certifications of completion. They are reminders of where you stand on your personal Dō, and an invitation to return to roots with each advancement. There is no top. Every colour eventually circles back to Beige.</p>
+        <div style="display:flex;flex-direction:column;gap:1px;background:rgba(240,234,216,.06)">
+          <a href="https://tensionmtl.ca/pages/fundamentals" target="_blank" style="text-decoration:none;background:rgba(240,234,216,.04);padding:1rem 1.5rem;display:flex;align-items:center;gap:1rem;border-left:3px solid #f0ead8;transition:background .2s" onmouseover="this.style.background='rgba(240,234,216,.08)'" onmouseout="this.style.background='rgba(240,234,216,.04)'"><div style="font-family:var(--fm);font-size:9px;letter-spacing:.12em;color:rgba(240,234,216,.4);width:120px;flex-shrink:0">Beige · Lvl 0</div><div style="font-family:var(--fd);font-size:1rem;font-weight:300;color:var(--paper)">The Beginning</div></a>
+          <a href="https://tensionmtl.ca/pages/floorplay-classes-level1-green" target="_blank" style="text-decoration:none;background:rgba(240,234,216,.04);padding:1rem 1.5rem;display:flex;align-items:center;gap:1rem;border-left:3px solid #2e7d32;transition:background .2s" onmouseover="this.style.background='rgba(240,234,216,.08)'" onmouseout="this.style.background='rgba(240,234,216,.04)'"><div style="font-family:var(--fm);font-size:9px;letter-spacing:.12em;color:rgba(240,234,216,.4);width:120px;flex-shrink:0">Green · Lvl 1</div><div style="font-family:var(--fd);font-size:1rem;font-weight:300;color:var(--paper)">Arrival in Floorplay</div></a>
+          <a href="https://tensionmtl.ca/pages/classes-level-2" target="_blank" style="text-decoration:none;background:rgba(240,234,216,.04);padding:1rem 1.5rem;display:flex;align-items:center;gap:1rem;border-left:3px solid #f9a825;transition:background .2s" onmouseover="this.style.background='rgba(240,234,216,.08)'" onmouseout="this.style.background='rgba(240,234,216,.04)'"><div style="font-family:var(--fm);font-size:9px;letter-spacing:.12em;color:rgba(240,234,216,.4);width:120px;flex-shrink:0">Yellow · Lvl 2</div><div style="font-family:var(--fd);font-size:1rem;font-weight:300;color:var(--paper)">Caution: Uplines</div></a>
+          <a href="https://tensionmtl.ca/pages/classes-level-2" target="_blank" style="text-decoration:none;background:rgba(240,234,216,.04);padding:1rem 1.5rem;display:flex;align-items:center;gap:1rem;border-left:3px solid #b03020;transition:background .2s" onmouseover="this.style.background='rgba(240,234,216,.08)'" onmouseout="this.style.background='rgba(240,234,216,.04)'"><div style="font-family:var(--fm);font-size:9px;letter-spacing:.12em;color:rgba(240,234,216,.4);width:120px;flex-shrink:0">Red · Lvl 2</div><div style="font-family:var(--fd);font-size:1rem;font-weight:300;color:var(--paper)">Partial Loads</div></a>
+          <div style="background:rgba(240,234,216,.04);padding:1rem 1.5rem;display:flex;align-items:center;gap:1rem;border-left:3px solid #e8dfc8"><div style="font-family:var(--fm);font-size:9px;letter-spacing:.12em;color:rgba(240,234,216,.4);width:120px;flex-shrink:0">White · Lvl 3</div><div style="font-family:var(--fd);font-size:1rem;font-weight:300;color:var(--paper)">The TK Test</div></div>
+          <div style="background:rgba(240,234,216,.04);padding:1rem 1.5rem;display:flex;align-items:center;gap:1rem;border-left:3px solid #131315"><div style="font-family:var(--fm);font-size:9px;letter-spacing:.12em;color:rgba(240,234,216,.4);width:120px;flex-shrink:0">Black · Lvl 3</div><div style="font-family:var(--fd);font-size:1rem;font-weight:300;color:var(--paper)">Suspension Circuit</div></div>
+          <div style="background:rgba(240,234,216,.04);padding:1rem 1.5rem;display:flex;align-items:center;gap:1rem;border-left:3px solid #ddd3b8"><div style="font-family:var(--fm);font-size:9px;letter-spacing:.12em;color:rgba(240,234,216,.4);width:120px;flex-shrink:0">Final Beige</div><div style="font-family:var(--fd);font-size:1rem;font-weight:300;color:var(--paper)">The Endless Path</div></div>
+          <div style="background:rgba(240,234,216,.04);padding:1rem 1.5rem;display:flex;align-items:center;gap:1rem;border-left:3px solid #4a148c"><div style="font-family:var(--fm);font-size:9px;letter-spacing:.12em;color:rgba(240,234,216,.4);width:120px;flex-shrink:0">Purple</div><div style="font-family:var(--fd);font-size:1rem;font-weight:300;color:var(--paper)">The Teacher's Rope</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ C4 — FUNDAMENTALS ══ -->
+<section class="section" id="C4" style="background:#252018;border-top:1px solid rgba(240,234,216,.06);">
+  <div class="sec-id">C4</div>
+  <div class="inner">
+    <div class="lbl fade-in">Fundamentals · The Class</div>
     <div class="two-col fade-in" style="margin-bottom:4rem">
       <div>
         <h2>Where every practice<br><em style="color:var(--rope-l);font-style:italic">begins.</em></h2>
-        <p class="body-serif" style="margin-bottom:1.25rem">Fundamentals began as a teacher's aid. But as the writing continued something became clear: the gap was not just technical. It was philosophical. Not just how to tie. How to think about tying.</p>
-        <div class="bq"><p>"I saw over and over that it wasn't when people learned about safety and consent. Sometimes it was if. And that if was unacceptable."</p></div>
+        <p class="body-serif" style="margin-bottom:1.25rem">One session. One rope. You tie on yourself — so everyone is actively engaged throughout. By the end you can explore rope independently, tie basic patterns, and begin to understand what you are actually doing when you put rope on another person.</p>
+        <p class="body-serif" style="margin-bottom:1.25rem">But more than the techniques — you leave knowing that there is more. That there are doors you didn't know were there. That is the point.</p>
+        <div class="bq"><p>"Look at all of these doors that you may or may not have known were there."</p></div>
       </div>
       <div>
         <div style="background:rgba(240,234,216,.04);padding:2rem;border-top:2px solid var(--rope-l);margin-bottom:1px">
           <div style="font-family:var(--fd);font-size:1.1rem;font-weight:300;color:var(--paper);margin-bottom:.75rem">Technical</div>
-          <p class="body-mono">Single column · Futomomo · Batten-Dome · Taiko-Dome · Kannuki · Larkshead · Takedome · Nodome · Gote framework · Hojo Cuffs · Double columns · Wadome · Clove hitch · L-frictions · Rope care · Quick releases</p>
+          <p class="body-mono">Single column · Wrapping & Intention · Dressing Rope · Finger Pointing · Batten-Dome · Taiko-Dome · Kannuki · Larkshead · Takedome · Nodome · Futomomo · Body manipulation · Gote & creativity framework · Rope care · Negotiation · Aftercare · Debriefing</p>
         </div>
         <div style="background:rgba(240,234,216,.04);padding:2rem;border-top:2px solid var(--rope-l);margin-bottom:1px">
-          <div style="font-family:var(--fd);font-size:1.1rem;font-weight:300;color:var(--paper);margin-bottom:.75rem">Safety</div>
-          <p class="body-mono">Nerve compression · Circulation · Joint safety · Torsions · Vasovagal syncope · Loss of consciousness · Death · Neck rope · Eyes · Mouth · Hair · Leaving someone unattended · Tools and safety equipment</p>
+          <div style="font-family:var(--fd);font-size:1.1rem;font-weight:300;color:var(--paper);margin-bottom:.75rem">Physical Safety</div>
+          <p class="body-mono">Core physical safety considerations · What rope can and cannot do to a body · The essentials of working with another person safely</p>
         </div>
         <div style="background:rgba(240,234,216,.04);padding:2rem;border-top:2px solid var(--rope-l)">
-          <div style="font-family:var(--fd);font-size:1.1rem;font-weight:300;color:var(--paper);margin-bottom:.75rem">Emotional &amp; Community</div>
-          <p class="body-mono">Consent &amp; negotiation · Opt-in vs opt-out · Fuck Yes framework · Risk profiles · Debriefing · Aftercare · Selfcare · Vetting · Restorative justice · Safer spaces · Planning ahead</p>
+          <div style="font-family:var(--fd);font-size:1.1rem;font-weight:300;color:var(--paper);margin-bottom:.75rem">Emotional Safety</div>
+          <p class="body-mono">A discourse on consent; clear, enthusiastic, revocable. The Fuck Yes standard. Opt-in negotiation. An introduction to the conversation that never ends.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══ C4 — GET THE BOOK ══ -->
-<section class="section" id="D4" style="background:#252018;border-top:1px solid rgba(240,234,216,.06);">
-  <div class="sec-id">D4</div>
+<!-- ══ C5 — GET THE BOOK ══ -->
+<section class="section" id="C5" style="background:#252018;border-top:1px solid rgba(240,234,216,.06);">
+  <div class="sec-id">C5</div>
   <div class="inner">
-    <div class="lbl fade-in">Book · Published</div>
+    <div class="lbl fade-in">Fundamentals · The Book</div>
     <div class="two-col fade-in" style="margin-bottom:4rem">
       <div>
         <h2>Fundamentals.<br><em style="color:var(--rope-l);font-style:italic">Shibari for<br>Beginners and Beyond.</em></h2>
-        <p class="body-serif" style="margin-bottom:1.5rem">What started as a teacher's aid slowly turned into a whole damn book. Technical, anatomical, emotional, and communal. Not just how to tie. How to think about tying.</p>
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(240,234,216,.08);margin-bottom:2rem">
+        <p class="body-serif" style="margin-bottom:1.25rem">The class shows you the doors. The book is some of what's behind them, reiterated and expanded. Not the ultimate guide but a foundational map of a territory you might want to return to, as you need it. Physical safety in anatomical detail. Emotional safety. Consent frameworks. Philosophy. Creativity. You won't know which paths matter until you are already on one. The book will hopefully be a resource to help you along yours.</p>
+        <p class="body-serif" style="margin-bottom:1.5rem;font-style:italic;color:rgba(240,234,216,.55)">You will eventually understand that no path is one path. It is many, walked back and forth, abandoned or well trodden, forking off here and there. Hopefully I will have made you curious enough to one day leave your own marks.</p>
+        <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:rgba(240,234,216,.08);margin-bottom:2rem">
           <div style="background:var(--ink2);padding:1.25rem 1rem"><div style="font-family:var(--fd);font-size:2.2rem;font-weight:300;color:var(--rope-l);line-height:1">200</div><div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase">Pages</div></div>
+          <div style="background:var(--ink2);padding:1.25rem 1rem"><div style="font-family:var(--fd);font-size:2.2rem;font-weight:300;color:var(--rope-l);line-height:1">4</div><div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase">Sections</div></div>
           <div style="background:var(--ink2);padding:1.25rem 1rem"><div style="font-family:var(--fd);font-size:2.2rem;font-weight:300;color:var(--rope-l);line-height:1">400</div><div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase">Images</div></div>
           <div style="background:var(--ink2);padding:1.25rem 1rem"><div style="font-family:var(--fd);font-size:2.2rem;font-weight:300;color:var(--rope-l);line-height:1">16+</div><div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase">Techniques</div></div>
-          <div style="background:var(--ink2);padding:1.25rem 1rem"><div style="font-family:var(--fd);font-size:2.2rem;font-weight:300;color:var(--rope-l);line-height:1">1</div><div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase">Required read</div></div>
+          <div style="background:var(--ink2);padding:1.25rem 1rem"><div style="font-family:var(--fd);font-size:2.2rem;font-weight:300;color:var(--rope-l);line-height:1">1</div><div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase">Highly suggested read</div></div>
         </div>
-        <div style="display:flex;gap:12px;flex-wrap:wrap">
-          <a href="https://tensionmtl.ca/collections/books" class="btn btn-p" target="_blank">Get the Book</a>
-          <a href="#C4" class="btn btn-o">What it covers</a>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(240,234,216,.08);">
+          <a href="https://tensionmtl.ca/collections/books" class="btn btn-p" target="_blank" style="text-align:center;justify-content:center;">Get the Book</a>
+          <a href="https://tensionmtl.ca/pages/fundamentals" class="btn btn-o" target="_blank" style="text-align:center;justify-content:center;">Book the Class</a>
+          <a href="https://tensionmtl.ca/pages/fundamentals-homework" class="btn btn-o" target="_blank" style="text-align:center;justify-content:center;">Do the Homework</a>
         </div>
       </div>
       <div style="background:var(--ink2);aspect-ratio:3/4;overflow:hidden;">
@@ -978,9 +1030,9 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
   </div>
 </section>
 
-<!-- ══ C5 — STRUCTURE IN COMMUNITY ══ -->
-<section class="section" id="C5" style="border-top:1px solid rgba(240,234,216,.06);">
-  <div class="sec-id">C5</div>
+<!-- ══ C6 — STRUCTURE IN COMMUNITY ══ -->
+<section class="section" id="C6" style="border-top:1px solid rgba(240,234,216,.06);">
+  <div class="sec-id">C6</div>
   <div class="inner">
     <div class="lbl fade-in">Structure in Community</div>
     <div class="two-col fade-in" style="margin-bottom:4rem">
@@ -994,34 +1046,6 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
           <div style="background:rgba(240,234,216,.04);padding:2rem;border-top:2px solid var(--rope-l)"><div style="font-family:var(--fd);font-size:1.1rem;font-weight:300;color:var(--paper);margin-bottom:.5rem">Accountability</div><p class="body-mono">When you fuck up, own it. Listen. Repair where you can. Step back if you need to. Leadership without accountability is just ego in a shiny outfit.</p></div>
           <div style="background:rgba(240,234,216,.04);padding:2rem;border-top:2px solid var(--rope-l)"><div style="font-family:var(--fd);font-size:1.1rem;font-weight:300;color:var(--paper);margin-bottom:.5rem">Consent</div><p class="body-mono">Aim for Fuck Yes. Sober, informed, enthusiastic, revokable, ongoing. Negotiate honestly. Every time.</p></div>
           <div style="background:rgba(240,234,216,.04);padding:2rem;border-top:2px solid var(--rope-l)"><div style="font-family:var(--fd);font-size:1.1rem;font-weight:300;color:var(--paper);margin-bottom:.5rem">Support</div><p class="body-mono">Places like Tension do not exist by magic. Show up. Help out. Pay when you can. Contribute to the culture you want to live in.</p></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-    
-<!-- ══ C6 — THE TENSION CURRICULUM · THE DŌ ══ -->
-<section class="section" id="E6" style="background:#131315;border-top:1px solid rgba(240,234,216,.06);">
-  <div class="sec-id">E6</div>
-  <div class="inner">
-    <div class="lbl fade-in">The Tension Curriculum</div>
-    <div class="two-col fade-in" style="margin-bottom:4rem">
-      <div>
-        <h2>The Dō.<br><em style="color:var(--rope-l);font-style:italic">A path,<br>not a ladder.</em></h2>
-        
-      </div>
-      <div>
-        <div class="bq"><p>"The path is not something you complete. It is something you continue."</p></div>
-        <p class="body-mono" style="margin-bottom:1.5rem">Like martial arts belts, the rope colours at Tension are not certifications of completion. They are reminders of where you stand on your personal Dō, and an invitation to return to roots with each advancement. There is no top. Every colour eventually circles back to Beige.</p>
-        <div style="display:flex;flex-direction:column;gap:1px;background:rgba(240,234,216,.06)">
-          <div style="background:rgba(240,234,216,.04);padding:1rem 1.5rem;display:flex;align-items:center;gap:1rem;border-left:3px solid #f0ead8"><div style="font-family:var(--fm);font-size:9px;letter-spacing:.12em;color:rgba(240,234,216,.4);width:120px;flex-shrink:0">Beige · Lvl 0</div><div style="font-family:var(--fd);font-size:1rem;font-weight:300;color:var(--paper)">The Beginning</div></div>
-          <div style="background:rgba(240,234,216,.04);padding:1rem 1.5rem;display:flex;align-items:center;gap:1rem;border-left:3px solid #2e7d32"><div style="font-family:var(--fm);font-size:9px;letter-spacing:.12em;color:rgba(240,234,216,.4);width:120px;flex-shrink:0">Green · Lvl 1</div><div style="font-family:var(--fd);font-size:1rem;font-weight:300;color:var(--paper)">Arrival in Floorplay</div></div>
-          <div style="background:rgba(240,234,216,.04);padding:1rem 1.5rem;display:flex;align-items:center;gap:1rem;border-left:3px solid #f9a825"><div style="font-family:var(--fm);font-size:9px;letter-spacing:.12em;color:rgba(240,234,216,.4);width:120px;flex-shrink:0">Yellow · Lvl 2</div><div style="font-family:var(--fd);font-size:1rem;font-weight:300;color:var(--paper)">Caution: Uplines</div></div>
-          <div style="background:rgba(240,234,216,.04);padding:1rem 1.5rem;display:flex;align-items:center;gap:1rem;border-left:3px solid #b03020"><div style="font-family:var(--fm);font-size:9px;letter-spacing:.12em;color:rgba(240,234,216,.4);width:120px;flex-shrink:0">Red · Lvl 2</div><div style="font-family:var(--fd);font-size:1rem;font-weight:300;color:var(--paper)">Partial Loads</div></div>
-          <div style="background:rgba(240,234,216,.04);padding:1rem 1.5rem;display:flex;align-items:center;gap:1rem;border-left:3px solid #e8dfc8"><div style="font-family:var(--fm);font-size:9px;letter-spacing:.12em;color:rgba(240,234,216,.4);width:120px;flex-shrink:0">White · Lvl 3</div><div style="font-family:var(--fd);font-size:1rem;font-weight:300;color:var(--paper)">The TK Test</div></div>
-          <div style="background:rgba(240,234,216,.04);padding:1rem 1.5rem;display:flex;align-items:center;gap:1rem;border-left:3px solid #131315"><div style="font-family:var(--fm);font-size:9px;letter-spacing:.12em;color:rgba(240,234,216,.4);width:120px;flex-shrink:0">Black · Lvl 3</div><div style="font-family:var(--fd);font-size:1rem;font-weight:300;color:var(--paper)">Suspension Circuit</div></div>
-          <div style="background:rgba(240,234,216,.04);padding:1rem 1.5rem;display:flex;align-items:center;gap:1rem;border-left:3px solid #ddd3b8"><div style="font-family:var(--fm);font-size:9px;letter-spacing:.12em;color:rgba(240,234,216,.4);width:120px;flex-shrink:0">Final Beige</div><div style="font-family:var(--fd);font-size:1rem;font-weight:300;color:var(--paper)">The Endless Path</div></div>
-          <div style="background:rgba(240,234,216,.04);padding:1rem 1.5rem;display:flex;align-items:center;gap:1rem;border-left:3px solid #4a148c"><div style="font-family:var(--fm);font-size:9px;letter-spacing:.12em;color:rgba(240,234,216,.4);width:120px;flex-shrink:0">Purple</div><div style="font-family:var(--fd);font-size:1rem;font-weight:300;color:var(--paper)">The Teacher's Rope</div></div>
         </div>
       </div>
     </div>
@@ -1062,18 +1086,18 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
     <!-- Photos -->
     <div class="fade-in" style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(240,234,216,.05);">
       <div style="overflow:hidden;aspect-ratio:4/5;">
-        <img src="img/doggo_blanche_shoot.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;filter:brightness(.85) saturate(.8);transition:transform .6s var(--ease);" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'"/>
+        <img src="img/doggo_-_blanche_shoot.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;filter:brightness(.85) saturate(.8);transition:transform .6s var(--ease);" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'"/>
       </div>
       <div style="overflow:hidden;aspect-ratio:4/5;">
-        <img src="img/Masha_blanche_shoot.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;filter:brightness(.85) saturate(.8);transition:transform .6s var(--ease);" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'"/>
+        <img src="img/Masha_-_doggo_-_blanche_shoot.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;filter:brightness(.85) saturate(.8);transition:transform .6s var(--ease);" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'"/>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ══ D3 — TEACHING ══ -->
-<section class="section" id="E4" style="border-top:1px solid rgba(240,234,216,.06);">
-  <div class="sec-id">E4</div>
+<section class="section" id="D3" style="border-top:1px solid rgba(240,234,216,.06);">
+  <div class="sec-id">D3</div>
   <div class="inner">
     <div class="lbl fade-in">Teaching</div>
     <div class="two-col fade-in" style="margin-bottom:4rem">
@@ -1100,8 +1124,8 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
 </section>
 
 <!-- ══ D4 — PRIVATE PARTIES ══ -->
-<section class="section" id="E5" style="border-top:1px solid rgba(240,234,216,.06);">
-  <div class="sec-id">E5</div>
+<section class="section" id="D4" style="border-top:1px solid rgba(240,234,216,.06);">
+  <div class="sec-id">D4</div>
   <div class="inner">
     <div class="lbl fade-in">Private Parties</div>
     <div class="two-col fade-in">
@@ -1188,8 +1212,8 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
 </div>
 
 <!-- ══ E2 — SEME · FLOW ══ -->
-<section class="section" id="F2" style="border-top:1px solid rgba(240,234,216,.06);">
-  <div class="sec-id">F2</div>
+<section class="section" id="E2" style="border-top:1px solid rgba(240,234,216,.06);">
+  <div class="sec-id">E2</div>
   <div class="inner">
     <div class="lbl fade-in">○ The Circle · Return</div>
     <div class="two-col fade-in" style="margin-bottom:5rem">
@@ -1329,7 +1353,7 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
 </section>
 
 <!-- ══ F2 — WORK WITH ME ══ -->
-<section class="section" id="E2" style="border-top:1px solid rgba(240,234,216,.06);">
+<section class="section" id="F2" style="border-top:1px solid rgba(240,234,216,.06);">
   <div class="sec-id">E2</div>
   <div class="inner">
     <div class="lbl fade-in">Work with me</div>
@@ -1435,6 +1459,13 @@ function toggleMenu() {
 // Parallax — matches working test file exactly
 window.addEventListener('scroll', function() {
   var sy = window.scrollY;
+  var shimmer = document.getElementById('scroll-shimmer');
+  if (shimmer) {
+    var hero = document.querySelector('.hero');
+    var heroBottom = hero ? hero.offsetTop + hero.offsetHeight : window.innerHeight;
+    shimmer.style.opacity = sy > heroBottom - 100 ? '0' : '1';
+    shimmer.style.pointerEvents = sy > heroBottom - 100 ? 'none' : '';
+  }
 
   var heroBg = document.getElementById('hero-bg');
   if (heroBg) heroBg.style.transform = 'translateY(' + (sy * 0.25) + 'px)';
