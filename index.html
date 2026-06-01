@@ -344,24 +344,27 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
   </div>
 
   <!-- Scroll shimmer — fixed right side, disappears when leaving hero -->
-  <div id="scroll-shimmer" style="position:fixed;right:4rem;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;align-items:center;gap:.75rem;z-index:10;transition:opacity .4s;">
-    <div style="position:relative;width:1px;height:120px;overflow:hidden;">
-      <div style="position:absolute;inset:0;background:rgba(201,168,76,.15);"></div>
-      <div style="position:absolute;left:0;width:1px;top:-60px;height:60px;background:linear-gradient(180deg,transparent,rgba(201,168,76,.9),transparent);animation:heroShimmer 2.8s ease-in-out infinite;"></div>
+  <div id="scroll-shimmer" style="position:fixed;right:4rem;top:0;bottom:0;display:flex;flex-direction:column;align-items:center;z-index:10;transition:opacity .4s;">
+    <div style="position:relative;width:1px;flex:1;overflow:hidden;">
+      <div style="position:absolute;inset:0;background:rgba(201,168,76,.1);"></div>
+      <div style="position:absolute;left:0;width:1px;top:-120px;height:120px;background:linear-gradient(180deg,transparent,rgba(201,168,76,.9),transparent);animation:heroShimmer 2.8s ease-in-out infinite;"></div>
     </div>
-    <div style="font-family:var(--fm);font-size:7px;letter-spacing:.2em;text-transform:uppercase;color:rgba(201,168,76,.3);writing-mode:vertical-rl;animation:heroFade 2.8s ease-in-out infinite;">scroll</div>
+    <div style="font-family:var(--fm);font-size:7px;letter-spacing:.2em;text-transform:uppercase;color:rgba(201,168,76,.3);writing-mode:vertical-rl;padding:.75rem 0;animation:heroFade 2.8s ease-in-out infinite;">scroll</div>
   </div>
 
   <style>
     @keyframes heroShimmer {
-      0% { top: -60px; opacity: 0; }
-      20% { opacity: 1; }
-      80% { opacity: 1; }
-      100% { top: 120px; opacity: 0; }
+      0% { top: -120px; opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { top: 100vh; opacity: 0; }
     }
     @keyframes heroFade {
       0%, 100% { opacity: .3; }
       50% { opacity: .7; }
+    }
+    @media (max-width: 900px) {
+      #scroll-shimmer { right: 2rem; }
     }
   </style>
 </section>
@@ -466,8 +469,7 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
         <p style="font-family:var(--fm);font-size:14px;line-height:1.85;color:rgba(240,234,216,.38)">Why are you tying? The answer shapes everything. Rope without purpose is just knots. Intention transforms technique into something that matters.</p>
       </div>
       <div style="background:rgba(240,234,216,.04);padding:3rem 2.5rem;position:relative;overflow:visible">
-        <svg viewBox="0 0 120 120" fill="none" stroke="rgba(169,124,26,.12)" stroke-width="2" style="position:absolute;right:-.5rem;bottom:-1.5rem;width:9rem;height:9rem;pointer-events:none"><circle cx="60" cy="60" r="50"/></svg>
-        <div style="position:absolute;right:1.25rem;top:1.25rem;font-family:var(--fj);font-size:4.5rem;color:rgba(169,124,26,.14);line-height:1;pointer-events:none;user-select:none">繋</div>
+        <svg viewBox="0 0 120 120" fill="none" stroke="rgba(169,124,26,.12)" stroke-width="2" style="position:absolute;right:-.5rem;bottom:-1.5rem;width:9rem;height:9rem;pointer-events:none" class="ghost-svg"><circle cx="60" cy="60" r="50" transform="rotate(90 60 60)"/></svg>
         <svg viewBox="0 0 52 52" style="width:44px;height:44px;margin-bottom:.75rem"><circle cx="26" cy="26" r="19" fill="none" stroke="#c9a84c" stroke-width="8"/><circle cx="26" cy="26" r="19" fill="none" stroke="#2a2420" stroke-width="3"/></svg>
         <div style="font-family:var(--fm);font-size:8px;letter-spacing:.22em;color:var(--muted);text-transform:uppercase;margin-bottom:.75rem">丸 · Maru</div>
         <div style="position:relative;margin-bottom:.65rem;height:2.2rem;overflow:visible">
@@ -504,7 +506,7 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
             <p style="font-family:var(--fm);font-size:14px;line-height:1.85;color:rgba(240,234,216,.5)">Why are you tying? The answer shapes everything. Rope without purpose is just knots. Intention transforms technique into something that matters.</p>
           </div>
           <div style="min-width:100%;background:rgba(240,234,216,.04);padding:2.5rem 2rem;position:relative;overflow:visible;">
-            <svg viewBox="0 0 120 120" fill="none" stroke="rgba(169,124,26,.12)" stroke-width="2" style="position:absolute;right:-.5rem;bottom:-1.5rem;width:9rem;height:9rem;pointer-events:none"><circle cx="60" cy="60" r="50"/></svg>
+            <svg viewBox="0 0 120 120" fill="none" stroke="rgba(169,124,26,.12)" stroke-width="2" style="position:absolute;right:-.5rem;bottom:-1.5rem;width:9rem;height:9rem;pointer-events:none" class="ghost-svg"><circle cx="60" cy="60" r="50" transform="rotate(90 60 60)"/></svg>
             <div style="position:absolute;right:1.25rem;top:1.25rem;font-family:var(--fj);font-size:4.5rem;color:rgba(169,124,26,.14);line-height:1;pointer-events:none">繋</div>
             <svg viewBox="0 0 52 52" style="width:44px;height:44px;margin-bottom:.75rem"><circle cx="26" cy="26" r="19" fill="none" stroke="#c9a84c" stroke-width="8"/><circle cx="26" cy="26" r="19" fill="none" stroke="#2a2420" stroke-width="3"/></svg>
             <div style="font-family:var(--fm);font-size:11px;letter-spacing:.22em;color:var(--muted);text-transform:uppercase;margin-bottom:.75rem">丸 · Maru</div>
@@ -527,30 +529,30 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
         <img src="img/Bokken.png" alt="" style="width:100%;display:block;mix-blend-mode:screen;"/>
       </div>
 
-      <div class="lbl" style="margin-bottom:1.25rem">My Thirteen Companions</div>
       <div id="companions-wrapper" style="display:grid;grid-template-columns:1fr 2fr;gap:3rem;align-items:start;">
 
-        <!-- Left: tag cloud — 1/3 width -->
+        <!-- Left: label + tag cloud — 1/3 width -->
         <div id="companions-tags-col">
+          <div class="lbl" style="margin-bottom:1.25rem">My Thirteen Companions</div>
           <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1.5rem;" id="companions-tags">
             <span class="companion-tag" onclick="showCompanion('do')" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;padding:5px 13px;border:.5px solid rgba(240,234,216,.1);color:rgba(240,234,216,.3);border-radius:1px;cursor:pointer;transition:all .2s"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">道</span>Dō</span>
-            <span class="companion-tag" onclick="showCompanion('kaizen')" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;padding:5px 13px;border:.5px solid rgba(240,234,216,.1);color:rgba(240,234,216,.3);border-radius:1px;cursor:pointer;transition:all .2s"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">改善</span>Kaizen</span>
             <span class="companion-tag" onclick="showCompanion('ikigai')" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;padding:5px 13px;border:.5px solid rgba(240,234,216,.1);color:rgba(240,234,216,.3);border-radius:1px;cursor:pointer;transition:all .2s"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">生き甲斐</span>Ikigai</span>
-            <span class="companion-tag" onclick="showCompanion('shoshin')" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;padding:5px 13px;border:.5px solid rgba(240,234,216,.1);color:rgba(240,234,216,.3);border-radius:1px;cursor:pointer;transition:all .2s"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">初心</span>Shoshin</span>
             <span class="companion-tag" onclick="showCompanion('shuhari')" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;padding:5px 13px;border:.5px solid rgba(240,234,216,.1);color:rgba(240,234,216,.3);border-radius:1px;cursor:pointer;transition:all .2s"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">守破離</span>Shu-Ha-Ri</span>
+            <span class="companion-tag" onclick="showCompanion('ma')" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;padding:5px 13px;border:.5px solid rgba(240,234,216,.1);color:rgba(240,234,216,.3);border-radius:1px;cursor:pointer;transition:all .2s"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">間</span>Ma</span>
             <span class="companion-tag" onclick="showCompanion('wabisabi')" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;padding:5px 13px;border:.5px solid rgba(240,234,216,.1);color:rgba(240,234,216,.3);border-radius:1px;cursor:pointer;transition:all .2s"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">侘寂</span>Wabi-Sabi</span>
-            <span class="companion-tag" onclick="showCompanion('mononoaware')" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;padding:5px 13px;border:.5px solid rgba(240,234,216,.1);color:rgba(240,234,216,.3);border-radius:1px;cursor:pointer;transition:all .2s"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">物の哀れ</span>Mono no Aware</span>
-            <span class="companion-tag" onclick="showCompanion('shikataganai')" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;padding:5px 13px;border:.5px solid rgba(240,234,216,.1);color:rgba(240,234,216,.3);border-radius:1px;cursor:pointer;transition:all .2s"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">仕方がない</span>Shikata ga nai</span>
+            <span class="companion-tag" onclick="showCompanion('kaizen')" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;padding:5px 13px;border:.5px solid rgba(240,234,216,.1);color:rgba(240,234,216,.3);border-radius:1px;cursor:pointer;transition:all .2s"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">改善</span>Kaizen</span>
+            <span class="companion-tag" onclick="showCompanion('shoshin')" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;padding:5px 13px;border:.5px solid rgba(240,234,216,.1);color:rgba(240,234,216,.3);border-radius:1px;cursor:pointer;transition:all .2s"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">初心</span>Shoshin</span>
             <span class="companion-tag" onclick="showCompanion('gaman')" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;padding:5px 13px;border:.5px solid rgba(240,234,216,.1);color:rgba(240,234,216,.3);border-radius:1px;cursor:pointer;transition:all .2s"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">我慢</span>Gaman</span>
             <span class="companion-tag" onclick="showCompanion('ichigoichie')" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;padding:5px 13px;border:.5px solid rgba(240,234,216,.1);color:rgba(240,234,216,.3);border-radius:1px;cursor:pointer;transition:all .2s"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">一期一会</span>Ichi-go ichi-e</span>
-            <span class="companion-tag" onclick="showCompanion('ma')" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;padding:5px 13px;border:.5px solid rgba(240,234,216,.1);color:rgba(240,234,216,.3);border-radius:1px;cursor:pointer;transition:all .2s"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">間</span>Ma</span>
+            <span class="companion-tag" onclick="showCompanion('shikataganai')" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;padding:5px 13px;border:.5px solid rgba(240,234,216,.1);color:rgba(240,234,216,.3);border-radius:1px;cursor:pointer;transition:all .2s"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">仕方がない</span>Shikata ga nai</span>
+            <span class="companion-tag" onclick="showCompanion('mononoaware')" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;padding:5px 13px;border:.5px solid rgba(240,234,216,.1);color:rgba(240,234,216,.3);border-radius:1px;cursor:pointer;transition:all .2s"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">物の哀れ</span>Mono no Aware</span>
             <span class="companion-tag" onclick="showCompanion('sennosen')" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;padding:5px 13px;border:.5px solid rgba(240,234,216,.1);color:rgba(240,234,216,.3);border-radius:1px;cursor:pointer;transition:all .2s"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">先の先</span>Sen no Sen</span>
             <span class="companion-tag" onclick="showCompanion('mushin')" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.1em;padding:5px 13px;border:.5px solid rgba(240,234,216,.1);color:rgba(240,234,216,.3);border-radius:1px;cursor:pointer;transition:all .2s"><span style="font-family:var(--fj);margin-right:5px;color:var(--rope)">無心</span>Mushin</span>
           </div>
         </div>
 
         <!-- Right: description card — 2/3 width -->
-        <div id="companion-card" style="border:.5px solid rgba(169,124,26,.2);background:rgba(169,124,26,.04);padding:2.5rem;min-height:200px;display:flex;flex-direction:column;justify-content:center;transition:opacity .3s;">
+        <div id="companion-card" style="margin-top:6px;border:.5px solid rgba(169,124,26,.2);background:rgba(169,124,26,.04);padding:2.5rem;min-height:200px;display:flex;flex-direction:column;justify-content:center;transition:opacity .3s;">
           <div id="companion-empty" style="text-align:center;opacity:.25">
             <div style="font-family:var(--fj);font-size:2rem;color:var(--rope);margin-bottom:.75rem">道</div>
             <div style="font-family:var(--fm);font-size:8px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)">Select a companion</div>
@@ -955,7 +957,7 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
       </div>
       <div>
         <p class="body-mono" style="margin-bottom:1.5rem">Like martial arts belts, the rope colours at Tension are not certifications of completion. They are reminders of where you stand on your personal Dō, and an invitation to return to roots with each advancement. There is no top. Every colour eventually circles back to Beige.</p>
-        <div style="display:flex;flex-direction:column;gap:1px;background:rgba(240,234,216,.06)">
+        <div id="belt-levels" style="display:flex;flex-direction:column;gap:1px;background:rgba(240,234,216,.06)">
           <a href="https://tensionmtl.ca/pages/fundamentals" target="_blank" style="text-decoration:none;background:rgba(240,234,216,.04);padding:1rem 1.5rem;display:flex;align-items:center;gap:1rem;border-left:3px solid #f0ead8;transition:background .2s" onmouseover="this.style.background='rgba(240,234,216,.08)'" onmouseout="this.style.background='rgba(240,234,216,.04)'"><div style="font-family:var(--fm);font-size:9px;letter-spacing:.12em;color:rgba(240,234,216,.4);width:120px;flex-shrink:0">Beige · Lvl 0</div><div style="font-family:var(--fd);font-size:1rem;font-weight:300;color:var(--paper)">The Beginning</div></a>
           <a href="https://tensionmtl.ca/pages/floorplay-classes-level1-green" target="_blank" style="text-decoration:none;background:rgba(240,234,216,.04);padding:1rem 1.5rem;display:flex;align-items:center;gap:1rem;border-left:3px solid #2e7d32;transition:background .2s" onmouseover="this.style.background='rgba(240,234,216,.08)'" onmouseout="this.style.background='rgba(240,234,216,.04)'"><div style="font-family:var(--fm);font-size:9px;letter-spacing:.12em;color:rgba(240,234,216,.4);width:120px;flex-shrink:0">Green · Lvl 1</div><div style="font-family:var(--fd);font-size:1rem;font-weight:300;color:var(--paper)">Arrival in Floorplay</div></a>
           <a href="https://tensionmtl.ca/pages/classes-level-2" target="_blank" style="text-decoration:none;background:rgba(240,234,216,.04);padding:1rem 1.5rem;display:flex;align-items:center;gap:1rem;border-left:3px solid #f9a825;transition:background .2s" onmouseover="this.style.background='rgba(240,234,216,.08)'" onmouseout="this.style.background='rgba(240,234,216,.04)'"><div style="font-family:var(--fm);font-size:9px;letter-spacing:.12em;color:rgba(240,234,216,.4);width:120px;flex-shrink:0">Yellow · Lvl 2</div><div style="font-family:var(--fd);font-size:1rem;font-weight:300;color:var(--paper)">Caution: Uplines</div></a>
@@ -1352,7 +1354,218 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
   </div>
 </section>
 
-<!-- ══ F2 — WORK WITH ME ══ -->
+<!-- ══ SHIMMER EFFECTS ══ -->
+<style>
+/* Break section — horizontal bottom shimmer */
+.brk { position: relative; }
+.brk::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: rgba(201,168,76,.1);
+  overflow: hidden;
+}
+.brk-shimmer {
+  position: absolute;
+  bottom: 0; left: -30%;
+  width: 30%; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201,168,76,.8), transparent);
+  animation: brkShimmer 4s ease-in-out infinite;
+}
+@keyframes brkShimmer {
+  0% { left: -30%; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { left: 100%; opacity: 0; }
+}
+
+/* Belt row — shimmer on hover */
+.belt-row {
+  position: relative;
+  overflow: hidden;
+}
+.belt-row::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 60%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(201,168,76,.07), transparent);
+  transition: none;
+  pointer-events: none;
+}
+.belt-row:hover::after {
+  animation: beltShimmer .6s ease-out forwards;
+}
+@keyframes beltShimmer {
+  0% { left: -60%; }
+  100% { left: 120%; }
+}
+
+/* Sec-id label — single glint downward on viewport entry */
+.sec-id {
+  position: absolute; top: 1.5rem; right: 2rem;
+  font-family: var(--fm); font-size: 8px; letter-spacing: .2em;
+  color: rgba(240,234,216,.08); text-transform: uppercase;
+  overflow: hidden;
+  transition: color .3s, text-shadow .3s;
+}
+.sec-id:hover {
+  color: rgba(201,168,76,.5);
+  text-shadow: 0 0 12px rgba(201,168,76,.4);
+}
+.sec-id::after {
+  content: '';
+  position: absolute;
+  top: -100%; left: 0; right: 0;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, rgba(201,168,76,.6), transparent);
+  pointer-events: none;
+}
+.sec-id.glint::after {
+  animation: secGlint .8s ease-out forwards;
+}
+@keyframes secGlint {
+  0% { top: -100%; opacity: 0; }
+  20% { opacity: 1; }
+  100% { top: 200%; opacity: 0; }
+}
+
+/* Companion tag — shimmer on hover */
+.companion-tag {
+  position: relative;
+  overflow: hidden;
+}
+.companion-tag::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 60%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(201,168,76,.15), transparent);
+  pointer-events: none;
+}
+.companion-tag:hover::after {
+  animation: tagShimmer .5s ease-out forwards;
+}
+@keyframes tagShimmer {
+  0% { left: -60%; }
+  100% { left: 120%; }
+}
+
+/* Pillar card ghost shapes — trace on hover */
+.pillar-card { position: relative; overflow: visible; cursor: pointer; }
+.pillar-card .ghost-svg { transition: opacity .3s; }
+.pillar-card:hover .ghost-svg rect,
+.pillar-card:hover .ghost-svg polygon,
+.pillar-card:hover .ghost-svg circle {
+  stroke: rgba(201,168,76,.35);
+  animation: shapeTrace .8s ease-out forwards;
+}
+@keyframes shapeTrace {
+  0% { stroke-dashoffset: 1000; stroke: rgba(201,168,76,.0); }
+  20% { stroke: rgba(201,168,76,.5); }
+  100% { stroke-dashoffset: 0; stroke: rgba(201,168,76,.25); }
+}
+.pillar-card:hover .ghost-svg rect { stroke-dasharray: 440; }
+.pillar-card:hover .ghost-svg polygon {
+  stroke-dasharray: 380;
+  animation: shapeTraceCCW .8s ease-out forwards !important;
+}
+.pillar-card:hover .ghost-svg circle {
+  stroke-dasharray: 314.16;
+  animation: shapeTraceCircle .8s ease-out forwards !important;
+}
+@keyframes shapeTraceCCW {
+  0% { stroke-dashoffset: -1000; stroke: rgba(201,168,76,.0); }
+  20% { stroke: rgba(201,168,76,.5); }
+  100% { stroke-dashoffset: 0; stroke: rgba(201,168,76,.25); }
+}
+@keyframes shapeTraceCircle {
+  0% { stroke-dashoffset: 314.16; stroke: rgba(201,168,76,.0); }
+  20% { stroke: rgba(201,168,76,.5); }
+  100% { stroke-dashoffset: 0; stroke: rgba(201,168,76,.25); }
+}
+
+/* Pillar card glow on hover */
+.pillar-card:hover {
+  background: rgba(240,234,216,.07) !important;
+  transition: background .3s;
+}
+
+/* F1 CTA rows — rising shimmer */
+.f1-row {
+  position: relative;
+  overflow: hidden;
+}
+.f1-row::before {
+  content: '';
+  position: absolute;
+  bottom: -60px; left: 0; right: 0;
+  height: 60px;
+  background: linear-gradient(180deg, transparent, rgba(201,168,76,.06), transparent);
+  animation: f1Rise 3.5s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes f1Rise {
+  0% { bottom: -60px; opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { bottom: 100%; opacity: 0; }
+}
+</style>
+
+<script>
+// Break shimmer divs
+document.querySelectorAll('.brk').forEach(function(brk) {
+  var s = document.createElement('div');
+  s.className = 'brk-shimmer';
+  // Stagger each break slightly
+  s.style.animationDelay = (Math.random() * 2) + 's';
+  brk.appendChild(s);
+});
+
+// Sec-id glint on viewport entry
+var glintObserver = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) {
+      var el = e.target;
+      el.classList.remove('glint');
+      void el.offsetWidth; // reflow
+      el.classList.add('glint');
+      glintObserver.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.sec-id').forEach(function(el) {
+  glintObserver.observe(el);
+});
+
+// Belt rows — add class
+document.querySelectorAll('#belt-levels a, #belt-levels div').forEach(function(el) {
+  el.classList.add('belt-row');
+});
+
+// F1 rows — add class
+document.querySelectorAll('#F1 [style*="border:.5px solid rgba(169,124,26"]').forEach(function(el) {
+  el.classList.add('f1-row');
+});
+
+// Pillar cards — add class + make clickable
+var pillarLinks = ['#break-sq', '#break-tri', '#break-circ'];
+document.querySelectorAll('#pillars-grid > div').forEach(function(card, i) {
+  card.classList.add('pillar-card');
+  card.style.cursor = 'pointer';
+  // Find ghost svg — already has class on circle card, add to others
+  var ghost = card.querySelector('svg.ghost-svg') || card.querySelector('svg:first-of-type');
+  if (ghost) ghost.classList.add('ghost-svg');
+  card.addEventListener('click', function() {
+    var target = pillarLinks[i];
+    if (target) {
+      document.querySelector(target).scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+});
+</script>
 <section class="section" id="F2" style="border-top:1px solid rgba(240,234,216,.06);">
   <div class="sec-id">E2</div>
   <div class="inner">
