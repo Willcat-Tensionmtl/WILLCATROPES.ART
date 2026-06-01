@@ -168,7 +168,7 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
 
 @media (max-width: 600px) {
   #wip { padding: .75rem 1.5rem; flex-direction: column; align-items: center; gap: .5rem; text-align: center; }
-  .hero-nav { top: 80px; }
+  .hero-nav { top: 92px; }
   .hero-content { padding: 2rem 1.5rem; }
   .hero-name { font-size: clamp(3.2rem,14vw,5rem); }
   #companions-wrapper { grid-template-columns: 1fr !important; gap: 2rem !important; }
@@ -191,7 +191,7 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
   </div>
   <div class="hero-overlay"></div>
   <nav class="hero-nav">
-    <div class="hero-logo">Will<em>cat</em>.</div>
+    <a href="#" style="text-decoration:none"><div class="hero-logo">Will<em>cat</em>.</div></a>
     <div style="display:flex;align-items:center;gap:1.5rem;">
       <ul class="hero-links" style="display:flex;gap:1.5rem;list-style:none;align-items:center;margin:0;">
         <li><a href="#B1" style="font-family:var(--fm);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:rgba(240,234,216,.4);text-decoration:none;transition:color .2s">About</a></li>
@@ -344,12 +344,16 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
   </div>
 
   <!-- Scroll shimmer — fixed right side, disappears when leaving hero -->
-  <div id="scroll-shimmer" style="position:fixed;right:4rem;top:0;bottom:0;display:flex;flex-direction:column;align-items:center;z-index:10;transition:opacity .4s;">
-    <div style="position:relative;width:1px;flex:1;overflow:hidden;">
+  <div id="scroll-shimmer" style="position:fixed;right:4rem;top:0;bottom:0;display:flex;flex-direction:row;align-items:center;gap:2px;z-index:10;transition:opacity .4s;">
+    <div style="position:relative;width:1px;height:100%;overflow:hidden;">
       <div style="position:absolute;inset:0;background:rgba(201,168,76,.1);"></div>
       <div style="position:absolute;left:0;width:1px;top:-120px;height:120px;background:linear-gradient(180deg,transparent,rgba(201,168,76,.9),transparent);animation:heroShimmer 2.8s ease-in-out infinite;"></div>
     </div>
-    <div style="font-family:var(--fm);font-size:7px;letter-spacing:.2em;text-transform:uppercase;color:rgba(201,168,76,.3);writing-mode:vertical-rl;padding:.75rem 0;animation:heroFade 2.8s ease-in-out infinite;">scroll</div>
+    <div style="position:relative;width:1px;height:100%;overflow:hidden;">
+      <div style="position:absolute;inset:0;background:rgba(201,168,76,.1);"></div>
+      <div style="position:absolute;left:0;width:1px;top:-120px;height:120px;background:linear-gradient(180deg,transparent,rgba(201,168,76,.9),transparent);animation:heroShimmer 2.8s ease-in-out infinite;"></div>
+    </div>
+    <div style="font-family:var(--fm);font-size:7px;letter-spacing:.2em;text-transform:uppercase;color:rgba(201,168,76,.3);writing-mode:vertical-rl;padding:.75rem 0;animation:heroFade 2.8s ease-in-out infinite;margin-left:4px;">scroll</div>
   </div>
 
   <style>
@@ -443,7 +447,7 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
       <li class="body-serif" style="margin-bottom:.5rem">Aesthetics: there are many kinds but very important in traditional Shibari | Kinbaku... i.e: Structure</li>
       <li class="body-serif">Everything has purpose; if you make a friction or line that doesn't do anything, why do it?</li>
     </ul>
-    <p class="body-serif fade-in" style="margin-bottom:2.5rem;opacity:.65;max-width:720px;font-style:italic;margin-top:-.5rem">Above all, do not forget to have fun.</p>
+    <p class="body-serif fade-in" style="margin-bottom:2.5rem;opacity:1;max-width:720px;font-style:italic;margin-top:-.5rem">Above all, do not forget to have fun.</p>
 
     <div id="pillars-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(240,234,216,.05);margin-bottom:1px;" class="fade-in">
       <div style="background:rgba(240,234,216,.04);padding:3rem 2.5rem;position:relative;overflow:visible">
@@ -577,7 +581,133 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
     </div>
 
     <script>
-    var companions = {
+    var levels = {
+  'lvl0': { badge: 'Beige · Lvl 0', title: 'Neophyte', desc: 'You are brand new to rope. You may have attended a beginner class, but the terminology hasn\'t stuck yet — names of knots, frictions, or harnesses still feel foreign. You\'re exploring, curious, and starting to notice how rope moves and feels in your hands.', skills: '', goal: 'Mindset: explore · notice · stay curious' },
+  'lvl1': { badge: 'Green · Lvl 1', title: 'Beginner', desc: 'You\'ve started your journey and can tie basic patterns, though they\'re not yet fluid. You\'re learning structure, friction, and form. No uplines yet — your work stays grounded.', skills: 'Single column · Futomomo · Wrapping with intention · Batten-Dome · Taiko-Dome · Kannuki · Larkshead · Basic body manipulation · Rope care · Consent foundations', goal: 'Goal: consistency · coordination · safety basics · Mindset: experiment · make mistakes · stay curious' },
+  'lvl2': { badge: 'Red · Lvl 2', title: 'Intermediate', desc: 'Your floorwork and frictions are becoming fluid; rope moves through your hands with more confidence. Some patterns still challenge you, but you can complete them. You may or may not be doing suspensions yet, but you know how uplines work. At this stage, you begin to study the why. Nerve pathways, circulation, skeletal and muscular awareness should be integrated from this point onward.', skills: 'Gote · Body manipulation · Ladder ties · Nodome · Takedome · Hojo cuffs · Hishi frictions · Reverse tension · Wadome · Double column · Upline theory · Partial load awareness', goal: 'Goal: balance technique with safety and intention' },
+  'lvl3': { badge: 'Black · Lvl 3', title: 'Intermediate / Advanced', desc: 'You are executing full suspensions. You have solid grounding in previous material and can reproduce a harness from start to finish with accuracy and functionality. Your frictions are firm, your tensions precise. You may be eager to explore dynamic transitions, even if the mechanics aren\'t yet second nature.', skills: '', goal: 'Goal: refinement · precision · confidence under load · Mindset: mastery through awareness, not ego' },
+  'lvl4': { badge: 'Beige · Lvl 4', title: 'Advanced +', desc: 'You\'ve done your ten thousand hours and ten thousand frictions. Your style now shows through your rope, recognizable to others. You didn\'t invent your "own" style to avoid discipline; rather, your flair, approach, and interpretation speak for themselves.', skills: '', goal: 'Goal: expression · mentorship · evolution · Mindset: humility through mastery — the rope now ties you as much as you tie it' }
+};
+
+var levelIcons = {
+  'lvl0': '<img src="img/Lvl_0_Neophyte.png" style="width:64px;height:64px;object-fit:contain;display:block;">',
+  'lvl1': '<img src="img/Lvl_1_Beginner.png" style="width:64px;height:64px;object-fit:contain;display:block;">',
+  'lvl2': '<img src="img/Lvl_2_Intermediate.png" style="width:64px;height:64px;object-fit:contain;display:block;">',
+  'lvl3': '<img src="img/Lvl_3_Advanced.png" style="width:64px;height:64px;object-fit:contain;display:block;">',
+  'lvl4': '<img src="img/Lvl_4_AdvancedPlus.png" style="width:64px;height:64px;object-fit:contain;display:block;">'
+};
+
+function showLevel(id) {
+  var l = levels[id];
+  if (!l) return;
+
+  // Pulse line
+  var ls = document.getElementById('levels-line-shimmer');
+  if (ls) {
+    ls.style.transition = 'none'; ls.style.left = '-30%'; ls.style.opacity = '0';
+    void ls.offsetWidth;
+    ls.style.transition = 'left .7s ease-out, opacity .15s ease-out';
+    ls.style.opacity = '1'; ls.style.left = '110%';
+    setTimeout(function() { ls.style.opacity = '0'; }, 600);
+  }
+
+  document.querySelectorAll('.level-item').forEach(function(t) { t.classList.remove('active'); });
+  var active = document.querySelector('.level-item[data-id="' + id + '"]');
+  if (active) active.classList.add('active');
+
+  document.getElementById('level-badge').textContent = l.badge;
+  document.getElementById('level-title').textContent = l.title;
+  document.getElementById('level-desc').textContent = l.desc;
+  document.getElementById('level-skills').textContent = l.skills;
+  document.getElementById('level-goal').textContent = l.goal;
+  document.getElementById('level-icon').innerHTML = levelIcons[id] || '';
+  document.getElementById('level-empty').style.display = 'none';
+
+  var content = document.getElementById('level-content');
+  content.style.display = 'block';
+  content.style.opacity = '0';
+  setTimeout(function() { content.style.transition = 'opacity .3s'; content.style.opacity = '1'; }, 10);
+}
+
+var workshops = {
+  'bodymech': {
+    title: 'Body Manipulation & Moving Your Partner',
+    desc: 'Weight shifting, balance disruption, knee-walking, pushing and pulling mechanics. The martial-arts informed movement that underpins Nawajutsu and everything after it. You leave understanding why your partner moves — not just that they did.',
+    note: 'Can be taught as a 2-hour class, half-day, or full-day intensive. No partner required.'
+  },
+  'gote': {
+    title: 'Gote & the Creativity Framework',
+    desc: 'The Gote as a vehicle for understanding creativity in rope. Not a technique to memorize — a structure to think inside of. What decisions are you making at every wrap? What are you building toward? Applicable to every tie you will ever learn after.',
+    note: 'Prerequisite: single column and basic frictions. 3–6 hours depending on depth.'
+  },
+  'tension': {
+    title: 'Tension, Intention & Rope Handling',
+    desc: 'The invisible work. How rope behaves under load. How intention changes the quality of contact before a single knot is tied. This is where Seme begins — not in the tie, but in the decision to apply tension at all.',
+    note: 'Adaptable to all levels. Works as a standalone or woven into any other workshop.'
+  },
+  'safety': {
+    title: 'Safety as Practice — Physical & Emotional',
+    desc: 'Safety woven into every decision, not front-loaded and forgotten. Nerve mapping, circulation, vasovagal response — as context for every tie in your repertoire. Consent not as a checklist but as the conversation that never ends.',
+    note: 'Based on the Red and Yellow sections of Fundamentals. Expandable to a full-day intensive.'
+  },
+  'partial': {
+    title: 'Partial Suspension & Static Work',
+    desc: 'Position-based work — face up, face down, side, sitting, kneeling, standing. The full body as a map. Structural understanding before anything goes off the floor. No one leaves having done a pretty tie they cannot replicate.',
+    note: 'Prerequisite: solid Fundamentals + Floorplay equivalent. 9-class curriculum, extractable as workshop or intensive.'
+  },
+  'do': {
+    title: 'The Dō — Rope as Path, Not Ladder',
+    desc: 'A conversation about why you are here and what the path actually looks like. Not a technique class — a framework class. The colour system as a lens for understanding where you are, what you are avoiding, and why going back to Beige is not failure.',
+    note: 'Often the most disruptive class people take. Works at any level.'
+  },
+  'suspension': {
+    title: 'Suspension & Dynamics — The Full Picture',
+    desc: 'The geometry of a suspension is not just a puzzle to solve. It is the physical expression of a dynamic that was either built or wasn\'t. Load paths, anchor points, body positioning; all of it is down a path of what\'s happening between two people before the first rope goes on. This class works both directions: the technical and the relational. You won\'t get one without the other.',
+    note: 'Serious prerequisites required. Get in touch before requesting this one.'
+  },
+  'other': {
+    title: 'Something else entirely.',
+    desc: 'You don\'t know what you want? That\'s the most honest place to start. Tell me where you are, what\'s been missing, what you\'ve tried that didn\'t land. We\'ll figure out what the class actually is.',
+    note: '→ Get in touch.'
+  }
+};
+
+function showWorkshop(id) {
+  var w = workshops[id];
+  if (!w) return;
+
+  // Pulse the companions divider line if present
+  var ls = document.getElementById('companions-line-shimmer');
+  if (ls) {
+    ls.style.transition = 'none'; ls.style.left = '-30%'; ls.style.opacity = '0';
+    void ls.offsetWidth;
+    ls.style.transition = 'left .7s ease-out, opacity .15s ease-out';
+    ls.style.opacity = '1'; ls.style.left = '110%';
+    setTimeout(function() { ls.style.opacity = '0'; }, 600);
+  }
+
+  document.querySelectorAll('.workshop-item').forEach(function(t) { t.classList.remove('active'); });
+  var active = document.querySelector('.workshop-item[data-id="' + id + '"]');
+  if (active) active.classList.add('active');
+
+  document.getElementById('workshop-title').textContent = w.title;
+  document.getElementById('workshop-desc').textContent = w.desc;
+  document.getElementById('workshop-note').textContent = w.note;
+  document.getElementById('workshop-empty').style.display = 'none';
+
+  var content = document.getElementById('workshop-content');
+  content.style.display = 'block';
+  content.style.opacity = '0';
+  setTimeout(function() { content.style.transition = 'opacity .3s'; content.style.opacity = '1'; }, 10);
+
+  if (id === 'other') {
+    setTimeout(function() {
+      var noteEl = document.getElementById('workshop-note');
+      noteEl.innerHTML = '<a href="#F2" style="color:var(--rope-l);text-decoration:none;letter-spacing:.1em">→ Work with me</a>';
+    }, 350);
+  }
+}
+var companions = {
       'do':          { kanji:'道', name:'Dō', reading:'The Way · The Path', desc:'A path to be walked, not a destination to be reached. Dō implies that the practice itself is the point, not what it produces. You are always on the path. You never arrive.', rope:'In rope: every session is the practice. There is no graduation from beginner. There is only the path, and how honestly you walk it.' },
       'kaizen':      { kanji:'改善', name:'Kaizen', reading:'Continuous improvement', desc:'Small, consistent improvement over time. Not revolution but evolution. The discipline of looking at what is, asking what it could be, and making one step toward it.', rope:'In rope: technique does not plateau, it deepens. Kaizen means returning to fundamentals not because you failed but because you understand them more now than before.' },
       'ikigai':      { kanji:'生き甲斐', name:'Ikigai', reading:'Reason for being', desc:'The intersection of what you love, what you are good at, what the world needs, and what sustains you. Not a career framework. A question to sit with honestly.', rope:'In rope: why are you here? What does this give you that nothing else does? Ikigai is not an excuse to avoid hard questions. It is the reason you answer them.' },
@@ -691,88 +821,133 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
       <!-- Row 1: In Practice | Col shapes: □ △ ○ | Row shape: □ -->
 
       <!-- R1C1: □+□ -->
-      <div style="background:#131315;padding:2.5rem 2rem;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;">
-        <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.06"><rect x="5" y="5" width="90" height="90" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="square"/></svg>
+      <div style="background:#131315;padding:0;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:stretch;text-align:center;min-height:200px;">
+        
         <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.08"><rect x="15" y="15" width="70" height="70" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="square"/></svg>
-        <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.4rem;position:relative;z-index:1">Structure</div>
-        <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(240,234,216,.3);margin-bottom:1rem;position:relative;z-index:1">In Practice</div>
-        <p style="font-family:var(--fm);font-size:14px;line-height:1.85;color:rgba(240,234,216,.32);position:relative;z-index:1">The rope's form, safety prerequisites, the pattern practiced until second nature.</p>
+        <div class="htr-top" style="height:80px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:1.5rem 1.5rem 0;position:relative;z-index:1;">
+          <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.3rem" class="htr-pillar">Structure</div>
+          <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(240,234,216,.3);position:relative" class="htr-context">In Practice</div>
+          <div class="htr-row-line" style="position:absolute;bottom:0;left:0;right:0;height:1px;background:rgba(201,168,76,0);transition:background .3s;pointer-events:none;"></div>
+        </div>
+        <div style="flex:1;padding:1rem 1.5rem 1.5rem;position:relative;z-index:1;">
+          <p style="font-family:var(--fm);font-size:13px;line-height:1.8;color:rgba(240,234,216,.32)" class="htr-desc">The rope's form, safety prerequisites, the pattern practiced until second nature.</p>
+        </div>
       </div>
 
       <!-- R1C2: □+△ -->
-      <div style="background:#131315;padding:2.5rem 2rem;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;">
-        <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.06"><rect x="5" y="5" width="90" height="90" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="square"/></svg>
+      <div style="background:#131315;padding:0;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:stretch;text-align:center;min-height:200px;">
+        
         <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.08"><rect x="10" y="10" width="80" height="80" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="square"/><line x1="10" y1="10" x2="90" y2="90" stroke="#c9a84c" stroke-width="1.5"/><line x1="90" y1="10" x2="10" y2="90" stroke="#c9a84c" stroke-width="1.5"/></svg>
-        <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.4rem;position:relative;z-index:1">Tension</div>
-        <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(240,234,216,.3);margin-bottom:1rem;position:relative;z-index:1">In Practice</div>
-        <p style="font-family:var(--fm);font-size:14px;line-height:1.85;color:rgba(240,234,216,.32);position:relative;z-index:1">The load decision, emotional charge, choosing to add or release pressure.</p>
+        <div class="htr-top" style="height:80px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:1.5rem 1.5rem 0;position:relative;z-index:1;">
+          <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.3rem" class="htr-pillar">Tension</div>
+          <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(240,234,216,.3);position:relative" class="htr-context">In Practice</div>
+          <div class="htr-row-line" style="position:absolute;bottom:0;left:0;right:0;height:1px;background:rgba(201,168,76,0);transition:background .3s;pointer-events:none;"></div>
+        </div>
+        <div style="flex:1;padding:1rem 1.5rem 1.5rem;position:relative;z-index:1;">
+          <p style="font-family:var(--fm);font-size:13px;line-height:1.8;color:rgba(240,234,216,.32)" class="htr-desc">The load decision, emotional charge, choosing to add or release pressure.</p>
+        </div>
       </div>
 
       <!-- R1C3: □+○ -->
-      <div style="background:#131315;padding:2.5rem 2rem;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;">
-        <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.06"><rect x="5" y="5" width="90" height="90" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="square"/></svg>
+      <div style="background:#131315;padding:0;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:stretch;text-align:center;min-height:200px;">
+        
         <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.08"><circle cx="50" cy="50" r="42" stroke="#c9a84c" stroke-width="1.5"/><rect x="20.3" y="20.3" width="59.4" height="59.4" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="square"/></svg>
-        <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.4rem;position:relative;z-index:1">Flow</div>
-        <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(240,234,216,.3);margin-bottom:1rem;position:relative;z-index:1">In Practice</div>
-        <p style="font-family:var(--fm);font-size:14px;line-height:1.85;color:rgba(240,234,216,.32);position:relative;z-index:1">Sensitivity to the body receiving rope, adapting when anatomy, breath, or energy shifts.</p>
+        <div class="htr-top" style="height:80px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:1.5rem 1.5rem 0;position:relative;z-index:1;">
+          <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.3rem" class="htr-pillar">Flow</div>
+          <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(240,234,216,.3);position:relative" class="htr-context">In Practice</div>
+          <div class="htr-row-line" style="position:absolute;bottom:0;left:0;right:0;height:1px;background:rgba(201,168,76,0);transition:background .3s;pointer-events:none;"></div>
+        </div>
+        <div style="flex:1;padding:1rem 1.5rem 1.5rem;position:relative;z-index:1;">
+          <p style="font-family:var(--fm);font-size:13px;line-height:1.8;color:rgba(240,234,216,.32)" class="htr-desc">Sensitivity to the body receiving rope, adapting when anatomy, breath, or energy shifts.</p>
+        </div>
       </div>
 
       <!-- Row 2: In Transmission | Row shape: △ -->
 
       <!-- R2C1: △+□ -->
-      <div style="background:#131315;padding:2.5rem 2rem;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;">
-        <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.06"><polygon points="50,5 95,95 5,95" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="miter"/></svg>
+      <div style="background:#131315;padding:0;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:stretch;text-align:center;min-height:200px;">
+        
         <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.08"><rect x="10" y="10" width="80" height="80" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="square"/><polygon points="50,20 82,80 18,80" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="miter"/></svg>
-        <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.4rem;position:relative;z-index:1">Structure</div>
-        <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(240,234,216,.3);margin-bottom:1rem;position:relative;z-index:1">In Transmission</div>
-        <p style="font-family:var(--fm);font-size:14px;line-height:1.85;color:rgba(240,234,216,.32);position:relative;z-index:1">Curriculum sequence, prerequisites, repeatable components taught consistently.</p>
+        <div class="htr-top" style="height:80px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:1.5rem 1.5rem 0;position:relative;z-index:1;">
+          <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.3rem" class="htr-pillar">Structure</div>
+          <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(240,234,216,.3);position:relative" class="htr-context">In Transmission</div>
+          <div class="htr-row-line" style="position:absolute;bottom:0;left:0;right:0;height:1px;background:rgba(201,168,76,0);transition:background .3s;pointer-events:none;"></div>
+        </div>
+        <div style="flex:1;padding:1rem 1.5rem 1.5rem;position:relative;z-index:1;">
+          <p style="font-family:var(--fm);font-size:13px;line-height:1.8;color:rgba(240,234,216,.32)" class="htr-desc">Curriculum sequence, prerequisites, repeatable components taught consistently.</p>
+        </div>
       </div>
 
       <!-- R2C2: △+△ -->
-      <div style="background:#131315;padding:2.5rem 2rem;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;">
-        <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.06"><polygon points="50,5 95,95 5,95" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="miter"/></svg>
+      <div style="background:#131315;padding:0;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:stretch;text-align:center;min-height:200px;">
+        
         <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.08"><polygon points="50,8 92,92 8,92" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="miter"/></svg>
-        <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.4rem;position:relative;z-index:1">Tension</div>
-        <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(240,234,216,.3);margin-bottom:1rem;position:relative;z-index:1">In Transmission</div>
-        <p style="font-family:var(--fm);font-size:14px;line-height:1.85;color:rgba(240,234,216,.32);position:relative;z-index:1">The challenge placed on a student at the right moment, not too soon, not too late.</p>
+        <div class="htr-top" style="height:80px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:1.5rem 1.5rem 0;position:relative;z-index:1;">
+          <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.3rem" class="htr-pillar">Tension</div>
+          <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(240,234,216,.3);position:relative" class="htr-context">In Transmission</div>
+          <div class="htr-row-line" style="position:absolute;bottom:0;left:0;right:0;height:1px;background:rgba(201,168,76,0);transition:background .3s;pointer-events:none;"></div>
+        </div>
+        <div style="flex:1;padding:1rem 1.5rem 1.5rem;position:relative;z-index:1;">
+          <p style="font-family:var(--fm);font-size:13px;line-height:1.8;color:rgba(240,234,216,.32)" class="htr-desc">The challenge placed on a student at the right moment, not too soon, not too late.</p>
+        </div>
       </div>
 
       <!-- R2C3: △+○ -->
-      <div style="background:#131315;padding:2.5rem 2rem;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;">
-        <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.06"><polygon points="50,5 95,95 5,95" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="miter"/></svg>
+      <div style="background:#131315;padding:0;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:stretch;text-align:center;min-height:200px;">
+        
         <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.08"><circle cx="50" cy="50" r="42" stroke="#c9a84c" stroke-width="1.5"/><polygon points="50,8 86.4,69 13.6,69" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="miter"/></svg>
-        <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.4rem;position:relative;z-index:1">Flow</div>
-        <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(240,234,216,.3);margin-bottom:1rem;position:relative;z-index:1">In Transmission</div>
-        <p style="font-family:var(--fm);font-size:14px;line-height:1.85;color:rgba(240,234,216,.32);position:relative;z-index:1">Reading the room, following what the student is actually learning.</p>
+        <div class="htr-top" style="height:80px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:1.5rem 1.5rem 0;position:relative;z-index:1;">
+          <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.3rem" class="htr-pillar">Flow</div>
+          <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(240,234,216,.3);position:relative" class="htr-context">In Transmission</div>
+          <div class="htr-row-line" style="position:absolute;bottom:0;left:0;right:0;height:1px;background:rgba(201,168,76,0);transition:background .3s;pointer-events:none;"></div>
+        </div>
+        <div style="flex:1;padding:1rem 1.5rem 1.5rem;position:relative;z-index:1;">
+          <p style="font-family:var(--fm);font-size:13px;line-height:1.8;color:rgba(240,234,216,.32)" class="htr-desc">Reading the room, following what the student is actually learning.</p>
+        </div>
       </div>
 
       <!-- Row 3: In Community | Row shape: ○ -->
 
       <!-- R3C1: ○+□ -->
-      <div style="background:#131315;padding:2.5rem 2rem;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;">
-        <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.06"><circle cx="50" cy="50" r="45" stroke="#c9a84c" stroke-width="1.5"/></svg>
+      <div style="background:#131315;padding:0;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:stretch;text-align:center;min-height:200px;">
+        
         <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.08"><rect x="10" y="10" width="80" height="80" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="square"/><circle cx="50" cy="50" r="32" stroke="#c9a84c" stroke-width="1.5"/></svg>
-        <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.4rem;position:relative;z-index:1">Structure</div>
-        <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(240,234,216,.3);margin-bottom:1rem;position:relative;z-index:1">In Community</div>
-        <p style="font-family:var(--fm);font-size:14px;line-height:1.85;color:rgba(240,234,216,.32);position:relative;z-index:1">Agreements, policies, accountability frameworks, boundaries that protect the space.</p>
+        <div class="htr-top" style="height:80px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:1.5rem 1.5rem 0;position:relative;z-index:1;">
+          <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.3rem" class="htr-pillar">Structure</div>
+          <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(240,234,216,.3);position:relative" class="htr-context">In Community</div>
+          <div class="htr-row-line" style="position:absolute;bottom:0;left:0;right:0;height:1px;background:rgba(201,168,76,0);transition:background .3s;pointer-events:none;"></div>
+        </div>
+        <div style="flex:1;padding:1rem 1.5rem 1.5rem;position:relative;z-index:1;">
+          <p style="font-family:var(--fm);font-size:13px;line-height:1.8;color:rgba(240,234,216,.32)" class="htr-desc">Agreements, policies, accountability frameworks, boundaries that protect the space.</p>
+        </div>
       </div>
 
       <!-- R3C2: ○+△ -->
-      <div style="background:#131315;padding:2.5rem 2rem;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;">
-        <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.06"><circle cx="50" cy="50" r="45" stroke="#c9a84c" stroke-width="1.5"/></svg>
+      <div style="background:#131315;padding:0;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:stretch;text-align:center;min-height:200px;">
+        
         <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.08"><circle cx="50" cy="50" r="33" stroke="#c9a84c" stroke-width="1.5"/><polygon points="50,5 90,70 10,70" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="miter"/></svg>
-        <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.4rem;position:relative;z-index:1">Tension</div>
-        <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(240,234,216,.3);margin-bottom:1rem;position:relative;z-index:1">In Community</div>
-        <p style="font-family:var(--fm);font-size:14px;line-height:1.85;color:rgba(240,234,216,.32);position:relative;z-index:1">Honest feedback, consent negotiation, the responsibility of authority.</p>
+        <div class="htr-top" style="height:80px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:1.5rem 1.5rem 0;position:relative;z-index:1;">
+          <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.3rem" class="htr-pillar">Tension</div>
+          <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(240,234,216,.3);position:relative" class="htr-context">In Community</div>
+          <div class="htr-row-line" style="position:absolute;bottom:0;left:0;right:0;height:1px;background:rgba(201,168,76,0);transition:background .3s;pointer-events:none;"></div>
+        </div>
+        <div style="flex:1;padding:1rem 1.5rem 1.5rem;position:relative;z-index:1;">
+          <p style="font-family:var(--fm);font-size:13px;line-height:1.8;color:rgba(240,234,216,.32)" class="htr-desc">Honest feedback, consent negotiation, the responsibility of authority.</p>
+        </div>
       </div>
 
       <!-- R3C3: ○+○ -->
-      <div style="background:#131315;padding:2.5rem 2rem;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;">
-        <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.06"><circle cx="50" cy="50" r="45" stroke="#c9a84c" stroke-width="1.5"/></svg>
+      <div style="background:#131315;padding:0;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:stretch;text-align:center;min-height:200px;">
+        
         <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.08"><circle cx="50" cy="50" r="42" stroke="#c9a84c" stroke-width="1.5"/></svg>
-        <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.4rem;position:relative;z-index:1">Flow</div>
-        <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(240,234,216,.3);margin-bottom:1rem;position:relative;z-index:1">In Community</div>
-        <p style="font-family:var(--fm);font-size:14px;line-height:1.85;color:rgba(240,234,216,.32);position:relative;z-index:1">How a community absorbs conflict, learns, adapts, and continues rather than fractures.</p>
+        <div class="htr-top" style="height:80px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:1.5rem 1.5rem 0;position:relative;z-index:1;">
+          <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.3rem" class="htr-pillar">Flow</div>
+          <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(240,234,216,.3);position:relative" class="htr-context">In Community</div>
+          <div class="htr-row-line" style="position:absolute;bottom:0;left:0;right:0;height:1px;background:rgba(201,168,76,0);transition:background .3s;pointer-events:none;"></div>
+        </div>
+        <div style="flex:1;padding:1rem 1.5rem 1.5rem;position:relative;z-index:1;">
+          <p style="font-family:var(--fm);font-size:13px;line-height:1.8;color:rgba(240,234,216,.32)" class="htr-desc">How a community absorbs conflict, learns, adapts, and continues rather than fractures.</p>
+        </div>
       </div>
 
     </div>
@@ -794,8 +969,10 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
       <div id="carousel-track" style="overflow:hidden;">
         <div id="carousel-inner" style="display:flex;transition:transform .4s cubic-bezier(0.16,1,0.3,1);">
 
-          <!-- Column: The Square -->
+          <!-- ══ SLIDE 1: THE SQUARE ══ -->
           <div class="carousel-row" style="min-width:100%;display:flex;flex-direction:column;gap:1px;background:rgba(240,234,216,.05);">
+
+            <!-- Header -->
             <div style="background:var(--ink2);padding:2.5rem 2rem;text-align:center;position:relative;overflow:hidden;min-height:180px;display:flex;flex-direction:column;align-items:center;justify-content:center;">
               <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.15"><rect x="5" y="5" width="90" height="90" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="square"/></svg>
               <svg viewBox="0 0 36 36" fill="none" style="width:32px;height:32px;margin:0 auto .75rem;position:relative"><rect x="2" y="2" width="32" height="32" stroke="#c9a84c" stroke-width="3" stroke-linecap="square"/></svg>
@@ -803,32 +980,57 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
               <div style="font-family:var(--fd);font-size:1.8rem;font-weight:300;color:var(--paper);margin-bottom:.5rem;position:relative">The Square</div>
               <div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;position:relative">Structure · Form · Kata<br>Safety · Aesthetics · Practice</div>
             </div>
+
+            <!-- Description -->
             <div style="background:#131315;padding:1.75rem 2rem;position:relative;">
               <p style="font-family:var(--fm);font-size:14px;line-height:1.85;color:rgba(240,234,216,.38);margin-bottom:1.25rem">The square holds. It is the container: the form, the frame, the kata repeated until reliable. Without the square, there is nothing to push against and nowhere to return.</p>
               <div style="border-left:2px solid rgba(169,124,26,.3);padding-left:1rem"><p style="font-family:var(--fd);font-size:1rem;font-style:italic;font-weight:300;color:rgba(240,234,216,.5);line-height:1.55">"The square is not a cage. It is the container that makes freedom possible."</p></div>
             </div>
-            <div style="background:#131315;padding:1.75rem 2rem;position:relative;overflow:hidden;border-top:1px solid rgba(240,234,216,.04);">
-              <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.06"><rect x="5" y="5" width="90" height="90" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="square"/></svg>
-              <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.08"><rect x="15" y="15" width="70" height="70" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="square"/></svg>
-              <div style="font-family:var(--fm);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.25rem;position:relative">Structure</div>
-              <div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,234,216,.3);margin-bottom:.75rem;position:relative">In Practice</div>
-              <p style="font-family:var(--fm);font-size:14px;line-height:1.8;color:rgba(240,234,216,.38);position:relative">The rope's form, safety prerequisites, the pattern practiced until second nature.</p>
-            </div>            <div style="background:#131315;padding:1.75rem 2rem;position:relative;overflow:hidden;border-top:1px solid rgba(240,234,216,.04);">
-              <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.06"><rect x="5" y="5" width="90" height="90" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="square"/></svg>
-              <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.08"><rect x="10" y="10" width="80" height="80" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="square"/><polygon points="50,20 82,80 18,80" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="miter"/></svg>
-              <div style="font-family:var(--fm);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.25rem;position:relative">Structure</div>
-              <div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,234,216,.3);margin-bottom:.75rem;position:relative">In Transmission</div>
-              <p style="font-family:var(--fm);font-size:14px;line-height:1.8;color:rgba(240,234,216,.38);position:relative">Curriculum sequence, prerequisites, repeatable components taught consistently.</p>
-            </div>            <div style="background:#131315;padding:1.75rem 2rem;position:relative;overflow:hidden;border-top:1px solid rgba(240,234,216,.04);">
-              <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.05"><rect x="5" y="5" width="90" height="90" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="square"/></svg>
-              <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.08"><rect x="10" y="10" width="80" height="80" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="square"/><circle cx="50" cy="50" r="32" stroke="#c9a84c" stroke-width="1.5"/></svg>
-              <div style="font-family:var(--fm);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.25rem;position:relative">Structure</div>
-              <div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,234,216,.3);margin-bottom:.75rem;position:relative">In Community</div>
-              <p style="font-family:var(--fm);font-size:14px;line-height:1.8;color:rgba(240,234,216,.38);position:relative">Agreements, policies, accountability frameworks, boundaries that protect the space.</p>
+
+            <!-- Two-axis toggle -->
+            <div style="display:flex;gap:1px;background:rgba(240,234,216,.06);">
+              <button onclick="htrShow('sq','pillar')" id="sq-btn-pillar" style="flex:1;padding:.75rem;background:rgba(201,168,76,.15);border:none;cursor:pointer;font-family:var(--fm);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:rgba(201,168,76,.8);transition:background .2s;">□</button>
+              <button onclick="htrShow('sq','context')" id="sq-btn-context" style="flex:1;padding:.75rem;background:rgba(240,234,216,.04);border:none;cursor:pointer;font-family:var(--fm);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,234,216,.3);transition:background .2s;">〇△</button>
             </div>
+
+            <!-- HTR cells — pillar view (default) -->
+            <div id="sq-view-pillar" style="display:flex;flex-direction:column;gap:1px;background:rgba(240,234,216,.05);">
+              <div style="background:#131315;padding:1.5rem 2rem;border-top:1px solid rgba(240,234,216,.04);">
+                <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.75rem"><svg viewBox="0 0 100 100" fill="none" style="width:18px;height:18px;flex-shrink:0;opacity:.6"><rect x="15" y="15" width="70" height="70" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="square"/></svg><div><div style="font-family:var(--fm);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.2rem">Structure</div><div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,234,216,.3)">In Practice</div></div></div>
+                <p style="font-family:var(--fm);font-size:14px;line-height:1.8;color:rgba(240,234,216,.38)">The rope's form, safety prerequisites, the pattern practiced until second nature.</p>
+              </div>
+              <div style="background:#131315;padding:1.5rem 2rem;border-top:1px solid rgba(240,234,216,.04);">
+                <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.75rem"><svg viewBox="0 0 100 100" fill="none" style="width:18px;height:18px;flex-shrink:0;opacity:.6"><rect x="10" y="10" width="80" height="80" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="square"/><line x1="10" y1="10" x2="90" y2="90" stroke="#c9a84c" stroke-width="1.5"/><line x1="90" y1="10" x2="10" y2="90" stroke="#c9a84c" stroke-width="1.5"/></svg><div><div style="font-family:var(--fm);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.2rem">Structure</div><div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,234,216,.3)">In Transmission</div></div></div>
+                <p style="font-family:var(--fm);font-size:14px;line-height:1.8;color:rgba(240,234,216,.38)">Curriculum sequence, prerequisites, repeatable components taught consistently.</p>
+              </div>
+              <div style="background:#131315;padding:1.5rem 2rem;border-top:1px solid rgba(240,234,216,.04);">
+                <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.75rem"><svg viewBox="0 0 100 100" fill="none" style="width:18px;height:18px;flex-shrink:0;opacity:.6"><circle cx="50" cy="50" r="42" stroke="#c9a84c" stroke-width="1.5"/><rect x="20.3" y="20.3" width="59.4" height="59.4" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="square"/></svg><div><div style="font-family:var(--fm);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.2rem">Structure</div><div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,234,216,.3)">In Community</div></div></div>
+                <p style="font-family:var(--fm);font-size:14px;line-height:1.8;color:rgba(240,234,216,.38)">Agreements, policies, accountability frameworks, boundaries that protect the space.</p>
+              </div>
+            </div>
+
+            <!-- HTR cells — context view -->
+            <div id="sq-view-context" style="display:none;flex-direction:column;gap:1px;background:rgba(240,234,216,.05);">
+              <div style="background:#131315;padding:1.5rem 2rem;border-top:1px solid rgba(240,234,216,.04);">
+                <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.75rem"><svg viewBox="0 0 100 100" fill="none" style="width:18px;height:18px;flex-shrink:0;opacity:.6"><rect x="15" y="15" width="70" height="70" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="square"/></svg><div><div style="font-family:var(--fm);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.2rem">Structure</div><div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,234,216,.3)">In Practice</div></div></div>
+                <p style="font-family:var(--fm);font-size:14px;line-height:1.8;color:rgba(240,234,216,.38)">The rope's form, safety prerequisites, the pattern practiced until second nature.</p>
+              </div>
+              <div style="background:#131315;padding:1.5rem 2rem;border-top:1px solid rgba(240,234,216,.04);">
+                <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.75rem"><svg viewBox="0 0 100 100" fill="none" style="width:18px;height:18px;flex-shrink:0;opacity:.6"><rect x="10" y="10" width="80" height="80" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="square"/><polygon points="50,20 82,80 18,80" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="miter"/></svg><div><div style="font-family:var(--fm);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.2rem">Tension</div><div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,234,216,.3)">In Practice</div></div></div>
+                <p style="font-family:var(--fm);font-size:14px;line-height:1.8;color:rgba(240,234,216,.38)">The load decision, emotional charge, choosing to add or release pressure.</p>
+              </div>
+              <div style="background:#131315;padding:1.5rem 2rem;border-top:1px solid rgba(240,234,216,.04);">
+                <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.75rem"><svg viewBox="0 0 100 100" fill="none" style="width:18px;height:18px;flex-shrink:0;opacity:.6"><rect x="10" y="10" width="80" height="80" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="square"/><circle cx="50" cy="50" r="32" stroke="#c9a84c" stroke-width="1.5"/></svg><div><div style="font-family:var(--fm);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.2rem">Flow</div><div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,234,216,.3)">In Practice</div></div></div>
+                <p style="font-family:var(--fm);font-size:14px;line-height:1.8;color:rgba(240,234,216,.38)">Sensitivity to the body receiving rope, adapting when anatomy, breath, or energy shifts.</p>
+              </div>
+            </div>
+
           </div>
-          <!-- Column: The Triangle -->
+
+          <!-- ══ SLIDE 2: THE TRIANGLE ══ -->
           <div class="carousel-row" style="min-width:100%;display:flex;flex-direction:column;gap:1px;background:rgba(240,234,216,.05);">
+
+            <!-- Header -->
             <div style="background:var(--ink2);padding:2.5rem 2rem;text-align:center;position:relative;overflow:hidden;min-height:180px;display:flex;flex-direction:column;align-items:center;justify-content:center;">
               <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.15"><polygon points="50,5 95,95 5,95" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="miter"/></svg>
               <svg viewBox="0 0 36 36" fill="none" style="width:32px;height:32px;margin:0 auto .75rem;position:relative"><polygon points="18,2 34,34 2,34" stroke="#c9a84c" stroke-width="3" stroke-linejoin="miter"/></svg>
@@ -836,32 +1038,57 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
               <div style="font-family:var(--fd);font-size:1.8rem;font-weight:300;color:var(--paper);margin-bottom:.5rem;position:relative">The Triangle</div>
               <div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;position:relative">Tension · Intention · Direction<br>Choice · Purpose · Transmission</div>
             </div>
+
+            <!-- Description -->
             <div style="background:#131315;padding:1.75rem 2rem;position:relative;">
               <p style="font-family:var(--fm);font-size:14px;line-height:1.85;color:rgba(240,234,216,.38);margin-bottom:1.25rem">The triangle is the moment of decision, where forces meet and something must give. Every transition is a triangle. You choose a direction, apply tension, and there are consequences.</p>
               <div style="border-left:2px solid rgba(169,124,26,.3);padding-left:1rem"><p style="font-family:var(--fd);font-size:1rem;font-style:italic;font-weight:300;color:rgba(240,234,216,.5);line-height:1.55">"Every tie is a choice. The triangle holds or it hurts. It should not be forced but felt."</p></div>
             </div>
-            <div style="background:#131315;padding:1.75rem 2rem;position:relative;overflow:hidden;border-top:1px solid rgba(240,234,216,.04);">
-              <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.05"><polygon points="50,5 95,95 5,95" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="miter"/></svg>
-              <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.08"><rect x="10" y="10" width="80" height="80" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="square"/><line x1="10" y1="10" x2="90" y2="90" stroke="#c9a84c" stroke-width="1.5"/><line x1="90" y1="10" x2="10" y2="90" stroke="#c9a84c" stroke-width="1.5"/></svg>
-              <div style="font-family:var(--fm);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.25rem;position:relative">Tension</div>
-              <div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,234,216,.3);margin-bottom:.75rem;position:relative">In Practice</div>
-              <p style="font-family:var(--fm);font-size:14px;line-height:1.8;color:rgba(240,234,216,.38);position:relative">The load decision, emotional charge, choosing to add or release pressure.</p>
-            </div>            <div style="background:#131315;padding:1.75rem 2rem;position:relative;overflow:hidden;border-top:1px solid rgba(240,234,216,.04);">
-              <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.05"><polygon points="50,5 95,95 5,95" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="miter"/></svg>
-              <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.08"><polygon points="50,8 92,92 8,92" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="miter"/></svg>
-              <div style="font-family:var(--fm);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.25rem;position:relative">Tension</div>
-              <div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,234,216,.3);margin-bottom:.75rem;position:relative">In Transmission</div>
-              <p style="font-family:var(--fm);font-size:14px;line-height:1.8;color:rgba(240,234,216,.38);position:relative">The challenge placed on a student at the right moment, not too soon, not too late.</p>
-            </div>            <div style="background:#131315;padding:1.75rem 2rem;position:relative;overflow:hidden;border-top:1px solid rgba(240,234,216,.04);">
-              <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.05"><polygon points="50,5 95,95 5,95" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="miter"/></svg>
-              <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.08"><circle cx="50" cy="50" r="33" stroke="#c9a84c" stroke-width="1.5"/><polygon points="50,5 90,70 10,70" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="miter"/></svg>
-              <div style="font-family:var(--fm);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.25rem;position:relative">Tension</div>
-              <div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,234,216,.3);margin-bottom:.75rem;position:relative">In Community</div>
-              <p style="font-family:var(--fm);font-size:14px;line-height:1.8;color:rgba(240,234,216,.38);position:relative">Honest feedback, consent negotiation, the responsibility of authority.</p>
+
+            <!-- Two-axis toggle -->
+            <div style="display:flex;gap:1px;background:rgba(240,234,216,.06);">
+              <button onclick="htrShow('tri','pillar')" id="tri-btn-pillar" style="flex:1;padding:.75rem;background:rgba(201,168,76,.15);border:none;cursor:pointer;font-family:var(--fm);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:rgba(201,168,76,.8);transition:background .2s;">△</button>
+              <button onclick="htrShow('tri','context')" id="tri-btn-context" style="flex:1;padding:.75rem;background:rgba(240,234,216,.04);border:none;cursor:pointer;font-family:var(--fm);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,234,216,.3);transition:background .2s;">□〇</button>
             </div>
+
+            <!-- HTR cells — pillar view (default) -->
+            <div id="tri-view-pillar" style="display:flex;flex-direction:column;gap:1px;background:rgba(240,234,216,.05);">
+              <div style="background:#131315;padding:1.5rem 2rem;border-top:1px solid rgba(240,234,216,.04);">
+                <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.75rem"><svg viewBox="0 0 100 100" fill="none" style="width:18px;height:18px;flex-shrink:0;opacity:.6"><rect x="10" y="10" width="80" height="80" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="square"/><polygon points="50,20 82,80 18,80" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="miter"/></svg><div><div style="font-family:var(--fm);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.2rem">Tension</div><div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,234,216,.3)">In Practice</div></div></div>
+                <p style="font-family:var(--fm);font-size:14px;line-height:1.8;color:rgba(240,234,216,.38)">The load decision, emotional charge, choosing to add or release pressure.</p>
+              </div>
+              <div style="background:#131315;padding:1.5rem 2rem;border-top:1px solid rgba(240,234,216,.04);">
+                <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.75rem"><svg viewBox="0 0 100 100" fill="none" style="width:18px;height:18px;flex-shrink:0;opacity:.6"><polygon points="50,8 92,92 8,92" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="miter"/></svg><div><div style="font-family:var(--fm);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.2rem">Tension</div><div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,234,216,.3)">In Transmission</div></div></div>
+                <p style="font-family:var(--fm);font-size:14px;line-height:1.8;color:rgba(240,234,216,.38)">The challenge placed on a student at the right moment, not too soon, not too late.</p>
+              </div>
+              <div style="background:#131315;padding:1.5rem 2rem;border-top:1px solid rgba(240,234,216,.04);">
+                <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.75rem"><svg viewBox="0 0 100 100" fill="none" style="width:18px;height:18px;flex-shrink:0;opacity:.6"><circle cx="50" cy="50" r="42" stroke="#c9a84c" stroke-width="1.5"/><polygon points="50,8 86.4,69 13.6,69" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="miter"/></svg><div><div style="font-family:var(--fm);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.2rem">Tension</div><div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,234,216,.3)">In Community</div></div></div>
+                <p style="font-family:var(--fm);font-size:14px;line-height:1.8;color:rgba(240,234,216,.38)">Honest feedback, consent negotiation, the responsibility of authority.</p>
+              </div>
+            </div>
+
+            <!-- HTR cells — context view -->
+            <div id="tri-view-context" style="display:none;flex-direction:column;gap:1px;background:rgba(240,234,216,.05);">
+              <div style="background:#131315;padding:1.5rem 2rem;border-top:1px solid rgba(240,234,216,.04);">
+                <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.75rem"><svg viewBox="0 0 100 100" fill="none" style="width:18px;height:18px;flex-shrink:0;opacity:.6"><polygon points="50,8 92,92 8,92" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="miter"/></svg><div><div style="font-family:var(--fm);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.2rem">Tension</div><div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,234,216,.3)">In Transmission</div></div></div>
+                <p style="font-family:var(--fm);font-size:14px;line-height:1.8;color:rgba(240,234,216,.38)">The challenge placed on a student at the right moment, not too soon, not too late.</p>
+              </div>
+              <div style="background:#131315;padding:1.5rem 2rem;border-top:1px solid rgba(240,234,216,.04);">
+                <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.75rem"><svg viewBox="0 0 100 100" fill="none" style="width:18px;height:18px;flex-shrink:0;opacity:.6"><rect x="10" y="10" width="80" height="80" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="square"/><line x1="10" y1="10" x2="90" y2="90" stroke="#c9a84c" stroke-width="1.5"/><line x1="90" y1="10" x2="10" y2="90" stroke="#c9a84c" stroke-width="1.5"/></svg><div><div style="font-family:var(--fm);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.2rem">Structure</div><div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,234,216,.3)">In Transmission</div></div></div>
+                <p style="font-family:var(--fm);font-size:14px;line-height:1.8;color:rgba(240,234,216,.38)">Curriculum sequence, prerequisites, repeatable components taught consistently.</p>
+              </div>
+              <div style="background:#131315;padding:1.5rem 2rem;border-top:1px solid rgba(240,234,216,.04);">
+                <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.75rem"><svg viewBox="0 0 100 100" fill="none" style="width:18px;height:18px;flex-shrink:0;opacity:.6"><circle cx="50" cy="50" r="33" stroke="#c9a84c" stroke-width="1.5"/><polygon points="50,5 90,70 10,70" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="miter"/></svg><div><div style="font-family:var(--fm);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.2rem">Flow</div><div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,234,216,.3)">In Transmission</div></div></div>
+                <p style="font-family:var(--fm);font-size:14px;line-height:1.8;color:rgba(240,234,216,.38)">Reading the room, following what the student is actually learning.</p>
+              </div>
+            </div>
+
           </div>
-          <!-- Column: The Circle -->
+
+          <!-- ══ SLIDE 3: THE CIRCLE ══ -->
           <div class="carousel-row" style="min-width:100%;display:flex;flex-direction:column;gap:1px;background:rgba(240,234,216,.05);">
+
+            <!-- Header -->
             <div style="background:var(--ink2);padding:2.5rem 2rem;text-align:center;position:relative;overflow:hidden;min-height:180px;display:flex;flex-direction:column;align-items:center;justify-content:center;">
               <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.15"><circle cx="50" cy="50" r="45" stroke="#c9a84c" stroke-width="1.5"/></svg>
               <svg viewBox="0 0 36 36" fill="none" style="width:32px;height:32px;margin:0 auto .75rem;position:relative"><circle cx="18" cy="18" r="15" stroke="#c9a84c" stroke-width="3"/></svg>
@@ -869,29 +1096,51 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
               <div style="font-family:var(--fd);font-size:1.8rem;font-weight:300;color:var(--paper);margin-bottom:.5rem;position:relative">The Circle</div>
               <div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;position:relative">Flow · Continuity · Return<br>Communication · Connection · Community</div>
             </div>
+
+            <!-- Description -->
             <div style="background:#131315;padding:1.75rem 2rem;position:relative;">
               <p style="font-family:var(--fm);font-size:14px;line-height:1.85;color:rgba(240,234,216,.38);margin-bottom:1.25rem">The circle has no beginning and no end. In rope it is the return: to fundamentals, to humility, to practice. Every teacher was once a beginner. The community is circular.</p>
               <div style="border-left:2px solid rgba(169,124,26,.3);padding-left:1rem"><p style="font-family:var(--fd);font-size:1rem;font-style:italic;font-weight:300;color:rgba(240,234,216,.5);line-height:1.55">"The path is not something you complete. It is something you continue."</p></div>
             </div>
-            <div style="background:#131315;padding:1.75rem 2rem;position:relative;overflow:hidden;border-top:1px solid rgba(240,234,216,.04);">
-              <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.05"><circle cx="50" cy="50" r="45" stroke="#c9a84c" stroke-width="1.5"/></svg>
-              <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.08"><circle cx="50" cy="50" r="42" stroke="#c9a84c" stroke-width="1.5"/><rect x="20.3" y="20.3" width="59.4" height="59.4" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="square"/></svg>
-              <div style="font-family:var(--fm);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.25rem;position:relative">Flow</div>
-              <div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,234,216,.3);margin-bottom:.75rem;position:relative">In Practice</div>
-              <p style="font-family:var(--fm);font-size:14px;line-height:1.8;color:rgba(240,234,216,.38);position:relative">Sensitivity to the body receiving rope, adapting when anatomy, breath, or energy shifts.</p>
-            </div>            <div style="background:#131315;padding:1.75rem 2rem;position:relative;overflow:hidden;border-top:1px solid rgba(240,234,216,.04);">
-              <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.05"><circle cx="50" cy="50" r="45" stroke="#c9a84c" stroke-width="1.5"/></svg>
-              <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.08"><circle cx="50" cy="50" r="42" stroke="#c9a84c" stroke-width="1.5"/><polygon points="50,8 86.4,69 13.6,69" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="miter"/></svg>
-              <div style="font-family:var(--fm);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.25rem;position:relative">Flow</div>
-              <div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,234,216,.3);margin-bottom:.75rem;position:relative">In Transmission</div>
-              <p style="font-family:var(--fm);font-size:14px;line-height:1.8;color:rgba(240,234,216,.38);position:relative">Reading the room, following what the student is actually learning.</p>
-            </div>            <div style="background:#131315;padding:1.75rem 2rem;position:relative;overflow:hidden;border-top:1px solid rgba(240,234,216,.04);">
-              <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.06"><circle cx="50" cy="50" r="45" stroke="#c9a84c" stroke-width="1.5"/></svg>
-              <svg viewBox="0 0 100 100" fill="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.08"><circle cx="50" cy="50" r="42" stroke="#c9a84c" stroke-width="1.5"/></svg>
-              <div style="font-family:var(--fm);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.25rem;position:relative">Flow</div>
-              <div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,234,216,.3);margin-bottom:.75rem;position:relative">In Community</div>
-              <p style="font-family:var(--fm);font-size:14px;line-height:1.8;color:rgba(240,234,216,.38);position:relative">How a community absorbs conflict, learns, adapts, and continues rather than fractures.</p>
+
+            <!-- Two-axis toggle -->
+            <div style="display:flex;gap:1px;background:rgba(240,234,216,.06);">
+              <button onclick="htrShow('circ','pillar')" id="circ-btn-pillar" style="flex:1;padding:.75rem;background:rgba(201,168,76,.15);border:none;cursor:pointer;font-family:var(--fm);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:rgba(201,168,76,.8);transition:background .2s;">〇</button>
+              <button onclick="htrShow('circ','context')" id="circ-btn-context" style="flex:1;padding:.75rem;background:rgba(240,234,216,.04);border:none;cursor:pointer;font-family:var(--fm);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,234,216,.3);transition:background .2s;">□△</button>
             </div>
+
+            <!-- HTR cells — pillar view (default) -->
+            <div id="circ-view-pillar" style="display:flex;flex-direction:column;gap:1px;background:rgba(240,234,216,.05);">
+              <div style="background:#131315;padding:1.5rem 2rem;border-top:1px solid rgba(240,234,216,.04);">
+                <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.75rem"><svg viewBox="0 0 100 100" fill="none" style="width:18px;height:18px;flex-shrink:0;opacity:.6"><rect x="10" y="10" width="80" height="80" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="square"/><circle cx="50" cy="50" r="32" stroke="#c9a84c" stroke-width="1.5"/></svg><div><div style="font-family:var(--fm);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.2rem">Flow</div><div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,234,216,.3)">In Practice</div></div></div>
+                <p style="font-family:var(--fm);font-size:14px;line-height:1.8;color:rgba(240,234,216,.38)">Sensitivity to the body receiving rope, adapting when anatomy, breath, or energy shifts.</p>
+              </div>
+              <div style="background:#131315;padding:1.5rem 2rem;border-top:1px solid rgba(240,234,216,.04);">
+                <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.75rem"><svg viewBox="0 0 100 100" fill="none" style="width:18px;height:18px;flex-shrink:0;opacity:.6"><circle cx="50" cy="50" r="33" stroke="#c9a84c" stroke-width="1.5"/><polygon points="50,5 90,70 10,70" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="miter"/></svg><div><div style="font-family:var(--fm);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.2rem">Flow</div><div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,234,216,.3)">In Transmission</div></div></div>
+                <p style="font-family:var(--fm);font-size:14px;line-height:1.8;color:rgba(240,234,216,.38)">Reading the room, following what the student is actually learning.</p>
+              </div>
+              <div style="background:#131315;padding:1.5rem 2rem;border-top:1px solid rgba(240,234,216,.04);">
+                <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.75rem"><svg viewBox="0 0 100 100" fill="none" style="width:18px;height:18px;flex-shrink:0;opacity:.6"><circle cx="50" cy="50" r="42" stroke="#c9a84c" stroke-width="1.5"/></svg><div><div style="font-family:var(--fm);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.2rem">Flow</div><div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,234,216,.3)">In Community</div></div></div>
+                <p style="font-family:var(--fm);font-size:14px;line-height:1.8;color:rgba(240,234,216,.38)">How a community absorbs conflict, learns, adapts, and continues rather than fractures.</p>
+              </div>
+            </div>
+
+            <!-- HTR cells — context view -->
+            <div id="circ-view-context" style="display:none;flex-direction:column;gap:1px;background:rgba(240,234,216,.05);">
+              <div style="background:#131315;padding:1.5rem 2rem;border-top:1px solid rgba(240,234,216,.04);">
+                <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.75rem"><svg viewBox="0 0 100 100" fill="none" style="width:18px;height:18px;flex-shrink:0;opacity:.6"><circle cx="50" cy="50" r="42" stroke="#c9a84c" stroke-width="1.5"/></svg><div><div style="font-family:var(--fm);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.2rem">Flow</div><div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,234,216,.3)">In Community</div></div></div>
+                <p style="font-family:var(--fm);font-size:14px;line-height:1.8;color:rgba(240,234,216,.38)">How a community absorbs conflict, learns, adapts, and continues rather than fractures.</p>
+              </div>
+              <div style="background:#131315;padding:1.5rem 2rem;border-top:1px solid rgba(240,234,216,.04);">
+                <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.75rem"><svg viewBox="0 0 100 100" fill="none" style="width:18px;height:18px;flex-shrink:0;opacity:.6"><circle cx="50" cy="50" r="42" stroke="#c9a84c" stroke-width="1.5"/><rect x="20.3" y="20.3" width="59.4" height="59.4" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="square"/></svg><div><div style="font-family:var(--fm);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.2rem">Structure</div><div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,234,216,.3)">In Community</div></div></div>
+                <p style="font-family:var(--fm);font-size:14px;line-height:1.8;color:rgba(240,234,216,.38)">Agreements, policies, accountability frameworks, boundaries that protect the space.</p>
+              </div>
+              <div style="background:#131315;padding:1.5rem 2rem;border-top:1px solid rgba(240,234,216,.04);">
+                <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.75rem"><svg viewBox="0 0 100 100" fill="none" style="width:18px;height:18px;flex-shrink:0;opacity:.6"><circle cx="50" cy="50" r="42" stroke="#c9a84c" stroke-width="1.5"/><polygon points="50,8 86.4,69 13.6,69" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="miter"/></svg><div><div style="font-family:var(--fm);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.2rem">Tension</div><div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,234,216,.3)">In Community</div></div></div>
+                <p style="font-family:var(--fm);font-size:14px;line-height:1.8;color:rgba(240,234,216,.38)">Honest feedback, consent negotiation, the responsibility of authority.</p>
+              </div>
+            </div>
+
           </div>
 
         </div>
@@ -941,6 +1190,7 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
     <p class="brk-quote">"The square is not a cage.<br>It is the container that makes<br>freedom possible."</p>
     <div class="brk-kanji">形 · 型 · 規律 · 安全 · 美 · 練習<br>Form · Kata · Discipline · Safety · Aesthetics · Practice</div>
   </div>
+  <a href="#B2" class="brk-up-arrow" aria-label="Back to Three Pillars"></a>
 </div>
 
 <!-- ══ C2 — STRUCTURE · FOUNDATION ══ -->
@@ -967,8 +1217,11 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
     <div class="two-col fade-in" style="margin-bottom:4rem">
       <div>
         <h2>The Dō.<br><em style="color:var(--rope-l);font-style:italic">A path,<br>not a ladder.</em></h2>
-        <p class="body-serif" style="margin-bottom:1.25rem">Westerners often want to skip as many steps as possible. "How long will it take me to get to X?" In rope, this leads to dangerous practices. People get hurt, physically and emotionally.</p>
-        <div class="bq"><p>"The path is not something you complete. It is something you continue."</p></div>
+        <p class="body-serif" style="margin-bottom:1.25rem">Westerners often want to skip as many steps as possible. "How long will it take me to get to...?" In rope, this leads to dangerous practices. People get hurt, physically and emotionally.</p>
+        <div class="bq" style="margin-bottom:1.25rem"><p>"The path is not something you complete. It is something you continue."</p></div>
+        <p class="body-serif" style="margin-bottom:1.25rem">I built this curriculum because the gap in the community wasn't just technical. People were getting hurt not because they lacked enthusiasm, but because the foundations hadn't been laid honestly. The levels exist to address that. Not to gatekeep. Not to make you take my classes specifically.</p>
+        <p class="body-serif" style="margin-bottom:1.25rem">I don't care where you learned. I care whether you can demonstrate the knowledge, skills, judgment, and safety foundations required for the next level. Equivalent experience from other teachers and schools counts. You can challenge prerequisites. What I need to see is competency, not loyalty.</p>
+        <p class="body-serif" style="margin-bottom:1.25rem">What I won't do is skip the assessment entirely. Suspension and advanced load work carry enough risk that some method of confirming readiness is not optional. That isn't personal. It is the minimum standard of care I hold for everyone who works with me or alongside me.</p>
       </div>
       <div>
         <p class="body-mono" style="margin-bottom:1.5rem">Like martial arts belts, the rope colours at Tension are not certifications of completion. They are reminders of where you stand on your personal Dō, and an invitation to return to roots with each advancement. There is no top. Every colour eventually circles back to Beige.</p>
@@ -982,10 +1235,12 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
           <div style="background:rgba(240,234,216,.04);padding:1rem 1.5rem;display:flex;align-items:center;gap:1rem;border-left:3px solid #ddd3b8"><div style="font-family:var(--fm);font-size:9px;letter-spacing:.12em;color:rgba(240,234,216,.4);width:120px;flex-shrink:0">Final Beige</div><div style="font-family:var(--fd);font-size:1rem;font-weight:300;color:var(--paper)">The Endless Path</div></div>
           <div style="background:rgba(240,234,216,.04);padding:1rem 1.5rem;display:flex;align-items:center;gap:1rem;border-left:3px solid #4a148c"><div style="font-family:var(--fm);font-size:9px;letter-spacing:.12em;color:rgba(240,234,216,.4);width:120px;flex-shrink:0">Purple</div><div style="font-family:var(--fd);font-size:1rem;font-weight:300;color:var(--paper)">The Teacher's Rope</div></div>
         </div>
+        <div class="bq" style="margin-top:1.5rem"><p>Level ≠ role. Skill ≠ teaching capacity. The issue is not where you learned; it is whether you can do the thing in relative safety and if I am comfortable showing you things I will then be responsible for.</p></div>
       </div>
     </div>
   </div>
 </section>
+
 
 <!-- ══ C4 — FUNDAMENTALS ══ -->
 <section class="section" id="C4" style="background:#252018;border-top:1px solid rgba(240,234,216,.06);">
@@ -1047,6 +1302,7 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
   </div>
 </section>
 
+
 <!-- ══ C6 — STRUCTURE IN COMMUNITY ══ -->
 <section class="section" id="C6" style="border-top:1px solid rgba(240,234,216,.06);">
   <div class="sec-id">C6</div>
@@ -1071,6 +1327,68 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
   </div>
 </section>
 
+<!-- ══ C7 — SKILL LEVEL EXPECTATIONS ══ -->
+<section class="section" id="C7" style="border-top:1px solid rgba(240,234,216,.06);">
+  <div class="sec-id">C7</div>
+  <div class="inner">
+    <div class="lbl fade-in">Where are you on the path?</div>
+    <div class="fade-in" style="margin-bottom:2rem">
+      <h2>Skill.<br><em style="color:var(--rope-l);font-style:italic">Not rank.</em></h2>
+      <p class="body-serif" style="margin-bottom:2rem;max-width:640px">These are not gates to pass through. They are honest descriptions of what each stage of practice actually looks and feels like. Read them and locate yourself. Not where you wish you were. Where you are.</p>
+    </div>
+
+    <div style="position:relative;margin-left:calc(-50vw + 50%);margin-right:calc(-50vw + 50%);width:100vw;height:1px;background:rgba(240,234,216,.08);margin-bottom:2rem;overflow:hidden;" class="fade-in">
+      <div id="levels-line-shimmer" style="position:absolute;top:0;left:-30%;width:30%;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,.8),transparent);opacity:0;pointer-events:none;"></div>
+    </div>
+
+    <div class="fade-in" style="display:grid;grid-template-columns:1fr 4fr;gap:1.25rem;align-items:start;margin-bottom:4rem">
+      <div>
+        <div id="level-list" style="display:flex;flex-direction:column;gap:0;">
+          <div class="level-item" data-id="lvl0" onclick="showLevel('lvl0')"><span class="level-colour" style="background:#f0ead8"></span><span class="level-name">Neophyte</span></div>
+          <div class="level-item" data-id="lvl1" onclick="showLevel('lvl1')"><span class="level-colour" style="background:#2e7d32"></span><span class="level-name">Beginner</span></div>
+          <div class="level-item" data-id="lvl2" onclick="showLevel('lvl2')"><span class="level-colour" style="background:#b03020"></span><span class="level-name">Intermediate</span></div>
+          <div class="level-item" data-id="lvl3" onclick="showLevel('lvl3')"><span class="level-colour" style="background:#e8e8e8"></span><span class="level-name">Intermediate / Advanced</span></div>
+          <div class="level-item" data-id="lvl4" onclick="showLevel('lvl4')"><span class="level-colour" style="background:#ddd3b8"></span><span class="level-name">Advanced +</span></div>
+        </div>
+      </div>
+      <div id="level-card" style="border:.5px solid rgba(169,124,26,.2);background:rgba(169,124,26,.04);padding:2.5rem;min-height:420px;height:420px;display:flex;flex-direction:column;justify-content:flex-start;transition:opacity .3s;overflow:hidden;position:relative;">
+        <div id="level-empty" style="text-align:center;opacity:.25">
+          <div style="font-family:var(--fm);font-size:8px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)">Select a level</div>
+        </div>
+        <div id="level-content" style="display:none;">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:2rem;margin-bottom:1rem">
+            <div>
+              <div id="level-badge" style="font-family:var(--fm);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:rgba(240,234,216,.35);margin-bottom:.4rem"></div>
+              <div id="level-title" style="font-family:var(--fd);font-size:1.4rem;font-weight:300;color:var(--paper)"></div>
+            </div>
+            <div id="level-icon" style="flex-shrink:0;width:64px;height:64px;"></div>
+          </div>
+          <p id="level-desc" style="font-family:var(--fd);font-size:1rem;font-weight:300;font-style:italic;line-height:1.75;color:rgba(240,234,216,.62);margin-bottom:1rem"></p>
+          <p id="level-skills" style="font-family:var(--fm);font-size:13px;line-height:1.85;color:rgba(240,234,216,.3);margin-bottom:1rem"></p>
+          <p id="level-goal" style="font-family:var(--fm);font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--rope-l)"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ C8 — THE LAB ══ -->
+<section class="section" id="C8" style="border-top:1px solid rgba(240,234,216,.06);">
+  <div class="sec-id">C8</div>
+  <div class="inner">
+    <div class="lbl fade-in">Between Levels</div>
+    <div class="two-col fade-in" style="margin-bottom:4rem">
+      <div>
+        <h2>The Lab.<br><em style="color:var(--rope-l);font-style:italic">Where things<br>integrate.</em></h2>
+      </div>
+      <div>
+        <p class="body-serif" style="margin-bottom:1.25rem">Between Floorplay and Partials sits the Lab — open practice sessions where what you've learned has room to settle. Not a class. Not an assessment. A space to tie, make mistakes, ask questions, and discover what you actually retained versus what you thought you did.</p>
+        <p class="body-mono">The Lab exists because integration takes time that classes can't always give. The transition into uplines and load work is not a technical leap; it is a readiness question. The Lab is where that readiness gets honest.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ══ D1 — BREAK △ ══ -->
 <div class="brk" id="break-tri">
   <div class="brk-bg" id="break-tri-bg">
@@ -1084,6 +1402,7 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
     <p class="brk-quote">"Every tie is a choice.<br>The triangle holds or it hurts.<br>It should not be forced but felt."</p>
     <div class="brk-kanji">張力 · 意図 · 方向 · 選択 · 目的 · 伝達<br>Tension · Intention · Direction<br>Choice · Purpose · Transmission</div>
   </div>
+  <a href="#B2" class="brk-up-arrow" aria-label="Back to Three Pillars"></a>
 </div>
 
 <!-- ══ D2 — TENSION · DIRECTION ══ -->
@@ -1133,16 +1452,49 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
         <div class="rate-card" style="margin-top:1rem">
           <div class="rate-hdr">Touring Workshops</div>
           <div class="rate-row"><div><div class="rate-name">Hourly rate</div><div class="rate-note">4 hour minimum</div></div><div style="text-align:right"><div class="rate-price">$100</div><div class="rate-unit">per hour · CAD</div></div></div>
-          <div class="rate-row"><div><div class="rate-name">Full day</div><div class="rate-note">Up to 8 hours</div></div><div style="text-align:right"><div class="rate-price">$700</div><div class="rate-unit">per day · CAD</div></div></div>
           <div class="rate-row"><div><div class="rate-name">Travel &amp; lodging</div><div class="rate-note">Covered by organizer</div></div><div style="text-align:right"><div class="rate-price" style="font-size:1rem;color:var(--muted)">Required</div></div></div>
         </div>
         <div style="margin-top:1.5rem"><a href="https://tensionmtl.ca/pages/about-willcat" target="_blank" class="btn btn-o">Book a workshop</a></div>
       </div>
     </div>
+    <div class="fade-in" style="margin-top:5rem;margin-bottom:4rem">
+      <div style="margin-bottom:1rem;padding-bottom:.75rem;border-bottom:.5px solid rgba(240,234,216,.08);">
+        <div class="lbl">What's possible</div>
+      </div>
+      <p class="body-serif" style="margin-bottom:2.5rem;max-width:560px">You don't always know what you need. That's fine. Tell me where you are and I'll tell you what's possible. Adaptability is the practice.</p>
+
+      <div style="display:grid;grid-template-columns:1fr 4fr;gap:1.25rem;align-items:start;">
+
+        <!-- Left: workshop list -->
+        <div>
+          <div id="workshop-list" style="display:flex;flex-direction:column;gap:0;">
+            <div class="workshop-item" data-id="bodymech" onclick="showWorkshop('bodymech')">Body Manipulation</div>
+            <div class="workshop-item" data-id="gote" onclick="showWorkshop('gote')">Gote & Creativity</div>
+            <div class="workshop-item" data-id="tension" onclick="showWorkshop('tension')">Tension & Intention</div>
+            <div class="workshop-item" data-id="safety" onclick="showWorkshop('safety')">Safety as Practice</div>
+            <div class="workshop-item" data-id="partial" onclick="showWorkshop('partial')">Partial Suspension</div>
+            <div class="workshop-item" data-id="do" onclick="showWorkshop('do')">The Dō</div>
+            <div class="workshop-item" data-id="suspension" onclick="showWorkshop('suspension')">Suspension & Dynamics</div>
+            <div class="workshop-item workshop-item-other" data-id="other" onclick="showWorkshop('other')">Something else →</div>
+          </div>
+        </div>
+
+        <!-- Right: description card -->
+        <div id="workshop-card" style="border:.5px solid rgba(169,124,26,.2);background:rgba(169,124,26,.04);padding:2.5rem;min-height:220px;display:flex;flex-direction:column;justify-content:center;transition:opacity .3s;align-self:stretch;">
+          <div id="workshop-empty" style="text-align:center;opacity:.25">
+            <div style="font-family:var(--fm);font-size:8px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)">Select a workshop</div>
+          </div>
+          <div id="workshop-content" style="display:none;">
+            <div id="workshop-title" style="font-family:var(--fd);font-size:1.4rem;font-weight:300;color:var(--paper);margin-bottom:1.25rem;line-height:1.3"></div>
+            <p id="workshop-desc" style="font-family:var(--fd);font-size:1.05rem;font-weight:300;font-style:italic;line-height:1.75;color:rgba(240,234,216,.62);margin-bottom:1.25rem"></p>
+            <p id="workshop-note" style="font-family:var(--fm);font-size:14px;line-height:1.85;color:rgba(240,234,216,.35)"></p>
+          </div>
+        </div>
+
+      </div>
+    </div>
   </div>
 </section>
-
-<!-- ══ D4 — PRIVATE PARTIES ══ -->
 <section class="section" id="D4" style="border-top:1px solid rgba(240,234,216,.06);">
   <div class="sec-id">D4</div>
   <div class="inner">
@@ -1228,6 +1580,7 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
     <p class="brk-quote">"You return to the beginning<br>not because you failed;<br>but because that is what the circle demands."</p>
     <div class="brk-kanji">流れ · 継続 · 帰還 · 繋がり · 共同体 · 伝達<br>Flow · Continuity · Return<br>Communication · Connection · Community · Communication</div>
   </div>
+  <a href="#B2" class="brk-up-arrow" aria-label="Back to Three Pillars"></a>
 </div>
 
 <!-- ══ E2 — SEME · FLOW ══ -->
@@ -1239,7 +1592,10 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
       <div>
         <h2>Flow as<br><em style="color:var(--rope-l);font-style:italic">integration.</em></h2>
         <div style="font-family:var(--fj);font-size:5rem;color:var(--rope);opacity:.15;line-height:1;margin-top:1rem">攻め</div>
-        <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:.5rem">Seme · The pressure that builds</div>
+        <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:.5rem;margin-bottom:1.5rem">Seme · The pressure that builds</div>
+        <p class="body-mono" style="margin-bottom:1rem">From <em>semeru</em>: to press forward, to apply pressure, to hold initiative before the blow lands.</p>
+        <p class="body-mono" style="margin-bottom:1rem">In martial arts: the psychological force that precedes technique. The pressure that disrupts your opponent's confidence before you've even moved. The applied pressure through testing, feeling and disrupting balance, or before a throw.</p>
+        <p class="body-mono">In rope: the same principles, different materials; different end point</p>
       </div>
       <div>
         <p class="body-serif" style="margin-bottom:1.5rem">There is a version of rope that most people see first. Clean lines. Beautiful forms. The aesthetic of it. That version is real and it has its place.</p>
@@ -1252,26 +1608,22 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
 
     <div style="width:40px;height:1px;background:rgba(169,124,26,.3);margin:0 0 4rem" class="fade-in"></div>
 
-    <div class="two-col fade-in" style="margin-bottom:5rem">
+    <div class="fade-in" style="margin-bottom:5rem">
       <div>
-        <div style="font-family:var(--fm);font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--rope-l);margin-bottom:1rem">Seme (攻め)</div>
-        <p class="body-mono" style="margin-bottom:1rem">From <em>semeru</em>: to press forward, to apply pressure, to hold initiative before the blow lands.</p>
-        <p class="body-mono" style="margin-bottom:1rem">In martial arts: the psychological force that precedes technique. The pressure that disrupts your opponent's confidence before you've even moved. The applied pressure through testing, feeling and disrupting balance, or before a throw.</p>
-        <p class="body-mono">In rope: the same principles, different materials; different end point</p>
-      </div>
-      <div>
-        <p class="body-serif" style="margin-bottom:1.5rem">Seme is not pain.</p>
-        <p class="body-serif" style="margin-bottom:1.5rem">It is the space before pain becomes too much. The threshold. Sustained application of just enough: pressure, sensation, weight, restriction, to produce torment in the specific person you are with, without crossing into what they cannot hold.</p>
-        <p class="body-serif" style="margin-bottom:1.5rem">That edge is not a line you cross. It is a place you inhabit, deliberately, with complete attention.</p>
-        <div class="bq"><p>In rope; with rope, this becomes Semenawa, tormenting rope. Not tight for aesthetic reasons. Not suspended for the image of it. Held in sustained torment, physical and psychological, that requires absolute trust in the one applying it.</p></div>
-        <p class="body-mono">The difference between Seme, torture and abuse is consent, skill, and the capacity to read another person accurately under pressure. Not occasionally. Continuously. In real time.</p>
+        <p class="body-serif" style="margin-bottom:1.5rem">Seme is not just about pain; yet it might sometimes look like that from the outside and cause much confusion.</p>
+        <p class="body-serif" style="margin-bottom:1.5rem">Done right; it is the space before pressure becomes unbearable. The threshold. Sustained application of just enough: pressure, sensation, weight, restriction, to produce torment in the specific person, or people, you are with, without crossing into what they cannot hold.</p>
+        <p class="body-serif" style="margin-bottom:1.5rem">That edge is not a line you cross. It is a place you do your best to inhabit, deliberately, with complete attention.</p>
+        <p class="body-serif" style="margin-bottom:1.5rem">It is way more complicated than just saying "Well I'm a sadist & you agreed to pain..."</p>
+        <div class="bq"><p>In rope; with rope, this becomes Semenawa, tormenting rope. With words; Kotobazeme, think flirting, humiliation, embarrassment or teasing. Or even Seme; the "top" who applies pressure, both psychological or physical, to the extent that is possible with that partner "uke", the one who receives. Seme in Kinbaku is not just about applying tight ropes; it is being able to understand what is, just enough. Rope not just for the aesthetics of it, or suspended for an image or end goal but for the journey of being held in sustained torment that requires absolute trust when participating in it.</p></div>
+        <p class="body-mono" style="margin-top:1.5rem">The difference between Seme, torture and abuse is consent, skill, and the capacity to read another person accurately under pressure.</p>
+        <p class="body-mono" style="margin-top:1rem;color:rgba(240,234,216,.5)">Not occasionally. Continuously. In real time.</p>
       </div>
     </div>
 
     <div class="fade-in" style="max-width:780px;margin:0 auto;text-align:center;padding:4rem 0;border-top:1px solid rgba(240,234,216,.06)">
       <p class="body-serif" style="margin-bottom:2rem;color:rgba(240,234,216,.5)">For those thirsting for the extremes, the raw energies, the hentai scenes, the places where rope becomes something older and darker than the art you sometimes see today, you have your work cut out for you.</p>
       <p class="body-serif" style="margin-bottom:2rem;color:rgba(240,234,216,.5)">It is possible to find those willing and wanting. But the trust between you needs to grow first. And you must be confident enough to effortlessly read someone, to bring them to that precipice without letting them fall over and or into it.</p>
-      <p class="body-serif" style="margin-bottom:3rem;color:rgba(240,234,216,.5)">That confidence does not come from enthusiasm. It comes from thousands of hours of attention. It comes from having been Uke yourself and knowing what it costs to be held in that place by someone who is paying attention.</p>
+      <p class="body-serif" style="margin-bottom:3rem;color:rgba(240,234,216,.5)">That confidence does not come just from enthusiasm. It comes from thousands of hours of attention. It comes, ideally, from having been Uke yourself and knowing what it costs to be held in that place by someone who is paying attention.</p>
       <div style="border-top:1px solid rgba(169,124,26,.2);padding-top:2rem">
         <p style="font-family:var(--fd);font-size:clamp(1.1rem,1.6vw,1.4rem);font-style:italic;font-weight:300;color:rgba(240,234,216,.6);line-height:1.6">The circle is not just about return. It is about what you carry back with you.</p>
       </div>
@@ -1284,11 +1636,37 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
   <div class="sec-id">E3</div>
   <div class="inner">
     <div class="lbl fade-in">Flow in Practice</div>
-    <div class="two-col fade-in">
+    <div class="two-col fade-in" style="margin-bottom:4rem">
       <h2>Rope is a dialogue,<br><em style="color:var(--rope-l);font-style:italic">not a monologue.</em></h2>
       <div>
         <p class="body-serif" style="margin-bottom:1.25rem">Listening with your hands. Responding to micro-movements. Adapting when the body receiving rope shifts, when the plan meets reality, when what was rehearsed gives way to what is actually happening.</p>
-        <p class="body-mono">Flow is not ease. It is responsiveness. The practitioner who has integrated structure and tension fully enough that they are no longer thinking about them is free to pay attention to what is actually in front of them.</p>
+        <p class="body-mono">Flow is not ease. It is responsiveness. The practitioner who has integrated structure and tension fully enough that they are no longer thinking about them is free to pay attention to what is more important and actually in front of them.</p>
+      </div>
+    </div>
+
+    <div style="width:40px;height:1px;background:rgba(169,124,26,.3);margin:0 0 4rem" class="fade-in"></div>
+
+    <div class="fade-in" style="margin-bottom:4rem;max-width:780px">
+      <h3 style="font-family:var(--fd);font-size:clamp(1.3rem,2vw,1.7rem);font-weight:300;color:var(--paper);margin-bottom:1.5rem;line-height:1.3">You will make mistakes.</h3>
+      <p class="body-serif" style="margin-bottom:1.25rem">This work is genuinely hard. What flow as integration describes; inhabiting that threshold with complete attention, reading someone accurately under pressure, continuously, in real time, is not a skill you arrive at easily. It is a skill you practice, and practicing means getting it wrong.</p>
+      <p class="body-serif" style="margin-bottom:1.25rem">Humans are biologically and psychologically built to make mistakes. That is not an excuse. It is the starting point for what comes after.</p>
+      <div class="bq" style="margin-bottom:1.5rem"><p>It's ok to duck up. The key is proper acknowledgment. Accept the errors, derive lessons, apologize, listen, learn, remain vigilant for potential pitfalls, and always aim to do better.</p></div>
+      <p class="body-serif" style="margin-bottom:1.25rem">The hardest lesson: when someone feels violated, you don't get to argue their feelings away. You own your part, whether or not your intent matched their experience. Your rabbit was also a duck.</p>
+      <p class="body-serif" style="margin-bottom:1.25rem">That doesn't mean every story is simple. It doesn't mean everyone gets to stay. It doesn't mean everything can be reconciled.</p>
+      <p class="body-serif" style="margin-bottom:2rem">But it does mean: accountability matters. Listening matters. Being willing to step back, step down, pause, and re-align your compass matters.</p>
+    </div>
+
+    <div style="width:40px;height:1px;background:rgba(169,124,26,.3);margin:0 0 4rem" class="fade-in"></div>
+
+    <div class="fade-in two-col" style="margin-bottom:4rem">
+      <div>
+        <div class="lbl" style="margin-bottom:1rem">At Tension</div>
+        <h3 style="font-family:var(--fd);font-size:clamp(1.3rem,2vw,1.7rem);font-weight:300;color:var(--paper);margin-bottom:1.5rem;line-height:1.3">We are actively building<br><em style="color:var(--rope-l);font-style:italic">the structures for this.</em></h3>
+      </div>
+      <div>
+        <p class="body-serif" style="margin-bottom:1.25rem">The Circles system is a work in progress — rooted in first nations practices of accountability and repair, adapted for our reality. It exists because we believe people who make mistakes need to be guided toward doing better, and those affected need to be believed, supported, and given priority. Not dismissed.</p>
+        <p class="body-mono" style="margin-bottom:1.5rem;color:rgba(240,234,216,.45)">We cannot promise to resolve every dispute. We can foster the discussion necessary for this community to keep growing in a healthy way.</p>
+        <a href="https://tensionmtl.ca/pages/accountability-circles" target="_blank" class="btn btn-o">Learn about the Circles system</a>
       </div>
     </div>
   </div>
@@ -1313,12 +1691,12 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
 <section class="section" id="E5" style="border-top:1px solid rgba(240,234,216,.05);">
   <div class="sec-id">E5</div>
   <div class="inner">
-    <div class="lbl fade-in">In the World</div>
-    <div class="two-col fade-in" style="margin-bottom:4rem">
-      <div style="aspect-ratio:3/4;overflow:hidden;background:var(--ink2);">
-        <img src="img/CirqueduBoudoir_Willcat_Fox_photo_tieframe.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.85) saturate(.8);"/>
+    <div class="two-col fade-in" style="margin-bottom:4rem;align-items:stretch;">
+      <div style="overflow:hidden;background:var(--ink2);display:flex;">
+        <img src="img/CirqueduBoudoir_Willcat_Fox_photo_tieframe.jpg" alt="" style="width:100%;object-fit:cover;display:block;filter:brightness(.85) saturate(.8);"/>
       </div>
       <div>
+        <div class="lbl" style="margin-bottom:1rem">In the World</div>
         <h2>Teaching.<br>Performing.<br><em style="color:var(--rope-l);font-style:italic">Building.</em></h2>
         <p class="body-serif" style="margin-bottom:1.25rem">Touring internationally. Teaching on stages, in studios, in living rooms and dungeons across continents. Collaborating with artists, educators, and communities doing the same work in different contexts.</p>
         <p class="body-mono">The work ripples outward, into other communities, other studios, other practices. The circle has no end. What you build, others will build on.</p>
@@ -1376,7 +1754,51 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
 
 <!-- ══ SHIMMER EFFECTS ══ -->
 <style>
-/* Break section — horizontal bottom shimmer */
+/* Break section back-to-pillars arrow */
+.brk-up-arrow {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  text-decoration: none;
+  z-index: 4;
+  padding-top: 1rem;
+}
+.brk-up-arrow::after {
+  content: '';
+  display: block;
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(to bottom, transparent, rgba(201,168,76,.6));
+  animation: brk-pulse 2.5s ease-in-out infinite;
+  box-shadow: 0 0 6px rgba(201,168,76,.4);
+}
+.brk-up-arrow::before {
+  content: '';
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-left: 1px solid rgba(201,168,76,.6);
+  border-top: 1px solid rgba(201,168,76,.6);
+  transform: rotate(45deg);
+  animation: brk-pulse 2.5s ease-in-out infinite;
+  margin-bottom: -3px;
+}
+.brk-up-arrow:hover::after {
+  background: linear-gradient(to bottom, transparent, rgba(201,168,76,.9));
+  box-shadow: 0 0 12px rgba(201,168,76,.6);
+}
+.brk-up-arrow:hover::before {
+  border-color: rgba(201,168,76,.9);
+}
+@keyframes brk-pulse {
+  0%, 100% { opacity: .4; }
+  50% { opacity: .9; }
+}
 .brk { position: relative; }
 .brk::after {
   content: '';
@@ -1451,7 +1873,168 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
   100% { top: 200%; opacity: 0; }
 }
 
-/* Rolodex companions list */
+/* HTR grid cell hover */
+#htr-grid > div {
+  transition: background .25s;
+  cursor: default;
+  position: relative;
+}
+#htr-grid > div:hover {
+  background: rgba(201,168,76,.04) !important;
+}
+#htr-grid > div:hover .htr-pillar {
+  color: var(--rope-l) !important;
+  text-shadow: 0 0 10px rgba(201,168,76,.4);
+}
+#htr-grid > div:hover .htr-context {
+  color: rgba(240,234,216,.55) !important;
+}
+#htr-grid > div:hover .htr-desc {
+  color: rgba(240,234,216,.5) !important;
+}
+#htr-grid > div svg {
+  transition: opacity .3s;
+}
+#htr-grid > div:hover svg {
+  opacity: .5 !important;
+}
+#htr-grid > div:hover svg rect,
+#htr-grid > div:hover svg polygon,
+#htr-grid > div:hover svg circle,
+#htr-grid > div:hover svg line {
+  stroke: rgba(201,168,76,.8);
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: htrTrace .8s ease-out forwards;
+}
+@keyframes htrTrace {
+  0%   { stroke-dashoffset: 1000; stroke: rgba(201,168,76,.0); }
+  15%  { stroke: rgba(201,168,76,.7); }
+  100% { stroke-dashoffset: 0;    stroke: rgba(201,168,76,.5); }
+}
+/* Column glow */
+#htr-grid > div.htr-col svg {
+  opacity: .35 !important;
+  filter: drop-shadow(0 0 4px rgba(201,168,76,.35));
+  transition: opacity .25s, filter .25s;
+}
+/* Row line base */
+.htr-row-line {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  overflow: hidden;
+  pointer-events: none;
+}
+.htr-row-line::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(201,168,76,0);
+  transition: background .3s;
+}
+.htr-row-line::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -40%;
+  width: 40%; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201,168,76,.9), transparent);
+  opacity: 0;
+  pointer-events: none;
+}
+#htr-grid > div.htr-row-active .htr-row-line::before {
+  background: rgba(201,168,76,.15);
+}
+#htr-grid > div.htr-row-active .htr-row-line::after {
+  animation: htrHeartbeat 1.6s ease-in-out infinite;
+  opacity: 1;
+}
+@keyframes htrHeartbeat {
+  0%   { left: -40%; opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { left: 100%; opacity: 0; }
+}
+
+/* Level rolodex */
+.level-item {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  padding: .4rem .5rem;
+  cursor: pointer;
+  border-left: 2px solid transparent;
+  transition: border-color .2s;
+  position: relative;
+  overflow: hidden;
+}
+.level-item::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 60%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(201,168,76,.1), transparent);
+  pointer-events: none;
+}
+.level-item:hover::after { animation: tagShimmer .5s ease-out forwards; }
+.level-colour {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  opacity: .5;
+  transition: opacity .2s;
+}
+.level-name {
+  font-family: var(--fm);
+  font-size: 9px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(240,234,216,.22);
+  transition: color .25s, font-size .25s;
+}
+.level-item:hover .level-name { color: rgba(240,234,216,.45); }
+.level-item:hover .level-colour { opacity: .8; }
+.level-item.active {
+  border-left-color: rgba(201,168,76,.5);
+}
+.level-item.active .level-name {
+  font-size: 11px;
+  letter-spacing: .15em;
+  color: rgba(201,168,76,.85);
+}
+.level-item.active .level-colour { opacity: 1; }
+.workshop-item {
+  font-family: var(--fm);
+  font-size: 9px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(240,234,216,.22);
+  padding: .4rem .5rem;
+  cursor: pointer;
+  border-left: 2px solid transparent;
+  transition: color .2s, border-color .2s, text-shadow .2s;
+  position: relative;
+  overflow: hidden;
+}
+.workshop-item::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 60%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(201,168,76,.1), transparent);
+  pointer-events: none;
+}
+.workshop-item:hover::after { animation: tagShimmer .5s ease-out forwards; }
+.workshop-item:hover { color: rgba(240,234,216,.45); }
+.workshop-item.active {
+  border-left-color: rgba(201,168,76,.5);
+  color: rgba(201,168,76,.85);
+  text-shadow: 0 0 10px rgba(201,168,76,.3);
+  font-size: 11px;
+  letter-spacing: .15em;
+}
+.workshop-item-other { color: rgba(201,168,76,.25); font-style: italic; margin-top: .5rem; }
+.workshop-item-other:hover { color: rgba(201,168,76,.5); }
 .rolodex-item {
   display: flex;
   flex-direction: column;
@@ -1650,7 +2233,17 @@ document.querySelectorAll('#pillars-grid > div').forEach(function(card, i) {
       </div>
     </div>
     <div class="fade-in" style="text-align:center;padding:4rem 0;border-top:1px solid rgba(240,234,216,.06)">
-      <svg viewBox="0 0 120 40" fill="none" style="width:80px;height:26px;margin:0 auto 1.5rem;display:block;opacity:.2"><rect x="2" y="8" width="24" height="24" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="square"/><polygon points="60,2 74,38 46,38" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="miter"/><circle cx="106" cy="20" r="12" stroke="#c9a84c" stroke-width="1.5"/></svg>
+      <div style="display:flex;align-items:center;justify-content:center;gap:2rem;margin:0 auto 1.5rem;">
+        <a href="#break-sq" style="opacity:.2;transition:opacity .3s" onmouseover="this.style.opacity='.6'" onmouseout="this.style.opacity='.2'">
+          <svg viewBox="0 0 28 28" fill="none" style="width:22px;height:22px;display:block"><rect x="2" y="2" width="24" height="24" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="square"/></svg>
+        </a>
+        <a href="#break-tri" style="opacity:.2;transition:opacity .3s" onmouseover="this.style.opacity='.6'" onmouseout="this.style.opacity='.2'">
+          <svg viewBox="0 0 28 36" fill="none" style="width:22px;height:28px;display:block"><polygon points="14,2 26,34 2,34" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="miter"/></svg>
+        </a>
+        <a href="#break-circ" style="opacity:.2;transition:opacity .3s" onmouseover="this.style.opacity='.6'" onmouseout="this.style.opacity='.2'">
+          <svg viewBox="0 0 28 28" fill="none" style="width:22px;height:22px;display:block"><circle cx="14" cy="14" r="12" stroke="#c9a84c" stroke-width="1.5"/></svg>
+        </a>
+      </div>
       <p style="font-family:var(--fd);font-size:clamp(1rem,1.4vw,1.2rem);font-style:italic;font-weight:300;color:rgba(240,234,216,.35);line-height:1.7">The shape of things takes time to actually take shape.<br>Don't give up. Do your best.</p>
     </div>
   </div>
@@ -1732,6 +2325,68 @@ function toggleMenu() {
 }
 
 // Parallax — matches working test file exactly
+function htrShow(slide, axis) {
+  var pillarView = document.getElementById(slide + '-view-pillar');
+  var contextView = document.getElementById(slide + '-view-context');
+  var pillarBtn = document.getElementById(slide + '-btn-pillar');
+  var contextBtn = document.getElementById(slide + '-btn-context');
+  if (axis === 'pillar') {
+    pillarView.style.display = 'flex';
+    contextView.style.display = 'none';
+    pillarBtn.style.background = 'rgba(201,168,76,.15)';
+    pillarBtn.style.color = 'rgba(201,168,76,.8)';
+    contextBtn.style.background = 'rgba(240,234,216,.04)';
+    contextBtn.style.color = 'rgba(240,234,216,.3)';
+  } else {
+    pillarView.style.display = 'none';
+    contextView.style.display = 'flex';
+    contextBtn.style.background = 'rgba(201,168,76,.15)';
+    contextBtn.style.color = 'rgba(201,168,76,.8)';
+    pillarBtn.style.background = 'rgba(240,234,216,.04)';
+    pillarBtn.style.color = 'rgba(240,234,216,.3)';
+  }
+}
+
+// HTR grid hover — full column glow + row heartbeat line
+(function() {
+  var grid = document.getElementById('htr-grid');
+  if (!grid) return;
+  var cells = Array.from(grid.children);
+  cells.forEach(function(cell, i) {
+    cell.addEventListener('mouseenter', function() {
+      var col = i % 3;
+      var row = Math.floor(i / 3);
+      // Full column (excluding hovered cell)
+      cells.forEach(function(c, j) {
+        if (j % 3 === col && j !== i) c.classList.add('htr-col');
+      });
+      // Full row for heartbeat line
+      var rowStart = row * 3;
+      for (var j = rowStart; j < rowStart + 3; j++) {
+        if (cells[j]) cells[j].classList.add('htr-row-active');
+      }
+    });
+    cell.addEventListener('mouseleave', function() {
+      cells.forEach(function(c) {
+        c.classList.remove('htr-col', 'htr-row-active');
+      });
+    });
+  });
+})();
+
+// Position shimmer exactly on hamburger center
+function positionShimmer() {
+  var btn = document.getElementById('menu-btn');
+  var shimmer = document.getElementById('scroll-shimmer');
+  if (!btn || !shimmer) return;
+  var rect = btn.getBoundingClientRect();
+  var centerX = rect.left + rect.width / 2;
+  shimmer.style.right = 'auto';
+  shimmer.style.left = (centerX - 1) + 'px';
+}
+positionShimmer();
+window.addEventListener('resize', positionShimmer);
+
 window.addEventListener('scroll', function() {
   var sy = window.scrollY;
   var shimmer = document.getElementById('scroll-shimmer');
