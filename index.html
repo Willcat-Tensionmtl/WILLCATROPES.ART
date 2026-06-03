@@ -170,7 +170,7 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
   #c5-stats { grid-template-columns: repeat(3,1fr) !important; }
   #c5-btns { grid-template-columns: 1fr !important; }
   #c5-img { aspect-ratio: 4/3 !important; }
-  .hero-nav { top: 92px; }
+  .hero-nav { top: 100px; }
   .hero-content { padding: 2rem 1.5rem; }
   .hero-name { font-size: clamp(3.2rem,14vw,5rem); }
   #companions-wrapper { grid-template-columns: 1fr !important; gap: 2rem !important; }
@@ -182,7 +182,7 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
 <!-- ══ WIP BANNER ══ -->
 <div id="wip" style="background:rgba(169,124,26,.08);border-bottom:1px solid rgba(169,124,26,.15);padding:.6rem 1.5rem;display:flex;align-items:center;justify-content:center;gap:1.5rem;flex-wrap:wrap;text-align:center;position:fixed;top:0;left:0;right:0;z-index:20000;backdrop-filter:blur(8px);">
   <span style="font-family:var(--fm);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(201,168,76,.7)">This site is under construction. Enjoy, but know that I am working on it.</span>
-  <button onclick="document.getElementById('wip').style.display='none';document.getElementById('wip-spacer').style.display='none';document.querySelector('.hero-nav').style.top='0';" style="background:none;border:none;cursor:pointer;font-family:var(--fm);font-size:8px;letter-spacing:.15em;color:rgba(201,168,76,.4);text-transform:uppercase;padding:0;white-space:nowrap">dismiss</button>
+  <button onclick="document.getElementById('wip').style.display='none';document.getElementById('wip-spacer').style.display='none';setNavTop();" style="background:none;border:none;cursor:pointer;font-family:var(--fm);font-size:8px;letter-spacing:.15em;color:rgba(201,168,76,.4);text-transform:uppercase;padding:0;white-space:nowrap">dismiss</button>
 </div>
 <div id="wip-spacer" style="height:38px;"></div>
 
@@ -561,10 +561,10 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
         </div>
 
         <!-- Right: description card — 2/3 width -->
-        <div id="companion-card" style="margin-top:0;border:.5px solid rgba(169,124,26,.2);background:rgba(169,124,26,.04);padding:2.5rem;min-height:200px;display:flex;flex-direction:column;justify-content:center;transition:opacity .3s;align-self:stretch;">
-          <div id="companion-empty" style="text-align:center;opacity:.25">
+        <div id="companion-card" class="card-idle" style="margin-top:0;border:.5px solid rgba(169,124,26,.2);background:rgba(169,124,26,.04);padding:2.5rem;min-height:200px;display:flex;flex-direction:column;justify-content:center;transition:opacity .3s;align-self:stretch;">
+          <div id="companion-empty" style="text-align:center;">
             <div style="font-family:var(--fj);font-size:2rem;color:var(--rope);margin-bottom:.75rem">道</div>
-            <div style="font-family:var(--fm);font-size:8px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)">Select a companion</div>
+            <div class="card-empty-label" style="font-family:var(--fm);font-size:8px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)">Select a companion</div>
           </div>
           <div id="companion-content" style="display:none;">
             <div style="display:flex;align-items:baseline;gap:1rem;margin-bottom:1.25rem;">
@@ -624,6 +624,7 @@ function showLevel(id) {
   document.getElementById('level-goal').textContent = l.goal;
   document.getElementById('level-icon').innerHTML = levelIcons[id] || '';
   document.getElementById('level-empty').style.display = 'none';
+  document.getElementById('level-card').classList.remove('card-idle');
 
   var content = document.getElementById('level-content');
   content.style.display = 'block';
@@ -632,44 +633,64 @@ function showLevel(id) {
 }
 
 var workshops = {
+  'fundamentals': {
+    title: 'Fundamentals — Where It Begins',
+    desc: 'Safety, consent, core frictions, body awareness. The single column. The double column. Why knots matter and which ones to use when. This is not beginner content to get through — it is the foundation everything else is built on. Taught the same way to someone in their first month as to someone returning after years.',
+    note: 'Entry point for all paths. Adaptable as a 3-hour intro or a full-day intensive. No prior experience required.'
+  },
   'bodymech': {
-    title: 'Body Manipulation & Moving Your Partner',
-    desc: 'Weight shifting, balance disruption, knee-walking, pushing and pulling mechanics. The martial-arts informed movement that underpins Nawajutsu and everything after it. You leave understanding why your partner moves — not just that they did.',
-    note: 'Can be taught as a 2-hour class, half-day, or full-day intensive. No partner required.'
+    title: 'Body Manipulation — Moving Your Partner',
+    desc: 'Weight shifting, balance disruption, knee-walking, entry and exit mechanics. The martial-arts informed movement vocabulary that underpins Nawajutsu and carries through every other path. You stop thinking about what to do next and start reading what the body is doing now. The difference between someone who ties on a body and someone who ties with one.',
+    note: 'Can be taught as a 2-hour class, half-day, or full-day intensive. No partner required. Connects directly into Nawajutsu.'
   },
   'gote': {
     title: 'Gote & the Creativity Framework',
-    desc: 'The Gote as a vehicle for understanding creativity in rope. Not a technique to memorize — a structure to think inside of. What decisions are you making at every wrap? What are you building toward? Applicable to every tie you will ever learn after.',
+    desc: 'The Gote is not a technique to memorize. It is a structure to think inside of. What decisions are you making at every wrap? What are you building toward? What does this position ask of the person wearing it, and are you paying attention to the answer? This class uses the Gote as a lens on creativity itself — applicable to every tie you learn after.',
     note: 'Prerequisite: single column and basic frictions. 3–6 hours depending on depth.'
   },
   'tension': {
     title: 'Tension, Intention & Rope Handling',
-    desc: 'The invisible work. How rope behaves under load. How intention changes the quality of contact before a single knot is tied. This is where Seme begins — not in the tie, but in the decision to apply tension at all.',
-    note: 'Adaptable to all levels. Works as a standalone or woven into any other workshop.'
+    desc: 'The invisible work. How rope behaves under load. How intention changes the quality of contact before a single knot is tied. How the same wrap can feel like restraint or support depending entirely on the quality of attention behind it. This is where Seme begins — not in the tie, but in the decision to apply pressure at all.',
+    note: 'Adaptable to all levels. Works as a standalone or woven into any other workshop. No prerequisites.'
   },
   'safety': {
     title: 'Safety as Practice — Physical & Emotional',
-    desc: 'Safety woven into every decision, not front-loaded and forgotten. Nerve mapping, circulation, vasovagal response — as context for every tie in your repertoire. Consent not as a checklist but as the conversation that never ends.',
-    note: 'Based on the Red and Yellow sections of Fundamentals. Expandable to a full-day intensive.'
+    desc: 'Not a disclaimer. Not a checklist at the front of class that everyone agrees to and forgets. Safety woven into every decision, at every level of the work. Nerve mapping and compression as context for every tie in your repertoire. Vasovagal response, circulation, altered states — what they look like, what they ask of you. Consent not as a gate but as an ongoing conversation that never fully closes.',
+    note: 'Based on the Red and Yellow sections of Fundamentals. Can be extracted as a 3-hour focused session or expanded to a full-day intensive for experienced practitioners.'
+  },
+  'nawajutsu': {
+    title: 'Nawajutsu — Rope as Martial Discipline',
+    desc: 'The martial path through rope. Movement, disruption, balance, pressure — not decoration, not suspension, not spectacle. Nawajutsu is about what happens between two people before anything is secured. Entry, transition, control, release. Drawing from body mechanics, Seme, and the martial arts tradition that shaped the early development of this practice. You learn to move someone, to feel initiative, to work with and against resistance in a way that is both safe and honest about what it is.',
+    note: 'Prerequisite: Fundamentals plus Body Manipulation or equivalent movement background. This is its own path. Intermediate and advanced versions available.'
   },
   'partial': {
     title: 'Partial Suspension & Static Work',
-    desc: 'Position-based work — face up, face down, side, sitting, kneeling, standing. The full body as a map. Structural understanding before anything goes off the floor. No one leaves having done a pretty tie they cannot replicate.',
-    note: 'Prerequisite: solid Fundamentals + Floorplay equivalent. 9-class curriculum, extractable as workshop or intensive.'
+    desc: 'Position-based work — face up, face down, side, seated, kneeling, standing. Load paths that begin on the floor and learn to carry partial weight before anything leaves the ground entirely. The full body treated as a structural map. No one leaves having done a pretty tie they cannot replicate safely or explain. Structural understanding first. The aesthetic follows.',
+    note: 'Prerequisite: solid Fundamentals + Floorplay equivalent. Extractable from the 9-class curriculum as a workshop or intensive. Leads directly into Suspension.'
+  },
+  'suspension': {
+    title: 'Suspension & Dynamics',
+    desc: 'The geometry of a suspension is not a puzzle to solve. It is the physical expression of a dynamic that was either built across the whole session or wasn\'t. Load paths, anchor geometry, body positioning, transitions — all of it follows from what is already happening between two people before the first rope goes on. This class works both directions at once: the technical and the relational. You will not get one without the other here.',
+    note: 'Serious prerequisites required. Contact before requesting. Not the first Suspension class to take — one of the last.'
+  },
+  'intentionality': {
+    title: 'Rope Intentionality & Emotional Connection',
+    desc: 'The part of rope that technique alone cannot produce. Presence, pacing, the quality of attention that turns a well-executed tie into something that actually matters to the person wearing it. How to build trust before a single rope goes on. How to listen with your hands. What aftercare actually is and why it is part of the session, not the end of it. This class is not soft. It is the hardest thing to teach and the most frequently skipped.',
+    note: 'Suitable for any level. Often the class people say shifted something they had been stuck on for years.'
+  },
+  'semenawa': {
+    title: 'Semenawa — Suffering and the Art of Pressure',
+    desc: 'Semenawa is the rope of torment — the tradition of using rope to create a specific kind of physical and psychological pressure that is negotiated, consensual, and deeply demanding of skill from both people. Not decoration. Not suspension. The deliberate use of friction, position, and progressive tightening to bring someone into a particular state. This class covers the history, the ethics, the technical elements, and the significant responsibility that comes with working at this edge.',
+    note: 'Advanced. Prerequisites required — contact to discuss readiness. This is not a beginner class framed as intermediate. Both Tori and Uke experience addressed.'
   },
   'do': {
     title: 'The Dō — Rope as Path, Not Ladder',
-    desc: 'A conversation about why you are here and what the path actually looks like. Not a technique class — a framework class. The colour system as a lens for understanding where you are, what you are avoiding, and why going back to Beige is not failure.',
-    note: 'Often the most disruptive class people take. Works at any level.'
-  },
-  'suspension': {
-    title: 'Suspension & Dynamics — The Full Picture',
-    desc: 'The geometry of a suspension is not just a puzzle to solve. It is the physical expression of a dynamic that was either built or wasn\'t. Load paths, anchor points, body positioning; all of it is down a path of what\'s happening between two people before the first rope goes on. This class works both directions: the technical and the relational. You won\'t get one without the other.',
-    note: 'Serious prerequisites required. Get in touch before requesting this one.'
+    desc: 'Not a technique class. A framework class. Why does the colour system exist? What does it mean to return to Beige? Why do some people plateau and others don\'t? The Dō addresses the part of the practice that no single technique class covers: how you walk the path over time, what you are avoiding, and whether your goals are honest ones. Often described as the most disruptive class people take — not because it is difficult but because it asks questions the rest of the curriculum doesn\'t.',
+    note: 'Works at any level. Frequently requested as an opening session before a residential or intensive program.'
   },
   'other': {
     title: 'Something else entirely.',
-    desc: 'You don\'t know what you want? That\'s the most honest place to start. Tell me where you are, what\'s been missing, what you\'ve tried that didn\'t land. We\'ll figure out what the class actually is.',
+    desc: 'You don\'t know what you need? That is the most honest place to start. Tell me where you are, what has been missing, what you have tried that didn\'t land. We will figure out what the class actually is. Most of the best workshops I have taught started with someone saying they weren\'t sure what they were looking for.',
     note: '→ Get in touch.'
   }
 };
@@ -696,6 +717,7 @@ function showWorkshop(id) {
   document.getElementById('workshop-desc').textContent = w.desc;
   document.getElementById('workshop-note').textContent = w.note;
   document.getElementById('workshop-empty').style.display = 'none';
+  document.getElementById('workshop-card').classList.remove('card-idle');
 
   var content = document.getElementById('workshop-content');
   content.style.display = 'block';
@@ -758,6 +780,7 @@ var companions = {
 
       // Show content
       document.getElementById('companion-empty').style.display = 'none';
+      document.getElementById('companion-card').classList.remove('card-idle');
       var content = document.getElementById('companion-content');
       content.style.display = 'block';
       content.style.opacity = '0';
@@ -1353,9 +1376,9 @@ var companions = {
           <div class="level-item" data-id="lvl4" onclick="showLevel('lvl4')"><span class="level-colour" style="background:#ddd3b8"></span><span class="level-name">Advanced +</span></div>
         </div>
       </div>
-      <div id="level-card" style="border:.5px solid rgba(169,124,26,.2);background:rgba(169,124,26,.04);padding:2.5rem;min-height:420px;height:420px;display:flex;flex-direction:column;justify-content:flex-start;transition:opacity .3s;overflow:hidden;position:relative;">
-        <div id="level-empty" style="text-align:center;opacity:.25">
-          <div style="font-family:var(--fm);font-size:8px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)">Select a level</div>
+      <div id="level-card" class="card-idle" style="border:.5px solid rgba(169,124,26,.2);background:rgba(169,124,26,.04);padding:2.5rem;min-height:420px;height:420px;display:flex;flex-direction:column;justify-content:flex-start;transition:opacity .3s;overflow:hidden;position:relative;">
+        <div id="level-empty" style="text-align:center;">
+          <div class="card-empty-label" style="font-family:var(--fm);font-size:8px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)">Select a level</div>
         </div>
         <div id="level-content" style="display:none;">
           <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:2rem;margin-bottom:1rem">
@@ -1418,9 +1441,10 @@ var companions = {
         <div style="font-family:var(--fj);font-size:4rem;color:var(--rope);opacity:.15;line-height:1;margin-top:1rem">張力</div>
       </div>
       <div>
-        <p class="body-serif" style="margin-bottom:1.25rem">The triangle is the moment of decision. Every tie is a choice. Why are you tying? The answer to that question shapes everything that follows, the technique you choose, the pace you set, the attention you bring.</p>
+        <p class="body-serif" style="margin-bottom:1.25rem">The triangle is the moment of decision. Every tie is a choice. Why are you tying? The answer shapes everything that follows — the technique you choose, the pace you set, the attention you bring.</p>
         <p class="body-serif" style="margin-bottom:1.25rem">Rope without intention is just knots. Tension without direction is just force. The triangle holds the question: what are you actually doing here, and does the person in front of you know?</p>
-        <div class="bq"><p>"Every tie is a choice. The triangle holds or it hurts. It should not be forced but felt."</p></div>
+        <div class="bq" style="margin-bottom:1.5rem"><p>"Every tie is a choice. The triangle holds or it hurts. It should not be forced but felt."</p></div>
+        <p class="body-mono">The teaching at Tension runs across several paths — Floorplay, Suspension, Rope Intentionality, and <strong style="font-weight:400;color:var(--paper)">Nawajutsu</strong>, the martial path through rope. Each is distinct. All of them run through the same foundation. See below.</p>
       </div>
     </div>
     <!-- Photos -->
@@ -1443,8 +1467,9 @@ var companions = {
     <div class="two-col fade-in" style="margin-bottom:4rem">
       <div>
         <h2>Workshops<br><em style="color:var(--rope-l);font-style:italic">&amp; classes.</em></h2>
-        <p class="body-serif" style="margin-bottom:1.25rem">All classes at Tension MTL are taught from both ends of the rope. Technique, body mechanics, consent, and intention woven together.</p>
-        <p class="body-mono">Private lessons available in person at Tension MTL or remotely. Group workshops at Tension or hosted at your space. Touring workshops available worldwide.</p>
+        <p class="body-serif" style="margin-bottom:1.25rem">All classes are taught from both ends of the rope. Technique, body mechanics, consent, and intention are not separate topics — they arrive together or not at all.</p>
+        <p class="body-serif" style="margin-bottom:1.25rem">The paths through the work are different. Floorplay, suspension, Nawajutsu, emotional connection — each has its own vocabulary and its own prerequisites. What they share is the same underlying commitment: you leave understanding why, not just what.</p>
+        <p class="body-mono">Private lessons in person at Tension MTL or remotely. Group workshops at Tension or at your space. Touring worldwide. If you're not sure what you need, say that. It's a better starting point than pretending otherwise.</p>
       </div>
       <div>
         <div class="rate-card">
@@ -1470,21 +1495,25 @@ var companions = {
         <!-- Left: workshop list -->
         <div>
           <div id="workshop-list" style="display:flex;flex-direction:column;gap:0;">
+            <div class="workshop-item" data-id="fundamentals" onclick="showWorkshop('fundamentals')">Fundamentals</div>
             <div class="workshop-item" data-id="bodymech" onclick="showWorkshop('bodymech')">Body Manipulation</div>
-            <div class="workshop-item" data-id="gote" onclick="showWorkshop('gote')">Gote & Creativity</div>
-            <div class="workshop-item" data-id="tension" onclick="showWorkshop('tension')">Tension & Intention</div>
+            <div class="workshop-item" data-id="gote" onclick="showWorkshop('gote')">Gote &amp; Creativity</div>
+            <div class="workshop-item" data-id="tension" onclick="showWorkshop('tension')">Tension &amp; Intention</div>
             <div class="workshop-item" data-id="safety" onclick="showWorkshop('safety')">Safety as Practice</div>
+            <div class="workshop-item" data-id="nawajutsu" onclick="showWorkshop('nawajutsu')">Nawajutsu</div>
             <div class="workshop-item" data-id="partial" onclick="showWorkshop('partial')">Partial Suspension</div>
+            <div class="workshop-item" data-id="suspension" onclick="showWorkshop('suspension')">Suspension &amp; Dynamics</div>
+            <div class="workshop-item" data-id="intentionality" onclick="showWorkshop('intentionality')">Rope Intentionality</div>
+            <div class="workshop-item" data-id="semenawa" onclick="showWorkshop('semenawa')">Semenawa</div>
             <div class="workshop-item" data-id="do" onclick="showWorkshop('do')">The Dō</div>
-            <div class="workshop-item" data-id="suspension" onclick="showWorkshop('suspension')">Suspension & Dynamics</div>
             <div class="workshop-item workshop-item-other" data-id="other" onclick="showWorkshop('other')">Something else →</div>
           </div>
         </div>
 
         <!-- Right: description card -->
-        <div id="workshop-card" style="border:.5px solid rgba(169,124,26,.2);background:rgba(169,124,26,.04);padding:2.5rem;min-height:220px;display:flex;flex-direction:column;justify-content:center;transition:opacity .3s;align-self:stretch;">
-          <div id="workshop-empty" style="text-align:center;opacity:.25">
-            <div style="font-family:var(--fm);font-size:8px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)">Select a workshop</div>
+        <div id="workshop-card" class="card-idle" style="border:.5px solid rgba(169,124,26,.2);background:rgba(169,124,26,.04);padding:2.5rem;min-height:220px;display:flex;flex-direction:column;justify-content:center;transition:opacity .3s;align-self:stretch;">
+          <div id="workshop-empty" style="text-align:center;">
+            <div class="card-empty-label" style="font-family:var(--fm);font-size:8px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)">Select a workshop</div>
           </div>
           <div id="workshop-content" style="display:none;">
             <div id="workshop-title" style="font-family:var(--fd);font-size:1.4rem;font-weight:300;color:var(--paper);margin-bottom:1.25rem;line-height:1.3"></div>
@@ -1846,6 +1875,34 @@ var companions = {
   100% { left: 120%; }
 }
 
+/* tagShimmer — horizontal sweep on item hover */
+@keyframes tagShimmer {
+  0%   { left: -60%; }
+  100% { left: 120%; }
+}
+
+/* List ripple — hairline gold line traveling down the list */
+@keyframes listRippleLine {
+  0%   { opacity: 0; transform: scaleX(0.2); }
+  15%  { opacity: 1; transform: scaleX(1); }
+  80%  { opacity: .7; }
+  100% { opacity: 0; transform: scaleX(1); }
+}
+.list-ripple-active {
+  position: relative;
+}
+.list-ripple-active::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201,168,76,.7) 30%, rgba(201,168,76,.9) 50%, rgba(201,168,76,.7) 70%, transparent);
+  animation: listRippleLine .55s ease-out forwards;
+  pointer-events: none;
+  z-index: 2;
+  transform-origin: left center;
+}
+
 /* Sec-id label — single glint downward on viewport entry */
 .sec-id {
   position: absolute; top: 1.5rem; right: 2rem;
@@ -1956,6 +2013,23 @@ var companions = {
   10%  { opacity: 1; }
   90%  { opacity: 1; }
   100% { left: 100%; opacity: 0; }
+}
+
+/* Card idle heartbeat — border glow + text pulse */
+@keyframes cardBorderPulse {
+  0%, 100% { box-shadow: 0 0 0px rgba(201,168,76,0), inset 0 0 0px rgba(201,168,76,0); border-color: rgba(169,124,26,.2); }
+  50%       { box-shadow: 0 0 14px rgba(201,168,76,.08), inset 0 0 8px rgba(201,168,76,.04); border-color: rgba(201,168,76,.35); }
+}
+@keyframes cardTextPulse {
+  0%, 100% { opacity: .18; letter-spacing: .22em; }
+  50%       { opacity: .42; letter-spacing: .26em; }
+}
+.card-idle {
+  animation: cardBorderPulse 3.2s ease-in-out infinite;
+}
+.card-idle .card-empty-label {
+  font-size: 24px !important;
+  animation: cardTextPulse 3.2s ease-in-out infinite;
 }
 
 /* Level rolodex */
@@ -2376,7 +2450,19 @@ function htrShow(slide, axis) {
   });
 })();
 
-// Position shimmer exactly on hamburger center
+// Set nav top dynamically based on WIP banner height
+function setNavTop() {
+  var wip = document.getElementById('wip');
+  var nav = document.querySelector('.hero-nav');
+  if (!wip || !nav) return;
+  if (wip.style.display === 'none') {
+    nav.style.top = '0';
+  } else {
+    nav.style.top = wip.offsetHeight + 'px';
+  }
+}
+setNavTop();
+window.addEventListener('resize', setNavTop);
 function positionShimmer() {
   var btn = document.getElementById('menu-btn');
   var shimmer = document.getElementById('scroll-shimmer');
@@ -2422,6 +2508,77 @@ var fadeObserver = new IntersectionObserver(function(entries) {
   });
 }, {threshold: 0.06});
 document.querySelectorAll('.fade-in').forEach(function(el) { fadeObserver.observe(el); });
+
+// ── List shimmer — idle ripple down each rolodex/workshop list ──────────────
+(function() {
+  var lists = [
+    { id: 'companions-tags',  itemSel: '.rolodex-item' },
+    { id: 'workshop-list',    itemSel: '.workshop-item' },
+    { id: 'level-list',       itemSel: '.level-item' }
+  ];
+
+  lists.forEach(function(cfg) {
+    var container = document.getElementById(cfg.id);
+    if (!container) return;
+
+    var intervalId = null;
+    var cursor = 0;
+    var active = false; // true once user has clicked
+
+    function rippleNext() {
+      if (active) return;
+      var items = container.querySelectorAll(cfg.itemSel);
+      if (!items.length) return;
+
+      // Remove class from all, then apply to current
+      items.forEach(function(el) { el.classList.remove('list-ripple-active'); });
+
+      var el = items[cursor % items.length];
+      // Force reflow so animation restarts if same element
+      void el.offsetWidth;
+      el.classList.add('list-ripple-active');
+
+      // Clean up after animation completes
+      setTimeout(function() {
+        el.classList.remove('list-ripple-active');
+      }, 600);
+
+      cursor++;
+    }
+
+    function startShimmer() {
+      if (intervalId || active) return;
+      // Stagger start so both lists don't fire in sync
+      var delay = cfg.id === 'workshop-list' ? 900 : 0;
+      setTimeout(function() {
+        if (active) return;
+        intervalId = setInterval(rippleNext, 520);
+      }, delay);
+    }
+
+    function stopShimmer() {
+      active = true;
+      if (intervalId) { clearInterval(intervalId); intervalId = null; }
+      container.querySelectorAll(cfg.itemSel).forEach(function(el) {
+        el.classList.remove('list-ripple-active');
+      });
+    }
+
+    // Start when container scrolls into view
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting && !active) startShimmer();
+        else if (!e.isIntersecting && intervalId) {
+          clearInterval(intervalId); intervalId = null; cursor = 0;
+        }
+      });
+    }, { threshold: 0.2 });
+    io.observe(container);
+
+    // Stop on first click anywhere in this list
+    container.addEventListener('click', stopShimmer, { once: true });
+  });
+})();
 </script>
 
 </body>
