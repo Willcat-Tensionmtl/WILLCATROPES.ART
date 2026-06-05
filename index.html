@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Willcat — Shibari Educator · Artist · Author</title>
-<meta name="description" content="Building frameworks for understanding body, rope, movement, and practice. William Desjardins, Montréal."/>
+<meta name="description" content="Building frameworks for understanding consent, body, rope, movement, and practice. William Desjardins, Montréal."/>
 <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png"/>
   <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16.png"/>
   <link rel="apple-touch-icon" sizes="180x180" href="img/favicon-180.png"/>
@@ -55,6 +55,8 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
 /* ══ BLOCKQUOTE ══ */
 .bq { border-left: 2px solid rgba(169,124,26,.35); padding-left: 1.5rem; margin: 2rem 0; }
 .bq p { font-family: var(--fd); font-size: clamp(1.1rem,1.6vw,1.4rem); font-style: italic; font-weight: 300; color: rgba(240,234,216,.6); line-height: 1.55; }
+.bq-class { margin: 2rem 0 .5rem 2rem; }
+.bq-class p { font-family: var(--fd); font-size: clamp(1.2rem,1.8vw,1.6rem); font-style: italic; font-weight: 300; color: rgba(240,234,216,.5); line-height: 1.5; }
 
 /* ══ BUTTONS ══ */
 .btn { display: inline-block; font-family: var(--fm); font-size: 9.5px; letter-spacing: .18em; text-transform: uppercase; padding: 11px 24px; border-radius: 1px; text-decoration: none; transition: all .22s; border: .5px solid transparent; cursor: pointer; }
@@ -332,7 +334,7 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
     <div class="hero-eyebrow">Shibari Educator · Artist · Author · Founder of Tension MTL</div>
     <h1 class="hero-name">Will<em>cat.</em></h1>
     <div class="hero-sub">william desjardins &nbsp;·&nbsp; she/her &nbsp; they/them</div>
-    <p class="hero-tagline">Building frameworks for understanding body, rope, movement, and practice.</p>
+    <p class="hero-tagline">Building frameworks for understanding:<br>consent, body, rope, movement, and practice.</p>
     <div class="hero-principles">
       Three shapes. Three principles.<br>
       The square holds.<br>
@@ -415,7 +417,8 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
     </div>
     <div class="fade-in" style="border-top:1px solid rgba(240,234,216,.07);padding-top:2.5rem;margin-bottom:3rem;">
       <p class="body-serif" style="margin-bottom:1.25rem">Teaching approach shaped by component-based martial arts pedagogy. Kenjutsu practiced seriously. Aikido explored more through reading than formal training. Not authorized in any Japanese rope tradition. Everything drawn from many sources, shaped by a decade of deliberate practice and the humility to keep questioning it.</p>
-      <p class="body-serif">Behind the rigging, behind the classes, behind the policies and the leader label, there is just a person doing their best not to fuck it up. Rope is edge play. Not a caveat. The foundation. The Fundamentals are not a phase to get through. They are the whole practice, revisited at every level.</p>
+      <p class="body-serif" style="margin-bottom:1.5rem">Behind the rigging, behind the classes, behind the policies and the leader label, there is just a person doing their best not to fuck it up. Rope is edge play. Not a caveat. The foundation.</p>
+      <p class="body-serif" style="font-family:var(--fd);font-size:1.15rem;font-style:italic;color:var(--paper);font-weight:300;border-left:2px solid rgba(201,168,76,.35);padding-left:1.25rem;line-height:1.65">The Fundamentals are not a phase to get through. They are the whole practice, revisited at every level.</p>
     </div>
     <div class="fade-in" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(240,234,216,.08);margin-bottom:2rem;">
       <div style="background:rgba(240,234,216,.06);padding:1.5rem 1.25rem;border-top:2px solid var(--rope-l)"><div style="font-family:var(--fd);font-size:2.8rem;font-weight:300;color:var(--rope);line-height:1">10K+</div><div style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase">Hours of rope</div></div>
@@ -449,8 +452,10 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
       <li class="body-serif" style="margin-bottom:.5rem">Aesthetics: there are many kinds but very important in traditional Shibari | Kinbaku... i.e: Structure</li>
       <li class="body-serif">Everything has purpose; if you make a friction or line that doesn't do anything, why do it?</li>
     </ul>
-    <p class="body-serif fade-in" style="margin-bottom:2.5rem;opacity:1;max-width:720px;font-style:italic;margin-top:-.5rem">Above all, do not forget to have fun.</p>
-
+    <span id="brk-return" style="display:block;position:relative;top:-60px;visibility:hidden"></span>
+    <div class="fade-in" style="border-left:2px solid rgba(169,124,26,.35);padding-left:1.5rem;margin-bottom:2rem;margin-top:.5rem">
+      <p style="font-family:var(--fd);font-size:clamp(1.1rem,1.6vw,1.35rem);font-weight:300;font-style:italic;color:var(--rope-l);line-height:1.7;margin:0">Above all, do not forget to have fun.</p>
+    </div>
     <div id="pillars-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(240,234,216,.05);margin-bottom:1px;" class="fade-in">
       <div style="background:rgba(240,234,216,.04);padding:3rem 2.5rem;position:relative;overflow:visible">
         <svg viewBox="0 0 120 120" fill="none" stroke="rgba(169,124,26,.12)" stroke-width="2" stroke-linecap="square" style="position:absolute;right:-.5rem;bottom:-1.5rem;width:9rem;height:9rem;pointer-events:none"><rect x="10" y="10" width="100" height="100"/></svg>
@@ -685,13 +690,18 @@ var workshops = {
   },
   'do': {
     title: 'The Dō — Rope as Path, Not Ladder',
-    desc: 'Not a technique class. A framework class. Why does the colour system exist? What does it mean to return to Beige? Why do some people plateau and others don\'t? The Dō addresses the part of the practice that no single technique class covers: how you walk the path over time, what you are avoiding, and whether your goals are honest ones. Often described as the most disruptive class people take — not because it is difficult but because it asks questions the rest of the curriculum doesn\'t.',
+    desc: 'Not a technique class. A framework class. Why does the colour system exist if there is no rank? What does it mean to return to Beige? Why do some people plateau and others don\'t? The Dō addresses the part of the practice that no single technique class covers: how you walk the path over time, what are you avoiding, what do you not know about, and whether your goals are honest ones. Could potentially be the most disruptive class people can take; not because it is difficult but because it asks questions you might not be prepared for.',
     note: 'Works at any level. Frequently requested as an opening session before a residential or intensive program.'
   },
   'other': {
     title: 'Something else entirely.',
     desc: 'You don\'t know what you need? That is the most honest place to start. Tell me where you are, what has been missing, what you have tried that didn\'t land. We will figure out what the class actually is. Most of the best workshops I have taught started with someone saying they weren\'t sure what they were looking for.',
     note: '→ Get in touch.'
+  },
+  'festival': {
+    title: 'Festival Speakers & Demonstrations',
+    desc: 'Atada, no callada — Que No Puede Verse Ni Censurarse. Bound, not silenced. What cannot be seen or censored.\n\nA Shibari demonstration at AEFEST LATAM (Festival Internacional de Artes Eróticas), Bogotá, August 2026. Theme: censorship. Rope as the thing meant to capture, used as an expression of... everything. Every context shapes the work. The knots are the same; the meaning is not.',
+    note: 'Available for festival appearances, speaker slots, and demonstrations worldwide. Context shapes the work — bring the brief.'
   }
 };
 
@@ -714,7 +724,7 @@ function showWorkshop(id) {
   if (active) active.classList.add('active');
 
   document.getElementById('workshop-title').textContent = w.title;
-  document.getElementById('workshop-desc').textContent = w.desc;
+  document.getElementById('workshop-desc').innerHTML = w.desc.split('\n\n').map(function(p){ return '<span style="display:block;margin-bottom:.75rem">'+p+'</span>'; }).join('');
   document.getElementById('workshop-note').textContent = w.note;
   document.getElementById('workshop-empty').style.display = 'none';
   document.getElementById('workshop-card').classList.remove('card-idle');
@@ -803,7 +813,8 @@ var companions = {
         <div class="bq" style="margin-top:.75rem"><p>"Eventually everything will be understood."</p></div>
       </div>
       <div>
-        <p class="body-serif" style="margin-bottom:1.25rem">These symbols hang above the Kamiza at Tension. A reminder that our actions in rope should be slower, methodical and practiced.</p>
+        <p class="body-serif" style="margin-bottom:1.25rem">These symbols hang above the Kamiza at Tension.</p>
+        <p class="body-serif" style="margin-bottom:1.25rem">As an invitation to ask questions and contemplate; a reminder that our actions in rope should be slower, methodical and practiced.</p>
         <p class="body-serif" style="margin-bottom:1.25rem">Originally the three pillars — Aesthetics, Purpose, Connection — were enough to orient a beginner. But the deeper the practice went, the more a larger framework was needed. One that could hold technique, transmission, and community at the same time.</p>
         <p class="body-serif" style="margin-bottom:1.25rem">Maru Sankaku Shikaku: Circle, Triangle, Square. An ancient teaching from Zen and Japanese martial arts, brought into a contemporary practice. Not as philosophy for its own sake but as a working tool for understanding body, rope, movement, and relationship.</p>
         <p class="body-serif" style="margin-bottom:1.25rem">The Universe. Three shapes that contain everything. At Tension, the symbols 〇△□ hang above the Kamiza; a reminder that every action in rope is a choice navigated through rigidity, technique, and how we hold safety together.</p>
@@ -1215,7 +1226,7 @@ var companions = {
     <p class="brk-quote">"The square is not a cage.<br>It is the container that makes<br>freedom possible."</p>
     <div class="brk-kanji">形 · 型 · 規律 · 安全 · 美 · 練習<br>Form · Kata · Discipline · Safety · Aesthetics · Practice</div>
   </div>
-  <a href="#B2" class="brk-up-arrow" aria-label="Back to Three Pillars"></a>
+  <a href="#brk-return" class="brk-up-arrow" aria-label="Back to Three Pillars"></a>
 </div>
 
 <!-- ══ C2 — STRUCTURE · FOUNDATION ══ -->
@@ -1427,7 +1438,7 @@ var companions = {
     <p class="brk-quote">"Every tie is a choice.<br>The triangle holds or it hurts.<br>It should not be forced but felt."</p>
     <div class="brk-kanji">張力 · 意図 · 方向 · 選択 · 目的 · 伝達<br>Tension · Intention · Direction<br>Choice · Purpose · Transmission</div>
   </div>
-  <a href="#B2" class="brk-up-arrow" aria-label="Back to Three Pillars"></a>
+  <a href="#brk-return" class="brk-up-arrow" aria-label="Back to Three Pillars"></a>
 </div>
 
 <!-- ══ D2 — TENSION · DIRECTION ══ -->
@@ -1441,10 +1452,10 @@ var companions = {
         <div style="font-family:var(--fj);font-size:4rem;color:var(--rope);opacity:.15;line-height:1;margin-top:1rem">張力</div>
       </div>
       <div>
-        <p class="body-serif" style="margin-bottom:1.25rem">The triangle is the moment of decision. Every tie is a choice. Why are you tying? The answer shapes everything that follows — the technique you choose, the pace you set, the attention you bring.</p>
+        <p class="body-serif" style="margin-bottom:1.25rem">The triangle is the moment of decision. Every tie is a choice. Why are you tying? The answer shapes everything that follows; the technique you choose, the pace you set, the attention you bring.</p>
+        <p class="body-serif" style="margin-bottom:1.25rem">We need to evaluate and be reactive in every moment. Slow down pressure on harsh angles, or increase with certainty. Really feel frictions into place. Guide the pressure through triangulation, sense it in your fingertips, and ensure we don't go beyond what is tolerable.</p>
         <p class="body-serif" style="margin-bottom:1.25rem">Rope without intention is just knots. Tension without direction is just force. The triangle holds the question: what are you actually doing here, and does the person in front of you know?</p>
-        <div class="bq" style="margin-bottom:1.5rem"><p>"Every tie is a choice. The triangle holds or it hurts. It should not be forced but felt."</p></div>
-        <p class="body-mono">The teaching at Tension runs across several paths — Floorplay, Suspension, Rope Intentionality, and <strong style="font-weight:400;color:var(--paper)">Nawajutsu</strong>, the martial path through rope. Each is distinct. All of them run through the same foundation. See below.</p>
+        <p class="body-mono">The teaching at Tension runs across several paths — Floorplay, LAB, Suspension, and <strong style="font-weight:400;color:var(--paper)">Nawajutsu</strong>, the martial path through rope. Each is distinct. All of them run through the same foundations and eventually reach the same conclusions.</p>
       </div>
     </div>
     <!-- Photos -->
@@ -1459,9 +1470,65 @@ var companions = {
   </div>
 </section>
 
-<!-- ══ D3 — TEACHING ══ -->
+<!-- ══ D3 — NAWAJUTSU ══ -->
 <section class="section" id="D3" style="border-top:1px solid rgba(240,234,216,.06);">
   <div class="sec-id">D3</div>
+  <div class="inner">
+    <div class="lbl fade-in">縄術 · Nawajutsu</div>
+    <div class="two-col fade-in" style="margin-bottom:5rem">
+      <div>
+        <h2>Rope<br><em style="color:var(--rope-l);font-style:italic">technique.</em></h2>
+        <div style="display:flex;align-items:flex-start;gap:1.25rem;margin-top:1.5rem;margin-bottom:.5rem">
+          <div style="font-family:var(--fj);font-size:3.5rem;color:var(--rope);opacity:.35;line-height:1;writing-mode:vertical-rl;text-orientation:mixed;letter-spacing:.1em">縄術</div>
+          <div style="display:flex;flex-direction:column;gap:0;padding-top:.25rem">
+            <div style="margin-bottom:1.1rem">
+              <div style="font-family:var(--fm);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.25rem">Nawa</div>
+              <div style="font-family:var(--fd);font-size:1.2rem;font-style:italic;color:rgba(240,234,216,.4);font-weight:300">rope</div>
+            </div>
+            <div style="margin-bottom:1.1rem">
+              <div style="font-family:var(--fm);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--rope-l);margin-bottom:.25rem">Jutsu</div>
+              <div style="font-family:var(--fd);font-size:1.2rem;font-style:italic;color:rgba(240,234,216,.4);font-weight:300">technique</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div style="border-left:2px solid rgba(169,124,26,.35);padding-left:1.5rem;margin-bottom:1.75rem">
+          <p style="font-family:var(--fd);font-size:clamp(1.1rem,1.6vw,1.35rem);font-weight:300;font-style:italic;color:var(--rope-l);line-height:1.7;margin:0">The connection between<br>method, craft and art.</p>
+        </div>
+        <p class="body-serif" style="margin-bottom:1.25rem">Nawajutsu in application is drawn from multiple traditions: Hojōjutsu, Torinawajutsu, Hayanawa, Honnawa — all branches that touch on versions of Japanese martial arts of using rope to restrain a person; THIS and not "Shibari" as we refer to it today was practiced by samurai and law enforcement, at a time when handcuffs were not a thing, studied still in very select martial arts schools to this day. Preceding all of them is Torite — the art of the hand before the rope. The aggressor had to be controlled, balance broken, leverage removed, before any rope was applied. The rope was never first. None of these lineages I can speak to; yet my approach, intentions and studies are touching on depictions or versions of it.</p>
+      </div>
+    </div>
+
+    <div style="width:40px;height:1px;background:rgba(169,124,26,.3);margin:0 0 4rem" class="fade-in"></div>
+
+    <div class="fade-in" style="margin-bottom:5rem">
+      <div class="bq" style="margin-bottom:.5rem"><p>I spent a long time arguing that Shibari should be considered like BuDō. I was wrong about the word, right about the direction. BuDō is the way of war. What I actually meant was Dō — the way. NawaDō. ShibariDō. The discipline, the practice, the path.</p></div>
+      <div style="text-align:right;font-family:var(--fm);font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:var(--rope-l);margin-bottom:1.75rem">Book 1 · Fundamentals · P.14</div>
+      <p class="body-serif" style="margin-bottom:1.25rem">Nawajutsu is my attempt to build a container for that; the technical vocabulary of the martial traditions, applied to rope as I practice it, without the combat destination those traditions were designed for. I was training Kenjutsu and started noticing aspects of it bleeding into my rope work. The way I moved around a body, entered a position, exited a tie. People began asking me; "how are you doing that?" I went looking for the math of it. Through discussions with some folx and some private classes, I came to learn I was already practicing some Aikido methodology without naming it. Center mass. Triangulated weak points. Controlling through connection rather than force. I pushed into that deliberately. I tried... But I didn't want to continue in Aikido itself — I had no interest in breakfalls, throwing, or some of the combat destinations the art moves toward. Everything else was relevant. The destination wasn't. Nawajutsu became the container for what I was actually working on; the vocabulary without the application it was designed for.</p>
+      <p class="body-serif" style="margin-bottom:1.75rem">This class is the subject of my own ongoing exploration. Not a finished system. Join me in it.</p>
+      <div class="bq-class" style="margin-bottom:.5rem"><p>"Only when actually being confronted with many different feels can you do things with feeling."</p></div>
+      <div style="text-align:right;font-family:var(--fm);font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:var(--rope-l)">Quotes from class</div>
+    </div>
+
+    <div style="width:40px;height:1px;background:rgba(169,124,26,.3);margin:0 0 4rem" class="fade-in"></div>
+
+    <div class="fade-in" style="background:rgba(169,124,26,.04);border:.5px solid rgba(169,124,26,.15);padding:2.5rem;margin-bottom:3rem">
+      <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--rope-l);margin-bottom:1.25rem">How I teach it</div>
+      <p class="body-serif" style="margin-bottom:1.25rem">This is the class where the assumption is that you want to be corrected. Things will be done to you to show you what you are doing and what needs to happen instead. I am more willing to chastise here, to make you feel the inefficiency of what you are doing rather than explain it. Tough love. The body learns faster than the head.</p>
+      <p class="body-serif" style="margin-bottom:1.25rem">You can develop real sensitivity to pressure, weight, and resistance by working with many different people of varying sizes and morphologies. That is why partners rotate. Every different body breaks a different assumption.</p>
+      <p class="body-mono" style="color:rgba(240,234,216,.45);margin-bottom:1.75rem">Prerequisite: Fundamentals. Full details at Tension MTL.</p>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap">
+        <a href="https://tensionmtl.ca/pages/nawajutsu-the-technical-art-of-rope" target="_blank" class="btn btn-o">Class details</a>
+        <a href="https://tensionmtl.ca/blogs/news/nawajutsu-why-should-i-go-nbsp" target="_blank" class="btn btn-o" style="opacity:.6">Why should I go?</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ D4 — TEACHING ══ -->
+<section class="section" id="D4" style="border-top:1px solid rgba(240,234,216,.06);">
+  <div class="sec-id">D4</div>
   <div class="inner">
     <div class="lbl fade-in">Teaching</div>
     <div class="two-col fade-in" style="margin-bottom:4rem">
@@ -1506,6 +1573,7 @@ var companions = {
             <div class="workshop-item" data-id="intentionality" onclick="showWorkshop('intentionality')">Rope Intentionality</div>
             <div class="workshop-item" data-id="semenawa" onclick="showWorkshop('semenawa')">Semenawa</div>
             <div class="workshop-item" data-id="do" onclick="showWorkshop('do')">The Dō</div>
+            <div class="workshop-item" data-id="festival" onclick="showWorkshop('festival')">Festival Speakers &amp; Demonstrations</div>
             <div class="workshop-item workshop-item-other" data-id="other" onclick="showWorkshop('other')">Something else →</div>
           </div>
         </div>
@@ -1526,8 +1594,8 @@ var companions = {
     </div>
   </div>
 </section>
-<section class="section" id="D4" style="border-top:1px solid rgba(240,234,216,.06);">
-  <div class="sec-id">D4</div>
+<section class="section" id="D5" style="border-top:1px solid rgba(240,234,216,.06);">
+  <div class="sec-id">D5</div>
   <div class="inner">
     <div class="lbl fade-in">Private Parties</div>
     <div class="two-col fade-in">
@@ -1548,9 +1616,9 @@ var companions = {
   </div>
 </section>
 
-<!-- ══ D5 — RESIDENCIES ══ -->
-<section class="section" id="D5" style="border-top:1px solid rgba(240,234,216,.06);">
-  <div class="sec-id">D5</div>
+<!-- ══ D6 — RESIDENCIES ══ -->
+<section class="section" id="D6" style="border-top:1px solid rgba(240,234,216,.06);">
+  <div class="sec-id">D6</div>
   <div class="inner">
     <div class="lbl fade-in">Residencies</div>
     <div class="two-col fade-in">
@@ -1570,9 +1638,9 @@ var companions = {
   </div>
 </section>
 
-<!-- ══ D6 — PRODUCTION · PERFORMANCE ══ -->
-<section class="section" id="D6" style="border-top:1px solid rgba(240,234,216,.06);">
-  <div class="sec-id">D6</div>
+<!-- ══ D7 — PRODUCTION · PERFORMANCE ══ -->
+<section class="section" id="D7" style="border-top:1px solid rgba(240,234,216,.06);">
+  <div class="sec-id">D7</div>
   <div class="inner">
     <div class="lbl fade-in">Production · Performance</div>
     <div class="two-col fade-in">
@@ -1611,7 +1679,7 @@ var companions = {
     <p class="brk-quote">"You return to the beginning<br>not because you failed;<br>but because that is what the circle demands."</p>
     <div class="brk-kanji">流れ · 継続 · 帰還 · 繋がり · 共同体 · 伝達<br>Flow · Continuity · Return<br>Communication · Connection · Community · Communication</div>
   </div>
-  <a href="#B2" class="brk-up-arrow" aria-label="Back to Three Pillars"></a>
+  <a href="#brk-return" class="brk-up-arrow" aria-label="Back to Three Pillars"></a>
 </div>
 
 <!-- ══ E2 — SEME · FLOW ══ -->
@@ -1623,7 +1691,7 @@ var companions = {
       <div>
         <h2>Flow as<br><em style="color:var(--rope-l);font-style:italic">integration.</em></h2>
         <div style="font-family:var(--fj);font-size:5rem;color:var(--rope);opacity:.15;line-height:1;margin-top:1rem">攻め</div>
-        <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:.5rem;margin-bottom:1.5rem">Seme · The pressure that builds</div>
+        <div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:.5rem;margin-bottom:3rem">Seme · The pressure that builds</div>
         <p class="body-mono" style="margin-bottom:1rem">From <em>semeru</em>: to press forward, to apply pressure, to hold initiative before the blow lands.</p>
         <p class="body-mono" style="margin-bottom:1rem">In martial arts: the psychological force that precedes technique. The pressure that disrupts your opponent's confidence before you've even moved. The applied pressure through testing, feeling and disrupting balance, or before a throw.</p>
         <p class="body-mono">In rope: the same principles, different materials; different end point</p>
@@ -1632,8 +1700,8 @@ var companions = {
         <p class="body-serif" style="margin-bottom:1.5rem">There is a version of rope that most people see first. Clean lines. Beautiful forms. The aesthetic of it. That version is real and it has its place.</p>
         <p class="body-serif" style="margin-bottom:1.5rem">There is another version that brought me in.</p>
         <p class="body-serif" style="margin-bottom:1.5rem">I came to rope for the loss of control. Then quickly found a penchant for suffering. I identify as an exhibitionist and a masochist but pain alone doesn't do much for me. Suffering does. The anticipation of it. Being in the hands of someone who knows how to make me suffer, who <em>wants</em> me to suffer for them, and who is getting off on it while doing it in front of a crowd. That. All of that.</p>
-        <p class="body-serif" style="margin-bottom:1.5rem">That is where I began. As Uke. As the one receiving.</p>
-        <p class="body-serif">It is from that place that I understand what I now apply.</p>
+        <p class="body-serif" style="margin-bottom:1.25rem">That is where I began. As Uke. As the one receiving.<br>It is from that place that I understand what I now apply.</p>
+        <img src="img/fox_knoctambule2025.jpg" alt="" style="width:100%;aspect-ratio:2/1;object-fit:cover;object-position:center;display:block;filter:brightness(.85) saturate(.75);margin-top:.5rem">
       </div>
     </div>
 
@@ -1645,19 +1713,29 @@ var companions = {
         <p class="body-serif" style="margin-bottom:1.5rem">Done right; it is the space before pressure becomes unbearable. The threshold. Sustained application of just enough: pressure, sensation, weight, restriction, to produce torment in the specific person, or people, you are with, without crossing into what they cannot hold.</p>
         <p class="body-serif" style="margin-bottom:1.5rem">That edge is not a line you cross. It is a place you do your best to inhabit, deliberately, with complete attention.</p>
         <p class="body-serif" style="margin-bottom:1.5rem">It is way more complicated than just saying "Well I'm a sadist & you agreed to pain..."</p>
-        <div class="bq"><p>In rope; with rope, this becomes Semenawa, tormenting rope. With words; Kotobazeme, think flirting, humiliation, embarrassment or teasing. Or even Seme; the "top" who applies pressure, both psychological or physical, to the extent that is possible with that partner "uke", the one who receives. Seme in Kinbaku is not just about applying tight ropes; it is being able to understand what is, just enough. Rope not just for the aesthetics of it, or suspended for an image or end goal but for the journey of being held in sustained torment that requires absolute trust when participating in it.</p></div>
-        <p class="body-mono" style="margin-top:1.5rem">The difference between Seme, torture and abuse is consent, skill, and the capacity to read another person accurately under pressure.</p>
-        <p class="body-mono" style="margin-top:1rem;color:rgba(240,234,216,.5)">Not occasionally. Continuously. In real time.</p>
+        <div class="bq-class" style="margin-bottom:.5rem"><p>In rope; with rope, this becomes Semenawa, tormenting rope. With words; Kotobazeme, think flirting, humiliation, embarrassment or teasing. Or even Seme; the "top" who applies pressure, both psychological or physical, to the extent that is possible with that partner "uke", the one who receives. Seme in Kinbaku is not just about applying tight ropes; it is being able to understand what is, just enough. Rope not just for the aesthetics of it, or suspended for an image or end goal but for the journey of being held in sustained torment that requires absolute trust when participating in it.</p></div>
+        <div style="text-align:right;font-family:var(--fm);font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:var(--rope-l);margin-bottom:1.5rem">Quotes from class</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center;margin-top:1.5rem">
+          <img src="img/Doggo_Soiree.jpg" alt="" style="width:100%;aspect-ratio:2/1;object-fit:cover;object-position:center;display:block;filter:brightness(.85) saturate(.75);">
+          <div>
+            <p class="body-mono" style="margin-bottom:1rem">The difference between Seme, torture and abuse is consent, skill, and the capacity to read another person accurately under pressure.</p>
+            <p class="body-mono" style="color:rgba(240,234,216,.5)">Not occasionally. Continuously. In real time.</p>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="fade-in" style="max-width:780px;margin:0 auto;text-align:center;padding:4rem 0;border-top:1px solid rgba(240,234,216,.06)">
-      <p class="body-serif" style="margin-bottom:2rem;color:rgba(240,234,216,.5)">For those thirsting for the extremes, the raw energies, the hentai scenes, the places where rope becomes something older and darker than the art you sometimes see today, you have your work cut out for you.</p>
-      <p class="body-serif" style="margin-bottom:2rem;color:rgba(240,234,216,.5)">It is possible to find those willing and wanting. But the trust between you needs to grow first. And you must be confident enough to effortlessly read someone, to bring them to that precipice without letting them fall over and or into it.</p>
-      <p class="body-serif" style="margin-bottom:3rem;color:rgba(240,234,216,.5)">That confidence does not come just from enthusiasm. It comes from thousands of hours of attention. It comes, ideally, from having been Uke yourself and knowing what it costs to be held in that place by someone who is paying attention.</p>
-      <div style="border-top:1px solid rgba(169,124,26,.2);padding-top:2rem">
-        <p style="font-family:var(--fd);font-size:clamp(1.1rem,1.6vw,1.4rem);font-style:italic;font-weight:300;color:rgba(240,234,216,.6);line-height:1.6">The circle is not just about return. It is about what you carry back with you.</p>
+    <div class="fade-in" style="padding:4rem 0;border-top:1px solid rgba(240,234,216,.06);display:grid;grid-template-columns:auto 1fr auto;gap:2rem;align-items:stretch">
+      <img src="img/Extremes_Fox_Darkroom_2.jpg" alt="" onclick="openLightbox(this.src)" style="width:120px;object-fit:cover;object-position:center;display:block;filter:brightness(.6) saturate(.5);align-self:stretch;cursor:zoom-in">
+      <div style="text-align:center">
+        <p class="body-serif" style="margin-bottom:2rem;color:rgba(240,234,216,.5)">For those thirsting for the extremes, the raw energies, the hentai scenes, the places where rope becomes something older and darker than the art you sometimes see today, you have your work cut out for you.</p>
+        <p class="body-serif" style="margin-bottom:2rem;color:rgba(240,234,216,.5)">It is possible to find those willing and wanting. But the trust between you needs to grow first. And you must be confident enough to effortlessly read someone, to bring them to that precipice without letting them fall over and or into it.</p>
+        <p class="body-serif" style="margin-bottom:3rem;color:rgba(240,234,216,.5)">That confidence does not come just from enthusiasm. It comes from thousands of hours of attention. It comes, ideally, from having been Uke yourself and knowing what it costs to be held in that place by someone who is paying attention.</p>
+        <div style="border-top:1px solid rgba(169,124,26,.2);padding-top:2rem">
+          <p style="font-family:var(--fd);font-size:clamp(1.1rem,1.6vw,1.4rem);font-style:italic;font-weight:300;color:rgba(240,234,216,.6);line-height:1.6">The circle is not just about return. It is about what you carry back with you.</p>
+        </div>
       </div>
+      <img src="img/Extremes_Fox_Darkroom_1.jpg" alt="" onclick="openLightbox(this.src)" style="width:120px;object-fit:cover;object-position:center;display:block;filter:brightness(.6) saturate(.5);align-self:stretch;cursor:zoom-in">
     </div>
   </div>
 </section>
@@ -1712,7 +1790,9 @@ var companions = {
       <h2>Every teacher<br><em style="color:var(--rope-l);font-style:italic">returns to practice.</em></h2>
       <div>
         <p class="body-serif" style="margin-bottom:1.25rem">The path moves through, not upward. The tree at Tension continues to grow, each student a branch, each return a deepening of roots.</p>
-        <p class="body-mono">Every colour eventually circles back to Beige. Every advancement should reflect a revision of our roots. The rope will tie you as much as you tie it.</p>
+        <p class="body-mono">Every colour eventually circles back to Beige. Every advancement should reflect a revision of our roots.</p>
+        <div class="bq-class" style="margin-top:1.25rem;margin-bottom:.5rem"><p>"The rope will tie you as much as you tie it."</p></div>
+        <div style="text-align:right;font-family:var(--fm);font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:var(--rope-l)">Quotes from class</div>
       </div>
     </div>
   </div>
@@ -1743,7 +1823,7 @@ var companions = {
     <div class="lbl fade-in">Continue</div>
     <div class="two-col fade-in" style="margin-bottom:4rem">
       <div>
-        <h2>Continue<br><em style="color:var(--rope-l);font-style:italic">your path.</em></h2>
+        <h2>Dō.<br><em style="color:var(--rope-l);font-style:italic">Continue your path &amp; help mine.</em></h2>
         <p class="body-serif" style="margin-bottom:1.25rem">The work continues because people choose to be part of it. Every class taken, every book bought, every workshop hosted keeps the studio running, the curriculum growing, and the teaching sustainable.</p>
         <p class="body-mono">If you have learned from this work, in a class, from the book, from a conversation, this is how you give it back. Not as charity. As participation in something worth continuing.</p>
       </div>
@@ -1751,13 +1831,13 @@ var companions = {
         <div style="border:.5px solid rgba(169,124,26,.2);border-radius:1px;overflow:hidden;margin-bottom:1px">
           <div style="padding:1.25rem 1.5rem;display:flex;justify-content:space-between;align-items:center;border-bottom:.5px solid rgba(240,234,216,.06)">
             <div><div style="font-family:var(--fd);font-size:1.1rem;font-weight:300;color:var(--paper)">Fundamentals of Shibari</div><div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;margin-top:.2rem">Book · 200 pages · 400 images</div></div>
-            <a href="https://tensionmtl.ca/collections/books" target="_blank" class="btn btn-o" style="white-space:nowrap">Get it</a>
+            <a href="https://tensionmtl.ca/products/presale-intentions-a-bilingual-card-based-guessing-game" target="_blank" class="btn btn-o" style="white-space:nowrap">Get it</a>
           </div>
         </div>
         <div style="border:.5px solid rgba(169,124,26,.2);border-radius:1px;overflow:hidden;margin-bottom:1px">
           <div style="padding:1.25rem 1.5rem;display:flex;justify-content:space-between;align-items:center;border-bottom:.5px solid rgba(240,234,216,.06)">
             <div><div style="font-family:var(--fd);font-size:1.1rem;font-weight:300;color:var(--paper)">Intentions</div><div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;margin-top:.2rem">120 bilingual cards</div></div>
-            <a href="https://tensionmtl.ca/collections/books" target="_blank" class="btn btn-o" style="white-space:nowrap">Get it</a>
+            <a href="https://tensionmtl.ca/products/presale-intentions-a-bilingual-card-based-guessing-game" target="_blank" class="btn btn-o" style="white-space:nowrap">Get it</a>
           </div>
         </div>
         <div style="border:.5px solid rgba(169,124,26,.2);border-radius:1px;overflow:hidden;margin-bottom:1px">
@@ -1768,14 +1848,20 @@ var companions = {
         </div>
         <div style="border:.5px solid rgba(169,124,26,.2);border-radius:1px;overflow:hidden;margin-bottom:1px">
           <div style="padding:1.25rem 1.5rem;display:flex;justify-content:space-between;align-items:center">
-            <div><div style="font-family:var(--fd);font-size:1.1rem;font-weight:300;color:var(--paper)">Support the work</div><div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;margin-top:.2rem">Ko-fi · Tips</div></div>
+            <div><div style="font-family:var(--fd);font-size:1.1rem;font-weight:300;color:var(--paper)">Continue your path &amp; help mine.</div><div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;margin-top:.2rem">Ko-fi · Tips</div></div>
             <a href="https://ko-fi.com/willcat" target="_blank" class="btn btn-o" style="white-space:nowrap">Support</a>
           </div>
         </div>
-        <div style="border:.5px solid rgba(169,124,26,.1);border-radius:1px;overflow:hidden;opacity:.45;margin-top:.5rem">
+        <div style="border:.5px solid rgba(169,124,26,.15);border-radius:1px;overflow:hidden;opacity:.35;margin-top:.5rem">
           <div style="padding:1rem 1.5rem;display:flex;justify-content:space-between;align-items:center">
-            <div><div style="font-family:var(--fd);font-size:1.1rem;font-weight:300;color:var(--paper)">Video on Demand</div><div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;margin-top:.2rem">Coming</div></div>
+            <div><div style="font-family:var(--fd);font-size:1.1rem;font-weight:300;color:var(--paper)">Personal Video on Demand</div><div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;margin-top:.2rem">Coming</div></div>
             <span style="font-family:var(--fm);font-size:8.5px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase">Soon</span>
+          </div>
+        </div>
+        <div style="border:.5px solid rgba(169,124,26,.3);border-radius:1px;overflow:hidden;margin-top:.5rem">
+          <div style="padding:1rem 1.5rem;display:flex;justify-content:space-between;align-items:center">
+            <div><div style="font-family:var(--fd);font-size:1.1rem;font-weight:300;color:var(--paper)">Video on Demand</div><div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;margin-top:.2rem">Tension VOD</div></div>
+            <a href="https://tensionmtl.ca/pages/vod-video-on-demand" target="_blank" class="btn btn-o" style="white-space:nowrap">Watch</a>
           </div>
         </div>
       </div>
@@ -1788,7 +1874,7 @@ var companions = {
 /* Break section back-to-pillars arrow */
 .brk-up-arrow {
   position: absolute;
-  top: 0;
+  top: 5.5rem;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -1796,15 +1882,15 @@ var companions = {
   align-items: center;
   gap: 0;
   text-decoration: none;
-  z-index: 4;
-  padding-top: 1rem;
+  z-index: 9999;
+  padding-top: 0;
 }
 .brk-up-arrow::after {
   content: '';
   display: block;
   width: 1px;
   height: 48px;
-  background: linear-gradient(to bottom, transparent, rgba(201,168,76,.6));
+  background: linear-gradient(to top, transparent, rgba(201,168,76,.6));
   animation: brk-pulse 2.5s ease-in-out infinite;
   box-shadow: 0 0 6px rgba(201,168,76,.4);
 }
@@ -1820,7 +1906,7 @@ var companions = {
   margin-bottom: -3px;
 }
 .brk-up-arrow:hover::after {
-  background: linear-gradient(to bottom, transparent, rgba(201,168,76,.9));
+  background: linear-gradient(to top, transparent, rgba(201,168,76,.9));
   box-shadow: 0 0 12px rgba(201,168,76,.6);
 }
 .brk-up-arrow:hover::before {
@@ -1923,12 +2009,20 @@ var companions = {
   background: linear-gradient(180deg, transparent, rgba(201,168,76,.6), transparent);
   pointer-events: none;
 }
+.sec-id.glint {
+  animation: secIdFlash 3.5s ease-out forwards;
+}
 .sec-id.glint::after {
-  animation: secGlint .8s ease-out forwards;
+  animation: secGlint .6s ease-out forwards;
+}
+@keyframes secIdFlash {
+  0%   { color: rgba(201,168,76,.9); text-shadow: 0 0 16px rgba(201,168,76,.7); }
+  15%  { color: rgba(201,168,76,.85); text-shadow: 0 0 14px rgba(201,168,76,.6); }
+  100% { color: rgba(240,234,216,.08); text-shadow: none; }
 }
 @keyframes secGlint {
-  0% { top: -100%; opacity: 0; }
-  20% { opacity: 1; }
+  0%   { top: -100%; opacity: 0; }
+  20%  { opacity: 1; }
   100% { top: 200%; opacity: 0; }
 }
 
@@ -2182,6 +2276,25 @@ var companions = {
   stroke: rgba(201,168,76,.35);
   animation: shapeTrace .8s ease-out forwards;
 }
+/* Lightbox */
+#lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(13,11,8,.95);
+  z-index: 99999;
+  cursor: zoom-out;
+  align-items: center;
+  justify-content: center;
+}
+#lightbox.open { display: flex; }
+#lightbox img {
+  max-width: 92vw;
+  max-height: 92vh;
+  object-fit: contain;
+  display: block;
+}
+
 @keyframes shapeTrace {
   0% { stroke-dashoffset: 1000; stroke: rgba(201,168,76,.0); }
   20% { stroke: rgba(201,168,76,.5); }
@@ -2259,6 +2372,11 @@ var glintObserver = new IntersectionObserver(function(entries) {
 }, { threshold: 0.5 });
 document.querySelectorAll('.sec-id').forEach(function(el) {
   glintObserver.observe(el);
+  el.addEventListener('mouseenter', function() {
+    el.classList.remove('glint');
+    void el.offsetWidth;
+    el.classList.add('glint');
+  });
 });
 
 // Belt rows — add class
@@ -2294,8 +2412,8 @@ document.querySelectorAll('#pillars-grid > div').forEach(function(card, i) {
     <div class="two-col valign fade-in" style="margin-bottom:5rem">
       <div>
         <h2>Let's make<br><em style="color:var(--rope-l);font-style:italic">something.</em></h2>
-        <p class="body-serif" style="margin-bottom:1.5rem">Teaching, performing, consulting, collaborating. In Montréal or wherever the work takes us.</p>
-        <p class="body-mono" style="margin-bottom:2rem">Start with an email. No forms, no intake questionnaires. Just a message about what you are looking to do and we go from there.</p>
+        <p class="body-serif" style="margin-bottom:1.5rem">Teaching, performing, consulting, collaborating. In Montréal or wherever the work takes me.</p>
+        <p class="body-mono" style="margin-bottom:2rem">Start with an email. No forms, no intake questionnaires. Just a message about what you are looking to do and we go from there, just please be specific.</p>
         <div style="display:flex;gap:12px;flex-wrap:wrap">
           <a href="https://tensionmtl.ca/pages/about-willcat" target="_blank" class="btn btn-p">Book a date</a>
           <a href="https://tensionmtl.ca" target="_blank" class="btn btn-o">Tension MTL</a>
@@ -2308,15 +2426,16 @@ document.querySelectorAll('#pillars-grid > div').forEach(function(card, i) {
         <div style="border-left:2px solid rgba(169,124,26,.25);padding-left:1.5rem"><div style="font-family:var(--fm);font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:.35rem">Available for</div><div style="font-family:var(--fm);font-size:10px;color:rgba(240,234,216,.35);line-height:1.9">Workshops · Residencies · Performances<br>Production · Touring · Collaboration</div></div>
       </div>
     </div>
-    <div class="fade-in" style="text-align:center;padding:4rem 0;border-top:1px solid rgba(240,234,216,.06)">
-      <div style="display:flex;align-items:center;justify-content:center;gap:2rem;margin:0 auto 1.5rem;">
-        <a href="#break-sq" style="opacity:.2;transition:opacity .3s" onmouseover="this.style.opacity='.6'" onmouseout="this.style.opacity='.2'">
+    <div class="fade-in" style="text-align:center;padding:2.5rem 0 2rem;border-top:1px solid rgba(240,234,216,.06)">
+      <div style="display:flex;align-items:flex-end;justify-content:center;gap:2rem;margin:0 auto 1.25rem;">
+        <a href="#break-sq" class="svq-link" style="opacity:.25;transition:opacity .3s,filter .3s;display:flex;flex-direction:column;align-items:center;gap:6px;text-decoration:none" onmouseover="this.style.opacity='.8';this.style.filter='drop-shadow(0 0 8px rgba(201,168,76,.5))'" onmouseout="this.style.opacity='.25';this.style.filter='none'">
           <svg viewBox="0 0 28 28" fill="none" style="width:22px;height:22px;display:block"><rect x="2" y="2" width="24" height="24" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="square"/></svg>
         </a>
-        <a href="#break-tri" style="opacity:.2;transition:opacity .3s" onmouseover="this.style.opacity='.6'" onmouseout="this.style.opacity='.2'">
+        <a href="#break-tri" class="svq-link" style="transition:opacity .3s,filter .3s;display:flex;flex-direction:column;align-items:center;gap:4px;text-decoration:none;animation:brk-pulse 2.5s ease-in-out infinite" onmouseover="this.style.filter='drop-shadow(0 0 8px rgba(201,168,76,.5))';this.style.animationPlayState='paused';this.style.opacity='.8'" onmouseout="this.style.filter='none';this.style.animationPlayState='running';this.style.opacity=''">
+          <div style="width:1px;height:16px;background:linear-gradient(to top,rgba(201,168,76,.8),transparent)"></div>
           <svg viewBox="0 0 28 36" fill="none" style="width:22px;height:28px;display:block"><polygon points="14,2 26,34 2,34" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="miter"/></svg>
         </a>
-        <a href="#break-circ" style="opacity:.2;transition:opacity .3s" onmouseover="this.style.opacity='.6'" onmouseout="this.style.opacity='.2'">
+        <a href="#break-circ" class="svq-link" style="opacity:.25;transition:opacity .3s,filter .3s;display:flex;flex-direction:column;align-items:center;gap:6px;text-decoration:none" onmouseover="this.style.opacity='.8';this.style.filter='drop-shadow(0 0 8px rgba(201,168,76,.5))'" onmouseout="this.style.opacity='.25';this.style.filter='none'">
           <svg viewBox="0 0 28 28" fill="none" style="width:22px;height:22px;display:block"><circle cx="14" cy="14" r="12" stroke="#c9a84c" stroke-width="1.5"/></svg>
         </a>
       </div>
@@ -2337,7 +2456,7 @@ document.querySelectorAll('#pillars-grid > div').forEach(function(card, i) {
   </ul>
   <div style="font-family:'DM Mono',monospace;font-size:9.5px;color:rgba(240,234,216,.3);text-align:right;line-height:1.6">
     William Desjardins / Willcat<br>Montréal, QC · Canada<br>
-    <a href="https://tensionmtl.ca" style="color:#c9a84c">tensionmtl.ca</a>
+    <a href="https://willcatropes.art" style="color:#c9a84c">willcatropes.art</a>
   </div>
 </footer>
 
@@ -2581,5 +2700,16 @@ document.querySelectorAll('.fade-in').forEach(function(el) { fadeObserver.observ
 })();
 </script>
 
+<div id="lightbox" onclick="this.classList.remove('open');document.body.style.overflow=''">
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+function openLightbox(src) {
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+</script>
 </body>
 </html>
