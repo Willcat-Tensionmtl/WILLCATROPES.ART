@@ -160,6 +160,9 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
   #break-sq-bg img { object-position: 20% center; }
   #pillars-grid { display: none !important; }
   .pillars-carousel { display: block !important; }
+  .rolodex-carousel { display: block !important; }
+  #companions-wrapper, #level-grid, #workshop-grid { display: none !important; }
+  #companion-card, #level-card, #workshop-card { display: none !important; }
   /* Force all two-col to stack */
   .two-col { grid-template-columns: 1fr !important; gap: 2rem !important; }
   .body-mono { font-size: 14px !important; line-height: 1.7 !important; }
@@ -801,6 +804,33 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
   80% { opacity: 1; }
   100% { bottom: 100%; opacity: 0; }
 }
+
+/* ── Rolodex carousels — mobile only ── */
+.rolodex-carousel { display: none; }
+.rlx-track { overflow: hidden; }
+.rlx-inner { display: flex; transition: transform .4s cubic-bezier(0.16,1,0.3,1); }
+.rlx-slide { min-width: 100%; box-sizing: border-box; padding: 0 .25rem; }
+.rlx-nav { display: flex; align-items: center; justify-content: space-between; padding: .5rem 0; border-bottom: .5px solid rgba(240,234,216,.06); margin-bottom: 1.25rem; }
+.rlx-btn { background: none; border: none; cursor: pointer; color: rgba(201,168,76,.5); font-size: 1.2rem; padding: 4px 8px; line-height: 1; transition: color .2s; }
+.rlx-btn:hover { color: rgba(201,168,76,.9); }
+.rlx-dots { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; justify-content: center; max-width: 60vw; }
+.rlx-dot { height: 1px; width: 8px; background: rgba(201,168,76,.2); cursor: pointer; transition: all .3s; display: block; }
+.rlx-dot.active { width: 22px !important; background: #c9a84c; }
+.rlx-dropdown { position: relative; display: inline-block; }
+.rlx-dd-btn { background: none; border: none; cursor: pointer; padding: 4px 6px; line-height: 1; color: rgba(201,168,76,.4); font-size: 0; display: flex; align-items: center; }
+.rlx-dd-btn svg { transition: opacity .2s; }
+.rlx-dd-btn:hover svg { opacity: 1; }
+.rlx-dd-menu { position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%); background: rgba(18,15,10,.97); border: .5px solid rgba(201,168,76,.2); padding: .4rem 0; z-index: 200; min-width: 180px; display: none; }
+.rlx-dd-menu.open { display: block; }
+.rlx-dd-item { display: block; width: 100%; background: none; border: none; padding: .35rem 1rem; font-family: var(--fd); font-size: .85rem; font-weight: 300; color: rgba(240,234,216,.45); cursor: pointer; text-align: left; transition: color .15s; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.rlx-dd-item:hover { color: rgba(201,168,76,.9); }
+.rlx-dd-item.active { color: #c9a84c; }
+.rlx-kanji { font-family: var(--fj); font-size: 3.5rem; color: var(--rope); opacity: .35; line-height: 1; margin-bottom: .5rem; display: block; }
+.rlx-title { font-family: var(--fd); font-size: 1.5rem; font-weight: 300; color: var(--paper); margin-bottom: .25rem; }
+.rlx-reading { font-family: var(--fm); font-size: 8px; letter-spacing: .18em; text-transform: uppercase; color: var(--rope-l); margin-bottom: 1rem; display: block; }
+.rlx-desc { font-family: var(--fd); font-size: 1rem; font-style: italic; font-weight: 300; color: rgba(240,234,216,.55); line-height: 1.65; margin-bottom: 1rem; }
+.rlx-note { font-family: var(--fm); font-size: 11px; line-height: 1.8; color: rgba(240,234,216,.35); }
+.rlx-counter { font-family: var(--fm); font-size: 8px; letter-spacing: .15em; color: rgba(240,234,216,.25); }
 </style>
 </head>
 <body>
@@ -815,7 +845,7 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
 <!-- ══ A1 — HERO ══ -->
 <section class="hero" id="hero">
   <div class="hero-bg" id="hero-bg">
-    <img src="img/hero_01.jpg" alt="Willcat, Shibari Educator"/>
+    <img src="img/hero_01.jpg" alt="Willcat, Shibari Educator" fetchpriority="high" decoding="async"/>
   </div>
   <div class="hero-overlay"></div>
   <nav class="hero-nav">
@@ -948,7 +978,7 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
   <div class="inner">
     <div class="two-col valign fade-in" style="margin-bottom:3rem">
       <div style="aspect-ratio:3/4;background:#131315;overflow:hidden;position:relative;">
-        <img src="img/Willcat_portrait.png" alt="William Desjardins / Willcat" style="width:100%;height:100%;object-fit:cover;object-position:center 10%;display:block;"/>
+        <img loading="lazy" src="img/Willcat_portrait.png" alt="William Desjardins / Willcat" style="width:100%;height:100%;object-fit:cover;object-position:center 10%;display:block;"/>
         <div style="position:absolute;bottom:1rem;right:1rem;font-family:var(--fm);font-size:8.5px;letter-spacing:.15em;text-transform:uppercase;color:rgba(240,234,216,.2);">William Desjardins / Willcat</div>
       </div>
       <div>
@@ -1080,7 +1110,7 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
     <div class="fade-in" style="margin-top:3rem">
       <!-- Bokken — full width, edge up, tsuka right -->
       <div style="width:100%;margin-bottom:2.5rem;opacity:.6;">
-        <img src="img/Bokken.png" alt="" style="width:100%;display:block;mix-blend-mode:screen;"/>
+        <img loading="lazy" src="img/Bokken.png" alt="" style="width:100%;display:block;mix-blend-mode:screen;"/>
       </div>
 
       <div id="companions-divider" style="position:relative;margin-left:calc(-50vw + 50%);margin-right:calc(-50vw + 50%);width:100vw;height:1px;background:rgba(240,234,216,.08);margin-bottom:2rem;overflow:hidden;">
@@ -1140,11 +1170,11 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
 };
 
 var levelIcons = {
-  'lvl0': '<img src="img/Lvl_0_Neophyte.png" style="width:64px;height:64px;object-fit:contain;display:block;">',
-  'lvl1': '<img src="img/Lvl_1_Beginner.png" style="width:64px;height:64px;object-fit:contain;display:block;">',
-  'lvl2': '<img src="img/Lvl_2_Intermediate.png" style="width:64px;height:64px;object-fit:contain;display:block;">',
-  'lvl3': '<img src="img/Lvl_3_Advanced.png" style="width:64px;height:64px;object-fit:contain;display:block;">',
-  'lvl4': '<img src="img/Lvl_4_AdvancedPlus.png" style="width:64px;height:64px;object-fit:contain;display:block;">'
+  'lvl0': '<img loading="lazy" src="img/Lvl_0_Neophyte.png" style="width:64px;height:64px;object-fit:contain;display:block;">',
+  'lvl1': '<img loading="lazy" src="img/Lvl_1_Beginner.png" style="width:64px;height:64px;object-fit:contain;display:block;">',
+  'lvl2': '<img loading="lazy" src="img/Lvl_2_Intermediate.png" style="width:64px;height:64px;object-fit:contain;display:block;">',
+  'lvl3': '<img loading="lazy" src="img/Lvl_3_Advanced.png" style="width:64px;height:64px;object-fit:contain;display:block;">',
+  'lvl4': '<img loading="lazy" src="img/Lvl_4_AdvancedPlus.png" style="width:64px;height:64px;object-fit:contain;display:block;">'
 };
 
 function showLevel(id) {
@@ -1352,7 +1382,7 @@ var companions = {
       <div>
         <h2>Philosophy.<br><em style="color:var(--rope-l);font-style:italic">Or Practice?</em></h2>
         <!-- Maru Sankaku Shikaku -->
-        <img src="img/Maru_Sankaku_Shikaku.png" alt="Maru Sankaku Shikaku" style="width:250px;height:125px;display:block;margin-top:1.5rem;opacity:.7;"/>
+        <img loading="lazy" src="img/Maru_Sankaku_Shikaku.png" alt="Maru Sankaku Shikaku" style="width:250px;height:125px;display:block;margin-top:1.5rem;opacity:.7;"/>
         <div class="bq" style="margin-top:.75rem"><p>"Eventually everything will be understood."</p></div>
       </div>
       <div>
@@ -1741,7 +1771,7 @@ var companions = {
           <h2>A practice <em style="color:var(--rope-l);font-style:italic">of philosophy.</em></h2>
           <!-- Vitruvian man + □△○ geometry overlay -->
           <div style="position:relative;width:280px;height:280px;margin-top:1.5rem;">
-            <img src="img/Virtuvian_Man.png" alt="Vitruvian Man" style="width:100%;height:100%;display:block;mix-blend-mode:screen;"/>
+            <img loading="lazy" src="img/Virtuvian_Man.png" alt="Vitruvian Man" style="width:100%;height:100%;display:block;mix-blend-mode:screen;"/>
           </div>
         </div>
         <div>
@@ -1759,7 +1789,7 @@ var companions = {
 <!-- ══ C1 — BREAK □ ══ -->
 <div class="brk" id="break-sq">
   <div class="brk-bg" id="break-sq-bg">
-    <img src="img/break_sq.jpg" alt="" style="filter:brightness(.55) saturate(.6) hue-rotate(15deg);"/>
+    <img loading="lazy" src="img/break_sq.jpg" alt="" style="filter:brightness(.55) saturate(.6) hue-rotate(15deg);"/>
   </div>
   <div class="brk-overlay" style="background:linear-gradient(to right,rgba(19,19,21,.85) 0%,rgba(30,40,30,.25) 50%,rgba(19,19,21,.85) 100%),linear-gradient(to bottom,rgba(19,19,21,.6) 0%,transparent 40%,transparent 60%,rgba(19,19,21,.8) 100%);"></div>
   <div class="brk-ghost"><svg viewBox="0 0 500 500" fill="none" style="width:min(500px,80vw);height:auto;opacity:.06"><rect x="20" y="20" width="460" height="460" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="square"/><rect x="20" y="20" width="460" height="460" stroke="#3a6b3a" stroke-width="1" stroke-linecap="square"/></svg></div>
@@ -1875,7 +1905,7 @@ var companions = {
         </div>
       </div>
       <div id="c5-img" style="background:var(--ink2);aspect-ratio:3/4;overflow:hidden;">
-        <img src="img/Fundamentals.jpg" alt="Fundamentals — Book 1" style="width:100%;height:100%;object-fit:cover;display:block;"/>
+        <img loading="lazy" src="img/Fundamentals.jpg" alt="Fundamentals — Book 1" style="width:100%;height:100%;object-fit:cover;display:block;"/>
       </div>
     </div>
   </div>
@@ -1920,7 +1950,7 @@ var companions = {
       <div id="levels-line-shimmer" style="position:absolute;top:0;left:-30%;width:30%;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,.8),transparent);opacity:0;pointer-events:none;"></div>
     </div>
 
-    <div class="fade-in" style="display:grid;grid-template-columns:1fr 4fr;gap:1.25rem;align-items:start;margin-bottom:4rem">
+    <div id="level-grid" class="fade-in" style="display:grid;grid-template-columns:1fr 4fr;gap:1.25rem;align-items:start;margin-bottom:4rem">
       <div>
         <div id="level-list" style="display:flex;flex-direction:column;gap:0;">
           <div class="level-item" data-id="lvl0" onclick="showLevel('lvl0')"><span class="level-colour" style="background:#f0ead8"></span><span class="level-name">Neophyte</span></div>
@@ -1971,7 +2001,7 @@ var companions = {
 <!-- ══ D1 — BREAK △ ══ -->
 <div class="brk" id="break-tri">
   <div class="brk-bg" id="break-tri-bg">
-    <img src="img/break_tri.jpg" alt="" style="filter:brightness(.55) saturate(.5) sepia(.2);"/>
+    <img loading="lazy" src="img/break_tri.jpg" alt="" style="filter:brightness(.55) saturate(.5) sepia(.2);"/>
   </div>
   <div class="brk-overlay" style="background:linear-gradient(to right,rgba(19,13,13,.85) 0%,rgba(80,20,20,.25) 50%,rgba(19,13,13,.85) 100%),linear-gradient(to bottom,rgba(19,13,13,.6) 0%,transparent 40%,transparent 60%,rgba(19,13,13,.8) 100%);"></div>
   <div class="brk-ghost"><svg viewBox="0 0 600 520" fill="none" style="width:min(600px,90vw);height:auto;opacity:.07"><polygon points="300,20 580,500 20,500" stroke="#c9a84c" stroke-width="2" stroke-linejoin="miter"/><polygon points="300,20 580,500 20,500" stroke="#8b2020" stroke-width="1" stroke-linejoin="miter"/></svg></div>
@@ -2004,10 +2034,10 @@ var companions = {
     <!-- Photos -->
     <div class="fade-in" style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(240,234,216,.05);">
       <div style="overflow:hidden;aspect-ratio:4/5;">
-        <img src="img/doggo_blanche_shoot.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;filter:brightness(.85) saturate(.8);transition:transform .6s var(--ease);" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'"/>
+        <img loading="lazy" src="img/doggo_blanche_shoot.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;filter:brightness(.85) saturate(.8);transition:transform .6s var(--ease);" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'"/>
       </div>
       <div style="overflow:hidden;aspect-ratio:4/5;">
-        <img src="img/Masha_blanche_shoot.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;filter:brightness(.85) saturate(.8);transition:transform .6s var(--ease);" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'"/>
+        <img loading="lazy" src="img/Masha_blanche_shoot.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;filter:brightness(.85) saturate(.8);transition:transform .6s var(--ease);" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'"/>
       </div>
     </div>
   </div>
@@ -2100,7 +2130,7 @@ var companions = {
       </div>
       <p class="body-serif" style="margin-bottom:2.5rem;max-width:560px">You don't always know what you need. That's fine. Tell me where you are and I'll tell you what's possible. Adaptability is the practice.</p>
 
-      <div style="display:grid;grid-template-columns:1fr 4fr;gap:1.25rem;align-items:start;">
+      <div id="workshop-grid" style="display:grid;grid-template-columns:1fr 4fr;gap:1.25rem;align-items:start;">
 
         <!-- Left: workshop list -->
         <div>
@@ -2212,7 +2242,7 @@ var companions = {
 <!-- ══ E1 — BREAK ○ ══ -->
 <div class="brk" id="break-circ">
   <div class="brk-bg" id="break-circ-bg">
-    <img src="img/break_circ.jpg" alt="" style="filter:brightness(.4) saturate(.3);object-position:85% 80%;"/>
+    <img loading="lazy" src="img/break_circ.jpg" alt="" style="filter:brightness(.4) saturate(.3);object-position:85% 80%;"/>
   </div>
   <div class="brk-overlay" style="background:linear-gradient(to right,rgba(19,19,21,.9) 0%,rgba(19,19,21,.4) 50%,rgba(19,19,21,.9) 100%),linear-gradient(to bottom,rgba(19,19,21,.7) 0%,transparent 40%,transparent 60%,rgba(19,19,21,.85) 100%);"></div>
   <div class="brk-ghost"><svg viewBox="0 0 500 500" fill="none" style="width:min(500px,80vw);height:auto;opacity:.07"><circle cx="250" cy="250" r="230" stroke="#c9a84c" stroke-width="1.5"/></svg></div>
@@ -2245,7 +2275,7 @@ var companions = {
         <p class="body-serif" style="margin-bottom:1.5rem">There is another version that brought me in.</p>
         <p class="body-serif" style="margin-bottom:1.5rem">I came to rope for the loss of control. Then quickly found a penchant for suffering. I identify as an exhibitionist and a masochist but pain alone doesn't do much for me. Suffering does. The anticipation of it. Being in the hands of someone who knows how to make me suffer, who <em>wants</em> me to suffer for them, and who is getting off on it while doing it in front of a crowd. That. All of that.</p>
         <p class="body-serif" style="margin-bottom:1.25rem">That is where I began. As Uke. As the one receiving.<br>It is from that place that I understand what I now apply.</p>
-        <img src="img/fox_knoctambule2025.jpg" alt="" style="width:100%;aspect-ratio:2/1;object-fit:cover;object-position:center;display:block;filter:brightness(.85) saturate(.75);margin-top:.5rem">
+        <img loading="lazy" src="img/fox_knoctambule2025.jpg" alt="" style="width:100%;aspect-ratio:2/1;object-fit:cover;object-position:center;display:block;filter:brightness(.85) saturate(.75);margin-top:.5rem">
       </div>
     </div>
 
@@ -2260,7 +2290,7 @@ var companions = {
         <div class="bq-class" style="margin-bottom:.5rem"><p>In rope; with rope, this becomes Semenawa, tormenting rope. With words; Kotobazeme, think flirting, humiliation, embarrassment or teasing. Or even Seme; the "top" who applies pressure, both psychological or physical, to the extent that is possible with that partner "uke", the one who receives. Seme in Kinbaku is not just about applying tight ropes; it is being able to understand what is, just enough. Rope not just for the aesthetics of it, or suspended for an image or end goal but for the journey of being held in sustained torment that requires absolute trust when participating in it.</p></div>
         <div style="text-align:right;font-family:var(--fm);font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:var(--rope-l);margin-bottom:1.5rem">Quotes from class</div>
         <div id="seme-img-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center;margin-top:1.5rem">
-          <img src="img/Doggo_Soiree.jpg" alt="" style="width:100%;aspect-ratio:2/1;object-fit:cover;object-position:center;display:block;filter:brightness(.85) saturate(.75);">
+          <img loading="lazy" src="img/Doggo_Soiree.jpg" alt="" style="width:100%;aspect-ratio:2/1;object-fit:cover;object-position:center;display:block;filter:brightness(.85) saturate(.75);">
           <div>
             <p class="body-mono" style="margin-bottom:1rem">The difference between Seme, torture and abuse is consent, skill, and the capacity to read another person accurately under pressure.</p>
             <p class="body-mono" style="color:rgba(240,234,216,.5)">Not occasionally. Continuously. In real time.</p>
@@ -2284,7 +2314,7 @@ var companions = {
       <!-- Desktop: flanking images -->
       <div class="extremes-desktop" style="display:grid;grid-template-columns:80px 1fr 80px;gap:1.5rem;align-items:stretch">
         <div style="position:relative;min-height:100%;background:rgba(169,124,26,.08);overflow:hidden">
-          <img src="img/Extremes_Fox_Darkroom_2.jpg" alt="" onclick="openLightbox(this.src)" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:brightness(.6) saturate(.5);cursor:zoom-in;position:absolute;inset:0">
+          <img loading="lazy" src="img/Extremes_Fox_Darkroom_2.jpg" alt="" onclick="openLightbox(this.src)" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:brightness(.6) saturate(.5);cursor:zoom-in;position:absolute;inset:0">
           <div class="extremes-arrow extremes-arrow-l" onclick="openLightbox(document.querySelector('#extremes-block img:first-of-type').src)">
             <svg viewBox="0 0 16 28" fill="none" style="width:10px;height:18px"><polyline points="12,2 2,14 12,26" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="miter" stroke-linecap="square" fill="none"/></svg>
           </div>
@@ -2298,7 +2328,7 @@ var companions = {
           </div>
         </div>
         <div style="position:relative;min-height:100%;background:rgba(169,124,26,.08);overflow:hidden">
-          <img src="img/Extremes_Fox_Darkroom_1.jpg" alt="" onclick="openLightbox(this.src)" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:brightness(.6) saturate(.5);cursor:zoom-in;position:absolute;inset:0">
+          <img loading="lazy" src="img/Extremes_Fox_Darkroom_1.jpg" alt="" onclick="openLightbox(this.src)" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:brightness(.6) saturate(.5);cursor:zoom-in;position:absolute;inset:0">
           <div class="extremes-arrow extremes-arrow-r" onclick="openLightbox(document.querySelector('#extremes-block img:last-of-type').src)">
             <svg viewBox="0 0 16 28" fill="none" style="width:10px;height:18px"><polyline points="4,2 14,14 4,26" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="miter" stroke-linecap="square" fill="none"/></svg>
           </div>
@@ -2372,7 +2402,7 @@ var companions = {
   <div class="inner">
     <div class="two-col fade-in" style="margin-bottom:4rem;align-items:stretch;">
       <div style="overflow:hidden;background:var(--ink2);display:flex;">
-        <img src="img/CirqueduBoudoir_Willcat_Fox_photo_tieframe.jpg" alt="" style="width:100%;object-fit:cover;display:block;filter:brightness(.85) saturate(.8);"/>
+        <img loading="lazy" src="img/CirqueduBoudoir_Willcat_Fox_photo_tieframe.jpg" alt="" style="width:100%;object-fit:cover;display:block;filter:brightness(.85) saturate(.8);"/>
       </div>
       <div>
         <div class="lbl" style="margin-bottom:1rem">In the World</div>
@@ -2718,37 +2748,151 @@ var fadeObserver = new IntersectionObserver(function(entries) {
 document.querySelectorAll('.fade-in').forEach(function(el) { fadeObserver.observe(el); });
 
 // Extremes block — show corner buttons on mobile, hide flanking images
-function handleExtremesMobile() {
-  var btns = document.querySelector('.extremes-corner-btns');
-  var grid = document.querySelector('.extremes-desktop');
-  if (!grid) return;
+// ── Mobile layout handler — consolidates all grid overrides ──────────────
+function handleMobileLayouts() {
   var mobile = window.innerWidth <= 600;
-  if (btns) btns.style.display = 'none';
-  if (mobile) {
-    grid.style.gridTemplateColumns = '40px 1fr 40px';
-    grid.style.gap = '0';
-  } else {
-    grid.style.gridTemplateColumns = '80px 1fr 80px';
-    grid.style.gap = '1.5rem';
-  }
-}
-handleExtremesMobile();
-window.addEventListener('resize', handleExtremesMobile);
 
-// Seme image grid — stack on mobile
-function handleSemeGrid() {
-  var grid = document.getElementById('seme-img-grid');
-  if (!grid) return;
-  if (window.innerWidth <= 600) {
-    grid.style.gridTemplateColumns = '1fr';
-    grid.style.gap = '1rem';
-  } else {
-    grid.style.gridTemplateColumns = '1fr 1fr';
-    grid.style.gap = '2rem';
+  // Rolodex grids — hide on mobile, show carousels instead
+  ['companions-wrapper','level-grid','workshop-grid'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.style.display = mobile ? 'none' : 'grid';
+  });
+  ['companion-card','level-card','workshop-card'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.style.display = mobile ? 'none' : '';
+  });
+  ['companions-carousel','levels-carousel','workshops-carousel'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.style.display = mobile ? 'block' : 'none';
+  });
+
+  // Fundamentals stats + buttons
+  var stats = document.getElementById('c5-stats');
+  var btns  = document.getElementById('c5-btns');
+  if (stats) stats.style.gridTemplateColumns = mobile ? 'repeat(2,1fr)' : 'repeat(5,1fr)';
+  if (btns)  btns.style.gridTemplateColumns  = mobile ? '1fr' : 'repeat(3,1fr)';
+
+  // Seme image grid
+  var semeGrid = document.getElementById('seme-img-grid');
+  if (semeGrid) {
+    semeGrid.style.gridTemplateColumns = mobile ? '1fr' : '1fr 1fr';
+    semeGrid.style.gap = mobile ? '1rem' : '2rem';
   }
+
+  // Extremes flanking images
+  var extremesGrid = document.querySelector('.extremes-desktop');
+  if (extremesGrid) {
+    extremesGrid.style.gridTemplateColumns = mobile ? '40px 1fr 40px' : '80px 1fr 80px';
+    extremesGrid.style.gap = mobile ? '0' : '1.5rem';
+  }
+  var extremesBtns = document.querySelector('.extremes-corner-btns');
+  if (extremesBtns) extremesBtns.style.display = 'none';
 }
-handleSemeGrid();
-window.addEventListener('resize', handleSemeGrid);
+
+handleMobileLayouts();
+
+window.addEventListener('resize', handleMobileLayouts);
+
+// ── Rolodex carousel builder ─────────────────────────────────────────────
+(function() {
+
+  function buildCarousel(id, slides, targetId) {
+    var target = document.getElementById(targetId);
+    if (!target) return;
+    var wrap = document.createElement('div');
+    wrap.className = 'rolodex-carousel';
+    wrap.id = id + '-carousel';
+    var dotsHtml = slides.map(function(_, i) {
+      return '<span class="rlx-dot' + (i===0?' active':'') + '" onclick="rlxGo(\'' + id + '\',' + i + ')"></span>';
+    }).join('');
+    var titlesHtml = slides.map(function(s, i) {
+      var m = s.match(/class="rlx-title"[^>]*>([^<]+)</);
+      var label = m ? m[1] : (i+1)+'';
+      return '<button class="rlx-dd-item' + (i===0?' active':'') + '" onclick="rlxGo(\'' + id + '\',' + i + ');document.getElementById(\'' + id + '-ddmenu\').classList.remove(\'open\')">' + label + '</button>';
+    }).join('');
+    wrap.innerHTML =
+      '<div class="rlx-nav">' +
+        '<button class="rlx-btn" onclick="rlxPrev(\'' + id + '\')">\u2190</button>' +
+        '<div style="display:flex;flex-direction:column;align-items:center;gap:6px">' +
+          '<div class="rlx-dots" id="' + id + '-dots">' + dotsHtml + '</div>' +
+          '<div class="rlx-dropdown">' +
+            '<button class="rlx-dd-btn" onclick="document.getElementById(\'' + id + '-ddmenu\').classList.toggle(\'open\')" aria-label="Jump to">' +
+              '<svg viewBox="0 0 8 5" fill="none" width="8" height="5"><polyline points="1,1 4,4 7,1" stroke="#c9a84c" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity=".5"/></svg>' +
+            '</button>' +
+            '<div class="rlx-dd-menu" id="' + id + '-ddmenu">' + titlesHtml + '</div>' +
+          '</div>' +
+        '</div>' +
+        '<button class="rlx-btn" onclick="rlxNext(\'' + id + '\')">\u2192</button>' +
+      '</div>' +
+      '<div class="rlx-track"><div class="rlx-inner" id="' + id + '-inner">' +
+        slides.map(function(s) { return '<div class="rlx-slide">' + s + '</div>'; }).join('') +
+      '</div></div>';
+    // Insert carousel after title if it exists, otherwise after target
+    var title = document.getElementById(targetId + '-carousel-title');
+    var ref = title || target;
+    ref.parentNode.insertBefore(wrap, ref.nextSibling);
+    wrap._idx = 0;
+    wrap._total = slides.length;
+  }
+
+  window.rlxGo = function(id, idx) {
+    var wrap = document.getElementById(id + '-carousel');
+    if (!wrap) return;
+    wrap._idx = Math.max(0, Math.min(idx, wrap._total - 1));
+    document.getElementById(id + '-inner').style.transform = 'translateX(-' + (wrap._idx * 100) + '%)';
+    document.querySelectorAll('#' + id + '-dots .rlx-dot').forEach(function(d,i){ d.classList.toggle('active', i===wrap._idx); });
+    var menu = document.getElementById(id + '-ddmenu');
+    if (menu) menu.querySelectorAll('.rlx-dd-item').forEach(function(d,i){ d.classList.toggle('active', i===wrap._idx); });
+  };
+  window.rlxPrev = function(id) { var w=document.getElementById(id+'-carousel'); if(w) rlxGo(id, w._idx>0?w._idx-1:w._total-1); };
+  window.rlxNext = function(id) { var w=document.getElementById(id+'-carousel'); if(w) rlxGo(id, w._idx<w._total-1?w._idx+1:0); };
+
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.rlx-dropdown')) {
+      document.querySelectorAll('.rlx-dd-menu.open').forEach(function(m){ m.classList.remove('open'); });
+    }
+  });
+
+  // Companions
+  var companionOrder = ['do','ikigai','shuhari','ma','kaizen','shoshin','gaman','wabisabi','ichigoichie','shikataganai','mononoaware','sennosen','mushin'];
+  // Add title above carousel
+  function addCarouselTitle(targetId, titleHtml) {
+    var target = document.getElementById(targetId);
+    if (!target) return;
+    var existing = document.getElementById(targetId + '-carousel-title');
+    if (existing) return;
+    var div = document.createElement('div');
+    div.id = targetId + '-carousel-title';
+    div.className = 'rolodex-carousel';
+    div.style.cssText = 'margin-bottom:.75rem;padding-bottom:.75rem;border-bottom:.5px solid rgba(240,234,216,.08);';
+    div.innerHTML = titleHtml;
+    target.parentNode.insertBefore(div, target.nextSibling);
+  }
+  addCarouselTitle('companions-wrapper', '<div class="lbl">My Thirteen Companions</div>');
+  addCarouselTitle('level-grid', '<div class="lbl">Locate Yourself</div><div style="font-family:var(--fd);font-size:.8rem;font-style:italic;color:rgba(240,234,216,.25)">Not judgement.</div>');
+  addCarouselTitle('workshop-grid', '<div class="lbl">Workshop Inspiration</div>');
+
+  buildCarousel('companions', companionOrder.map(function(key) {
+    var c = companions[key]; if(!c) return '';
+    return '<div style="text-align:center;padding:.5rem 0 1.5rem"><span class="rlx-kanji">'+c.kanji+'</span><div class="rlx-title">'+c.name+'</div><span class="rlx-reading">'+c.reading+'</span><p class="rlx-desc">'+c.desc+'</p><p class="rlx-note">'+c.rope+'</p></div>';
+  }), 'companions-wrapper');
+
+  // Levels
+  var levelOrder = ['lvl0','lvl1','lvl2','lvl3','lvl4','final'];
+  buildCarousel('levels', levelOrder.map(function(key) {
+    var l = levels[key]; if(!l) return '';
+    var icon = levelIcons[key]||'';
+    return '<div style="text-align:center;padding:.5rem 0 1.5rem">'+(icon?'<div style="margin:0 auto .75rem;width:56px;height:56px">'+icon+'</div>':'')+'<div class="rlx-reading">'+(l.badge||'')+'</div><div class="rlx-title">'+l.title+'</div><p class="rlx-desc" style="margin-top:.75rem">'+l.desc+'</p><p class="rlx-note">'+(l.skills||'')+'</p></div>';
+  }), 'level-grid');
+
+  // Workshops
+  var workshopOrder = ['fundamentals','bodymech','gote','tension','safety','nawajutsu','partial','suspension','intentionality','semenawa','do','festival','other'];
+  buildCarousel('workshops', workshopOrder.map(function(key) {
+    var w = workshops[key]; if(!w) return '';
+    return '<div style="padding:.5rem 0 1.5rem"><div class="rlx-title" style="margin-bottom:.75rem">'+w.title+'</div><p class="rlx-desc">'+w.desc.replace(/\n\n/g,'<br><br>')+'</p><p class="rlx-note">'+w.note+'</p></div>';
+  }), 'workshop-grid');
+
+})();
 
 // ── List shimmer — idle ripple down each rolodex/workshop list ──────────────
 (function() {
@@ -2823,7 +2967,7 @@ window.addEventListener('resize', handleSemeGrid);
 </script>
 
 <div id="lightbox" onclick="this.classList.remove('open');document.body.style.overflow=''">
-  <img id="lightbox-img" src="" alt="">
+  <img loading="lazy" id="lightbox-img" src="" alt="">
 </div>
 
 <script>
