@@ -711,7 +711,29 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
   stroke: rgba(201,168,76,.35);
   animation: shapeTrace .8s ease-out forwards;
 }
-/* Lightbox */
+/* Extremes block arrows */
+.extremes-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  animation: brk-pulse 2.5s ease-in-out infinite;
+  z-index: 2;
+  background: linear-gradient(to bottom, transparent, rgba(13,11,8,.3), transparent);
+}
+.extremes-arrow:hover { animation: none; opacity: 1; }
+.extremes-arrow-l { left: 0; }
+.extremes-arrow-r { left: 0; }
+
+@media (max-width: 600px) {
+  .extremes-desktop { grid-template-columns: 1fr !important; }
+  .extremes-desktop > div:first-child,
+  .extremes-desktop > div:last-child { display: none; }
+  #extremes-block .extremes-corner-btns { display: flex; }
+}
 #lightbox {
   display: none;
   position: fixed;
@@ -2249,17 +2271,41 @@ var companions = {
       </div>
     </div>
 
-    <div class="fade-in" style="padding:4rem 0;border-top:1px solid rgba(240,234,216,.06);display:grid;grid-template-columns:auto 1fr auto;gap:2rem;align-items:stretch">
-      <img src="img/Extremes_Fox_Darkroom_2.jpg" alt="" onclick="openLightbox(this.src)" style="width:120px;object-fit:cover;object-position:center;display:block;filter:brightness(.6) saturate(.5);align-self:stretch;cursor:zoom-in">
-      <div style="text-align:center">
-        <p class="body-serif" style="margin-bottom:2rem;color:rgba(240,234,216,.5)">For those thirsting for the extremes, the raw energies, the hentai scenes, the places where rope becomes something older and darker than the art you sometimes see today, you have your work cut out for you.</p>
-        <p class="body-serif" style="margin-bottom:2rem;color:rgba(240,234,216,.5)">It is possible to find those willing and wanting. But the trust between you needs to grow first. And you must be confident enough to effortlessly read someone, to bring them to that precipice without letting them fall over and or into it.</p>
-        <p class="body-serif" style="margin-bottom:3rem;color:rgba(240,234,216,.5)">That confidence does not come just from enthusiasm. It comes from thousands of hours of attention. It comes, ideally, from having been Uke yourself and knowing what it costs to be held in that place by someone who is paying attention.</p>
-        <div style="border-top:1px solid rgba(169,124,26,.2);padding-top:2rem">
-          <p style="font-family:var(--fd);font-size:clamp(1.1rem,1.6vw,1.4rem);font-style:italic;font-weight:300;color:rgba(240,234,216,.6);line-height:1.6">The circle is not just about return. It is about what you carry back with you.</p>
+    <div class="fade-in" id="extremes-block" style="padding:4rem 0;border-top:1px solid rgba(240,234,216,.06);position:relative;">
+      <!-- Mobile: corner tap buttons -->
+      <div class="extremes-corner-btns" style="display:none;justify-content:space-between;margin-bottom:1.5rem">
+        <div onclick="openLightbox('img/Extremes_Fox_Darkroom_2.jpg')" style="cursor:pointer;display:flex;align-items:center;gap:.4rem;animation:brk-pulse 2.5s ease-in-out infinite">
+          <svg viewBox="0 0 16 28" fill="none" style="width:8px;height:14px"><polyline points="12,2 2,14 12,26" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="miter" stroke-linecap="square" fill="none"/></svg>
+          <span style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:rgba(201,168,76,.5)">View</span>
+        </div>
+        <div onclick="openLightbox('img/Extremes_Fox_Darkroom_1.jpg')" style="cursor:pointer;display:flex;align-items:center;gap:.4rem;animation:brk-pulse 2.5s ease-in-out infinite;animation-delay:.8s">
+          <span style="font-family:var(--fm);font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:rgba(201,168,76,.5)">View</span>
+          <svg viewBox="0 0 16 28" fill="none" style="width:8px;height:14px"><polyline points="4,2 14,14 4,26" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="miter" stroke-linecap="square" fill="none"/></svg>
         </div>
       </div>
-      <img src="img/Extremes_Fox_Darkroom_1.jpg" alt="" onclick="openLightbox(this.src)" style="width:120px;object-fit:cover;object-position:center;display:block;filter:brightness(.6) saturate(.5);align-self:stretch;cursor:zoom-in">
+      <!-- Desktop: flanking images -->
+      <div class="extremes-desktop" style="display:grid;grid-template-columns:80px 1fr 80px;gap:1.5rem;align-items:stretch">
+        <div style="position:relative;min-height:100%;background:rgba(169,124,26,.08);overflow:hidden">
+          <img src="img/Extremes_Fox_Darkroom_2.jpg" alt="" onclick="openLightbox(this.src)" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:brightness(.6) saturate(.5);cursor:zoom-in;position:absolute;inset:0">
+          <div class="extremes-arrow extremes-arrow-l" onclick="openLightbox(document.querySelector('#extremes-block img:first-of-type').src)">
+            <svg viewBox="0 0 16 28" fill="none" style="width:10px;height:18px"><polyline points="12,2 2,14 12,26" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="miter" stroke-linecap="square" fill="none"/></svg>
+          </div>
+        </div>
+        <div style="text-align:center">
+          <p class="body-serif" style="margin-bottom:2rem;color:rgba(240,234,216,.5)">For those thirsting for the extremes, the raw energies, the hentai scenes, the places where rope becomes something older and darker than the art you sometimes see today, you have your work cut out for you.</p>
+          <p class="body-serif" style="margin-bottom:2rem;color:rgba(240,234,216,.5)">It is possible to find those willing and wanting. But the trust between you needs to grow first. And you must be confident enough to effortlessly read someone, to bring them to that precipice without letting them fall over and or into it.</p>
+          <p class="body-serif" style="margin-bottom:3rem;color:rgba(240,234,216,.5)">That confidence does not come just from enthusiasm. It comes from thousands of hours of attention. It comes, ideally, from having been Uke yourself and knowing what it costs to be held in that place by someone who is paying attention.</p>
+          <div style="border-top:1px solid rgba(169,124,26,.2);padding-top:2rem">
+            <p style="font-family:var(--fd);font-size:clamp(1.1rem,1.6vw,1.4rem);font-style:italic;font-weight:300;color:rgba(240,234,216,.6);line-height:1.6">The circle is not just about return. It is about what you carry back with you.</p>
+          </div>
+        </div>
+        <div style="position:relative;min-height:100%;background:rgba(169,124,26,.08);overflow:hidden">
+          <img src="img/Extremes_Fox_Darkroom_1.jpg" alt="" onclick="openLightbox(this.src)" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:brightness(.6) saturate(.5);cursor:zoom-in;position:absolute;inset:0">
+          <div class="extremes-arrow extremes-arrow-r" onclick="openLightbox(document.querySelector('#extremes-block img:last-of-type').src)">
+            <svg viewBox="0 0 16 28" fill="none" style="width:10px;height:18px"><polyline points="4,2 14,14 4,26" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="miter" stroke-linecap="square" fill="none"/></svg>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -2672,6 +2718,30 @@ var fadeObserver = new IntersectionObserver(function(entries) {
   });
 }, {threshold: 0.06});
 document.querySelectorAll('.fade-in').forEach(function(el) { fadeObserver.observe(el); });
+
+// Extremes block — show corner buttons on mobile, hide flanking images
+function handleExtremesMobile() {
+  var btns = document.querySelector('.extremes-corner-btns');
+  var left = document.querySelector('.extremes-desktop > div:first-child');
+  var right = document.querySelector('.extremes-desktop > div:last-child');
+  var grid = document.querySelector('.extremes-desktop');
+  if (!grid) return;
+  var mobile = window.innerWidth <= 600;
+  if (btns) btns.style.display = 'none';
+  if (mobile) {
+    grid.style.gridTemplateColumns = '28px 1fr 28px';
+    grid.style.gap = '0';
+    if (left) { left.style.display = ''; left.style.overflow = 'hidden'; left.style.cursor = 'zoom-in'; }
+    if (right) { right.style.display = ''; right.style.overflow = 'hidden'; right.style.cursor = 'zoom-in'; }
+  } else {
+    grid.style.gridTemplateColumns = '80px 1fr 80px';
+    grid.style.gap = '1.5rem';
+    if (left) left.style.display = '';
+    if (right) right.style.display = '';
+  }
+}
+handleExtremesMobile();
+window.addEventListener('resize', handleExtremesMobile);
 
 // ── List shimmer — idle ripple down each rolodex/workshop list ──────────────
 (function() {
