@@ -192,7 +192,8 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
   .hero-nav { top: 100px; }
   .hero-content { padding: 2rem 1.5rem; }
   .hero-name { font-size: clamp(3.2rem,14vw,5rem); }
-  #companions-wrapper { grid-template-columns: 1fr !important; gap: 2rem !important; }
+  #seme-img-grid { grid-template-columns: 1fr !important; gap: 1rem !important; }
+  #seme-img-grid img { aspect-ratio: 16/9 !important; }
 }
 
 /* ══ MOBILE MENU ══ */
@@ -729,10 +730,7 @@ h2 { font-family: var(--fd); font-size: clamp(2.8rem,4.5vw,4.8rem); font-weight:
 .extremes-arrow-r { left: 0; }
 
 @media (max-width: 600px) {
-  .extremes-desktop { grid-template-columns: 1fr !important; }
-  .extremes-desktop > div:first-child,
-  .extremes-desktop > div:last-child { display: none; }
-  #extremes-block .extremes-corner-btns { display: flex; }
+  .extremes-desktop { grid-template-columns: 40px 1fr 40px !important; gap: 0 !important; }
 }
 #lightbox {
   display: none;
@@ -2261,7 +2259,7 @@ var companions = {
         <p class="body-serif" style="margin-bottom:1.5rem">It is way more complicated than just saying "Well I'm a sadist & you agreed to pain..."</p>
         <div class="bq-class" style="margin-bottom:.5rem"><p>In rope; with rope, this becomes Semenawa, tormenting rope. With words; Kotobazeme, think flirting, humiliation, embarrassment or teasing. Or even Seme; the "top" who applies pressure, both psychological or physical, to the extent that is possible with that partner "uke", the one who receives. Seme in Kinbaku is not just about applying tight ropes; it is being able to understand what is, just enough. Rope not just for the aesthetics of it, or suspended for an image or end goal but for the journey of being held in sustained torment that requires absolute trust when participating in it.</p></div>
         <div style="text-align:right;font-family:var(--fm);font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:var(--rope-l);margin-bottom:1.5rem">Quotes from class</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center;margin-top:1.5rem">
+        <div id="seme-img-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center;margin-top:1.5rem">
           <img src="img/Doggo_Soiree.jpg" alt="" style="width:100%;aspect-ratio:2/1;object-fit:cover;object-position:center;display:block;filter:brightness(.85) saturate(.75);">
           <div>
             <p class="body-mono" style="margin-bottom:1rem">The difference between Seme, torture and abuse is consent, skill, and the capacity to read another person accurately under pressure.</p>
@@ -2722,26 +2720,35 @@ document.querySelectorAll('.fade-in').forEach(function(el) { fadeObserver.observ
 // Extremes block — show corner buttons on mobile, hide flanking images
 function handleExtremesMobile() {
   var btns = document.querySelector('.extremes-corner-btns');
-  var left = document.querySelector('.extremes-desktop > div:first-child');
-  var right = document.querySelector('.extremes-desktop > div:last-child');
   var grid = document.querySelector('.extremes-desktop');
   if (!grid) return;
   var mobile = window.innerWidth <= 600;
   if (btns) btns.style.display = 'none';
   if (mobile) {
-    grid.style.gridTemplateColumns = '28px 1fr 28px';
+    grid.style.gridTemplateColumns = '40px 1fr 40px';
     grid.style.gap = '0';
-    if (left) { left.style.display = ''; left.style.overflow = 'hidden'; left.style.cursor = 'zoom-in'; }
-    if (right) { right.style.display = ''; right.style.overflow = 'hidden'; right.style.cursor = 'zoom-in'; }
   } else {
     grid.style.gridTemplateColumns = '80px 1fr 80px';
     grid.style.gap = '1.5rem';
-    if (left) left.style.display = '';
-    if (right) right.style.display = '';
   }
 }
 handleExtremesMobile();
 window.addEventListener('resize', handleExtremesMobile);
+
+// Seme image grid — stack on mobile
+function handleSemeGrid() {
+  var grid = document.getElementById('seme-img-grid');
+  if (!grid) return;
+  if (window.innerWidth <= 600) {
+    grid.style.gridTemplateColumns = '1fr';
+    grid.style.gap = '1rem';
+  } else {
+    grid.style.gridTemplateColumns = '1fr 1fr';
+    grid.style.gap = '2rem';
+  }
+}
+handleSemeGrid();
+window.addEventListener('resize', handleSemeGrid);
 
 // ── List shimmer — idle ripple down each rolodex/workshop list ──────────────
 (function() {
