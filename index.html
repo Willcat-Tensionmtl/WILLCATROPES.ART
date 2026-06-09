@@ -2847,6 +2847,21 @@ window.addEventListener('resize', handleMobileLayouts);
   window.rlxPrev = function(id) { var w=document.getElementById(id+'-carousel'); if(w) rlxGo(id, w._idx>0?w._idx-1:w._total-1); };
   window.rlxNext = function(id) { var w=document.getElementById(id+'-carousel'); if(w) rlxGo(id, w._idx<w._total-1?w._idx+1:0); };
 
+  // Touch swipe support
+  document.addEventListener('touchstart', function(e) {
+    var carousel = e.target.closest('.rolodex-carousel');
+    if (!carousel) return;
+    carousel._touchX = e.touches[0].clientX;
+  }, { passive: true });
+  document.addEventListener('touchend', function(e) {
+    var carousel = e.target.closest('.rolodex-carousel');
+    if (!carousel || carousel._touchX === undefined) return;
+    var dx = e.changedTouches[0].clientX - carousel._touchX;
+    var id = carousel.id.replace('-carousel', '');
+    if (Math.abs(dx) > 40) dx < 0 ? rlxNext(id) : rlxPrev(id);
+    carousel._touchX = undefined;
+  }, { passive: true });
+
   document.addEventListener('click', function(e) {
     if (!e.target.closest('.rlx-dropdown')) {
       document.querySelectorAll('.rlx-dd-menu.open').forEach(function(m){ m.classList.remove('open'); });
