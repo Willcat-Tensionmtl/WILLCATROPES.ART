@@ -34,13 +34,13 @@
 
 <!-- ══ WIP BANNER ══ -->
 <div id="wip" >
-  <span class="wip__text">This site is under construction. Enjoy, but know that I am working on it.</span>
+  <span class="wip__text">This site is under construction. Enjoy this draft.</span>
   <button id="wip-dismiss" class="btn-reset--text">dismiss</button>
 </div>
 <div id="wip-spacer" class="shimmer-spacer"></div>
 
 <!-- ══ A1 — HERO ══ -->
-<section class="hero" id="hero">
+<section class="hero" id="hero" data-sec="A1">
   <div class="hero__bg" id="hero-bg">
     <img src="img/hero_01.webp" alt="Willcat, Shibari Educator" fetchpriority="high" decoding="async"/>
   </div>
@@ -53,6 +53,7 @@
         <li><a href="#break-sq" class="t-mono-link nav-shape-link" title="Structure">□</a></li>
         <li><a href="#break-tri" class="t-mono-link nav-shape-link" title="Tension">△</a></li>
         <li><a href="#break-circ" class="t-mono-link nav-shape-link" title="Flow">○</a></li>
+        <li><a href="#break-inf" class="t-nav-dim-link">Contact</a></li>
       </ul>
       <button id="menu-btn" aria-label="Menu" class="btn-reset">
         <svg viewBox="0 0 160 140" fill="none" class="icon-hamburger">
@@ -72,13 +73,13 @@
     <div class="hero__sub">william desjardins &nbsp;·&nbsp; she/her &nbsp; they/them</div>
     <p class="hero__tagline">Building frameworks for understanding:<br>consent, body, rope, movement, and practice.</p>
     <div class="hero__principles">
-      Three shapes. Three principles. Thirteen companions.<br>
+      Three shapes. Three principles.<br>
       The square holds.<br>
       The triangle chooses.<br>
       The circle returns.
     </div>
     <div class="hero__btns">
-      <a href="#C4" class="btn btn--primary">The Framework</a>
+      <a href="#B2" class="btn btn--primary">The Framework</a>
       <a href="https://tensionmtl.ca/pages/about-willcat" target="_blank" class="btn btn--outline">Book a date</a>
     </div>
   </div>
@@ -99,7 +100,7 @@
 </section>
 
 <!-- ══ A2 — INVITATION ══ -->
-<section class="section section-padded" id="invitation">
+<section class="section section-padded" id="invitation" data-sec="A2">
   <div class="section-inner">
     <h2 class="fade-in invitation-h2">
       The shape of things<br><em class="t-rope-i">it takes time.</em>
@@ -726,7 +727,7 @@
 </section>
 
 <!-- ══ C1 — BREAK □ ══ -->
-<div class="brk" id="break-sq">
+<div class="brk" id="break-sq" data-sec="C1">
   <div class="brk__bg" id="break-sq-bg">
     <img loading="lazy" src="img/break_sq.webp" alt="" class="brk__bg-img brk__bg-img--sq"/>
   </div>
@@ -971,7 +972,7 @@
 </section>
 
 <!-- ══ D1 — BREAK △ ══ -->
-<div class="brk" id="break-tri">
+<div class="brk" id="break-tri" data-sec="D1">
   <div class="brk__bg" id="break-tri-bg">
     <img loading="lazy" src="img/break_tri.webp" alt="" class="brk__bg-img brk__bg-img--tri"/>
   </div>
@@ -1108,6 +1109,7 @@
         <div>
           <div id="workshop-list" class="flex-col">
             <div class="workshop-item" data-id="fundamentals">Fundamentals</div>
+            <div class="workshop-item" data-id="foundations">Foundations</div>
             <div class="workshop-item" data-id="bodymech">Body Manipulation</div>
             <div class="workshop-item" data-id="gote">Gote &amp; Creativity</div>
             <div class="workshop-item" data-id="tension">Tension &amp; Intention</div>
@@ -1115,6 +1117,7 @@
             <div class="workshop-item" data-id="nawajutsu">Nawajutsu</div>
             <div class="workshop-item" data-id="partial">Partial Suspension</div>
             <div class="workshop-item" data-id="suspension">Suspension &amp; Dynamics</div>
+            <div class="workshop-item" data-id="loadpaths">Living Structures</div>
             <div class="workshop-item" data-id="intentionality">Rope Intentionality</div>
             <div class="workshop-item" data-id="semenawa">Semenawa</div>
             <div class="workshop-item" data-id="do">The Dō</div>
@@ -1192,18 +1195,20 @@
       <div>
         <h2>On stage.<br>On set.<br><em class="t-rope-i">Worldwide.</em></h2>
         <p class="body-serif mb-md" >Available for live performance, stage work, and professional production. Film, photo, video, advisory, rigging, and on-set tying.</p>
-        <p class="body-mono">The rate changes depending on whether a human is in the rope. Many productions opt for mannequins or objects due to liability. Both are available. Travel and prep billed at the advisory rate.</p>
+        <p class="body-mono">Two rates apply on set: a base rate for counsel, negotiation, styling, and standby, and a higher rate whenever hands are on a live body. Book by the hour, half day, or full day. On a mixed shoot the live tying is billed in its band and the surrounding time at base. Overtime beyond the booked window is 1.5×. Many productions choose mannequins or objects for liability; both are available. A supplied model is by quote, and travel and prep bill at base. All bookings confirmed in writing before work begins.</p>
       </div>
       <div>
         <div class="rate-card mb-sm" >
           <div class="rate-card__header">Live Performance</div>
-          <div class="rate-card__row"><div><div class="rate-name">Stage performance</div><div class="rate-card__note">Base rate + hourly</div></div><div class="ta-r" ><div class="rate-price">$250 + $200/hr</div><div class="rate-card__unit">CAD · travel covered</div></div></div>
+          <div class="rate-card__row"><div><div class="rate-name">Stage performance</div><div class="rate-card__note">Flat fee per appearance</div></div><div class="ta-r" ><div class="rate-price">from $300</div><div class="rate-card__unit">CAD · travel covered</div></div></div>
+          <div class="rate-card__row"><div><div class="rate-name">Extended sets, multiple acts, bespoke</div></div><div class="ta-r" ><div class="rate-price">By quote</div></div></div>
         </div>
         <div class="rate-card">
           <div class="rate-card__header">Film · Photo · Video Production</div>
-          <div class="rate-card__row"><div><div class="rate-name">Advisory, objects, rope styling</div><div class="rate-card__note">No human subject</div></div><div class="ta-r" ><div class="rate-price">$100</div><div class="rate-card__unit">per hour · CAD</div></div></div>
-          <div class="rate-card__row"><div><div class="rate-name">With human subject</div><div class="rate-card__note">Full consent framework</div></div><div class="ta-r" ><div class="rate-price">$300</div><div class="rate-card__unit">per hour · CAD</div></div></div>
-          <div class="rate-card__row"><div><div class="rate-name">Travel &amp; prep time</div></div><div class="ta-r" ><div class="rate-price">$100</div><div class="rate-card__unit">per hour · CAD</div></div></div>
+          <div class="rate-card__row"><div><div class="rate-name">Base rate</div><div class="rate-card__note">Counsel, negotiation, styling, standby</div></div><div class="ta-r" ><div class="rate-price">$100</div><div class="rate-card__unit">per hour · CAD</div></div></div>
+          <div class="rate-card__row"><div><div class="rate-name">Live tying</div><div class="rate-card__note">Hands on a body</div></div><div class="ta-r" ><div class="rate-price">$300</div><div class="rate-card__unit">per hour · CAD</div></div></div>
+          <div class="rate-card__row"><div><div class="rate-name">Half day</div><div class="rate-card__note">Up to 5h · base / live tying</div></div><div class="ta-r" ><div class="rate-price">$400 / $1,200</div><div class="rate-card__unit">CAD</div></div></div>
+          <div class="rate-card__row"><div><div class="rate-name">Full day</div><div class="rate-card__note">Up to 10h · base / live tying</div></div><div class="ta-r" ><div class="rate-price">$800 / $2,400</div><div class="rate-card__unit">CAD</div></div></div>
         </div>
         <div class="mt-lg"><a href="https://tensionmtl.ca/pages/about-willcat" target="_blank" class="btn btn--outline">Get in touch</a></div>
       </div>
@@ -1212,7 +1217,7 @@
 </section>
 
 <!-- ══ E1 — BREAK ○ ══ -->
-<div class="brk" id="break-circ">
+<div class="brk" id="break-circ" data-sec="E1">
   <div class="brk__bg" id="break-circ-bg">
     <img loading="lazy" src="img/break_circ.webp" alt="" class="brk__bg-img brk__bg-img--circ"/>
   </div>
@@ -1340,9 +1345,69 @@
   </div>
 </section>
 
-<!-- ══ E4 — FLOW IN THE PATH ══ -->
+<!-- ══ E4 — IN THE WORLD ══ -->
 <section class="section section--subtle" id="E4">
   <div class="sec-id">E4</div>
+  <div class="inner">
+    <div class="two-col fade-in mb-4xl" style="align-items:stretch">
+      <div class="companion-photo">
+        <img loading="lazy" src="img/CirqueduBoudoir_Willcat_Fox_photo_tieframe.webp" alt="" class="img-performance"/>
+      </div>
+      <div>
+        <div class="lbl mb-sm" >In the World</div>
+        <h2>Teaching.<br>Performing.<br><em class="t-rope-i">Building.</em></h2>
+        <p class="body-serif mb-md" >Starting to tour internationally. Teaching, on stages, in studios, in living rooms and dungeons across continents. I rarely tie alone. The people I share rope with, Masha, Fox and doggo, shape this as much as I do. Together we collaborate with artists, educators, and communities doing the same work in different contexts.</p>
+        <p class="body-mono">The work we do ripples and intermingles, into other communities, other studios, other practices. The circle has no end. What you build, others will build on.</p>
+      </div>
+    </div>
+    <div class="travels fade-in mb-4xl">
+      <div class="lbl mb-md">Upcoming travels</div>
+      <ul class="travels-list">
+        <!-- Point each href at that stop's Tension MTL blog post once it's live. -->
+        <li class="travels-item"><a href="https://tensionmtl.ca/blogs/news" target="_blank" class="travels-link"><span class="travels-place">AEfest · Bogotá, Colombia</span><span class="travels-date">Aug 14 to 17</span></a></li>
+        <li class="travels-item"><a href="https://tensionmtl.ca/blogs/news" target="_blank" class="travels-link"><span class="travels-place">Studio TIEY · Antwerp, Belgium</span><span class="travels-date">Oct 30 to Nov 1</span></a></li>
+      </ul>
+      <a href="https://tensionmtl.ca/blogs/news" target="_blank" class="travels-all">Follow upcoming travels on Tension MTL →</a>
+      <details class="travels-past">
+        <summary class="travels-past__toggle">Past travels</summary>
+        <ul class="travels-list travels-list--past">
+          <li class="travels-item"><div class="travels-row"><span class="travels-place">Friction Fest · Calgary</span><span class="travels-date">Nov 2025</span></div></li>
+          <li class="travels-item"><div class="travels-row"><span class="travels-place">Studio Friction · Ottawa</span><span class="travels-date">2025</span></div></li>
+          <li class="travels-item"><div class="travels-row"><span class="travels-place">Birdhaus · Toronto</span><span class="travels-date">2025</span></div></li>
+          <li class="travels-item"><div class="travels-row"><span class="travels-place">Untangled · Toronto</span><span class="travels-date">Jan 2024</span></div></li>
+        </ul>
+      </details>
+    </div>
+    <div class="featured fade-in">
+      <div class="lbl mb-md">Featured in film, podcast &amp; radio</div>
+      <div class="featured-grid">
+        <a href="https://www.imdb.com/title/tt16944826/" target="_blank" class="featured-card">
+          <div class="featured-card__media"><img loading="lazy" src="img/featured_unetecommeca.webp" alt="Un été comme ça" class="featured-card__img"/></div>
+          <div class="featured-card__title">Un été comme ça</div>
+          <p class="featured-card__desc">Rope professional, credited as Shibariste, on Denis Côté's feature film, released internationally as That Kind of Summer.</p>
+          <div class="featured-card__src">IMDb ↗</div>
+        </a>
+        <a href="https://ici.tou.tv/au-dela-du-sexe" target="_blank" class="featured-card">
+          <div class="featured-card__media"><img loading="lazy" src="img/featured_audeladusexe.webp" alt="Au-delà du sexe" class="featured-card__img"/></div>
+          <div class="featured-card__title">Au-delà du sexe</div>
+          <p class="featured-card__desc">A live tying for the show's host, Rose-Aimée, alongside Masha.</p>
+          <div class="featured-card__src">ICI TOU.TV ↗</div>
+        </a>
+        <a href="https://open.spotify.com/show/59Z6zW2JDjKXDjnLTOC78c" target="_blank" class="featured-card">
+          <div class="featured-card__media"><img loading="lazy" src="img/featured_sexeoral.webp" alt="Sexe Oral" class="featured-card__img"/></div>
+          <div class="featured-card__title">Sexe Oral</div>
+          <p class="featured-card__desc">Interview and tying with the hosts of the Sexe Oral podcast.</p>
+          <div class="featured-card__src">Spotify ↗</div>
+        </a>
+      </div>
+      <a href="https://tensionmtl.ca/blogs/news/talking-about-shibari-on-radio-canada" target="_blank" class="featured-radio">Tied live on Radio-Canada's Tout peut arriver, a conversation on trust, sensation, and release in shibari →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ E5 — FLOW IN THE PATH ══ -->
+<section class="section section--subtle" id="E5">
+  <div class="sec-id">E5</div>
   <div class="inner">
     <div class="lbl fade-in">Flow in the Path</div>
     <div class="two-col fade-in">
@@ -1357,27 +1422,22 @@
   </div>
 </section>
 
-<!-- ══ E5 — IN THE WORLD ══ -->
-<section class="section section--subtle" id="E5">
-  <div class="sec-id">E5</div>
-  <div class="inner">
-    <div class="two-col fade-in mb-4xl" style="align-items:stretch">
-      <div class="companion-photo">
-        <img loading="lazy" src="img/CirqueduBoudoir_Willcat_Fox_photo_tieframe.webp" alt="" class="img-performance"/>
-      </div>
-      <div>
-        <div class="lbl mb-sm" >In the World</div>
-        <h2>Teaching.<br>Performing.<br><em class="t-rope-i">Building.</em></h2>
-        <p class="body-serif mb-md" >Starting to tour internationally. Teaching, on stages, in studios, in living rooms and dungeons across continents. Collaborating with artists, educators, and communities doing the same work that resonates in different contexts.</p>
-        <p class="body-mono">The work we do ripples and intermingles, into other communities, other studios, other practices. The circle has no end. What you build, others will build on.</p>
-      </div>
-    </div>
+<!-- ══ F1 — MUGEN · THE INFINITE (break) ══ -->
+<div class="brk brk--inf" id="break-inf" data-sec="F1">
+  <div class="brk__overlay brk__overlay--inf"></div>
+  <div class="brk__ghost brk__ghost--inf"><svg viewBox="0 0 500 250" fill="none"><path d="M420.00,125.00C420.00,111.97 416.12,96.82 410.62,85.92C405.12,75.03 395.76,65.58 387.00,59.62C378.23,53.66 367.49,51.05 358.01,50.17C348.53,49.29 338.83,51.51 330.14,54.33C321.44,57.16 313.35,62.06 305.84,67.10C298.33,72.14 291.59,78.36 285.10,84.56C278.61,90.77 272.75,97.58 266.90,104.32C261.05,111.06 255.63,118.11 250.00,125.00C244.37,131.89 238.95,138.94 233.10,145.68C227.25,152.42 221.39,159.23 214.90,165.44C208.41,171.64 201.67,177.86 194.16,182.90C186.65,187.94 178.56,192.84 169.86,195.67C161.17,198.49 151.47,200.71 141.99,199.83C132.51,198.95 121.77,196.34 113.00,190.38C104.24,184.42 94.88,174.97 89.38,164.08C83.88,153.18 80.00,138.03 80.00,125.00C80.00,111.97 83.88,96.82 89.38,85.92C94.88,75.03 104.24,65.58 113.00,59.62C121.77,53.66 132.51,51.05 141.99,50.17C151.47,49.29 161.17,51.51 169.86,54.33C178.56,57.16 186.65,62.06 194.16,67.10C201.67,72.14 208.41,78.36 214.90,84.56C221.39,90.77 227.25,97.58 233.10,104.32C238.95,111.06 244.37,118.11 250.00,125.00C255.63,131.89 261.05,138.94 266.90,145.68C272.75,152.42 278.61,159.23 285.10,165.44C291.59,171.64 298.33,177.86 305.84,182.90C313.35,187.94 321.44,192.84 330.14,195.67C338.83,198.49 348.53,200.71 358.01,199.83C367.49,198.95 378.23,196.34 387.00,190.38C395.76,184.42 405.12,174.97 410.62,164.08C416.12,153.18 420.00,138.03 420.00,125.00Z"/></svg></div>
+  <div class="brk__content fade-in">
+    <a href="#brk-return" class="brk__arrow" aria-label="Back to Three Pillars"></a>
+    <div class="brk__symbol"><svg viewBox="0 0 80 80" fill="none" class="icon-52"><path d="M68.00,40.00C68.00,37.57 67.36,34.75 66.46,32.72C65.55,30.69 64.01,28.93 62.56,27.82C61.12,26.71 59.35,26.22 57.79,26.06C56.23,25.89 54.63,26.31 53.20,26.83C51.77,27.36 50.43,28.27 49.20,29.21C47.96,30.15 46.85,31.31 45.78,32.47C44.71,33.62 43.75,34.89 42.78,36.15C41.82,37.40 40.93,38.72 40.00,40.00C39.07,41.28 38.18,42.60 37.22,43.85C36.25,45.11 35.29,46.38 34.22,47.53C33.15,48.69 32.04,49.85 30.80,50.79C29.57,51.73 28.23,52.64 26.80,53.17C25.37,53.69 23.77,54.11 22.21,53.94C20.65,53.78 18.88,53.29 17.44,52.18C15.99,51.07 14.45,49.31 13.54,47.28C12.64,45.25 12.00,42.43 12.00,40.00C12.00,37.57 12.64,34.75 13.54,32.72C14.45,30.69 15.99,28.93 17.44,27.82C18.88,26.71 20.65,26.22 22.21,26.06C23.77,25.89 25.37,26.31 26.80,26.83C28.23,27.36 29.57,28.27 30.80,29.21C32.04,30.15 33.15,31.31 34.22,32.47C35.29,33.62 36.25,34.89 37.22,36.15C38.18,37.40 39.07,38.72 40.00,40.00C40.93,41.28 41.82,42.60 42.78,43.85C43.75,45.11 44.71,46.38 45.78,47.53C46.85,48.69 47.96,49.85 49.20,50.79C50.43,51.73 51.77,52.64 53.20,53.17C54.63,53.69 56.23,54.11 57.79,53.94C59.35,53.78 61.12,53.29 62.56,52.18C64.01,51.07 65.55,49.31 66.46,47.28C67.36,45.25 68.00,42.43 68.00,40.00Z" stroke="#c9a84c" stroke-width="6" stroke-linecap="round"/><path d="M68.00,40.00C68.00,37.57 67.36,34.75 66.46,32.72C65.55,30.69 64.01,28.93 62.56,27.82C61.12,26.71 59.35,26.22 57.79,26.06C56.23,25.89 54.63,26.31 53.20,26.83C51.77,27.36 50.43,28.27 49.20,29.21C47.96,30.15 46.85,31.31 45.78,32.47C44.71,33.62 43.75,34.89 42.78,36.15C41.82,37.40 40.93,38.72 40.00,40.00C39.07,41.28 38.18,42.60 37.22,43.85C36.25,45.11 35.29,46.38 34.22,47.53C33.15,48.69 32.04,49.85 30.80,50.79C29.57,51.73 28.23,52.64 26.80,53.17C25.37,53.69 23.77,54.11 22.21,53.94C20.65,53.78 18.88,53.29 17.44,52.18C15.99,51.07 14.45,49.31 13.54,47.28C12.64,45.25 12.00,42.43 12.00,40.00C12.00,37.57 12.64,34.75 13.54,32.72C14.45,30.69 15.99,28.93 17.44,27.82C18.88,26.71 20.65,26.22 22.21,26.06C23.77,25.89 25.37,26.31 26.80,26.83C28.23,27.36 29.57,28.27 30.80,29.21C32.04,30.15 33.15,31.31 34.22,32.47C35.29,33.62 36.25,34.89 37.22,36.15C38.18,37.40 39.07,38.72 40.00,40.00C40.93,41.28 41.82,42.60 42.78,43.85C43.75,45.11 44.71,46.38 45.78,47.53C46.85,48.69 47.96,49.85 49.20,50.79C50.43,51.73 51.77,52.64 53.20,53.17C54.63,53.69 56.23,54.11 57.79,53.94C59.35,53.78 61.12,53.29 62.56,52.18C64.01,51.07 65.55,49.31 66.46,47.28C67.36,45.25 68.00,42.43 68.00,40.00Z" stroke="#1a1816" stroke-width="2.5" stroke-linecap="round"/></svg></div>
+    <div class="brk__label">The Infinite · ∞ · Mugen</div>
+    <p class="brk__quote">Infinity manifests as a line that never ends. A line drawn far enough has nowhere to go but where it began.<br><br>The square holds.<br>The triangle chooses.<br>The circle returns.<br><br>Return, without end, is infinity;<br>The same line, still returning.<br>...As does one's path.</p>
+    <div class="brk__kanji">無限 · 円 · 回帰<br>Infinity · Circle · Return</div>
   </div>
-</section>
+</div>
 
-<!-- ══ F1 — CONTINUE YOUR PATH ══ -->
-<section class="section divider-subtle" id="F1" >
-  <div class="sec-id">F1</div>
+<!-- ══ F2 — CONTINUE YOUR PATH ══ -->
+<section class="section divider-subtle" id="F2" >
+  <div class="sec-id">F2</div>
   <div class="inner">
     <div class="lbl fade-in">Continue</div>
     <div class="two-col fade-in mb-xl" >
@@ -1431,8 +1491,8 @@
 <!-- ══ SHIMMER EFFECTS ══ -->
 
 
-<section class="section divider-subtle" id="F2" >
-  <div class="sec-id">E2</div>
+<section class="section divider-subtle" id="F3" >
+  <div class="sec-id">F3</div>
   <div class="inner">
     <div class="lbl fade-in">Work with me</div>
     <div class="two-col valign fade-in mb-5xl">
@@ -1446,9 +1506,11 @@
         </div>
       </div>
       <div class="contact-list">
+        <div class="contact-border"><div class="contact-lbl">Email</div><a href="mailto:contact@willcatropes.art" class="t-rope-link">contact@willcatropes.art</a></div>
         <div class="contact-border"><div class="contact-lbl">Studio</div><div class="t-fd-base-paper">Tension MTL</div><div class="t-lbl-20-dim">Montréal, Québec, Canada</div></div>
-        <div class="contact-border"><div class="contact-lbl">Instagram</div><a href="https://instagram.com/tensionmtl" target="_blank" class="t-rope-link">@tensionmtl</a></div>
+        <div class="contact-border"><div class="contact-lbl">Instagram</div><a href="https://instagram.com/willcatropes" target="_blank" class="t-rope-link">@willcatropes</a> · <a href="https://instagram.com/tensionmtl" target="_blank" class="t-rope-link">@tensionmtl</a></div>
         <div class="contact-border"><div class="contact-lbl">FetLife</div><a href="https://fetlife.com/WillCat" target="_blank" class="t-rope-link">WillCat</a></div>
+        <div class="contact-border"><div class="contact-lbl">IMDb</div><a href="https://www.imdb.com/name/nm10970319/" target="_blank" class="t-rope-link">William Desjardins</a></div>
         <div class="contact-border"><div class="contact-lbl">Available for</div><div class="contact-value">Workshops · Residencies · Performances<br>Production · Touring · Collaboration</div></div>
       </div>
     </div>
@@ -1470,10 +1532,10 @@
 <footer class="site-footer">
   <a href="#" class="footer__logo--dim">Will<em class="footer__logo-em">cat</em></a>
   <ul class="footer__links">
-    <li><a href="#C4" class="lbl-dec-16">The Framework</a></li>
+    <li><a href="#B3" class="lbl-dec-16">The Framework</a></li>
     <li><a href="#B1" class="lbl-dec-16">About</a></li>
     <li><a href="#C3" class="lbl-dec-16">The Path</a></li>
-    <li><a href="#D3" class="lbl-dec-16">Work with me</a></li>
+    <li><a href="#F3" class="lbl-dec-16">Work with me</a></li>
     <li><a href="https://tensionmtl.ca" target="_blank" class="lbl-dec-16">Tension MTL</a></li>
   </ul>
   <div class="footer__copy">
@@ -1503,13 +1565,14 @@
       <div class="nav-menu__wordmark">Will<em>cat</em>.</div>
       <nav class="nav-menu__nav">
         <a href="#B1">About</a>
-        <a href="#B2">The Framework</a>
+        <a href="#B3">The Framework</a>
+        <a href="#B2">The Thirteen Companions</a>
 
         <a href="#break-sq" class="nav--shape">□ · Shikaku · Structure</a>
 
-        <a href="#C4">The Thirteen Companions</a>
-        <a href="#C7">Skill · Not Rank</a>
         <a href="#C3">The Path</a>
+        <a href="#C5">The Book</a>
+        <a href="#C7">Skill · Not Rank</a>
 
         <a href="#break-tri" class="nav--shape">△ · Sankaku · Tension</a>
 
@@ -1522,12 +1585,12 @@
         <a href="#break-circ" class="nav--shape">○ · Maru · Flow</a>
 
         <a href="#E2">Seme · Flow</a>
-        <a href="#E5">In the World</a>
+        <a href="#E4">In the World</a>
 
-        <div class="nav-more-label--full">More</div>
-        <a href="#F1">The Book</a>
-        <a href="#F1">Dō · Continue</a>
-        <a href="#F2">Contact</a>
+        <a href="#break-inf" class="nav--shape">∞ · Mugen · The Infinite</a>
+
+        <a href="#F2">Dō · Continue</a>
+        <a href="#break-inf">Contact</a>
 
         <div class="nav-divider">
           <a href="https://tensionmtl.ca" target="_blank" class="nav-more-link">Tension MTL ↗</a>

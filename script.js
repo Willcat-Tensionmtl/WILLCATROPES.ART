@@ -69,6 +69,11 @@ var workshops = {
     desc:  'Safety, consent, core frictions, body awareness. The single column. The double column. Why knots matter and which ones to use when. This is not beginner content to get through — it is the foundation everything else is built on. Taught the same way to someone in their first month as to someone returning after years.',
     note:  'Entry point for all paths. Adaptable as a 3-hour intro or a full-day intensive. No prior experience required.'
   },
+  foundations: {
+    title: 'Foundations: A Philosophy of Rope in Practice',
+    desc:  'Rope asks more of you than almost anyone warns: more technical, more intimate, more demanding of your attention. This day is not about collecting more ties. It is about adapting how you see, so that whatever you tie, you understand what you are doing while you do it.\n\nThe whole practice fits inside three shapes. The square is structure, the form repeated until it is reliable. The triangle is tension, the moment you choose a direction and answer for the consequence. The circle is flow, the return and the dialogue, adapting when the body in front of you is not the body you planned for. We build something simple, read it by feel, choose what to do with it, then let it move. None of it is advanced. All of it is the whole practice, the part you return to at every level.',
+    note:  'Open level. No suspension experience required. Runs as a full day, for anyone with rope in their hands and the willingness to slow down.'
+  },
   bodymech: {
     title: 'Body Manipulation — Moving Your Partner',
     desc:  'Weight shifting, balance disruption, knee-walking, entry and exit mechanics. The martial-arts informed movement vocabulary that underpins Nawajutsu and carries through every other path. You stop thinking about what to do next and start reading what the body is doing now. The difference between someone who ties on a body and someone who ties with one.',
@@ -103,6 +108,11 @@ var workshops = {
     title: 'Suspension & Dynamics',
     desc:  'The geometry of a suspension is not a puzzle to solve. It is the physical expression of a dynamic that was either built across the whole session or wasn\'t. Load paths, anchor geometry, body positioning, transitions — all of it follows from what is already happening between two people before the first rope goes on. This class works both directions at once: the technical and the relational. You will not get one without the other here.',
     note:  'Serious prerequisites required. Contact before requesting. Not the first Suspension class to take — one of the last.'
+  },
+  loadpaths: {
+    title: 'Living Structures: Load Paths in Motion',
+    desc:  'Every tie is a structure, and every structure has a path that force travels through: into the body, along the lines, through the frictions, out to the floor or the point. Most people only see that path when it fails. This weekend is about seeing and feeling it before it does, testing it on purpose, then playing with it on purpose.\n\n□ Square: identify and establish. Build structures that can be read through touch. Which lines carry weight, which only look good. Locate where force enters and where it leaves, and build the path until it is reliable and known rather than hoped for. Kata first; you cannot play with a path you cannot yet draw.\n\n△ Triangle: test and stress. Load deliberately and find the edges. Leverage used to redirect force rather than fight it, the moment where forces meet and something has to give. A line that carries weight can carry torment, so the same path that serves the structure also serves seme.\n\n○ Circle: play and adapt. Floor into partials, partials into floating, dynamic throughout. Active and passive positioning, living structures built through leverage, locking, and weight migration.',
+    note:  'A 12-hour weekend intensive. Intermediate to advanced: solid in frictions, partials, uplines, and load work. Includes the foundations for integrating bamboo and similar objects.'
   },
   intentionality: {
     title: 'Rope Intentionality & Emotional Connection',
@@ -212,7 +222,7 @@ function showWorkshop(id) {
   if (id === 'other') {
     setTimeout(function() {
       document.getElementById('workshop-note').innerHTML =
-        '<a href="#F2" style="color:var(--rope-l);text-decoration:none;letter-spacing:.1em">→ Work with me</a>';
+        '<a href="#F3" style="color:var(--rope-l);text-decoration:none;letter-spacing:.1em">→ Work with me</a>';
     }, 350);
   }
 }
@@ -560,7 +570,7 @@ document.addEventListener('touchend', function(e) {
     '</div>';
   }), 'level-grid');
 
-  var workshopOrder = ['fundamentals','bodymech','gote','tension','safety','nawajutsu','partial','suspension','intentionality','semenawa','do','festival','other'];
+  var workshopOrder = ['fundamentals','foundations','bodymech','gote','tension','safety','nawajutsu','partial','suspension','loadpaths','intentionality','semenawa','do','festival','other'];
   buildCarousel('workshops', workshopOrder.map(function(key) {
     var w = workshops[key];
     if (!w) return '';
@@ -803,7 +813,7 @@ document.querySelectorAll('.sec-id').forEach(function(el) {
 
 /* F1 rows — rising shimmer class */
 (function() {
-  document.querySelectorAll('#F1 .rate-card, #F1 [style*="border:.5px solid rgba(169,124,26"]').forEach(function(el) {
+  document.querySelectorAll('#F2 .rate-card, #F2 [style*="border:.5px solid rgba(169,124,26"]').forEach(function(el) {
     el.classList.add('f1-row');
   });
 })();

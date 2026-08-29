@@ -3147,16 +3147,6 @@ a.timeline-item:hover .timeline-node  { box-shadow: 0 0 0 3px rgba(201,168,76,.2
 }
 
 /* ── Nav menu extras ── */
-.nav-more-label {
-  font-family: var(--fm);
-  font-size: var(--dec-lg);
-  letter-spacing: .2em;
-  text-transform: uppercase;
-  color: rgba(201,168,76,.3);
-  margin-bottom: .5rem;
-  margin-top: 1.25rem;
-}
-
 .nav-more-link {
   font-size: var(--mono-base);
   color: rgba(201,168,76,.5);
@@ -4272,6 +4262,20 @@ svg { fill: none; }
 .brk__ghost--sq svg   { animation: brkGhostGlow-sq 4s ease-in-out infinite; }
 .brk__ghost--tri svg  { animation: brkGhostGlow-tri 4s ease-in-out infinite; }
 
+/* Infinity break — gold lemniscate (F1) */
+.brk--inf { background: #0d0b08; }
+.brk__overlay--inf {
+  background: radial-gradient(ellipse at center, rgba(28,22,12,.55) 0%, rgba(13,11,8,.92) 68%, #0d0b08 100%);
+}
+.brk--inf .brk__arrow { position: static; top: auto; left: auto; transform: none; margin: 0 0 var(--sp-md); }
+.brk--inf .brk__quote { font-family: var(--fj); font-style: normal; font-size: clamp(var(--scale-0), 1.7vw, var(--scale-p1)); color: rgba(201,168,76,.78); }
+.brk__ghost--inf svg { width: min(680px,96vw); opacity: .03; animation: brkGhostGlow-inf 4s ease-in-out infinite; }
+.brk__ghost--inf svg path { stroke: #c9a84c; stroke-width: 2.5; fill: none; }
+@keyframes brkGhostGlow-inf {
+  0%, 100% { opacity: .03; filter: drop-shadow(0 0 5px rgba(201,168,76,.15)); }
+  50%       { opacity: .2;  filter: drop-shadow(0 0 28px rgba(201,168,76,.4)) drop-shadow(0 0 14px rgba(230,205,130,.4)); }
+}
+
 /* ══════════════════════════════════════════════════════════
    FINAL PASS — remaining inline style patterns → classes
    ══════════════════════════════════════════════════════════ */
@@ -5220,16 +5224,6 @@ svg { fill: none; }
   opacity: .55;
 }
 
-.nav-more-label--full {
-  font-family: var(--fm);
-  font-size: var(--dec-lg);
-  letter-spacing: .2em;
-  text-transform: uppercase;
-  color: rgba(201,168,76,.3);
-  margin-bottom: .5rem;
-  margin-top: 1.25rem;
-}
-
 /* ── Nav shape links pulse glow ── */
 @keyframes shapeGlow {
   0%, 100% { color: rgba(201,168,76,.35); text-shadow: 0 0 4px rgba(201,168,76,.2); }
@@ -5238,4 +5232,126 @@ svg { fill: none; }
 
 .nav-shape-link {
   animation: shapeGlow 2.5s ease-in-out infinite;
+}
+
+/* ══════════════════════════════════════════════════════════
+   FEATURED IN — film / podcast / radio (E4 · In the World)
+   ══════════════════════════════════════════════════════════ */
+.featured { margin-top: var(--sp-4xl); }
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-lg);
+  margin-bottom: var(--sp-lg);
+}
+.featured-card {
+  border: .5px solid rgba(169,124,26,.25);
+  background: rgba(169,124,26,.03);
+  padding: var(--sp-sm);
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color .3s ease;
+}
+.featured-card__src {
+  font-family: var(--fm);
+  font-size: var(--scale-n2);
+  letter-spacing: .04em;
+  color: var(--rope-l);
+  margin-top: auto;
+  padding-top: .6rem;
+}
+.featured-card:hover { border-color: rgba(201,168,76,.5); }
+.featured-card__media {
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  margin-bottom: var(--sp-sm);
+  background: rgba(13,11,8,.5);
+}
+.featured-card__img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.featured-card__title {
+  font-family: var(--fd);
+  font-size: var(--scale-p1);
+  font-weight: 300;
+  color: var(--paper);
+  margin-bottom: .35rem;
+}
+.featured-card__desc {
+  font-family: var(--fm);
+  font-size: var(--scale-n2);
+  line-height: 1.6;
+  color: rgba(240,234,216, var(--op-mid));
+}
+.featured-radio {
+  display: inline-block;
+  font-family: var(--fm);
+  font-size: var(--scale-n1);
+  letter-spacing: .04em;
+  color: var(--rope-l);
+  text-decoration: none;
+  border-bottom: .5px solid rgba(201,168,76,.3);
+  padding-bottom: 2px;
+  transition: border-color .3s ease;
+}
+.featured-radio:hover { border-color: rgba(201,168,76,.8); }
+@media (max-width: 760px) {
+  .featured-grid { grid-template-columns: 1fr; gap: var(--sp-md); }
+  .featured-card__media { aspect-ratio: 16 / 10; }
+}
+
+/* ══════════════════════════════════════════════════════════
+   UPCOMING TRAVELS — E4 · In the World (links out to Tension)
+   ══════════════════════════════════════════════════════════ */
+.travels { margin-top: var(--sp-4xl); }
+.travels-list { list-style: none; margin: 0; padding: 0; }
+.travels-item { border-top: .5px solid rgba(169,124,26,.18); }
+.travels-item:last-child { border-bottom: .5px solid rgba(169,124,26,.18); }
+.travels-link {
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-md);
+  padding: var(--sp-sm) 0;
+  text-decoration: none;
+  color: inherit;
+  transition: color .3s ease;
+}
+.travels-place { font-family: var(--fd); font-size: var(--scale-p1); font-weight: 300; color: var(--paper); }
+.travels-date { font-family: var(--fm); font-size: var(--scale-n2); letter-spacing: .04em; color: var(--rope-l); margin-left: auto; white-space: nowrap; }
+.travels-link:hover .travels-place { color: var(--rope-l); }
+.travels-all {
+  display: inline-block;
+  margin-top: var(--sp-md);
+  font-family: var(--fm);
+  font-size: var(--scale-n1);
+  letter-spacing: .04em;
+  color: var(--rope-l);
+  text-decoration: none;
+  border-bottom: .5px solid rgba(201,168,76,.3);
+  padding-bottom: 2px;
+  transition: border-color .3s ease;
+}
+.travels-all:hover { border-color: rgba(201,168,76,.8); }
+.travels-row { display: flex; align-items: baseline; gap: var(--sp-md); padding: var(--sp-sm) 0; }
+.travels-past { margin-top: var(--sp-lg); }
+.travels-past__toggle {
+  cursor: pointer;
+  list-style: none;
+  font-family: var(--fm);
+  font-size: var(--scale-n1);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: rgba(201,168,76,.45);
+  padding: var(--sp-sm) 0;
+  transition: color .3s ease;
+}
+.travels-past__toggle::-webkit-details-marker { display: none; }
+.travels-past__toggle::after { content: " ↓"; }
+.travels-past[open] .travels-past__toggle::after { content: " ↑"; }
+.travels-past__toggle:hover { color: var(--rope-l); }
+.travels-list--past { margin-top: var(--sp-sm); }
+.travels-list--past .travels-place { color: rgba(240,234,216,.55); }
+@media (max-width: 600px) {
+  .travels-link, .travels-row { flex-direction: column; gap: .15rem; }
+  .travels-date { margin-left: 0; }
 }
