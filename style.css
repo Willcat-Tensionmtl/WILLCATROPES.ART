@@ -34,6 +34,9 @@
   --paper:  #f0ead8;   /* primary text */
   --rope:   #a67c1a;   /* accent dark */
   --rope-l: #c9a84c;   /* accent light */
+  --lav:    #8f75b8;   /* purple accent — teacher's rope / interactive */
+  --lav-l:  #b9a4dd;   /* lavender accent light */
+  --lav-br: #dccfff;   /* lavender sweep highlight */
   --muted:  #7a6e58;   /* muted text */
 
   /* Type families */
@@ -3941,6 +3944,27 @@ svg { fill: none; }
   font-size: 1.125rem;
   font-weight: 300;
   color: var(--rope-l);
+  position: relative;
+  display: inline-block;
+}
+.t-rope-link::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -2px;
+  height: 1px;
+  background: rgba(185,164,221,.28);
+  opacity: 0;
+  transition: opacity .3s ease;
+}
+.t-rope-link:hover::after {
+  opacity: 1;
+  background:
+    linear-gradient(90deg, transparent 0%, var(--lav-br) 50%, transparent 100%),
+    rgba(185,164,221,.40);
+  background-size: 55% 100%, 100% 100%;
+  background-repeat: no-repeat;
+  background-position: -55% 0, 0 0;
+  animation: linkSweep 1.1s linear infinite;
 }
 .t-right-lbl {
   text-align: right;
@@ -4268,12 +4292,13 @@ svg { fill: none; }
   background: radial-gradient(ellipse at center, rgba(28,22,12,.55) 0%, rgba(13,11,8,.92) 68%, #0d0b08 100%);
 }
 .brk--inf .brk__arrow { position: static; top: auto; left: auto; transform: none; margin: 0 0 var(--sp-md); }
-.brk--inf .brk__quote { font-family: var(--fj); font-style: normal; font-size: clamp(var(--scale-0), 1.7vw, var(--scale-p1)); color: rgba(201,168,76,.78); }
+.brk--inf .brk__quote { font-family: var(--fj); font-style: normal; font-size: clamp(var(--scale-0), 1.7vw, var(--scale-p1)); color: rgba(185,164,221,.82); }
+.brk--inf .brk__label { color: rgba(185,164,221,.6); }
 .brk__ghost--inf svg { width: min(680px,96vw); opacity: .03; animation: brkGhostGlow-inf 4s ease-in-out infinite; }
-.brk__ghost--inf svg path { stroke: #c9a84c; stroke-width: 2.5; fill: none; }
+.brk__ghost--inf svg path { stroke: var(--lav-l); stroke-width: 2.5; fill: none; }
 @keyframes brkGhostGlow-inf {
-  0%, 100% { opacity: .03; filter: drop-shadow(0 0 5px rgba(201,168,76,.15)); }
-  50%       { opacity: .2;  filter: drop-shadow(0 0 28px rgba(201,168,76,.4)) drop-shadow(0 0 14px rgba(230,205,130,.4)); }
+  0%, 100% { opacity: .03; filter: drop-shadow(0 0 5px rgba(185,164,221,.15)); }
+  50%       { opacity: .2;  filter: drop-shadow(0 0 28px rgba(185,164,221,.4)) drop-shadow(0 0 14px rgba(210,196,238,.4)); }
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -5010,6 +5035,8 @@ svg { fill: none; }
   text-transform: uppercase;
   color: rgba(240,234,216,.38);
   text-decoration: none;
+  position: relative;
+  display: inline-block;
 }
 
 .t-hero-vertical {
@@ -5229,10 +5256,46 @@ svg { fill: none; }
   0%, 100% { color: rgba(201,168,76,.35); text-shadow: 0 0 4px rgba(201,168,76,.2); }
   50%       { color: rgba(201,168,76,.7);  text-shadow: 0 0 10px rgba(201,168,76,.5), 0 0 3px rgba(201,168,76,.3); }
 }
+@keyframes linkSweep {
+  0%   { background-position: -55% 0, 0 0; }
+  100% { background-position: 160% 0, 0 0; }
+}
+/* Roving nav highlight — one glowing lavender line hops item to item */
+.nav-rove::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -3px;
+  height: 1px;
+  background: var(--lav-l);
+  box-shadow: 0 0 8px rgba(185,164,221,.55), 0 0 3px rgba(185,164,221,.4);
+  animation: navRove 2.5s ease-in-out;
+}
+@keyframes navRove {
+  0%   { opacity: 0; }
+  50%  { opacity: 1; }
+  100% { opacity: 0; }
+}
+/* B3 pillar word, sitting to the right of the shape title (as it did in B2) */
+.shape-card__pillar, .cs-pillar {
+  font-family: var(--fd);
+  font-style: italic;
+  font-weight: 300;
+  font-size: .5em;
+  color: var(--rope-l);
+  vertical-align: super;
+  margin-left: .35em;
+  white-space: nowrap;
+}
 
 .nav-shape-link {
   animation: shapeGlow 2.5s ease-in-out infinite;
 }
+.site-nav__links .nav-shape-link { position: relative; display: inline-block; padding-bottom: 5px; }
+/* the hamburger joins the rove, so it reads as a link too */
+#menu-btn { position: relative; }
+#menu-btn.nav-rove::after { bottom: 2px; }
+/* the three shapes step quickly one after another: three separate lines, three separate links */
+.nav-shape-link.nav-rove::after { animation-duration: .72s; }
 
 /* ══════════════════════════════════════════════════════════
    FEATURED IN — film / podcast / radio (E4 · In the World)
@@ -5354,4 +5417,699 @@ svg { fill: none; }
 @media (max-width: 600px) {
   .travels-link, .travels-row { flex-direction: column; gap: .15rem; }
   .travels-date { margin-left: 0; }
+}
+
+/* ══════════════════════════════════════════════════════════
+   B2 pillars — gold left-aligned names (icons/labels/kanji removed)
+   ══════════════════════════════════════════════════════════ */
+.pillar-card--stack { text-align: left; }
+.pillar-card__name {
+  font-family: var(--fd);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(var(--scale-p2), 2.4vw, var(--scale-p3));
+  letter-spacing: .01em;
+  color: var(--rope-l);
+  margin-bottom: var(--sp-sm);
+  position: relative;
+  z-index: 1;
+}
+/* Kanji glyphs, moved down from the pillars into the B3 shape cards */
+.shape-card--desktop { position: relative; overflow: hidden; z-index: 0; }
+.shape-card__kanji {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  font-family: var(--fj);
+  font-size: 10rem;
+  color: var(--rope-l);
+  opacity: .07;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  animation: kanjiGlow 2.5s ease-in-out infinite;
+}
+.cs-header { position: relative; z-index: 0; }
+.cs-kanji-glyph {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  font-family: var(--fj);
+  font-size: 7rem;
+  color: var(--rope-l);
+  opacity: .07;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  animation: kanjiGlow 2.5s ease-in-out infinite;
+}
+@keyframes kanjiGlow {
+  0%, 100% { opacity: .04; text-shadow: 0 0 6px rgba(201,168,76,.06); }
+  50%       { opacity: .09; text-shadow: 0 0 16px rgba(201,168,76,.14); }
+}
+
+/* Human-readable section anchors (alias targets, offset for the fixed nav) */
+.sec-anchor { display: block; height: 0; visibility: hidden; scroll-margin-top: 110px; }
+
+
+/* ══════════════════════════════════════════════════════════
+   NAWAJUTSU GEOMETRY — D3 figures + B3 Vitruvian overlay
+   Added 2026-09-13. Add-only: nothing above this is touched.
+   ══════════════════════════════════════════════════════════ */
+
+.nwg {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--sp-xl);
+  margin: var(--sp-xl) 0 var(--sp-2xl);
+}
+
+.nwg__fig { margin: 0; }
+
+.nwg__art {
+  border: 1px solid rgba(166, 124, 26, 0.22);
+  background: var(--ink2);
+  padding: var(--sp-md);
+}
+
+.nwg__art svg { width: 100%; height: auto; display: block; overflow: visible; }
+
+.nwg__cap {
+  font-family: var(--fd);
+  font-size: var(--scale-n1);
+  line-height: 1.6;
+  color: var(--paper);
+  opacity: 0.72;
+  margin-top: var(--sp-sm);
+}
+
+.nwg__cap-t { font-family: var(--fm); font-size: var(--scale-n2); color: var(--rope-l); opacity: 1; }
+
+/* Shared diagram vocabulary, used by both the D3 figures and the B3 overlay */
+.nwg-shape   { fill: var(--rope-l); fill-opacity: 0.07; stroke: var(--rope-l); stroke-width: 1.6; }
+.nwg-shape--faint { fill-opacity: 0.04; }
+.nwg-base    { fill: var(--paper); fill-opacity: 0.08; stroke: var(--paper); stroke-opacity: 0.45; stroke-width: 1.2; }
+.nwg-key     { stroke: var(--rope-l); stroke-width: 2; fill: none; }
+.nwg-axis    { stroke: var(--rope); stroke-width: 1; stroke-dasharray: 6 6; opacity: 0.55; fill: none; }
+.nwg-ghost   { fill: none; stroke: var(--rope); stroke-width: 1.2; stroke-dasharray: 4 7; opacity: 0.55; }
+.nwg-foot path { fill: var(--paper); fill-opacity: 0.09; stroke: var(--rope); stroke-width: 1.3; }
+.nwg-body    { stroke: var(--paper); stroke-opacity: 0.5; stroke-width: 1.6; fill: none; }
+.nwg-dot     { fill: var(--rope-l); }
+.nwg-dot--open { fill: var(--ink); stroke: var(--rope-l); stroke-width: 1.6; }
+.nwg-strong  { stroke: var(--paper); stroke-opacity: 0.55; stroke-width: 2.4; fill: none; }
+.nwg-open    { stroke: #c0453f; stroke-width: 2.4; fill: none; }
+.nwg-t       { font-family: var(--fm); font-size: 10px; fill: var(--rope-l); letter-spacing: 0.12em; }
+.nwg-t--muted  { fill: var(--muted); }
+.nwg-t--strong { fill: var(--paper); opacity: 0.7; }
+.nwg-t--open   { fill: #c0453f; }
+
+/* B3 — Vitruvian figure carrying the □△○ overlay */
+.nwg-vitruvian { width: 100%; max-width: 320px; margin: var(--sp-lg) 0 0; }
+.nwg-vitruvian__frame { position: relative; width: 100%; aspect-ratio: 880 / 884; }
+.nwg-vitruvian .img-screen--fill { width: 100%; height: 100%; }
+.nwg-vitruvian__overlay { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.nwg-vitruvian__cap {
+  font-family: var(--fm);
+  font-size: var(--scale-n2);
+  line-height: 1.7;
+  color: var(--muted);
+  margin-top: var(--sp-sm);
+}
+.nwg-vitruvian__cap a { color: var(--rope-l); text-decoration: none; border-bottom: 1px solid rgba(201, 168, 76, 0.4); }
+.nwg-vitruvian__cap a:hover { border-bottom-color: var(--rope-l); }
+
+@media (max-width: 760px) {
+  .nwg { grid-template-columns: 1fr; gap: var(--sp-lg); }
+  .nwg-vitruvian { max-width: 100%; }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   NAWAJUTSU · BASELINE SAFETY POINTS  (B3)   added 2026-09-13
+   Add-only. Every selector namespaced .nwg-sp. No JS.
+   ═══════════════════════════════════════════════════════════════ */
+.nwg-sp { position: relative; margin-top: var(--sp-lg); }
+
+/* radios stay focusable but invisible */
+.nwg-sp__r {
+  position: absolute; width: 1px; height: 1px; margin: 0;
+  opacity: 0; pointer-events: none; clip-path: inset(50%);
+}
+
+.nwg-sp__grid {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--sp-xl); align-items: start;
+}
+
+/* ── the figure ── */
+.nwg-sp__stage { position: relative; width: 100%; aspect-ratio: 880 / 884; }
+/* the webp is already composited over --ink, so it needs no blend mode here;
+   mix-blend-mode would lift its blacks and show a grey panel at this size */
+.nwg-sp__img { width: 100%; height: 100%; display: block; }
+.nwg-sp__overlay { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+
+.nwg-sp__dot {
+  position: absolute; transform: translate(-50%, -50%);
+  width: 26px; height: 26px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--fm); font-size: 12px; line-height: 1;
+  cursor: pointer; user-select: none;
+  /* at rest the dot itself is not drawn; only the raindrop rings below */
+  border: 1px solid transparent; background: transparent; color: transparent;
+  transition: transform .16s ease, color .2s ease, background .2s ease, border-color .2s ease;
+}
+/* hover still answers, so the figure reads as clickable before anything is open */
+.nwg-sp__dot:hover {
+  border-color: var(--rope-l); background: rgba(19, 19, 21, 0.82);
+  color: var(--rope-l); transform: translate(-50%, -50%) scale(1.18);
+}
+.nwg-sp__dot--nerve:hover { background: rgba(166, 124, 26, 0.72); color: var(--paper); }
+
+/* the ping — a water ripple to invite the click */
+.nwg-sp__dot::before,
+.nwg-sp__dot::after {
+  content: ""; position: absolute; inset: -3px; border-radius: 50%;
+  border: 1px solid var(--rope-l); opacity: 0; pointer-events: none;
+  animation: nwg-sp-ping 4.6s cubic-bezier(0, 0, .2, 1) infinite;
+}
+.nwg-sp__dot::before { animation-delay: var(--d, 0s); }
+.nwg-sp__dot::after  { animation-delay: calc(var(--d, 0s) + 0.85s); }
+@keyframes nwg-sp-ping {
+  0%   { transform: scale(0.55); opacity: 0; }
+  10%  { opacity: 0.75; }
+  50%  { transform: scale(2.3); opacity: 0; }
+  100% { transform: scale(2.3); opacity: 0; }
+}
+
+/* clicking anything ends the rain and brings the numbers up */
+.nwg-sp:has(.nwg-sp__r:not(#nwgsp0):checked) .nwg-sp__dot::before,
+.nwg-sp:has(.nwg-sp__r:not(#nwgsp0):checked) .nwg-sp__dot::after { animation: none; opacity: 0; }
+.nwg-sp:has(.nwg-sp__r:not(#nwgsp0):checked) .nwg-sp__dot {
+  border-color: var(--rope-l); background: rgba(19, 19, 21, 0.82); color: var(--rope-l);
+}
+.nwg-sp:has(.nwg-sp__r:not(#nwgsp0):checked) .nwg-sp__dot--nerve {
+  background: rgba(166, 124, 26, 0.72); color: var(--paper);
+}
+/* the five that are not a place on the body stay hidden until then too */
+.nwg-sp__rail { display: none; }
+.nwg-sp:has(.nwg-sp__r:not(#nwgsp0):checked) .nwg-sp__rail { display: flex; }
+
+/* ── the panel ── */
+.nwg-sp__panel {
+  border-left: 1px solid rgba(166, 124, 26, 0.28);
+  padding-left: var(--sp-lg); min-height: 30rem;
+}
+.nwg-sp__card { display: none; }
+.nwg-sp__kind {
+  font-family: var(--fm); font-size: var(--scale-n2); letter-spacing: .1em;
+  text-transform: uppercase; color: var(--rope-l); margin: 0 0 var(--sp-sm);
+}
+.nwg-sp__h {
+  font-family: var(--fd); font-size: clamp(var(--scale-p1), 2vw, var(--scale-p3)); line-height: 1.18;
+  color: var(--paper); margin: 0 0 var(--sp-sm); font-weight: 400;
+}
+.nwg-sp__num {
+  font-family: var(--fm); font-size: var(--scale-n1); color: var(--rope);
+  margin-right: .7em; vertical-align: .18em;
+}
+.nwg-sp__where {
+  font-family: var(--fm); font-size: var(--scale-n1); color: var(--muted);
+  margin: 0 0 var(--sp-md);
+}
+.nwg-sp__body {
+  font-family: var(--fd); font-size: var(--scale-0); line-height: 1.66;
+  color: var(--paper); opacity: .88; margin: 0 0 var(--sp-md);
+}
+.nwg-sp__wf {
+  border-top: 1px solid rgba(166, 124, 26, 0.28); padding-top: var(--sp-md);
+  font-family: var(--fm); font-size: var(--scale-n1); line-height: 1.6;
+  color: var(--paper); opacity: .8;
+}
+.nwg-sp__wf b {
+  display: block; color: var(--rope-l); letter-spacing: .12em;
+  font-size: var(--scale-n2); margin-bottom: .4em; font-weight: 500;
+}
+.nwg-sp__key {
+  display: flex; flex-direction: column; gap: .5em;
+  margin: var(--sp-md) 0; font-family: var(--fm);
+  font-size: var(--scale-n1); color: var(--muted);
+}
+.nwg-sp__key div { display: flex; align-items: center; gap: .7em; }
+.nwg-sp__i {
+  width: 13px; height: 13px; border-radius: 50%; flex: 0 0 auto;
+  border: 1px solid var(--rope); background: transparent;
+}
+.nwg-sp__i--f { background: rgba(166, 124, 26, 0.75); }
+.nwg-sp__note {
+  font-family: var(--fm); font-size: var(--scale-n2); line-height: 1.6;
+  color: var(--muted); margin: var(--sp-md) 0 0;
+}
+
+/* ── the rail for the five that are not a place on the body ── */
+.nwg-sp__rail {
+  flex-wrap: wrap; align-items: center; gap: .55em;
+  margin-top: var(--sp-lg); padding-top: var(--sp-md);
+  border-top: 1px solid rgba(166, 124, 26, 0.2);
+}
+.nwg-sp__rail-lbl {
+  font-family: var(--fm); font-size: var(--scale-n2); letter-spacing: .1em;
+  text-transform: uppercase; color: var(--muted); margin-right: .6em;
+}
+.nwg-sp__chip {
+  font-family: var(--fm); font-size: var(--scale-n2); cursor: pointer;
+  padding: .42em .85em; border-radius: 2px; user-select: none;
+  border: 1px solid rgba(166, 124, 26, 0.4); color: var(--rope-l);
+  opacity: .72; transition: opacity .16s ease, border-color .16s ease;
+}
+.nwg-sp__chip:hover { opacity: 1; border-color: var(--rope-l); }
+.nwg-sp__chip--reset { border-style: dashed; color: var(--muted); }
+
+/* ── per-point state ── */
+#nwgsp0:checked ~ .nwg-sp__grid .nwg-sp__card[data-i="0"] { display: block; }
+#nwgsp1:checked ~ .nwg-sp__grid .nwg-sp__card[data-i="1"] { display: block; }
+#nwgsp2:checked ~ .nwg-sp__grid .nwg-sp__card[data-i="2"] { display: block; }
+#nwgsp3:checked ~ .nwg-sp__grid .nwg-sp__card[data-i="3"] { display: block; }
+#nwgsp4:checked ~ .nwg-sp__grid .nwg-sp__card[data-i="4"] { display: block; }
+#nwgsp5:checked ~ .nwg-sp__grid .nwg-sp__card[data-i="5"] { display: block; }
+#nwgsp6:checked ~ .nwg-sp__grid .nwg-sp__card[data-i="6"] { display: block; }
+#nwgsp7:checked ~ .nwg-sp__grid .nwg-sp__card[data-i="7"] { display: block; }
+#nwgsp8:checked ~ .nwg-sp__grid .nwg-sp__card[data-i="8"] { display: block; }
+#nwgsp9:checked ~ .nwg-sp__grid .nwg-sp__card[data-i="9"] { display: block; }
+#nwgsp10:checked ~ .nwg-sp__grid .nwg-sp__card[data-i="10"] { display: block; }
+#nwgsp11:checked ~ .nwg-sp__grid .nwg-sp__card[data-i="11"] { display: block; }
+#nwgsp12:checked ~ .nwg-sp__grid .nwg-sp__card[data-i="12"] { display: block; }
+#nwgsp13:checked ~ .nwg-sp__grid .nwg-sp__card[data-i="13"] { display: block; }
+#nwgsp14:checked ~ .nwg-sp__grid .nwg-sp__card[data-i="14"] { display: block; }
+#nwgsp15:checked ~ .nwg-sp__grid .nwg-sp__card[data-i="15"] { display: block; }
+#nwgsp16:checked ~ .nwg-sp__grid .nwg-sp__card[data-i="16"] { display: block; }
+#nwgsp17:checked ~ .nwg-sp__grid .nwg-sp__card[data-i="17"] { display: block; }
+#nwgsp18:checked ~ .nwg-sp__grid .nwg-sp__card[data-i="18"] { display: block; }
+
+#nwgsp1:checked ~ .nwg-sp__grid .nwg-sp__dot[data-k="1"] {
+  opacity: 1; background: var(--rope-l); color: var(--ink);
+  border-color: var(--rope-l); transform: translate(-50%, -50%) scale(1.3);
+  box-shadow: 0 0 0 5px rgba(201, 168, 76, 0.18);
+}
+#nwgsp2:checked ~ .nwg-sp__grid .nwg-sp__dot[data-k="2"] {
+  opacity: 1; background: var(--rope-l); color: var(--ink);
+  border-color: var(--rope-l); transform: translate(-50%, -50%) scale(1.3);
+  box-shadow: 0 0 0 5px rgba(201, 168, 76, 0.18);
+}
+#nwgsp3:checked ~ .nwg-sp__grid .nwg-sp__dot[data-k="3"] {
+  opacity: 1; background: var(--rope-l); color: var(--ink);
+  border-color: var(--rope-l); transform: translate(-50%, -50%) scale(1.3);
+  box-shadow: 0 0 0 5px rgba(201, 168, 76, 0.18);
+}
+#nwgsp4:checked ~ .nwg-sp__grid .nwg-sp__dot[data-k="4"] {
+  opacity: 1; background: var(--rope-l); color: var(--ink);
+  border-color: var(--rope-l); transform: translate(-50%, -50%) scale(1.3);
+  box-shadow: 0 0 0 5px rgba(201, 168, 76, 0.18);
+}
+#nwgsp5:checked ~ .nwg-sp__grid .nwg-sp__dot[data-k="5"] {
+  opacity: 1; background: var(--rope-l); color: var(--ink);
+  border-color: var(--rope-l); transform: translate(-50%, -50%) scale(1.3);
+  box-shadow: 0 0 0 5px rgba(201, 168, 76, 0.18);
+}
+#nwgsp6:checked ~ .nwg-sp__grid .nwg-sp__dot[data-k="6"] {
+  opacity: 1; background: var(--rope-l); color: var(--ink);
+  border-color: var(--rope-l); transform: translate(-50%, -50%) scale(1.3);
+  box-shadow: 0 0 0 5px rgba(201, 168, 76, 0.18);
+}
+#nwgsp7:checked ~ .nwg-sp__grid .nwg-sp__dot[data-k="7"] {
+  opacity: 1; background: var(--rope-l); color: var(--ink);
+  border-color: var(--rope-l); transform: translate(-50%, -50%) scale(1.3);
+  box-shadow: 0 0 0 5px rgba(201, 168, 76, 0.18);
+}
+#nwgsp8:checked ~ .nwg-sp__grid .nwg-sp__dot[data-k="8"] {
+  opacity: 1; background: var(--rope-l); color: var(--ink);
+  border-color: var(--rope-l); transform: translate(-50%, -50%) scale(1.3);
+  box-shadow: 0 0 0 5px rgba(201, 168, 76, 0.18);
+}
+#nwgsp9:checked ~ .nwg-sp__grid .nwg-sp__dot[data-k="9"] {
+  opacity: 1; background: var(--rope-l); color: var(--ink);
+  border-color: var(--rope-l); transform: translate(-50%, -50%) scale(1.3);
+  box-shadow: 0 0 0 5px rgba(201, 168, 76, 0.18);
+}
+#nwgsp10:checked ~ .nwg-sp__grid .nwg-sp__dot[data-k="10"] {
+  opacity: 1; background: var(--rope-l); color: var(--ink);
+  border-color: var(--rope-l); transform: translate(-50%, -50%) scale(1.3);
+  box-shadow: 0 0 0 5px rgba(201, 168, 76, 0.18);
+}
+#nwgsp11:checked ~ .nwg-sp__grid .nwg-sp__dot[data-k="11"] {
+  opacity: 1; background: var(--rope-l); color: var(--ink);
+  border-color: var(--rope-l); transform: translate(-50%, -50%) scale(1.3);
+  box-shadow: 0 0 0 5px rgba(201, 168, 76, 0.18);
+}
+#nwgsp12:checked ~ .nwg-sp__grid .nwg-sp__dot[data-k="12"] {
+  opacity: 1; background: var(--rope-l); color: var(--ink);
+  border-color: var(--rope-l); transform: translate(-50%, -50%) scale(1.3);
+  box-shadow: 0 0 0 5px rgba(201, 168, 76, 0.18);
+}
+#nwgsp13:checked ~ .nwg-sp__grid .nwg-sp__dot[data-k="13"] {
+  opacity: 1; background: var(--rope-l); color: var(--ink);
+  border-color: var(--rope-l); transform: translate(-50%, -50%) scale(1.3);
+  box-shadow: 0 0 0 5px rgba(201, 168, 76, 0.18);
+}
+#nwgsp14:checked ~ .nwg-sp__grid .nwg-sp__dot[data-k="14"] {
+  opacity: 1; background: var(--rope-l); color: var(--ink);
+  border-color: var(--rope-l); transform: translate(-50%, -50%) scale(1.3);
+  box-shadow: 0 0 0 5px rgba(201, 168, 76, 0.18);
+}
+#nwgsp15:checked ~ .nwg-sp__grid .nwg-sp__dot[data-k="15"] {
+  opacity: 1; background: var(--rope-l); color: var(--ink);
+  border-color: var(--rope-l); transform: translate(-50%, -50%) scale(1.3);
+  box-shadow: 0 0 0 5px rgba(201, 168, 76, 0.18);
+}
+#nwgsp16:checked ~ .nwg-sp__grid .nwg-sp__dot[data-k="16"] {
+  opacity: 1; background: var(--rope-l); color: var(--ink);
+  border-color: var(--rope-l); transform: translate(-50%, -50%) scale(1.3);
+  box-shadow: 0 0 0 5px rgba(201, 168, 76, 0.18);
+}
+#nwgsp17:checked ~ .nwg-sp__grid .nwg-sp__dot[data-k="17"] {
+  opacity: 1; background: var(--rope-l); color: var(--ink);
+  border-color: var(--rope-l); transform: translate(-50%, -50%) scale(1.3);
+  box-shadow: 0 0 0 5px rgba(201, 168, 76, 0.18);
+}
+#nwgsp18:checked ~ .nwg-sp__grid .nwg-sp__dot[data-k="18"] {
+  opacity: 1; background: var(--rope-l); color: var(--ink);
+  border-color: var(--rope-l); transform: translate(-50%, -50%) scale(1.3);
+  box-shadow: 0 0 0 5px rgba(201, 168, 76, 0.18);
+}
+
+#nwgsp1:focus-visible ~ .nwg-sp__grid .nwg-sp__dot[data-k="1"],
+#nwgsp1:focus-visible ~ .nwg-sp__rail .nwg-sp__chip[for="nwgsp1"] {
+  outline: 2px solid var(--rope-l); outline-offset: 3px;
+}
+#nwgsp2:focus-visible ~ .nwg-sp__grid .nwg-sp__dot[data-k="2"],
+#nwgsp2:focus-visible ~ .nwg-sp__rail .nwg-sp__chip[for="nwgsp2"] {
+  outline: 2px solid var(--rope-l); outline-offset: 3px;
+}
+#nwgsp3:focus-visible ~ .nwg-sp__grid .nwg-sp__dot[data-k="3"],
+#nwgsp3:focus-visible ~ .nwg-sp__rail .nwg-sp__chip[for="nwgsp3"] {
+  outline: 2px solid var(--rope-l); outline-offset: 3px;
+}
+#nwgsp4:focus-visible ~ .nwg-sp__grid .nwg-sp__dot[data-k="4"],
+#nwgsp4:focus-visible ~ .nwg-sp__rail .nwg-sp__chip[for="nwgsp4"] {
+  outline: 2px solid var(--rope-l); outline-offset: 3px;
+}
+#nwgsp5:focus-visible ~ .nwg-sp__grid .nwg-sp__dot[data-k="5"],
+#nwgsp5:focus-visible ~ .nwg-sp__rail .nwg-sp__chip[for="nwgsp5"] {
+  outline: 2px solid var(--rope-l); outline-offset: 3px;
+}
+#nwgsp6:focus-visible ~ .nwg-sp__grid .nwg-sp__dot[data-k="6"],
+#nwgsp6:focus-visible ~ .nwg-sp__rail .nwg-sp__chip[for="nwgsp6"] {
+  outline: 2px solid var(--rope-l); outline-offset: 3px;
+}
+#nwgsp7:focus-visible ~ .nwg-sp__grid .nwg-sp__dot[data-k="7"],
+#nwgsp7:focus-visible ~ .nwg-sp__rail .nwg-sp__chip[for="nwgsp7"] {
+  outline: 2px solid var(--rope-l); outline-offset: 3px;
+}
+#nwgsp8:focus-visible ~ .nwg-sp__grid .nwg-sp__dot[data-k="8"],
+#nwgsp8:focus-visible ~ .nwg-sp__rail .nwg-sp__chip[for="nwgsp8"] {
+  outline: 2px solid var(--rope-l); outline-offset: 3px;
+}
+#nwgsp9:focus-visible ~ .nwg-sp__grid .nwg-sp__dot[data-k="9"],
+#nwgsp9:focus-visible ~ .nwg-sp__rail .nwg-sp__chip[for="nwgsp9"] {
+  outline: 2px solid var(--rope-l); outline-offset: 3px;
+}
+#nwgsp10:focus-visible ~ .nwg-sp__grid .nwg-sp__dot[data-k="10"],
+#nwgsp10:focus-visible ~ .nwg-sp__rail .nwg-sp__chip[for="nwgsp10"] {
+  outline: 2px solid var(--rope-l); outline-offset: 3px;
+}
+#nwgsp11:focus-visible ~ .nwg-sp__grid .nwg-sp__dot[data-k="11"],
+#nwgsp11:focus-visible ~ .nwg-sp__rail .nwg-sp__chip[for="nwgsp11"] {
+  outline: 2px solid var(--rope-l); outline-offset: 3px;
+}
+#nwgsp12:focus-visible ~ .nwg-sp__grid .nwg-sp__dot[data-k="12"],
+#nwgsp12:focus-visible ~ .nwg-sp__rail .nwg-sp__chip[for="nwgsp12"] {
+  outline: 2px solid var(--rope-l); outline-offset: 3px;
+}
+#nwgsp13:focus-visible ~ .nwg-sp__grid .nwg-sp__dot[data-k="13"],
+#nwgsp13:focus-visible ~ .nwg-sp__rail .nwg-sp__chip[for="nwgsp13"] {
+  outline: 2px solid var(--rope-l); outline-offset: 3px;
+}
+#nwgsp14:focus-visible ~ .nwg-sp__grid .nwg-sp__dot[data-k="14"],
+#nwgsp14:focus-visible ~ .nwg-sp__rail .nwg-sp__chip[for="nwgsp14"] {
+  outline: 2px solid var(--rope-l); outline-offset: 3px;
+}
+#nwgsp15:focus-visible ~ .nwg-sp__grid .nwg-sp__dot[data-k="15"],
+#nwgsp15:focus-visible ~ .nwg-sp__rail .nwg-sp__chip[for="nwgsp15"] {
+  outline: 2px solid var(--rope-l); outline-offset: 3px;
+}
+#nwgsp16:focus-visible ~ .nwg-sp__grid .nwg-sp__dot[data-k="16"],
+#nwgsp16:focus-visible ~ .nwg-sp__rail .nwg-sp__chip[for="nwgsp16"] {
+  outline: 2px solid var(--rope-l); outline-offset: 3px;
+}
+#nwgsp17:focus-visible ~ .nwg-sp__grid .nwg-sp__dot[data-k="17"],
+#nwgsp17:focus-visible ~ .nwg-sp__rail .nwg-sp__chip[for="nwgsp17"] {
+  outline: 2px solid var(--rope-l); outline-offset: 3px;
+}
+#nwgsp18:focus-visible ~ .nwg-sp__grid .nwg-sp__dot[data-k="18"],
+#nwgsp18:focus-visible ~ .nwg-sp__rail .nwg-sp__chip[for="nwgsp18"] {
+  outline: 2px solid var(--rope-l); outline-offset: 3px;
+}
+
+#nwgsp14:checked ~ .nwg-sp__rail .nwg-sp__chip[for="nwgsp14"] {
+  opacity: 1; background: rgba(166, 124, 26, 0.18); border-color: var(--rope-l);
+}
+#nwgsp15:checked ~ .nwg-sp__rail .nwg-sp__chip[for="nwgsp15"] {
+  opacity: 1; background: rgba(166, 124, 26, 0.18); border-color: var(--rope-l);
+}
+#nwgsp16:checked ~ .nwg-sp__rail .nwg-sp__chip[for="nwgsp16"] {
+  opacity: 1; background: rgba(166, 124, 26, 0.18); border-color: var(--rope-l);
+}
+#nwgsp17:checked ~ .nwg-sp__rail .nwg-sp__chip[for="nwgsp17"] {
+  opacity: 1; background: rgba(166, 124, 26, 0.18); border-color: var(--rope-l);
+}
+#nwgsp18:checked ~ .nwg-sp__rail .nwg-sp__chip[for="nwgsp18"] {
+  opacity: 1; background: rgba(166, 124, 26, 0.18); border-color: var(--rope-l);
+}
+
+/* ── narrow ── */
+@media (max-width: 900px) {
+  .nwg-sp__grid { grid-template-columns: 1fr; gap: var(--sp-lg); }
+  .nwg-sp__stage { max-width: 460px; margin: 0 auto; }
+  .nwg-sp__panel {
+    border-left: 0; padding-left: 0; min-height: 0;
+    border-top: 1px solid rgba(166, 124, 26, 0.28); padding-top: var(--sp-lg);
+  }
+  .nwg-sp__dot { width: 26px; height: 26px; font-size: 12px; opacity: .72; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nwg-sp__dot::before, .nwg-sp__dot::after { animation: none; opacity: 0; }
+  .nwg-sp__dot { border-color: var(--rope-l); background: rgba(19, 19, 21, 0.82); color: var(--rope-l); }
+  .nwg-sp__dot--nerve { background: rgba(166, 124, 26, 0.72); color: var(--paper); }
+  .nwg-sp__rail { display: flex; }
+}
+/* inline link, matching the Nawajutsu caption treatment */
+.nwg-sp__link { color: var(--rope-l); text-decoration: none; border-bottom: 1px solid rgba(201, 168, 76, 0.4); }
+.nwg-sp__link:hover { border-bottom-color: var(--rope-l); }
+
+/* page 1: the opening text, restored by Reset */
+.nwg-sp__card--intro .bq { margin-top: var(--sp-lg); margin-bottom: var(--sp-lg); }
+.nwg-sp__invite { margin: var(--sp-md) 0 0; }
+.nwg-sp__cta { color: var(--rope-l); }
+
+/* D3 board plate — full-width exported artboards   added 2026-09-13 */
+.nwg--one { grid-template-columns: minmax(0, 1fr); }
+.nwg__art img { width: 100%; height: auto; display: block; }
+@media (max-width: 900px) {
+  .nwg { grid-template-columns: minmax(0, 1fr); }
+  .nwg__art { padding: var(--sp-sm); }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   NAWAJUTSU · □ △ ○ box (D3)                    added 2026-09-14
+   Add-only, namespaced .nwb. Tabs and states are CSS only.
+   ═══════════════════════════════════════════════════════════════ */
+.nwb { margin: var(--sp-xl) 0 var(--sp-2xl); }
+.nwb__r { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; clip-path: inset(50%); }
+
+.nwb__tabs { display: flex; gap: 0; border-bottom: 1px solid rgba(166,124,26,0.28); }
+.nwb__tab {
+  flex: 1 1 0; text-align: center; cursor: pointer; user-select: none;
+  font-family: var(--fm); font-size: var(--scale-n1); letter-spacing: 0.08em;
+  color: var(--muted); padding: .85em .6em; border-bottom: 2px solid transparent;
+  margin-bottom: -1px; transition: color .16s ease, border-color .16s ease;
+}
+.nwb__tab b { font-size: 1.25em; margin-right: .45em; font-weight: 400; }
+.nwb__tab:hover { color: var(--rope-l); }
+
+.nwb__body { padding-top: var(--sp-lg); }
+.nwb__pane { display: none; }
+#nwb-t1:checked ~ .nwb__tabs .nwb__tab:nth-child(1),
+#nwb-t2:checked ~ .nwb__tabs .nwb__tab:nth-child(2),
+#nwb-t3:checked ~ .nwb__tabs .nwb__tab:nth-child(3) { color: var(--rope-l); border-bottom-color: var(--rope-l); }
+#nwb-t1:checked ~ .nwb__body .nwb__pane[data-p="1"],
+#nwb-t2:checked ~ .nwb__body .nwb__pane[data-p="2"],
+#nwb-t3:checked ~ .nwb__body .nwb__pane[data-p="3"] { display: block; }
+#nwb-t1:focus-visible ~ .nwb__tabs .nwb__tab:nth-child(1),
+#nwb-t2:focus-visible ~ .nwb__tabs .nwb__tab:nth-child(2),
+#nwb-t3:focus-visible ~ .nwb__tabs .nwb__tab:nth-child(3) { outline: 2px solid var(--rope-l); outline-offset: -2px; }
+
+/* reserved so the drawing below starts at the same y on every pane */
+.nwb__lede { font-family: var(--fd); font-size: var(--scale-0); line-height: 1.66;
+  color: var(--paper); opacity: .88; margin: 0 0 var(--sp-lg); min-height: 7.5em; }
+
+/* segmented state switch */
+.nwb__seg { display: inline-flex; border: 1px solid rgba(166,124,26,0.4); border-radius: 2px; margin-bottom: var(--sp-md); }
+.nwb__seg label {
+  cursor: pointer; user-select: none; padding: .5em 1.1em;
+  font-family: var(--fm); font-size: var(--scale-n2); color: var(--muted); transition: all .16s ease;
+}
+.nwb__seg label + label { border-left: 1px solid rgba(166,124,26,0.4); }
+#nwb-s1:checked ~ .nwb__seg label[for="nwb-s1"],
+#nwb-s2:checked ~ .nwb__seg label[for="nwb-s2"] { background: rgba(166,124,26,0.18); color: var(--rope-l); }
+.nwb__cview { display: none; }
+#nwb-c1:checked ~ .nwb__cview[data-c="1"], #nwb-c2:checked ~ .nwb__cview[data-c="2"] { display: block; }
+#nwb-c1:checked ~ .nwb__seg label[for="nwb-c1"],
+#nwb-c2:checked ~ .nwb__seg label[for="nwb-c2"] { background: rgba(166,124,26,0.18); color: var(--rope-l); }
+.nwb__below { margin-top: var(--sp-lg); }
+.nwb__below .nwb__cap { margin: 0 0 var(--sp-md); break-inside: avoid; }
+
+/* the connection drawing */
+.nwb-ring2  { fill: none; stroke: var(--rope); stroke-width: 2; stroke-dasharray: 10 10; opacity: .45; }
+.nwb-spir   { fill: none; stroke: var(--rope-l); stroke-width: 6; opacity: .5; stroke-linecap: round; }
+.nwb-spir-h { fill: var(--rope-l); opacity: .75; }
+.nwb-oring  { fill: var(--rope-l); fill-opacity: .05; stroke: var(--rope-l); stroke-width: 2; stroke-dasharray: 7 7; opacity: .8; }
+.nwb-feet2 use { fill: var(--paper); fill-opacity: .16; stroke: var(--rope); stroke-width: 4; }
+.nwb-obv-p  { fill: var(--rope-l); opacity: .85; }
+.nwb-obv-q  { fill: var(--rope); opacity: .38; }
+.nwb-conn   { stroke: var(--paper); stroke-opacity: .55; stroke-width: 3; stroke-dasharray: 5 8; }
+.nwb-cp     { stroke: #C9A227; stroke-width: 8; }
+.nwb-cp-h   { fill: #C9A227; }
+.nwb-cf     { stroke: #C0453F; stroke-width: 6; stroke-dasharray: 13 11; opacity: .85; }
+.nwb-cf-h   { fill: #C0453F; opacity: .85; }
+.nwb-tan    { stroke: #5A7690; stroke-width: 4; stroke-dasharray: 16 12; opacity: .8; }
+.nwb-tan-h  { fill: #5A7690; opacity: .8; }
+.nwb-t--cp  { fill: #E3C351; }
+.nwb-lead   { stroke: #E3C351; stroke-width: 1.5; opacity: .35; }
+.nwb-t--cf  { fill: #C0453F; }
+.nwb-t--tn  { fill: #7E9AB5; }
+.nwb__fig { display: none; margin: 0; }
+/* the drawing keeps its box; its paragraph goes in the column beside it */
+#nwb-s1:checked ~ .nwb__fig[data-s="1"], #nwb-s2:checked ~ .nwb__fig[data-s="2"],
+.nwb__figrow {
+  display: grid; grid-template-columns: 720px minmax(0, 1fr);
+  gap: var(--sp-xl); align-items: start;
+}
+.nwb__fig .nwb__cap, .nwb__aside .nwb__cap { margin-top: 0; }
+.nwb__aside .nwb__cap + .nwb__cap { margin-top: var(--sp-md); }
+
+/* every drawing sits in the same box: same width, height and position on all three panes */
+.nwb__art {
+  border: 1px solid rgba(166,124,26,0.22); background: #0A0A0A; padding: var(--sp-sm);
+  width: 100%; max-width: 720px; aspect-ratio: 4 / 3; margin: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.nwb__svg { width: 100%; height: 100%; display: block; font-family: var(--fm); }
+.nwb__cap {
+  font-family: var(--fd); font-size: var(--scale-n1); line-height: 1.66;
+  color: var(--paper); opacity: .75; margin: var(--sp-sm) 0 0;
+}
+.nwb__cap p { margin: 0 0 var(--sp-sm); }
+.nwb__cap p:last-child { margin-bottom: 0; }
+.nwb__lbl {
+  font-family: var(--fm); font-size: var(--scale-n2); letter-spacing: .09em;
+  text-transform: uppercase; color: var(--rope-l); opacity: .85;
+  margin: var(--sp-md) 0 var(--sp-xs) !important;
+}
+.nwb__list { list-style: none; margin: 0 0 var(--sp-sm); padding: 0; }
+.nwb__list li {
+  position: relative; padding-left: 1.05em; margin: 0 0 .38em; line-height: 1.55;
+}
+.nwb__list li::before {
+  content: ''; position: absolute; left: 0; top: .62em;
+  width: 5px; height: 5px; background: var(--rope); opacity: .7;
+}
+.nwb__list em { font-style: normal; font-family: var(--fm); font-size: .84em;
+  color: var(--rope-l); opacity: .8; letter-spacing: .04em; }
+.nwb__list em::before { content: '\2014\00a0'; }
+.nwb__aside > .nwb__list { font-family: var(--fd); font-size: var(--scale-n1);
+  line-height: 1.6; color: var(--paper); opacity: .8; }
+.nwb__term { display: block; font-family: var(--fm); font-size: .84em;
+  letter-spacing: .05em; color: var(--rope-l); opacity: .9; margin-bottom: .12em; }
+
+/* triangle pane: the switch swaps the whole drawing */
+.nwb__seg--tri label { display: inline-flex; align-items: center; gap: .55em; }
+.nwb__seg--tri svg { width: 13px; height: 13px; }
+.nwb__seg--tri svg path { fill: currentColor; }
+#nwb-r1:checked ~ .nwb__seg label[for="nwb-r1"],
+#nwb-r2:checked ~ .nwb__seg label[for="nwb-r2"],
+#nwb-r3:checked ~ .nwb__seg label[for="nwb-r3"] { background: rgba(166,124,26,0.18); color: var(--rope-l); }
+.nwb__view { display: none; }
+/* the figure keeps its own column so the slider stays on screen beside it */
+#nwb-r1:checked ~ .nwb__view[data-v="1"] {
+  display: grid; grid-template-columns: 720px minmax(0, 1fr);
+  gap: var(--sp-xl); align-items: start;
+}
+#nwb-r2:checked ~ .nwb__view[data-v="2"] { display: block; }
+/* text-only view: no frame, two columns matching the drawing/aside split */
+#nwb-r3:checked ~ .nwb__view[data-v="3"] {
+  display: grid; grid-template-columns: 720px minmax(0, 1fr);
+  gap: var(--sp-xl); align-items: start;
+}
+.nwb__desc { font-family: var(--fd); font-size: var(--scale-n1); line-height: 1.66;
+  color: var(--paper); opacity: .88; margin: 0 0 var(--sp-xl); }
+.nwb__grp { break-inside: avoid; margin: 0 0 var(--sp-xl); }
+.nwb__main .nwb__grp:last-child, .nwb__side .nwb__grp:last-child { margin-bottom: 0; }
+.nwb__grp .nwb__lbl { margin-top: 0 !important; }
+.nwb__grp .nwb__list { margin-bottom: 0; }
+.nwb__txt { font-family: var(--fd); font-size: var(--scale-n1); line-height: 1.6; color: var(--paper); }
+.nwb__txt .nwb__list li { margin-bottom: .5em; opacity: .82; }
+.nwb__ctls { position: sticky; top: var(--sp-lg); }
+.nwb__ctls .nwb__ctl { margin-top: 0; }
+.nwb__ctls .nwb__read { grid-template-columns: minmax(0, 1fr); gap: var(--sp-sm); }
+.nwb__ctls .nwb__ticks { flex-direction: column; gap: .15em; align-items: flex-start; }
+.nwb__h4 { font-family: var(--fm); font-size: var(--scale-n2); letter-spacing: .09em;
+  text-transform: uppercase; color: var(--rope-l); margin: var(--sp-md) 0 var(--sp-sm); font-weight: 400; }
+
+/* diagram vocabulary */
+.nwb-sq   { fill: var(--rope-l); fill-opacity: .07; stroke: var(--rope-l); stroke-width: 3; }
+.nwb-diag { stroke: var(--rope-l); stroke-width: 3.4; }
+.nwb-tgt  { stroke: var(--rope); stroke-width: 2; stroke-dasharray: 9 9; opacity: .7; }
+.nwb-feet use { fill: var(--paper); fill-opacity: .14; stroke: var(--rope); stroke-width: 2; }
+.nwb-pt     { fill: var(--rope-l); }
+.nwb-pt--o  { fill: #0A0A0A; stroke: var(--rope-l); stroke-width: 2.6; }
+.nwb-t      { font-family: var(--fm); font-size: 24px; letter-spacing: .08em; fill: var(--muted); }
+.nwb-t--k   { fill: var(--rope-l); font-size: 27px; }
+.nwb-t      { paint-order: stroke; stroke: #0A0A0A; stroke-width: 7px; stroke-linejoin: round; }
+.nwb-t--d   { fill: var(--muted); opacity: .7; }
+
+/* control + readout */
+.nwb__ctl { margin-top: var(--sp-lg); }
+.nwb__range { -webkit-appearance: none; appearance: none; width: 100%; height: 30px;
+  background: transparent; outline: none; margin: 0; cursor: pointer; display: block; }
+.nwb__range::-webkit-slider-runnable-track { height: 2px; background: rgba(166,124,26,0.35); }
+.nwb__range::-webkit-slider-thumb { -webkit-appearance: none; margin-top: -10px; width: 22px; height: 22px;
+  border-radius: 50%; background: var(--rope-l); border: 2px solid var(--ink); box-shadow: 0 0 0 4px rgba(201,168,76,0.15); }
+.nwb__range::-moz-range-track { height: 2px; background: rgba(166,124,26,0.35); }
+.nwb__range::-moz-range-thumb { width: 22px; height: 22px; border-radius: 50%;
+  background: var(--rope-l); border: 2px solid var(--ink); box-shadow: 0 0 0 4px rgba(201,168,76,0.15); }
+.nwb__range:focus-visible { outline: 2px solid var(--rope-l); outline-offset: 6px; }
+.nwb__ticks { display: flex; justify-content: space-between; font-family: var(--fm);
+  font-size: var(--scale-n2); color: var(--muted); margin-top: var(--sp-xs); }
+.nwb__read { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: var(--sp-md);
+  margin: var(--sp-lg) 0 0; padding-top: var(--sp-md); border-top: 1px solid rgba(166,124,26,0.22); }
+.nwb__read dt { font-family: var(--fm); font-size: var(--scale-n2); letter-spacing: .1em;
+  text-transform: uppercase; color: var(--muted); margin: 0 0 .35em; }
+.nwb__read dd { font-family: var(--fm); font-size: var(--scale-n1); color: var(--rope-l); margin: 0; }
+
+@media (max-width: 900px) {
+  .nwb__art { max-width: 100%; }
+  #nwb-r1:checked ~ .nwb__view[data-v="1"],
+  #nwb-s1:checked ~ .nwb__fig[data-s="1"], #nwb-s2:checked ~ .nwb__fig[data-s="2"],
+  .nwb__figrow { grid-template-columns: minmax(0, 1fr); }
+  .nwb__lede { min-height: 0; }
+  .nwb__art { aspect-ratio: auto; display: block; }
+  .nwb__svg { height: auto; }
+  .nwb__ctls { position: static; }
+  .nwb__ctls .nwb__ticks { flex-direction: row; }
+  .nwb__ctls .nwb__read { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .nwb__read { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .nwb__tab { font-size: var(--scale-n2); letter-spacing: 0; }
+  .nwb__seg { display: flex; }
+  .nwb-t { font-size: 28px; } .nwb-t--k { font-size: 31px; }
 }
