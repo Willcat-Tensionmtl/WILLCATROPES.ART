@@ -989,42 +989,50 @@ document.querySelectorAll('.sec-id').forEach(function(el) {
 
 /* ── Roving nav highlight: one clickable item lights at a time ──
    The three shapes step quickly in sequence so a visitor sees three
-   separate lines and reads them as three separate links. The
-   hamburger is part of the cycle for the same reason.            */
+   separate lines and reads them as three separate links. Runs on the
+   top nav (where the hamburger joins the cycle) and on the shape
+   trio at the foot of the page.                                   */
 (function () {
-  var nav = document.querySelector('.site-nav__links');
-  if (!nav) return;
-  var items = Array.prototype.slice.call(nav.querySelectorAll('a'));
-  var btn = document.getElementById('menu-btn');
-  if (btn) items.push(btn);
-  if (!items.length) return;
-
   var SHAPE = 720, WORD = 2500;
-  var i = -1, paused = false, timer = null;
 
-  function dwell(el) { return el.classList.contains('nav-shape-link') ? SHAPE : WORD; }
-  function clear() { items.forEach(function (el) { el.classList.remove('nav-rove'); }); }
-
-  function step() {
-    clear();
-    if (paused) return;
-    i = (i + 1) % items.length;
-    var el = items[i];
-    void el.offsetWidth;                 // restart the blink animation
-    el.classList.add('nav-rove');
-    timer = setTimeout(step, dwell(el));
+  function rove(root, items) {
+    if (!root || !items.length) return;
+    var i = -1, paused = false, timer = null;
+    function dwell(el) { return el.classList.contains('nav-shape-link') ? SHAPE : WORD; }
+    function clear() { items.forEach(function (el) { el.classList.remove('nav-rove'); }); }
+    function step() {
+      clear();
+      if (paused) return;
+      i = (i + 1) % items.length;
+      var el = items[i];
+      void el.offsetWidth;               // restart the blink animation
+      el.classList.add('nav-rove');
+      timer = setTimeout(step, dwell(el));
+    }
+    function pause() { paused = true; clearTimeout(timer); clear(); }
+    function resume() { if (!paused) return; paused = false; step(); }
+    root.addEventListener('mouseenter', pause);
+    root.addEventListener('mouseleave', resume);
+    step();
+    return { pause: pause, resume: resume };
   }
 
-  function pause() { paused = true; clearTimeout(timer); clear(); }
-  function resume() { if (!paused) return; paused = false; step(); }
-
-  nav.addEventListener('mouseenter', pause);
-  nav.addEventListener('mouseleave', resume);
-  if (btn) {
-    btn.addEventListener('mouseenter', pause);
-    btn.addEventListener('mouseleave', resume);
+  // top nav: words hold, shapes step quickly, hamburger closes the loop
+  var nav = document.querySelector('.site-nav__links');
+  if (nav) {
+    var items = Array.prototype.slice.call(nav.querySelectorAll('a'));
+    var btn = document.getElementById('menu-btn');
+    if (btn) items.push(btn);
+    var top = rove(nav, items);
+    if (btn && top) {
+      btn.addEventListener('mouseenter', top.pause);
+      btn.addEventListener('mouseleave', top.resume);
+    }
   }
-  step();
+
+  // foot of the page: the three shapes on their own cycle
+  var svq = document.querySelector('.svq-nav');
+  if (svq) rove(svq, Array.prototype.slice.call(svq.querySelectorAll('.nav-shape-link')));
 })();
 
 /* ───────────────────────────────────────────────────────────────

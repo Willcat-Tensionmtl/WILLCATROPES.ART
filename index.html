@@ -1920,17 +1920,12 @@
     </div>
 
     <div class="fade-in section-padded-sm" id="extremes-block">
-      <!-- Mobile: corner tap buttons -->
-        <div data-lightbox data-lightbox-src="img/Extremes_Fox_Darkroom_1.webp" class="pulse-btn--delay">
-          <span class="t-gold-dim">View</span>
-          <svg viewBox="0 0 16 28" fill="none" class="extremes-arrow-sm"><polyline points="4,2 14,14 4,26" stroke="#c9a84c" stroke-width="1.5" stroke-linejoin="miter" stroke-linecap="square" fill="none"/></svg>
-        </div>
-      </div>
-      <!-- Desktop: flanking images -->
-      <div class="extremes-desktop extremes-desktop">
-        <div class="extremes-img-wrap">
+      <!-- flanking images; each one opens in the lightbox -->
+      <div class="extremes-desktop">
+        <button type="button" class="extremes-img-wrap" data-lightbox data-lightbox-src="img/Extremes_Fox_Darkroom_2.webp" aria-label="View this image full size">
           <img loading="lazy" src="img/Extremes_Fox_Darkroom_2.webp" alt="" class="extremes-img-abs">
-        </div>
+          <span class="ext-view"><svg viewBox="0 0 24 44" fill="none" aria-hidden="true" class="ext-view__chev"><polyline points="5,4 19,22 5,40" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" fill="none"/></svg></span>
+        </button>
         <div class="extremes-text">
           <p class="body-serif mb-2rem-muted">For those thirsting for the extremes, the raw energies, the hentai scenes, the places where rope becomes something older and darker than the art you sometimes see today, you have your work cut out for you.</p>
           <p class="body-serif mb-2rem-muted">It is possible to find those willing and wanting. But the trust between you needs to grow first. And you must be confident enough to effortlessly read someone, to bring them to that precipice without letting them fall over and or into it.</p>
@@ -1939,9 +1934,10 @@
             <p class="extremes-quote">The circle is not just about returning to the beginning. It is about applying what you carry back with you.</p>
           </div>
         </div>
-        <div class="extremes-img-wrap">
+        <button type="button" class="extremes-img-wrap" data-lightbox data-lightbox-src="img/Extremes_Fox_Darkroom_1.webp" aria-label="View this image full size">
           <img loading="lazy" src="img/Extremes_Fox_Darkroom_1.webp" alt="" class="extremes-img-abs">
-        </div>
+          <span class="ext-view ext-view--rev"><svg viewBox="0 0 24 44" fill="none" aria-hidden="true" class="ext-view__chev"><polyline points="19,4 5,22 19,40" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" fill="none"/></svg></span>
+        </button>
       </div>
     </div>
   </div>

@@ -1776,6 +1776,9 @@ h2 {
   .section { padding: 5rem 0; }
   .hero__content { padding: 3rem var(--sp-xl); }
   .site-nav { padding: 1.5rem var(--sp-xl); flex-wrap: wrap; gap: .75rem; }
+  /* the nav wraps to two lines here: let the second line span the bar so the
+     menu button sits on the right margin instead of trailing the links */
+  .site-nav__gap { flex: 1 1 100%; justify-content: space-between; }
   .hamburger { display: flex; }
   #scroll-shimmer { right: var(--sp-xl); }
 }
@@ -4051,6 +4054,43 @@ svg { fill: none; }
   min-height: 100%;
   background: rgba(169,124,26,.08);
   overflow: hidden;
+  /* it is a <button> now: strip the UA chrome, keep the box */
+  display: block; width: 100%; padding: 0; border: 0;
+  cursor: pointer; appearance: none; -webkit-appearance: none;
+}
+.extremes-img-wrap:focus-visible { outline: 2px solid var(--lav-l); outline-offset: 2px; }
+
+/* the large lavender chevron sitting on the image itself */
+.ext-view {
+  position: absolute; inset: 0; z-index: 2;
+  display: flex; align-items: center; justify-content: center;
+  pointer-events: none;
+  background: linear-gradient(to bottom, transparent, rgba(13,11,8,.45), transparent);
+  color: var(--lav-br);
+  animation: extViewGlow 2.6s ease-in-out infinite;
+}
+.ext-view__chev {
+  width: 30px; height: 55px;
+  filter: drop-shadow(0 0 10px rgba(185,164,221,.75)) drop-shadow(0 0 22px rgba(185,164,221,.45));
+  transition: transform var(--dur-base);
+}
+@keyframes extViewGlow {
+  0%, 100% { opacity: .62; }
+  50%      { opacity: 1; }
+}
+.extremes-img-wrap:hover .ext-view__chev,
+.extremes-img-wrap:focus-visible .ext-view__chev { transform: translateX(4px) scale(1.08); }
+/* the right-hand image points back inward, so it leans the other way */
+.extremes-img-wrap:hover .ext-view--rev .ext-view__chev,
+.extremes-img-wrap:focus-visible .ext-view--rev .ext-view__chev { transform: translateX(-4px) scale(1.08); }
+.extremes-img-wrap:hover .extremes-img-abs { filter: brightness(.78) saturate(.65); }
+@media (prefers-reduced-motion: reduce) {
+  .ext-view { animation: none; opacity: .92; }
+  .ext-view__chev { transition: none; }
+}
+/* the flanking columns narrow to 40px here, so the chevron comes down with them */
+@media (max-width: 900px) {
+  .ext-view__chev { width: 22px; height: 40px; }
 }
 .extremes-img {
   width: 100%;
@@ -5296,6 +5336,9 @@ svg { fill: none; }
 #menu-btn.nav-rove::after { bottom: 2px; }
 /* the three shapes step quickly one after another: three separate lines, three separate links */
 .nav-shape-link.nav-rove::after { animation-duration: .72s; }
+/* the same roving line on the three shapes at the foot of the page */
+.svq-nav .nav-shape-link { position: relative; display: inline-block; padding-bottom: 7px; }
+.svq-nav .nav-shape-link.nav-rove::after { bottom: 0; }
 
 /* ══════════════════════════════════════════════════════════
    FEATURED IN — film / podcast / radio (E4 · In the World)
@@ -5992,7 +6035,7 @@ svg { fill: none; }
 /* the drawing keeps its box; its paragraph goes in the column beside it */
 #nwb-s1:checked ~ .nwb__fig[data-s="1"], #nwb-s2:checked ~ .nwb__fig[data-s="2"],
 .nwb__figrow {
-  display: grid; grid-template-columns: 720px minmax(0, 1fr);
+  display: grid; grid-template-columns: minmax(0, 720px) minmax(230px, 1fr);
   gap: var(--sp-xl); align-items: start;
 }
 .nwb__fig .nwb__cap, .nwb__aside .nwb__cap { margin-top: 0; }
@@ -6042,13 +6085,13 @@ svg { fill: none; }
 .nwb__view { display: none; }
 /* the figure keeps its own column so the slider stays on screen beside it */
 #nwb-r1:checked ~ .nwb__view[data-v="1"] {
-  display: grid; grid-template-columns: 720px minmax(0, 1fr);
+  display: grid; grid-template-columns: minmax(0, 720px) minmax(230px, 1fr);
   gap: var(--sp-xl); align-items: start;
 }
 #nwb-r2:checked ~ .nwb__view[data-v="2"] { display: block; }
 /* text-only view: no frame, two columns matching the drawing/aside split */
 #nwb-r3:checked ~ .nwb__view[data-v="3"] {
-  display: grid; grid-template-columns: 720px minmax(0, 1fr);
+  display: grid; grid-template-columns: minmax(0, 720px) minmax(230px, 1fr);
   gap: var(--sp-xl); align-items: start;
 }
 .nwb__desc { font-family: var(--fd); font-size: var(--scale-n1); line-height: 1.66;
@@ -6100,6 +6143,7 @@ svg { fill: none; }
 @media (max-width: 900px) {
   .nwb__art { max-width: 100%; }
   #nwb-r1:checked ~ .nwb__view[data-v="1"],
+  #nwb-r3:checked ~ .nwb__view[data-v="3"],
   #nwb-s1:checked ~ .nwb__fig[data-s="1"], #nwb-s2:checked ~ .nwb__fig[data-s="2"],
   .nwb__figrow { grid-template-columns: minmax(0, 1fr); }
   .nwb__lede { min-height: 0; }
