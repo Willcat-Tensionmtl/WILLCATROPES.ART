@@ -911,7 +911,7 @@ document.querySelectorAll('.sec-id').forEach(function(el) {
    Universal — wires to all media images automatically.
    Exclusions: data-no-lightbox, .hero__bg, .brk__bg,
                .level-img, SVG icons, favicon, Bokken,
-               Maru_Sankaku_Shikaku, Virtuvian_Man.
+               Maru_Sankaku_Shikaku.
    ══════════════════════════════════════════════════════════ */
 
 (function() {
@@ -921,7 +921,7 @@ document.querySelectorAll('.sec-id').forEach(function(el) {
 
   /* Non-media filenames to exclude */
   var excludeFiles = [
-    'Bokken', 'Maru_Sankaku_Shikaku', 'Virtuvian_Man', 'hero_01', 'og_preview'
+    'Bokken', 'Maru_Sankaku_Shikaku', 'hero_01', 'og_preview'
   ];
 
   /* Non-media parent selectors to exclude */
@@ -987,127 +987,35 @@ document.querySelectorAll('.sec-id').forEach(function(el) {
 
 
 
-/* ── Roving nav highlight: one clickable item lights at a time ──
-   The three shapes step quickly in sequence so a visitor sees three
-   separate lines and reads them as three separate links. Runs on the
-   top nav (where the hamburger joins the cycle) and on the shape
-   trio at the foot of the page.                                   */
+/* ── Roving highlight: one clickable item lights at a time (top nav + bottom shapes) ── */
 (function () {
-  var SHAPE = 720, WORD = 2500;
-
-  function rove(root, items) {
-    if (!root || !items.length) return;
-    var i = -1, paused = false, timer = null;
-    function dwell(el) { return el.classList.contains('nav-shape-link') ? SHAPE : WORD; }
+  function rove(items, hoverTarget) {
+    items = items.filter(Boolean);
+    if (!items.length) return;
+    var i = -1, paused = false;
     function clear() { items.forEach(function (el) { el.classList.remove('nav-rove'); }); }
     function step() {
-      clear();
       if (paused) return;
+      clear();
       i = (i + 1) % items.length;
-      var el = items[i];
-      void el.offsetWidth;               // restart the blink animation
-      el.classList.add('nav-rove');
-      timer = setTimeout(step, dwell(el));
+      void items[i].offsetWidth;           // restart the blink
+      items[i].classList.add('nav-rove');
     }
-    function pause() { paused = true; clearTimeout(timer); clear(); }
-    function resume() { if (!paused) return; paused = false; step(); }
-    root.addEventListener('mouseenter', pause);
-    root.addEventListener('mouseleave', resume);
+    setInterval(step, 2500);
     step();
-    return { pause: pause, resume: resume };
-  }
-
-  // top nav: words hold, shapes step quickly, hamburger closes the loop
-  var nav = document.querySelector('.site-nav__links');
-  if (nav) {
-    var items = Array.prototype.slice.call(nav.querySelectorAll('a'));
-    var btn = document.getElementById('menu-btn');
-    if (btn) items.push(btn);
-    var top = rove(nav, items);
-    if (btn && top) {
-      btn.addEventListener('mouseenter', top.pause);
-      btn.addEventListener('mouseleave', top.resume);
+    if (hoverTarget) {
+      hoverTarget.addEventListener('mouseenter', function () { paused = true; clear(); });
+      hoverTarget.addEventListener('mouseleave', function () { paused = false; });
     }
   }
 
-  // foot of the page: the three shapes on their own cycle
+  // Top nav: the links plus the hamburger
+  var links = document.querySelector('.site-nav__links');
+  var top = links ? Array.prototype.slice.call(links.querySelectorAll('a')) : [];
+  top.push(document.getElementById('menu-btn'));
+  rove(top, document.querySelector('.site-nav__gap') || document.querySelector('.site-nav'));
+
+  // Bottom shape nav: the three symbols, so they read as separate links
   var svq = document.querySelector('.svq-nav');
-  if (svq) rove(svq, Array.prototype.slice.call(svq.querySelectorAll('.nav-shape-link')));
-})();
-
-/* ───────────────────────────────────────────────────────────────
-   NAWAJUTSU · □ △ ○ box (D3)                    added 2026-09-14
-   Tabs and states are pure CSS. This only drives the foot slider
-   in the triangle pane. Markup renders at Wide with no JS.
-   ─────────────────────────────────────────────────────────────── */
-(function () {
-  var slider = document.getElementById('nwb-t');
-  if (!slider) return;
-
-  var FOOT = 250;
-  /* wide (horse) -> close -> kamae. Close is solved so the outlines just touch
-     and the heels sit one inch wider than the toes. */
-  var ST = [
-    { lx: 200,   ly: 580,   rx: 800,   ry: 580, la: -18,  ra: 18,  tgt: 500 },
-    { lx: 451.1, ly: 580,   rx: 548.9, ry: 580, la: -4.1, ra: 4.1, tgt: 500 },
-    { lx: 363.6, ly: 930.2, rx: 620,   ry: 430, la: -45,  ra: -1,  tgt: 589 }
-  ];
-  var KEY = [[-30,-58],[10,-50],[38,-24],[43,12],[42,30],[36,92],[33,138],[29,158],
-             [0,190],[-26,160],[-27,104],[-30,62],[-48,0],[-46,-36],[-42,-46]];
-
-  var el = {};
-  ['square','diag','tgt','footL','footR','bL','bR','mae','sumi','maeL','sumiL',
-   'r-k','r-tilt','r-f','r-b'].forEach(function (k) { el[k] = document.getElementById('nwb-' + k); });
-
-  function n1(v) { return Math.round(v * 10) / 10; }
-  function set(e, o) { if (e) for (var k in o) e.setAttribute(k, o[k]); }
-
-  function draw(u) {
-    /* two segments: close -> wide -> kamae */
-    var i = u < 0.5 ? 0 : 1, t = u < 0.5 ? u * 2 : (u - 0.5) * 2;
-    var A = ST[i], B = ST[i + 1], s = {};
-    ['lx','ly','rx','ry','la','ra','tgt'].forEach(function (k) { s[k] = A[k] + (B[k] - A[k]) * t; });
-
-    var cx = (s.lx + s.rx) / 2, cy = (s.ly + s.ry) / 2;
-    var dx = (s.rx - s.lx) / 2, dy = (s.ry - s.ly) / 2;
-    var k = Math.max(1, Math.sqrt(dx * dx + dy * dy));
-    var ux = dy / k, uy = -dx / k;
-    var maeX = cx + dy, maeY = cy - dx, sumiX = cx - dy, sumiY = cy + dx;
-
-    /* base of support projected onto the otoshi axis, from the real outlines */
-    var lo = 1e9, hi = -1e9, j, n, f, r, co, si, px, py, qx, qy, p;
-    for (j = 0; j < 2; j++) {
-      f = j ? { bx: s.rx, by: s.ry, a: s.ra, m: false } : { bx: s.lx, by: s.ly, a: s.la, m: true };
-      r = f.a * Math.PI / 180; co = Math.cos(r); si = Math.sin(r);
-      for (n = 0; n < KEY.length; n++) {
-        px = f.m ? -KEY[n][0] : KEY[n][0]; py = KEY[n][1];
-        qx = f.bx + co * px - si * py; qy = f.by + si * px + co * py;
-        p = (qx - cx) * ux + (qy - cy) * uy;
-        if (p < lo) lo = p;
-        if (p > hi) hi = p;
-      }
-    }
-
-    set(el.square, { points: n1(s.lx) + ',' + n1(s.ly) + ' ' + n1(maeX) + ',' + n1(maeY) + ' ' +
-                             n1(s.rx) + ',' + n1(s.ry) + ' ' + n1(sumiX) + ',' + n1(sumiY) });
-    set(el.diag, { x1: n1(s.lx), y1: n1(s.ly), x2: n1(s.rx), y2: n1(s.ry) });
-    set(el.tgt,  { x1: n1(s.tgt), x2: n1(s.tgt), y2: n1(cy) });
-    set(el.footL, { transform: 'translate(' + n1(s.lx) + ',' + n1(s.ly) + ') rotate(' + n1(s.la) + ') scale(-1,1)' });
-    set(el.footR, { transform: 'translate(' + n1(s.rx) + ',' + n1(s.ry) + ') rotate(' + n1(s.ra) + ')' });
-    set(el.bL, { cx: n1(s.lx), cy: n1(s.ly) });
-    set(el.bR, { cx: n1(s.rx), cy: n1(s.ry) });
-    set(el.mae,  { cx: n1(maeX),  cy: n1(maeY) });
-    set(el.sumi, { cx: n1(sumiX), cy: n1(sumiY) });
-    var ld = Math.max(k + 90, 250);
-    set(el.maeL,  { x: n1(cx + ux * ld), y: n1(cy + uy * ld + 6) });
-    set(el.sumiL, { x: n1(cx - ux * ld), y: n1(cy - uy * ld + 6) });
-
-    el['r-k'].textContent    = (2 * k / FOOT).toFixed(2) + ' × foot length';
-    el['r-tilt'].textContent = Math.abs(Math.atan2(dy, dx) * 180 / Math.PI).toFixed(0) + '°';
-    el['r-f'].textContent    = Math.round(100 * hi / k) + '%';
-    el['r-b'].textContent    = Math.round(100 * -lo / k) + '%';
-  }
-
-  slider.addEventListener('input', function () { draw(this.value / 100); });
-  draw(slider.value / 100);
+  if (svq) rove(Array.prototype.slice.call(svq.querySelectorAll('.nav-shape-link')), svq);
 })();
