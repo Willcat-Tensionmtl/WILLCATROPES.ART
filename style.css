@@ -5492,6 +5492,16 @@ svg { fill: none; }
 /* planned / in discussion to visit: ring + centre dot. added 2026-09-25 */
 .wmap__shape--planned .wmap__ring { fill: rgba(19,19,21,.6); stroke: var(--rope-l); stroke-width: 1.3; }
 .wmap__shape--planned .wmap__dot  { fill: var(--rope-l); }
+/* E4 lists folded behind 'See lists' (same look as .travels-past__toggle). added 2026-09-25 */
+#wmap-list[hidden] { display: none; }
+.wmap__see {
+  background: none; border: 0; cursor: pointer;
+  font-family: var(--fm); font-size: var(--scale-n1); letter-spacing: .1em; text-transform: uppercase;
+  color: rgba(201,168,76,.45); padding: var(--sp-sm) 0; margin-bottom: var(--sp-md); transition: color .3s ease;
+}
+.wmap__see::after { content: " \2193"; }
+.wmap__see[aria-expanded="true"]::after { content: " \2191"; }
+.wmap__see:hover, .wmap__see:focus-visible { color: var(--rope-l); }
 .wmap__halo { fill: none; stroke: rgba(201,168,76,.45); stroke-width: 1; opacity: 0; transition: opacity .25s; }
 .wmap__pin:hover .wmap__halo,
 .wmap__pin.is-active .wmap__halo { opacity: 1; }

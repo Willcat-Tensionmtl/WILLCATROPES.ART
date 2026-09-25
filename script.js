@@ -1171,6 +1171,19 @@ var PLACES = [
     list.appendChild(grp);
   });
 
+  /* lists fold under the map behind 'See lists'.   added 2026-09-25 */
+  var seeLists = document.createElement('button');
+  seeLists.type = 'button'; seeLists.className = 'wmap__see';
+  seeLists.setAttribute('aria-expanded', 'false'); seeLists.setAttribute('aria-controls', 'wmap-list');
+  seeLists.textContent = 'See lists';
+  list.hidden = true;
+  list.parentNode.insertBefore(seeLists, list);
+  seeLists.addEventListener('click', function () {
+    list.hidden = !list.hidden;
+    seeLists.setAttribute('aria-expanded', list.hidden ? 'false' : 'true');
+    seeLists.textContent = list.hidden ? 'See lists' : 'Hide lists';
+  });
+
   function row(p, withIcon) {
     var li = document.createElement('li'); li.className = 'wmap__item';
     if (withIcon) li.appendChild(icon(p.type));
@@ -1301,13 +1314,17 @@ var PLACES = [
   var FOOT = 250;
   /* wide (horse) -> close -> kamae right foot forward -> kamae left foot forward.
      Close is solved so the outlines just touch and the heels sit one inch wider
-     than the toes. The fourth state is the third mirrored across x = 500, so the
-     last segment walks the back foot through to the front. added 2026-09-25 */
+     than the toes. Kamae left is kamae right mirrored across x = 500.
+     u is where each state sits on the slider. The four labelled stops are at
+     0, 1/3, 2/3 and 1. The walk-through (2/3 to 1) passes through the feet
+     together at centre (the close state again) at 5/6: the back foot comes in
+     beside the front, then carries on forward.                   2026-09-25 */
   var ST = [
-    { lx: 200,   ly: 580,   rx: 800,   ry: 580, la: -18,  ra: 18,  tgt: 500 },
-    { lx: 451.1, ly: 580,   rx: 548.9, ry: 580, la: -4.1, ra: 4.1, tgt: 500 },
-    { lx: 363.6, ly: 930.2, rx: 620,   ry: 430,   la: -45, ra: -1, tgt: 589 },
-    { lx: 380,   ly: 430,   rx: 636.4, ry: 930.2, la: 1,   ra: 45, tgt: 411 }
+    { u: 0,     lx: 200,   ly: 580,   rx: 800,   ry: 580,   la: -18,  ra: 18,  tgt: 500 },
+    { u: 1 / 3, lx: 451.1, ly: 580,   rx: 548.9, ry: 580,   la: -4.1, ra: 4.1, tgt: 500 },
+    { u: 2 / 3, lx: 363.6, ly: 930.2, rx: 620,   ry: 430,   la: -45,  ra: -1,  tgt: 589 },
+    { u: 5 / 6, lx: 451.1, ly: 580,   rx: 548.9, ry: 580,   la: -4.1, ra: 4.1, tgt: 500 },
+    { u: 1,     lx: 380,   ly: 430,   rx: 636.4, ry: 930.2, la: 1,    ra: 45,  tgt: 411 }
   ];
   var KEY = [[-30,-58],[10,-50],[38,-24],[43,12],[42,30],[36,92],[33,138],[29,158],
              [0,190],[-26,160],[-27,104],[-30,62],[-48,0],[-46,-36],[-42,-46]];
@@ -1320,8 +1337,10 @@ var PLACES = [
   function set(e, o) { if (e) for (var k in o) e.setAttribute(k, o[k]); }
 
   function draw(u) {
-    /* one equal segment between each pair of states */
-    var N = ST.length - 1, i = Math.min(N - 1, Math.floor(u * N)), t = u * N - i;
+    /* find the pair of states this slider value sits between */
+    var i = 0;
+    while (i < ST.length - 2 && u > ST[i + 1].u) i++;
+    var t = (u - ST[i].u) / (ST[i + 1].u - ST[i].u);
     var A = ST[i], B = ST[i + 1], s = {};
     ['lx','ly','rx','ry','la','ra','tgt'].forEach(function (k) { s[k] = A[k] + (B[k] - A[k]) * t; });
 
