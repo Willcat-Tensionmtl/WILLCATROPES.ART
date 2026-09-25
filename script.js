@@ -544,7 +544,11 @@ document.addEventListener('touchend', function(e) {
 
 
   var companionOrder = ['do','ikigai','shuhari','ma','kaizen','shoshin','gaman','wabisabi','ichigoichie','shikataganai','mononoaware','sennosen','mushin'];
-  buildCarousel('companions', companionOrder.map(function(key) {
+  var compIntro = document.getElementById('companion-intro');
+  buildCarousel('companions', (compIntro ? ['<div style="text-align:center;padding:.5rem 0 1.5rem">' +
+      '<span class="rlx-kanji">道</span>' +
+      '<p class="rlx-desc">' + compIntro.innerHTML + '</p>' +
+    '</div>'] : []).concat(companionOrder.map(function(key) {
     var c = companions[key];
     if (!c) return '';
     return '<div style="text-align:center;padding:.5rem 0 1.5rem">' +
@@ -554,7 +558,7 @@ document.addEventListener('touchend', function(e) {
       '<p class="rlx-desc">' + c.desc + '</p>' +
       '<p class="rlx-note">' + c.rope + '</p>' +
     '</div>';
-  }), 'companions-wrapper');
+  })), 'companions-wrapper');
 
   var levelOrder = ['lvl0','lvl1','lvl2','lvl3','lvl4'];
   buildCarousel('levels', levelOrder.map(function(key) {
@@ -581,9 +585,8 @@ document.addEventListener('touchend', function(e) {
     '</div>';
   }), 'workshop-grid');
 
-  // Open each selector on a random pick instead of an empty "select one" prompt
-  var pickC = companionOrder[Math.floor(Math.random() * companionOrder.length)];
-  if (pickC && typeof showCompanion === 'function') showCompanion(pickC);
+  // Companions open on the intro text in #companion-empty (no random pick).
+  // Workshops still open on a random pick instead of an empty prompt.
   var wPool = workshopOrder.filter(function (k) { return k !== 'other'; });
   var pickW = wPool[Math.floor(Math.random() * wPool.length)];
   if (pickW && typeof showWorkshop === 'function') showWorkshop(pickW);
@@ -1036,6 +1039,256 @@ document.querySelectorAll('.sec-id').forEach(function(el) {
   if (svq) rove(svq, Array.prototype.slice.call(svq.querySelectorAll('.nav-shape-link')));
 })();
 
+/* ══════════════════════════════════════════════════════════
+   WORLD MAP (E4)                                added 2026-09-24
+   To add a place, add one line to PLACES. Nothing else to edit.
+     type: 'presented' △  |  'attended' □  |  'planned' ◉  |  'visit' ○
+     'planned' = planned / in discussion to visit.   (planned added 2026-09-25)
+     Places sharing the same city string share one pin; the
+     highest shape wins (presented > attended > planned > visit).
+   Map is img/world-land.svg, equirectangular, lat 84 to -58.
+   Regenerate with _build/gen_world.mjs (world-atlas land-110m).
+   ══════════════════════════════════════════════════════════ */
+var PLACES = [
+  // △ Presented
+  { place: 'AEfest',                  city: 'Bogotá, Colombia',     lat: 4.71,  lon: -74.07,  type: 'presented', when: 'Aug 14 to 17' },
+  { place: 'Friction Fest',           city: 'Calgary',              lat: 51.05, lon: -114.07, type: 'presented', when: 'Nov 2025' },
+  { place: 'Friction Fiber Arts',     city: 'Ottawa',               lat: 45.42, lon: -75.70,  type: 'presented', when: '2025 · Closed' },
+  { place: 'Birdhaus',                city: 'Toronto',              lat: 43.65, lon: -79.38,  type: 'presented', when: '2025' },
+  { place: 'Untangled',               city: 'Toronto',              lat: 43.65, lon: -79.38,  type: 'presented', when: 'at Toronto Kinbaku Salon · Jan 2024' },
+  { place: 'Montreal Fetish Weekend', city: 'Montréal',             lat: 45.50, lon: -73.57,  type: 'presented', when: 'Every year since 2019!?' },
+  // □ Attended
+  { place: 'L.A.B.',                  city: 'Quebec City',          lat: 46.81, lon: -71.21,  type: 'attended',  when: 'Class' },
+  { place: 'Toronto Kinbaku Salon',   city: 'Toronto',              lat: 43.65, lon: -79.38,  type: 'attended',  when: 'Open space' },
+  { place: 'Oasis Aqua Lounge',       city: 'Toronto',              lat: 43.65, lon: -79.38,  type: 'attended',  when: '' },
+  // ◉ Planned / in discussion to visit
+  { place: 'Studio TIEY',             city: 'Antwerp, Belgium',     lat: 51.22, lon: 4.40,    type: 'planned',   when: 'Upcoming · Oct 30 to Nov 1' },
+  { place: 'Provence',                city: 'Provence, France',     lat: 43.90, lon: 5.80,    type: 'planned',   when: '2027 · in discussion' },
+  // ○ Want to visit
+  { place: 'FetishBar Zoo',           city: 'Osaka, Japan',         lat: 34.69, lon: 135.50,  type: 'visit',     when: '' },
+  { place: 'Titty Twister',           city: 'Tokyo, Japan',         lat: 35.68, lon: 139.69,  type: 'visit',     when: 'TBC' },
+  { place: 'Arcadia Osaka',           city: 'Osaka, Japan',         lat: 34.69, lon: 135.50,  type: 'visit',     when: '' },
+  { place: 'Cordespace',              city: 'Quebec City',          lat: 46.81, lon: -71.21,  type: 'visit',     when: '' },
+  { place: 'Yaritori',                city: 'Colombia · city TBC',  lat: 6.50,  lon: -75.00,  type: 'visit',     when: '' }
+];
+
+(function () {
+  var svg = document.getElementById('wmap-svg');
+  var layer = document.getElementById('wmap-pins');
+  var list = document.getElementById('wmap-list');
+  var card = document.getElementById('wmap-card');
+  var reset = document.getElementById('wmap-reset');
+  if (!svg || !layer || !list || typeof PLACES === 'undefined') return;
+
+  var NS = 'http://www.w3.org/2000/svg';
+  var W = 1000, H = 394.4, ZOOM = 8, ZOOM_TOUCH = 12, PIN = 1.8, LENS = 40, LOUPE_PX = 200;
+  var TOUCH = window.matchMedia && window.matchMedia('(hover: none)').matches;
+  var RANK = { presented: 4, attended: 3, planned: 2, visit: 1 };
+  var WORD = { presented: 'Presented', attended: 'Attended', planned: 'Planned / in discussion to visit', visit: 'Want to visit' };
+  var ORDER = ['presented', 'attended', 'planned', 'visit'];
+  var view = { x: 0, y: 0, w: W, h: H };
+  var anim = null;
+
+  function px(p) { return { x: (p.lon + 180) * W / 360, y: (84 - p.lat) * W / 360 }; }
+
+  function shape(type) {
+    var el;
+    if (type === 'presented') { el = document.createElementNS(NS, 'polygon'); el.setAttribute('points', '0,-6.5 6,4 -6,4'); }
+    else if (type === 'attended') { el = document.createElementNS(NS, 'rect'); el.setAttribute('x', -4.8); el.setAttribute('y', -4.8); el.setAttribute('width', 9.6); el.setAttribute('height', 9.6); }
+    else if (type === 'planned') {
+      el = document.createElementNS(NS, 'g');
+      var ring = document.createElementNS(NS, 'circle'); ring.setAttribute('r', 5); ring.setAttribute('class', 'wmap__ring');
+      var dot = document.createElementNS(NS, 'circle'); dot.setAttribute('r', 2); dot.setAttribute('class', 'wmap__dot');
+      el.appendChild(ring); el.appendChild(dot);
+    }
+    else { el = document.createElementNS(NS, 'circle'); el.setAttribute('r', 5); }
+    el.setAttribute('class', 'wmap__shape wmap__shape--' + type);
+    return el;
+  }
+  function icon(type) {
+    var s = document.createElementNS(NS, 'svg');
+    s.setAttribute('viewBox', '-8 -8 16 16'); s.setAttribute('class', 'wmap__ico'); s.setAttribute('aria-hidden', 'true');
+    s.appendChild(shape(type));
+    return s;
+  }
+
+  /* group places into locations by city string */
+  var locs = {}, locOrder = [];
+  PLACES.forEach(function (p) {
+    var L = locs[p.city];
+    if (!L) { L = locs[p.city] = { city: p.city, lat: p.lat, lon: p.lon, items: [], top: p.type }; locOrder.push(L); }
+    L.items.push(p);
+    if (RANK[p.type] > RANK[L.top]) L.top = p.type;
+  });
+
+  /* pins: lowest rank drawn first so the highest sits on top */
+  locOrder.slice().sort(function (a, b) { return RANK[a.top] - RANK[b.top]; }).forEach(function (L) {
+    var c = px(L);
+    var g = document.createElementNS(NS, 'g');
+    g.setAttribute('class', 'wmap__pin');
+    g.setAttribute('tabindex', '0');
+    g.setAttribute('role', 'button');
+    g.setAttribute('aria-label', L.city + ', ' + WORD[L.top]);
+    var inner = document.createElementNS(NS, 'g');
+    var halo = document.createElementNS(NS, 'circle');
+    halo.setAttribute('class', 'wmap__halo'); halo.setAttribute('r', 10);
+    var hit = document.createElementNS(NS, 'circle');
+    hit.setAttribute('class', 'wmap__hit'); hit.setAttribute('r', TOUCH ? 16 : 11);
+    inner.appendChild(hit);
+    inner.appendChild(halo);
+    inner.appendChild(shape(L.top));
+    var t = document.createElementNS(NS, 'text');
+    t.setAttribute('class', 'wmap__city'); t.setAttribute('x', 0); t.setAttribute('y', 19); t.setAttribute('text-anchor', 'middle');
+    t.textContent = L.city.split(',')[0].split(' · ')[0].toUpperCase();
+    inner.appendChild(t);
+    g.appendChild(inner);
+    L.el = g; L.inner = inner; L.cx = c.x; L.cy = c.y;
+    layer.appendChild(g);
+    g.addEventListener('click', function (e) {
+      e.stopPropagation();
+      if (TOUCH && !isZoomed()) { zoomAt(L.cx, L.cy, ZOOM_TOUCH); return; }
+      select(L);
+    });
+    g.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); select(L); } });
+  });
+
+  /* list, grouped by type */
+  ORDER.forEach(function (type) {
+    var rows = PLACES.filter(function (p) { return p.type === type; });
+    if (!rows.length) return;
+    var grp = document.createElement('div'); grp.className = 'wmap__group';
+    var lbl = document.createElement('div'); lbl.className = 'wmap__group-lbl';
+    lbl.appendChild(icon(type)); lbl.appendChild(document.createTextNode(WORD[type]));
+    grp.appendChild(lbl);
+    var ul = document.createElement('ul'); ul.className = 'wmap__list';
+    rows.forEach(function (p) {
+      var li = row(p, false);
+      li.addEventListener('click', function () { select(locs[p.city]); });
+      p.li = li;
+      ul.appendChild(li);
+    });
+    grp.appendChild(ul);
+    list.appendChild(grp);
+  });
+
+  function row(p, withIcon) {
+    var li = document.createElement('li'); li.className = 'wmap__item';
+    if (withIcon) li.appendChild(icon(p.type));
+    var box = document.createElement('div');
+    var nm = document.createElement('span'); nm.className = 'wmap__item-place'; nm.textContent = p.place;
+    var meta = document.createElement('span'); meta.className = 'wmap__item-meta';
+    meta.textContent = withIcon ? [WORD[p.type], p.when].filter(Boolean).join(' · ') : [p.city, p.when].filter(Boolean).join(' · ');
+    box.appendChild(nm); box.appendChild(meta); li.appendChild(box);
+    return li;
+  }
+
+  function setView(v) {
+    view = v;
+    svg.setAttribute('viewBox', v.x + ' ' + v.y + ' ' + v.w + ' ' + v.h);
+    var s = PIN * v.w / W;
+    locOrder.forEach(function (L) { L.el.setAttribute('transform', 'translate(' + L.cx + ',' + L.cy + ') scale(' + s + ')'); });
+    svg.classList.toggle('is-zoomed', v.w < W * 0.9);
+  }
+  function animateTo(t) {
+    if (anim) cancelAnimationFrame(anim);
+    var f = { x: view.x, y: view.y, w: view.w, h: view.h }, t0 = null, D = 450;
+    function step(ts) {
+      if (!t0) t0 = ts;
+      var k = Math.min(1, (ts - t0) / D), e = 1 - Math.pow(1 - k, 3);
+      setView({ x: f.x + (t.x - f.x) * e, y: f.y + (t.y - f.y) * e, w: f.w + (t.w - f.w) * e, h: f.h + (t.h - f.h) * e });
+      if (k < 1) anim = requestAnimationFrame(step);
+    }
+    anim = requestAnimationFrame(step);
+  }
+  function focusOn(L) {
+    var w = W / ZOOM, h = H / ZOOM;
+    var x = Math.max(0, Math.min(W - w, L.cx - w / 2));
+    var y = Math.max(0, Math.min(H - h, L.cy - h / 2));
+    animateTo({ x: x, y: y, w: w, h: h });
+  }
+
+  function isZoomed() { return view.w < W * 0.9; }
+  function zoomAt(x, y, z) {
+    var w = W / z, h = H / z;
+    animateTo({ x: Math.max(0, Math.min(W - w, x - w / 2)), y: Math.max(0, Math.min(H - h, y - h / 2)), w: w, h: h });
+    reset.hidden = false;
+    hideLens();
+  }
+  function svgPoint(e) {
+    var pt = svg.createSVGPoint(); pt.x = e.clientX; pt.y = e.clientY;
+    return pt.matrixTransform(svg.getScreenCTM().inverse());
+  }
+
+  /* hover lens (desktop): a square on the map plus a magnified loupe of it.
+     Phone has no hover: a tap on the map zooms into that area instead. */
+  var stage = svg.parentNode;
+  var lens = document.createElementNS(NS, 'rect');
+  lens.setAttribute('class', 'wmap__lens'); lens.setAttribute('width', LENS); lens.setAttribute('height', LENS);
+  svg.insertBefore(lens, layer);
+  var loupe = document.createElement('div'); loupe.className = 'wmap__loupe'; loupe.setAttribute('aria-hidden', 'true');
+  var lsvg = document.createElementNS(NS, 'svg');
+  var limg = document.createElementNS(NS, 'image');
+  limg.setAttribute('href', 'img/world-land.svg'); limg.setAttribute('width', W); limg.setAttribute('height', H);
+  lsvg.appendChild(limg);
+  var lscale = 12 / (6.5 * (LOUPE_PX / LENS));
+  locOrder.forEach(function (L) {
+    var g = document.createElementNS(NS, 'g');
+    g.setAttribute('transform', 'translate(' + L.cx + ',' + L.cy + ') scale(' + lscale + ')');
+    g.appendChild(shape(L.top));
+    lsvg.appendChild(g);
+  });
+  loupe.appendChild(lsvg);
+  stage.appendChild(loupe);
+
+  function hideLens() { lens.classList.remove('is-on'); loupe.classList.remove('is-on'); }
+  if (!TOUCH) {
+    svg.addEventListener('mousemove', function (e) {
+      if (isZoomed()) { hideLens(); return; }
+      var p = svgPoint(e);
+      var x = Math.max(0, Math.min(W - LENS, p.x - LENS / 2)), y = Math.max(0, Math.min(H - LENS, p.y - LENS / 2));
+      lens.setAttribute('x', x); lens.setAttribute('y', y);
+      lsvg.setAttribute('viewBox', x + ' ' + y + ' ' + LENS + ' ' + LENS);
+      var r = stage.getBoundingClientRect(), mx = e.clientX - r.left, my = e.clientY - r.top;
+      var lx = mx + 24, ly = my - LOUPE_PX - 24;
+      if (lx + LOUPE_PX > r.width) lx = mx - LOUPE_PX - 24;
+      if (ly < 0) ly = my + 24;
+      loupe.style.left = lx + 'px'; loupe.style.top = ly + 'px';
+      lens.classList.add('is-on'); loupe.classList.add('is-on');
+    });
+    svg.addEventListener('mouseleave', hideLens);
+  }
+  svg.addEventListener('click', function (e) {
+    if (isZoomed()) return;
+    var p = svgPoint(e);
+    zoomAt(p.x, p.y, TOUCH ? ZOOM_TOUCH : ZOOM);
+  });
+
+  function select(L) {
+    locOrder.forEach(function (o) { o.el.classList.toggle('is-active', o === L); });
+    PLACES.forEach(function (p) { if (p.li) p.li.classList.toggle('is-active', p.city === L.city); });
+    card.innerHTML = '';
+    var h = document.createElement('div'); h.className = 'wmap__card-city'; h.textContent = L.city;
+    card.appendChild(h);
+    var ul = document.createElement('ul'); ul.className = 'wmap__list';
+    L.items.slice().sort(function (a, b) { return RANK[b.type] - RANK[a.type]; }).forEach(function (p) { ul.appendChild(row(p, true)); });
+    card.appendChild(ul);
+    card.hidden = false;
+    reset.hidden = false;
+    focusOn(L);
+  }
+
+  reset.addEventListener('click', function () {
+    animateTo({ x: 0, y: 0, w: W, h: H });
+    locOrder.forEach(function (o) { o.el.classList.remove('is-active'); });
+    PLACES.forEach(function (p) { if (p.li) p.li.classList.remove('is-active'); });
+    card.hidden = true;
+    reset.hidden = true;
+  });
+
+  setView(view);
+})();
+
+
 /* ───────────────────────────────────────────────────────────────
    NAWAJUTSU · □ △ ○ box (D3)                    added 2026-09-14
    Tabs and states are pure CSS. This only drives the foot slider
@@ -1046,12 +1299,15 @@ document.querySelectorAll('.sec-id').forEach(function(el) {
   if (!slider) return;
 
   var FOOT = 250;
-  /* wide (horse) -> close -> kamae. Close is solved so the outlines just touch
-     and the heels sit one inch wider than the toes. */
+  /* wide (horse) -> close -> kamae right foot forward -> kamae left foot forward.
+     Close is solved so the outlines just touch and the heels sit one inch wider
+     than the toes. The fourth state is the third mirrored across x = 500, so the
+     last segment walks the back foot through to the front. added 2026-09-25 */
   var ST = [
     { lx: 200,   ly: 580,   rx: 800,   ry: 580, la: -18,  ra: 18,  tgt: 500 },
     { lx: 451.1, ly: 580,   rx: 548.9, ry: 580, la: -4.1, ra: 4.1, tgt: 500 },
-    { lx: 363.6, ly: 930.2, rx: 620,   ry: 430, la: -45,  ra: -1,  tgt: 589 }
+    { lx: 363.6, ly: 930.2, rx: 620,   ry: 430,   la: -45, ra: -1, tgt: 589 },
+    { lx: 380,   ly: 430,   rx: 636.4, ry: 930.2, la: 1,   ra: 45, tgt: 411 }
   ];
   var KEY = [[-30,-58],[10,-50],[38,-24],[43,12],[42,30],[36,92],[33,138],[29,158],
              [0,190],[-26,160],[-27,104],[-30,62],[-48,0],[-46,-36],[-42,-46]];
@@ -1064,8 +1320,8 @@ document.querySelectorAll('.sec-id').forEach(function(el) {
   function set(e, o) { if (e) for (var k in o) e.setAttribute(k, o[k]); }
 
   function draw(u) {
-    /* two segments: close -> wide -> kamae */
-    var i = u < 0.5 ? 0 : 1, t = u < 0.5 ? u * 2 : (u - 0.5) * 2;
+    /* one equal segment between each pair of states */
+    var N = ST.length - 1, i = Math.min(N - 1, Math.floor(u * N)), t = u * N - i;
     var A = ST[i], B = ST[i + 1], s = {};
     ['lx','ly','rx','ry','la','ra','tgt'].forEach(function (k) { s[k] = A[k] + (B[k] - A[k]) * t; });
 

@@ -5463,6 +5463,146 @@ svg { fill: none; }
 }
 
 /* ══════════════════════════════════════════════════════════
+   E4 world map — pins by shape: △ presented, □ attended,
+   ○ want to visit. Highest shape wins per location.
+   Data lives in script.js (WORLD MAP block). added 2026-09-24
+   ══════════════════════════════════════════════════════════ */
+.wmap { margin-top: var(--sp-4xl); }
+.wmap__grid { display: block; }
+.wmap__side { margin-top: var(--sp-xl); }
+#wmap-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--sp-xl);
+}
+.wmap__stage { position: relative; min-width: 0; }
+.wmap__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: rgba(169,124,26,.03);
+  border: .5px solid rgba(169,124,26,.18);
+}
+.wmap__pin { cursor: pointer; outline: none; }
+.wmap__hit { fill: transparent; }
+.wmap__pin:focus-visible .wmap__shape { stroke: var(--paper); stroke-width: 1.4; }
+.wmap__shape--presented { fill: var(--rope-l); }
+.wmap__shape--attended  { fill: rgba(201,168,76,.72); }
+.wmap__shape--visit     { fill: rgba(19,19,21,.6); stroke: var(--rope-l); stroke-width: 1.3; }
+/* planned / in discussion to visit: ring + centre dot. added 2026-09-25 */
+.wmap__shape--planned .wmap__ring { fill: rgba(19,19,21,.6); stroke: var(--rope-l); stroke-width: 1.3; }
+.wmap__shape--planned .wmap__dot  { fill: var(--rope-l); }
+.wmap__halo { fill: none; stroke: rgba(201,168,76,.45); stroke-width: 1; opacity: 0; transition: opacity .25s; }
+.wmap__pin:hover .wmap__halo,
+.wmap__pin.is-active .wmap__halo { opacity: 1; }
+.wmap__city {
+  font-family: var(--fm);
+  font-size: 9px;
+  letter-spacing: .12em;
+  fill: rgba(240,234,216,.55);
+  opacity: 0;
+  transition: opacity .3s;
+  pointer-events: none;
+}
+.wmap__pin:hover .wmap__city,
+.wmap__pin.is-active .wmap__city { opacity: 1; }
+.wmap__reset {
+  position: absolute;
+  top: .6rem;
+  right: .6rem;
+  font-family: var(--fm);
+  font-size: var(--scale-n2);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--rope-l);
+  background: rgba(19,19,21,.85);
+  border: .5px solid rgba(201,168,76,.45);
+  padding: .35rem .7rem;
+  cursor: pointer;
+}
+.wmap__reset:hover { border-color: rgba(201,168,76,.9); }
+.wmap__svg { cursor: zoom-in; }
+.wmap__svg.is-zoomed { cursor: default; }
+.wmap__lens {
+  fill: rgba(201,168,76,.06);
+  stroke: rgba(201,168,76,.8);
+  stroke-width: .6;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .15s;
+}
+.wmap__lens.is-on { opacity: 1; }
+.wmap__loupe {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border: .5px solid rgba(201,168,76,.8);
+  background: #131315;
+  box-shadow: 0 10px 30px rgba(0,0,0,.55);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .15s;
+  z-index: 3;
+}
+.wmap__loupe.is-on { opacity: 1; }
+.wmap__loupe svg { display: block; width: 100%; height: 100%; }
+.wmap__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-lg);
+  margin-top: var(--sp-md);
+  font-family: var(--fm);
+  font-size: var(--scale-n2);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: rgba(240,234,216,.55);
+}
+.wmap__key { display: inline-flex; align-items: center; gap: .5rem; }
+.wmap__key svg, .wmap__ico { width: 14px; height: 14px; flex: none; }
+.wmap__card {
+  border: .5px solid rgba(169,124,26,.3);
+  background: rgba(169,124,26,.05);
+  padding: var(--sp-lg);
+  margin-bottom: var(--sp-lg);
+}
+.wmap__card-city { font-family: var(--fd); font-size: var(--scale-p1); font-weight: 300; color: var(--paper); margin-bottom: .5rem; }
+.wmap__card .wmap__list { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); column-gap: var(--sp-xl); }
+.wmap__group-lbl {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  font-family: var(--fm);
+  font-size: var(--scale-n2);
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--rope-l);
+  margin-bottom: .35rem;
+}
+.wmap__list { list-style: none; margin: 0; padding: 0; }
+.wmap__item {
+  display: flex;
+  align-items: baseline;
+  gap: .6rem;
+  padding: .3rem 0;
+  border-top: .5px solid rgba(169,124,26,.14);
+  cursor: pointer;
+}
+.wmap__item:hover .wmap__item-place, .wmap__item.is-active .wmap__item-place { color: var(--rope-l); }
+.wmap__item-place { font-family: var(--fd); font-size: var(--scale-0); font-weight: 300; color: var(--paper); line-height: 1.2; }
+.wmap__item-meta {
+  display: block;
+  font-family: var(--fm);
+  font-size: var(--scale-n2);
+  letter-spacing: .04em;
+  color: rgba(240,234,216,.5);
+  margin-top: .15rem;
+}
+.wmap__card .wmap__item { cursor: default; }
+@media (max-width: 900px) {
+  #wmap-list { grid-template-columns: 1fr; gap: var(--sp-lg); }
+}
+
+/* ══════════════════════════════════════════════════════════
    B2 pillars — gold left-aligned names (icons/labels/kanji removed)
    ══════════════════════════════════════════════════════════ */
 .pillar-card--stack { text-align: left; }

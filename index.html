@@ -1441,8 +1441,8 @@
               </div>
               <div class="nwb__ctls">
               <div class="nwb__ctl">
-                <input class="nwb__range" type="range" id="nwb-t" min="0" max="100" value="0" step="1" aria-label="Move the stance from a wide horse stance in through close and out into kamae">
-                <div class="nwb__ticks"><span>Wide &middot; passive</span><span>Close</span><span>Kamae &middot; with intention</span></div>
+                <input class="nwb__range" type="range" id="nwb-t" min="0" max="100" value="0" step="1" aria-label="Move the stance from a wide horse stance in through close, out into kamae with the right foot forward, then walk through to kamae with the left foot forward">
+                <div class="nwb__ticks"><span>Wide &middot; passive</span><span>Close</span><span>Kamae &middot; with intention Right foot forward</span><span>Kamae &middot; with intention Left foot forward</span></div>
               </div>
               <dl class="nwb__read">
                 <div><dt>Ball to ball</dt><dd id="nwb-r-k">2.40 &times; foot length</dd></div>
@@ -2006,19 +2006,32 @@
       <div class="lbl mb-md">Upcoming travels</div>
       <ul class="travels-list">
         <!-- Point each href at that stop's Tension MTL blog post once it's live. -->
-        <li class="travels-item"><a href="https://tensionmtl.ca/blogs/news" target="_blank" class="travels-link"><span class="travels-place">AEfest · Bogotá, Colombia</span><span class="travels-date">Aug 14 to 17</span></a></li>
         <li class="travels-item"><a href="https://tensionmtl.ca/blogs/news" target="_blank" class="travels-link"><span class="travels-place">Studio TIEY · Antwerp, Belgium</span><span class="travels-date">Oct 30 to Nov 1</span></a></li>
       </ul>
       <a href="https://tensionmtl.ca/blogs/news" target="_blank" class="travels-all">Follow upcoming travels on Tension MTL →</a>
-      <details class="travels-past">
-        <summary class="travels-past__toggle">Past travels</summary>
-        <ul class="travels-list travels-list--past">
-          <li class="travels-item"><div class="travels-row"><span class="travels-place">Friction Fest · Calgary</span><span class="travels-date">Nov 2025</span></div></li>
-          <li class="travels-item"><div class="travels-row"><span class="travels-place">Studio Friction · Ottawa</span><span class="travels-date">2025</span></div></li>
-          <li class="travels-item"><div class="travels-row"><span class="travels-place">Birdhaus · Toronto</span><span class="travels-date">2025</span></div></li>
-          <li class="travels-item"><div class="travels-row"><span class="travels-place">Untangled · Toronto</span><span class="travels-date">Jan 2024</span></div></li>
-        </ul>
-      </details>
+    </div>
+    <div class="wmap fade-in mb-4xl" id="wmap">
+      <div class="lbl mb-sm">A rope map, kept by hand</div>
+      <p class="body-serif mb-lg mw-720"><a href="mailto:contact@willcatropes.art?subject=An%20invitation%20for%20the%20map" class="t-rope-link">Invite me to put your place on the map</a> for locations I can visit. Looking to start a list of destinations I will eventually make my way to.</p>
+      <div class="wmap__grid">
+        <div class="wmap__stage">
+          <svg class="wmap__svg" id="wmap-svg" viewBox="0 0 1000 394.4" role="group" aria-label="World map of places I have presented, attended, planned, or want to visit">
+            <image href="img/world-land.svg" x="0" y="0" width="1000" height="394.4"/>
+            <g id="wmap-pins"></g>
+          </svg>
+          <button class="wmap__reset" id="wmap-reset" type="button" hidden>World view</button>
+          <div class="wmap__legend">
+            <span class="wmap__key"><svg viewBox="-8 -8 16 16" aria-hidden="true"><polygon class="wmap__shape wmap__shape--presented" points="0,-6.5 6,4 -6,4"/></svg>Presented</span>
+            <span class="wmap__key"><svg viewBox="-8 -8 16 16" aria-hidden="true"><rect class="wmap__shape wmap__shape--attended" x="-4.8" y="-4.8" width="9.6" height="9.6"/></svg>Attended</span>
+            <span class="wmap__key"><svg viewBox="-8 -8 16 16" aria-hidden="true"><g class="wmap__shape wmap__shape--planned"><circle class="wmap__ring" r="5"/><circle class="wmap__dot" r="2"/></g></svg>Planned / in discussion to visit</span>
+            <span class="wmap__key"><svg viewBox="-8 -8 16 16" aria-hidden="true"><circle class="wmap__shape wmap__shape--visit" r="5"/></svg>Want to visit</span>
+          </div>
+        </div>
+        <div class="wmap__side">
+          <div class="wmap__card" id="wmap-card" hidden></div>
+          <div id="wmap-list"></div>
+        </div>
+      </div>
     </div>
     <div class="featured fade-in">
       <div class="lbl mb-md">Featured in film, podcast &amp; radio</div>
