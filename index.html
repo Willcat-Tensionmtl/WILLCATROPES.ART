@@ -244,32 +244,19 @@
       <div id="companions-divider" class="companions-divider-wrap">
         <div id="companions-line-shimmer" class="shimmer-pos"></div>
       </div>
-      <div id="companions-wrapper" class="grid-1-4">
+      <!-- Phone only: the list below (and its label) is hidden under 768px; the carousel is inserted after this -->
+      <div class="lbl lbl-divider companions-lbl--phone" id="companions-wrapper-carousel-title">My Thirteen Companions</div>
+      <div id="companions-wrapper" class="comp-row">
 
-        <!-- Left: rolodex list -->
+        <!-- Left: title + reset. Right: card. Below: the thirteen in a row -->
         <div id="companions-tags-col">
           <div class="lbl lbl-divider" id="companions-lbl">My Thirteen Companions</div>
-          <div id="companions-tags" class="flex-col">
-            <div class="rolodex-item" data-id="do"><span class="rolodex-item__kanji">道</span><span class="rolodex-item__name">Dō</span></div>
-            <div class="rolodex-item" data-id="ikigai"><span class="rolodex-item__kanji">生き甲斐</span><span class="rolodex-item__name">Ikigai</span></div>
-            <div class="rolodex-item" data-id="shuhari"><span class="rolodex-item__kanji">守破離</span><span class="rolodex-item__name">Shu-Ha-Ri</span></div>
-            <div class="rolodex-item" data-id="ma"><span class="rolodex-item__kanji">間</span><span class="rolodex-item__name">Ma</span></div>
-            <div class="rolodex-item" data-id="kaizen"><span class="rolodex-item__kanji">改善</span><span class="rolodex-item__name">Kaizen</span></div>
-            <div class="rolodex-item" data-id="shoshin"><span class="rolodex-item__kanji">初心</span><span class="rolodex-item__name">Shoshin</span></div>
-            <div class="rolodex-item" data-id="gaman"><span class="rolodex-item__kanji">我慢</span><span class="rolodex-item__name">Gaman</span></div>
-            <div class="rolodex-item" data-id="wabisabi"><span class="rolodex-item__kanji">侘寂</span><span class="rolodex-item__name">Wabi-Sabi</span></div>
-            <div class="rolodex-item" data-id="ichigoichie"><span class="rolodex-item__kanji">一期一会</span><span class="rolodex-item__name">Ichi-go ichi-e</span></div>
-            <div class="rolodex-item" data-id="shikataganai"><span class="rolodex-item__kanji">仕方がない</span><span class="rolodex-item__name">Shikata ga nai</span></div>
-            <div class="rolodex-item" data-id="mononoaware"><span class="rolodex-item__kanji">物の哀れ</span><span class="rolodex-item__name">Mono no Aware</span></div>
-            <div class="rolodex-item" data-id="sennosen"><span class="rolodex-item__kanji">先の先</span><span class="rolodex-item__name">Sen no Sen</span></div>
-            <div class="rolodex-item" data-id="mushin"><span class="rolodex-item__kanji">無心</span><span class="rolodex-item__name">Mushin</span></div>
-          </div>
+          <button type="button" class="comp-reset" id="companion-reset" disabled>What are these again?</button>
         </div>
 
         <!-- Right: description card — 2/3 width -->
         <div class="card-idle companion-card-sm" id="companion-card">
           <div id="companion-empty">
-            <div class="kanji-lg mb-md">道</div>
             <p id="companion-intro" class="card-body">These are not rules, but companions. Many come from Japanese martial traditions, aesthetics, and thought; not because I think the Japanese hold the only way, but because they gave me words for how I've come to learn, teach, and live. I spent years arguing that rope should be treated like a martial art, when what I meant was Dō: a path and not one but many. I often say that I am a modified perfectionist, I mean, I still am, but different... These all found their way into my path and I choose to lean on them with purpose; hopefully these concepts can also help you. The more we consider, the more we dismantle our preconceptions. Choose one to see how it has walked with me in rope.</p>
           </div>
           <div id="companion-content" style="display:none;">
@@ -284,6 +271,23 @@
             <p id="companion-rope" class="card-note--mt"></p>
           </div>
         </div>
+
+        <!-- The thirteen, one row across both columns -->
+          <div id="companions-tags" class="flex-col comp-strip">
+            <div class="rolodex-item" data-id="do"><span class="rolodex-item__kanji">道</span><span class="rolodex-item__name">Dō</span></div>
+            <div class="rolodex-item" data-id="ikigai"><span class="rolodex-item__kanji">生き甲斐</span><span class="rolodex-item__name">Ikigai</span></div>
+            <div class="rolodex-item" data-id="shuhari"><span class="rolodex-item__kanji">守破離</span><span class="rolodex-item__name">Shu-Ha-Ri</span></div>
+            <div class="rolodex-item" data-id="ma"><span class="rolodex-item__kanji">間</span><span class="rolodex-item__name">Ma</span></div>
+            <div class="rolodex-item" data-id="kaizen"><span class="rolodex-item__kanji">改善</span><span class="rolodex-item__name">Kaizen</span></div>
+            <div class="rolodex-item" data-id="shoshin"><span class="rolodex-item__kanji">初心</span><span class="rolodex-item__name">Shoshin</span></div>
+            <div class="rolodex-item" data-id="gaman"><span class="rolodex-item__kanji">我慢</span><span class="rolodex-item__name">Gaman</span></div>
+            <div class="rolodex-item" data-id="wabisabi"><span class="rolodex-item__kanji">侘寂</span><span class="rolodex-item__name">Wabi-Sabi</span></div>
+            <div class="rolodex-item" data-id="ichigoichie"><span class="rolodex-item__kanji">一期一会</span><span class="rolodex-item__name">Ichi-go ichi-e</span></div>
+            <div class="rolodex-item" data-id="shikataganai"><span class="rolodex-item__kanji">仕方がない</span><span class="rolodex-item__name">Shikata ga nai</span></div>
+            <div class="rolodex-item" data-id="mononoaware"><span class="rolodex-item__kanji">物の哀れ</span><span class="rolodex-item__name">Mono no Aware</span></div>
+            <div class="rolodex-item" data-id="sennosen"><span class="rolodex-item__kanji">先の先</span><span class="rolodex-item__name">Sen no Sen</span></div>
+            <div class="rolodex-item" data-id="mushin"><span class="rolodex-item__kanji">無心</span><span class="rolodex-item__name">Mushin</span></div>
+          </div>
 
       </div>
     </div>

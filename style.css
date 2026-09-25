@@ -3257,6 +3257,101 @@ footer.site-footer {
   border-bottom: .5px solid rgba(240,234,216,.08);
 }
 
+/* ══════════════════════════════════════════════════════════
+   B2 companions as one row (desktop). Hover grows the item under the
+   mouse and nudges its neighbours; the chosen one turns lavender.
+   Phones keep the swipe carousel (#companions-wrapper is hidden there).
+                                                         added 2026-09-25
+   ══════════════════════════════════════════════════════════ */
+.comp-row { display: block; }
+#companions-tags.comp-strip {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: .4rem;
+  padding: 1.6rem 0 .9rem;
+}
+.comp-strip .rolodex-item {
+  flex: 0 1 auto;
+  align-items: center;
+  text-align: center;
+  padding: .35rem .1rem .45rem;
+  border-left: 0;
+  overflow: visible;
+  transform-origin: 50% 100%;
+  transition: transform .22s ease, box-shadow var(--dur-fast);
+}
+.comp-strip .rolodex-item::after { display: none; }
+.comp-strip .rolodex-item__kanji {
+  font-size: clamp(.8rem, 1.55vw, 1.4rem);
+  white-space: nowrap;
+  color: rgba(201,168,76,.5);
+  transition: color var(--dur-fast);
+}
+.comp-strip .rolodex-item__name {
+  max-width: 8.5em;
+  margin-top: .2rem;
+  font-size: clamp(.5rem, .72vw, var(--dec-lg));
+  letter-spacing: .1em;
+  line-height: 1.35;
+}
+.comp-strip .rolodex-item:hover { transform: scale(1.45); z-index: 2; }
+.comp-strip .rolodex-item:hover + .rolodex-item,
+.comp-strip .rolodex-item:has(+ .rolodex-item:hover) { transform: scale(1.15); }
+.comp-strip .rolodex-item:hover .rolodex-item__kanji { color: var(--rope-l); }
+.comp-strip .rolodex-item.active { box-shadow: inset 0 -2px 0 var(--lav-l); }
+.comp-strip .rolodex-item.active .rolodex-item__kanji,
+.comp-strip .rolodex-item.active .rolodex-item__name { color: var(--lav-l); }
+.comp-row #companion-card {
+  min-height: 0;
+  margin-top: var(--sp-lg);
+}
+.comp-row #companion-intro,
+.comp-row #companion-desc,
+.comp-row #companion-rope { max-width: 760px; }
+
+/* B2 companions, card on top: title and reset on the left (1), card on the
+   right (4), the thirteen in a row underneath spanning both.   2026-09-25 */
+.comp-row {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  gap: 1.25rem;
+  align-items: start;
+}
+.comp-row #companion-card { margin-top: 0; }
+.comp-row #companions-tags.comp-strip { grid-column: 1 / -1; }
+.comp-reset {
+  display: block;
+  margin-top: var(--sp-md);
+  padding: 0;
+  background: none;
+  border: 0;
+  font-family: var(--fm);
+  font-size: var(--dec-lg);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--lav-l);
+  cursor: pointer;
+  transition: opacity var(--dur-fast), color var(--dur-fast);
+}
+.comp-reset:hover { color: var(--lav-br); }
+.comp-reset:disabled { opacity: .25; cursor: default; color: rgba(240,234,216,.5); }
+.comp-reset { text-transform: none; letter-spacing: .06em; font-size: var(--scale-n2); }
+/* card text at the site's body size and brightness (was 15.7px at half brightness) */
+.comp-row #companion-card .card-body {
+  font-size: clamp(var(--scale-0), 1.8vw, var(--scale-p1));
+  color: rgba(240,234,216, var(--op-high));
+}
+
+/* Companions title for phones: the desktop copy sits inside #companions-wrapper,
+   which is hidden under 768px.                                     2026-09-25 */
+.companions-lbl--phone { display: none; }
+@media (max-width: 768px) {
+  .companions-lbl--phone { display: block; }
+}
+
 /* ── D2 Kanji decorative ── */
 .kanji-deco {
   font-family: var(--fj);

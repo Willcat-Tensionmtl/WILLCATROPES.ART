@@ -254,6 +254,23 @@ function showCompanion(id) {
   });
 })();
 
+/* Companions reset: back to the intro card, nothing selected.   2026-09-25 */
+(function() {
+  var btn = document.getElementById('companion-reset');
+  var list = document.getElementById('companions-tags');
+  if (!btn || !list) return;
+  list.addEventListener('click', function(e) {
+    if (e.target.closest('.rolodex-item')) btn.disabled = false;
+  });
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.rolodex-item').forEach(function(t) { t.classList.remove('active'); });
+    document.getElementById('companion-content').style.display = 'none';
+    fadeInContent(document.getElementById('companion-empty'));
+    document.getElementById('companion-card').classList.add('card-idle');
+    btn.disabled = true;
+  });
+})();
+
 /* Delegated listener — levels */
 (function() {
   var list = document.getElementById('level-list');
@@ -546,7 +563,6 @@ document.addEventListener('touchend', function(e) {
   var companionOrder = ['do','ikigai','shuhari','ma','kaizen','shoshin','gaman','wabisabi','ichigoichie','shikataganai','mononoaware','sennosen','mushin'];
   var compIntro = document.getElementById('companion-intro');
   buildCarousel('companions', (compIntro ? ['<div style="text-align:center;padding:.5rem 0 1.5rem">' +
-      '<span class="rlx-kanji">道</span>' +
       '<p class="rlx-desc">' + compIntro.innerHTML + '</p>' +
     '</div>'] : []).concat(companionOrder.map(function(key) {
     var c = companions[key];
