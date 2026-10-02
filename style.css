@@ -5805,7 +5805,7 @@ svg { fill: none; }
   }
 }
 /* B3 shape cards: the B2 ghost shapes in the bottom-right corner, traced on hover */
-#shape-cards-grid .ghost-shape { z-index: -1; }
+#shape-cards-grid .ghost-shape { z-index: -1; width: 11.25rem; height: 11.25rem; } /* 1/4 bigger than B2's 9rem */
 #shape-cards-grid .shape-card--desktop:hover .ghost-svg { opacity: .5; }
 #shape-cards-grid .shape-card--desktop:hover .ghost-svg rect {
   stroke-dasharray: 440; stroke-dashoffset: 440; stroke: rgba(201,168,76,.8);
