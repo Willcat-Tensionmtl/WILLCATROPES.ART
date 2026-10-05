@@ -185,6 +185,16 @@ function fadeInContent(el) {
 }
 
 function showLevel(id) {
+  if (id === 'lvlnone') {            /* Never "certified": back to the opening card */
+    pulseShimmer('levels-line-shimmer');
+    document.querySelectorAll('.level-item').forEach(function(t) { t.classList.remove('active'); });
+    var none = document.querySelector('.level-item[data-id="lvlnone"]');
+    if (none) none.classList.add('active');
+    document.getElementById('level-content').style.display = 'none';
+    document.getElementById('level-card').classList.add('card-idle');
+    fadeInContent(document.getElementById('level-empty'));
+    return;
+  }
   var l = levels[id];
   if (!l) return;
   pulseShimmer('levels-line-shimmer');
@@ -203,6 +213,56 @@ function showLevel(id) {
   document.getElementById('level-card').classList.remove('card-idle');
   fadeInContent(document.getElementById('level-content'));
 }
+
+/* C7 · the card is only as tall as its tallest text needs, measured at
+   the current width and re-measured when the window changes. Desktop
+   only: on phone the card is hidden and the carousel takes over. */
+function fitLevelCard() {
+  var card = document.getElementById('level-card');
+  if (!card || !card.offsetWidth) return;
+  var probe = card.cloneNode(true);
+  probe.removeAttribute('id');
+  probe.classList.remove('card-idle');
+  probe.style.cssText = 'position:absolute;left:-9999px;top:0;visibility:hidden;' +
+    'height:auto;min-height:0;max-height:none;width:' + card.offsetWidth + 'px;';
+  card.parentNode.appendChild(probe);
+  var empty = probe.querySelector('#level-empty');
+  var content = probe.querySelector('#level-content');
+  var tallest = 0;
+  if (empty && content) {
+    empty.style.cssText = 'display:block;opacity:1;';
+    content.style.display = 'none';
+    tallest = probe.offsetHeight;
+    empty.style.display = 'none';
+    content.style.cssText = 'display:block;opacity:1;';
+    probe.querySelectorAll('#level-icon img').forEach(function(img, i) {
+      img.style.display = i === 0 ? 'block' : 'none';
+    });
+    Object.keys(levels).forEach(function(id) {
+      var l = levels[id];
+      probe.querySelector('#level-badge').textContent  = l.badge;
+      probe.querySelector('#level-title').textContent  = l.title;
+      probe.querySelector('#level-desc').textContent   = l.desc;
+      probe.querySelector('#level-skills').textContent = l.skills;
+      probe.querySelector('#level-goal').textContent   = l.goal;
+      tallest = Math.max(tallest, probe.offsetHeight);
+    });
+  }
+  card.parentNode.removeChild(probe);
+  if (tallest) {
+    card.style.minHeight = tallest + 'px';
+    card.style.height = tallest + 'px';
+  }
+}
+(function() {
+  var t;
+  function later() { clearTimeout(t); t = setTimeout(fitLevelCard, 120); }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fitLevelCard);
+  else fitLevelCard();
+  window.addEventListener('load', fitLevelCard);
+  window.addEventListener('resize', later);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitLevelCard);
+})();
 
 function showWorkshop(id) {
   var w = workshops[id];
@@ -577,7 +637,12 @@ document.addEventListener('touchend', function(e) {
   })), 'companions-wrapper');
 
   var levelOrder = ['lvl0','lvl1','lvl2','lvl3','lvl4'];
-  buildCarousel('levels', levelOrder.map(function(key) {
+  var lvlIntro = document.getElementById('level-intro');
+  buildCarousel('levels', (lvlIntro ? ['<div style="text-align:center;padding:.5rem 0 1.5rem">' +
+      '<span class="swatch swatch--none swatch--none-lg"></span>' +
+      '<div class="rlx-title">Never "certified"</div>' +
+      '<p class="rlx-desc" style="margin-top:.75rem">' + lvlIntro.innerHTML + '</p>' +
+    '</div>'] : []).concat(levelOrder.map(function(key) {
     var l = levels[key];
     if (!l) return '';
     var iconSrc = { lvl0:'img/Lvl_0_Neophyte.webp', lvl1:'img/Lvl_1_Beginner.webp', lvl2:'img/Lvl_2_Intermediate.webp', lvl3:'img/Lvl_3_Advanced.webp', lvl4:'img/Lvl_4_AdvancedPlus.webp' };
@@ -588,7 +653,7 @@ document.addEventListener('touchend', function(e) {
       '<p class="rlx-desc" style="margin-top:.75rem">' + l.desc + '</p>' +
       '<p class="rlx-note">' + (l.skills || '') + '</p>' +
     '</div>';
-  }), 'level-grid');
+  })), 'level-grid');
 
   var workshopOrder = ['fundamentals','foundations','bodymech','gote','tension','safety','nawajutsu','partial','suspension','loadpaths','intentionality','semenawa','do','festival','other'];
   buildCarousel('workshops', workshopOrder.map(function(key) {

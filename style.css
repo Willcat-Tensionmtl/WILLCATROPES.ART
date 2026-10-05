@@ -6354,6 +6354,23 @@ p.t-lbl-20 { font-size: var(--caption); }
 .q-src { color: var(--q-ink); }
 .shape-card__quote-block, .cs-quote__text { color: var(--q-ink); }
 
+/* ── C7 · the description is the opening card; "Never certified" level ── added 2026-10-05 */
+.swatch--none {
+  background: transparent;
+  border: 1.5px solid rgba(240,234,216,.72);
+  position: relative;
+  box-sizing: border-box;
+}
+.swatch--none::after {
+  content: ""; position: absolute; left: 50%; top: -1.5px; bottom: -1.5px;
+  width: 1.5px; margin-left: -.75px;
+  background: rgba(240,234,216,.72);
+  transform: rotate(-45deg);
+}
+.swatch--none-lg { width: 2.25rem; height: 2.25rem; margin: 0 auto .75rem; display: block; }
+.level-intro { text-align: left; }
+.level-intro .card-body { font-size: clamp(var(--scale-n1), 1.25vw, var(--scale-0)); color: rgba(240,234,216,var(--op-high)); }
+
 /* ═══════════════════════════════════════════════════════════════
    NAWAJUTSU · □ △ ○ box (D3)                    added 2026-09-14
    Add-only, namespaced .nwb. Tabs and states are CSS only.
