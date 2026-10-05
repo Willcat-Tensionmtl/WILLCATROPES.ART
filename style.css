@@ -6275,6 +6275,86 @@ svg { fill: none; }
 }
 
 /* ═══════════════════════════════════════════════════════════════
+   TYPE SCALE v2 · standardised                    added 2026-10-05
+   Add-only. Nothing above is removed; these rules override it.
+   See the Font Scale Workfile for the reasoning.
+
+   1. One new step: --scale-n3 (~12px), the smallest size meant
+      to be READ. --dec-lg (10px) is kept for short uppercase
+      labels only; lowercase or sentence-length text moves up.
+   2. Optical rule: DM Mono's x-height is ~28% taller than
+      Cormorant's, so mono prose is set two steps under the serif
+      body it accompanies (serif 18-21px  ->  mono 14-15.7px).
+   3. Strays brought onto scale tokens.
+   4. One quote system, lavender. Gold rule = my own emphasis.
+      Lavender = a quotation: .q-book (printed, upright, source
+      line), .bq-class (said in class, italic, bar above),
+      .q-plain (quoted, source not stated).
+   ═══════════════════════════════════════════════════════════════ */
+:root {
+  --scale-n3:  0.762rem;                 /* -3  ~12px  caption */
+  --caption:   var(--scale-n3);
+  --mono-body: clamp(var(--scale-n2), 1.1vw, var(--scale-n1));
+  --quote-size: clamp(var(--scale-p1), 1.9vw, var(--scale-p2));
+  --q-ink:  var(--lav-l);
+  --q-rule: var(--lav);
+}
+
+/* 2 · mono prose sits under the serif body */
+.body-mono,
+.shape-card__body-text,
+p.t-fd-body-dim,
+p.t-fd-body-muted { font-size: var(--mono-body) !important; }
+.nwg-sp__where,
+.nwg-sp__wf span { font-size: var(--scale-n2); }
+
+/* 3 · strays onto the scale */
+@media (min-width: 769px) {
+  .rate-name, .rate-price, .contact-border, .lbl-gold-dim { font-size: var(--scale-n1); }
+}
+.timeline-title       { font-size: var(--scale-0); }
+.nwg-sp__dot          { font-size: var(--scale-n3); }
+.comp-strip .rolodex-item__kanji { font-size: clamp(var(--scale-n2), 1.55vw, var(--scale-p2)); }
+.cs-kanji             { font-size: var(--scale-n2); }
+.cs-title             { font-size: var(--scale-p3); }
+.shape-card__pillar, .cs-pillar { font-size: var(--scale-n2); }   /* was .5em */
+.cs-quote__text       { font-size: var(--scale-n1); }
+.nav-arrow, .nav-arrow-lh, .rlx-btn { font-family: var(--fm); }
+
+/* 1 · caption step for small text that has to be read */
+.wip__text,
+.hero__eyebrow, .hero__sub,
+.footer__copy, .footer__copy p, .footer__copy a,
+.contact-value,
+.bq-cite,
+p.t-lbl-20 { font-size: var(--caption); }
+@media (min-width: 900px) { .hero__eyebrow { white-space: nowrap; } }
+
+/* 4 · quotes */
+.bq.q-plain, .bq.q-book, .q-book--block {
+  border-left: 2px solid var(--q-rule);
+}
+.q-book--block { padding-left: var(--sp-lg); margin: var(--sp-lg) 0 var(--sp-xl); }
+.bq.q-plain p { color: var(--q-ink); font-size: var(--quote-size); }
+.bq.q-book p {
+  color: var(--q-ink); font-style: normal;
+  font-size: clamp(var(--scale-0), 1.8vw, var(--scale-p1));
+}
+.q-book--block .body-serif { color: var(--q-ink); }
+.q-book--block ul { opacity: 1 !important; }
+.q-book--block > :last-child { margin-bottom: 0; }
+
+.bq-class { position: relative; padding-top: var(--sp-md); }
+.bq-class::before {
+  content: ""; position: absolute; left: 0; top: 0;
+  width: 2.5rem; height: 2px; background: var(--q-rule);
+}
+.bq-class p { color: var(--q-ink); font-size: var(--quote-size); }
+
+.q-src { color: var(--q-ink); }
+.shape-card__quote-block, .cs-quote__text { color: var(--q-ink); }
+
+/* ═══════════════════════════════════════════════════════════════
    NAWAJUTSU · □ △ ○ box (D3)                    added 2026-09-14
    Add-only, namespaced .nwb. Tabs and states are CSS only.
    ═══════════════════════════════════════════════════════════════ */
