@@ -1383,6 +1383,50 @@ var PLACES = [
 })();
 
 
+/* ── A1 Shape cards carousel: touch swipe (added 2026-10-09) ──
+   Arrows and dots already worked; this adds left/right swipe on phone.
+   Horizontal moves only, so vertical page scrolling is untouched. */
+(function() {
+  var c = document.querySelector('.a1-carousel');
+  if (!c) return;
+  var x0 = null, y0 = 0;
+  c.addEventListener('touchstart', function(e) {
+    x0 = e.touches[0].clientX; y0 = e.touches[0].clientY;
+  }, { passive: true });
+  c.addEventListener('touchend', function(e) {
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0;
+    var dy = e.changedTouches[0].clientY - y0;
+    x0 = null;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+      dx < 0 ? carouselNext() : carouselPrev();
+    }
+  }, { passive: true });
+})();
+
+/* ── B3 Vitruvian figure: a click that misses every dot (added 2026-10-09) ──
+   Picks among the dots closest to where you clicked (anything within 25% of
+   the nearest distance), at random when several are about as close, and
+   opens that card as if the dot itself had been clicked. */
+(function() {
+  var stage = document.querySelector('.nwg-sp__stage');
+  if (!stage) return;
+  stage.addEventListener('click', function(e) {
+    if (e.target.closest('.nwg-sp__dot')) return;
+    var dots = stage.querySelectorAll('.nwg-sp__dot');
+    if (!dots.length) return;
+    var list = [], best = Infinity;
+    dots.forEach(function(d) {
+      var r = d.getBoundingClientRect();
+      var dist = Math.hypot(e.clientX - (r.left + r.width / 2), e.clientY - (r.top + r.height / 2));
+      list.push({ d: d, dist: dist });
+      if (dist < best) best = dist;
+    });
+    var near = list.filter(function(o) { return o.dist <= best * 1.25; });
+    near[Math.floor(Math.random() * near.length)].d.click();
+  });
+})();
+
 /* ───────────────────────────────────────────────────────────────
    NAWAJUTSU · □ △ ○ box (D3)                    added 2026-09-14
    Tabs and states are pure CSS. This only drives the foot slider

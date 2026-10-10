@@ -6371,6 +6371,39 @@ p.t-lbl-20 { font-size: var(--caption); }
 .level-intro { text-align: left; }
 .level-intro .card-body { font-size: clamp(var(--scale-n1), 1.25vw, var(--scale-0)); color: rgba(240,234,216,var(--op-high)); }
 
+/* ── C6 Floorplay · the 19-tool toolbox list ── added 2026-10-09 */
+.fp-toolbox { max-width: 960px; margin-top: var(--sp-lg); }
+.fp-prose { max-width: 720px; margin: 0 0 var(--sp-2xl); }
+.fp-tools {
+  list-style: none; counter-reset: fp; padding: 0; margin: 0 0 var(--sp-xl);
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+  gap: 0 var(--sp-lg); border-top: .5px solid rgba(169,124,26,.2);
+}
+.fp-tools li {
+  counter-increment: fp; display: flex; gap: .9rem; align-items: baseline;
+  padding: .7rem 0; border-bottom: .5px solid rgba(169,124,26,.2);
+  font-family: var(--fd); font-size: var(--scale-0); font-weight: 300;
+  color: rgba(240,234,216,var(--op-high));
+}
+.fp-tools li::before {
+  content: counter(fp, decimal-leading-zero);
+  font-family: var(--fm); font-size: var(--caption); color: var(--rope-l); letter-spacing: .1em;
+}
+
+/* Phone hero sub (added 2026-10-09): name on one line, pronouns on the next */
+@media (max-width: 768px) {
+  .hero__sub-name, .hero__sub-pron { display: block; }
+  .hero__sub-sep { display: none; }
+}
+
+/* Phone nav (added 2026-10-09): links sit on the right, beside the menu button */
+@media (max-width: 900px) {
+  .site-nav__gap { justify-content: flex-end; }
+}
+
+/* B3 Vitruvian (added 2026-10-09): the whole figure is clickable; a miss opens the nearest dot */
+.nwg-sp__stage { cursor: pointer; }
+
 /* ═══════════════════════════════════════════════════════════════
    NAWAJUTSU · □ △ ○ box (D3)                    added 2026-09-14
    Add-only, namespaced .nwb. Tabs and states are CSS only.
