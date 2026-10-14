@@ -6404,6 +6404,15 @@ p.t-lbl-20 { font-size: var(--caption); }
 /* B3 Vitruvian (added 2026-10-09): the whole figure is clickable; a miss opens the nearest dot */
 .nwg-sp__stage { cursor: pointer; }
 
+/* C3 path list (added 2026-10-12): thoughts link + "Book at Tension" column */
+.tl-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 13rem); column-gap: 1.25rem; align-items: start; }
+.tl-head { margin-bottom: 1rem; }
+.tl-head__cell { font-family: var(--fm); font-size: var(--dec-lg); letter-spacing: .15em; text-transform: uppercase; color: var(--rope-l); }
+.tl-book { font-family: var(--fm); font-size: var(--dec-lg); letter-spacing: .08em; line-height: 1.5; color: var(--rope-l); text-decoration: none; padding-top: 3px; }
+a.tl-book:hover { text-decoration: underline; }
+.tl-book--note { color: rgba(240,234,216,.35); letter-spacing: .04em; }
+@media (max-width: 480px) { .tl-row { grid-template-columns: minmax(0, 1fr) minmax(0, 9rem); column-gap: .75rem; } }
+
 /* ═══════════════════════════════════════════════════════════════
    NAWAJUTSU · □ △ ○ box (D3)                    added 2026-09-14
    Add-only, namespaced .nwb. Tabs and states are CSS only.
